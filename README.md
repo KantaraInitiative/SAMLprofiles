@@ -15,7 +15,8 @@ The requirements managed in this repository shall be the base for the next versi
 *	XML Signature (signature and digest algorithms)
 *	XML Encryption (block encryption, key transport & agreement algorithms)
 *	SAMl Errata
-possible additions:
+
+Possible additions:
 * ECP 
 * Request Initiation protocol and profile
 
