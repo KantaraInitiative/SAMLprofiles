@@ -7,6 +7,7 @@ The requirements managed in this repository shall be the base for the next versi
 *	Core
 *	Metadata
 *	Metadata Interoperability Profile
+*	Metadata Extension for Entity Attributes
 *	Profiles (Web-SSO Profile, Single Logout Profile)
 *	IdP Discovery
 *	Binding (HTTP-Redirect Binding beim SAML AuthN-Request, HTTP-POST und HTTP-Artifact Bindings beim SAML Response)
