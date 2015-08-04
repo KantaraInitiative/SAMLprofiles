@@ -1,4 +1,18 @@
 # SAML profiles
-SAML interoperability and deployment profiles
+SAML conformance profiles
 
-This repository contains a collection of compliance requirements written in Markdown. Using MkDocs one can generate a profile document.
+This repository contains a collection of conformance requirements written in Markdown. Using an MkDocs-derived generator the requirements result in a profile document.
+
+The requirements managed in this repository shall be the base for the next versions of the "Kantara eGovernment Implementation Profile of SAML V2.0" and the "saml2int v0.2" deployment profiles. The core use case is WebSSO/bearer token, referencing following pieces of SAML specifications:
+*	Core
+*	Metadata
+*	Metadata Interoperability Profile
+*	Profiles (Web-SSO Profile, Single Logout Profile)
+*	IdP Discovery
+*	Binding (HTTP-Redirect Binding beim SAML AuthN-Request, HTTP-POST und HTTP-Artifact Bindings beim SAML Response)
+*	Artifact Resolution Profile
+*	XML Signature (signature and digest algorithms)
+*	XML Encryption (block encryption, key transport & agreement algorithms)
+
+Project-specific markup:
+t.b.d.
