@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Enc elem - SAML WebSSO Profiles</title>
+  
+
+  <link rel="shortcut icon" href="../../../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Enc elem";
+  </script>
+  
+  <script src="../../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../../js/highlight.pack.js"></script>
+  <script src="../../../js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../../.." class="icon icon-home"> SAML WebSSO Profiles</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../..">Home</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>WebSSO Deployment</span></li>
+
+        
+            
+    <ul class="subnav">
+    <li><span>01 Message Flows and Bindings</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../../WebSSO Deployment/01 Message Flows and Bindings/Message Flows/">Message Flows</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../../WebSSO Deployment/01 Message Flows and Bindings/enc elem/">Enc elem</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>02 Attribute Name Formats</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../../WebSSO Deployment/02 Attribute Name Formats/Attribute name fmt/">Attribute name fmt</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>03 Name Identifiers</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../../WebSSO Deployment/03 Name Identifiers/NameID/">NameID</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>04 Metadata and Trust Management</span></li>
+
+        
+            
+    <ul class="subnav">
+    <li><span>052 Metadata Exchange</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../../WebSSO Deployment/04 Metadata and Trust Management/052 Metadata Exchange/export MD at wkl/">export MD at wkl</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>053 Metadata Verification</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../../WebSSO Deployment/04 Metadata and Trust Management/053 Metadata Verification/MD verification/">MD verification</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>06 Message Contents</span></li>
+
+        
+            
+    <ul class="subnav">
+    <li><span>071 Authentication Request</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../../WebSSO Deployment/06 Message Contents/071 Authentication Request/Authn Request Msg/">Authn Request Msg</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>072 Response</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../../WebSSO Deployment/06 Message Contents/072 Response/Response msg/">Response msg</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>073 Artifact Resolution Request</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../../WebSSO Deployment/06 Message Contents/073 Artifact Resolution Request/artifact requ msg/">Artifact requ msg</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>074 Artifact Resolution Response</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../../WebSSO Deployment/06 Message Contents/074 Artifact Resolution Response/artifact resp msg/">Artifact resp msg</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>075 Single Logout Requests</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../../WebSSO Deployment/06 Message Contents/075 Single Logout Requests/SLO requ msg/">SLO requ msg</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>076 Single Logout Responses</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../../WebSSO Deployment/06 Message Contents/076 Single Logout Responses/SLO logout Resp msg/">SLO logout Resp msg</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+    </ul>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>WebSSO Implementation</span></li>
+
+        
+            
+    <ul class="subnav">
+    <li><span>01 Message Flows and Bindings</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Message Flows/">Message Flows</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Enc elem</a>
+        
+            <ul>
+            
+            </ul>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>02 Attribute Name Formats</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../02 Attribute Name Formats/Attribute name fmt/">Attribute name fmt</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>03 Name Identifiers</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../03 Name Identifiers/NameID/">NameID</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>04 Metadata and Trust Management</span></li>
+
+        
+            
+    <ul class="subnav">
+    <li><span>052 Metadata Exchange</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../04 Metadata and Trust Management/052 Metadata Exchange/export MD at wkl/">export MD at wkl</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>053 Metadata Verification</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../04 Metadata and Trust Management/053 Metadata Verification/MD verification/">MD verification</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>06 Message Contents</span></li>
+
+        
+            
+    <ul class="subnav">
+    <li><span>071 Authentication Request</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../06 Message Contents/071 Authentication Request/Authn Request Msg/">Authn Request Msg</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>072 Response</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../06 Message Contents/072 Response/Response msg/">Response msg</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>073 Artifact Resolution Request</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../06 Message Contents/073 Artifact Resolution Request/artifact requ msg/">Artifact requ msg</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>074 Artifact Resolution Response</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../06 Message Contents/074 Artifact Resolution Response/artifact resp msg/">Artifact resp msg</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>075 Single Logout Requests</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../06 Message Contents/075 Single Logout Requests/SLO requ msg/">SLO requ msg</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>076 Single Logout Responses</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../06 Message Contents/076 Single Logout Responses/SLO logout Resp msg/">SLO logout Resp msg</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+    </ul>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../..">SAML WebSSO Profiles</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>01 Message Flows and Bindings &raquo;</li>
+        
+      
+    
+    <li>Enc elem</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+          <a href="https://github.com/rhoerbe/SAMLprofiles/" class="icon icon-github"> Edit on GitHub</a>
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <table>
+<thead>
+<tr>
+<th>RequID</th>
+<th>Message Flow</th>
+<th>Binding</th>
+<th>Message Encryption</th>
+<th>IDP</th>
+<th>SP</th>
+<th>eGov IOP 2.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MFB-100</td>
+<td>Web SSO Response</td>
+<td>HTTP POST</td>
+<td>Assertion</td>
+<td>MUST</td>
+<td>MUST</td>
+<td>293</td>
+</tr>
+<tr>
+<td>MFB-101</td>
+<td>Web SSO Response</td>
+<td>HTTP POST</td>
+<td>NameID</td>
+<td>MAY</td>
+<td>MAY</td>
+<td>293</td>
+</tr>
+<tr>
+<td>MFB-102</td>
+<td>Web SSO Response</td>
+<td>HTTP POST</td>
+<td>Attribute</td>
+<td>MAY</td>
+<td>MAY</td>
+<td>293</td>
+</tr>
+<tr>
+<td>MFB-103</td>
+<td>SLO LogoutRequest</td>
+<td>HTTP Redirect</td>
+<td>EncryptedID</td>
+<td>MUST</td>
+<td>MUST</td>
+<td>390</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../02 Attribute Name Formats/Attribute name fmt/" class="btn btn-neutral float-right" title="Attribute name fmt"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Message Flows/" class="btn btn-neutral" title="Message Flows"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../Message Flows/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../02 Attribute Name Formats/Attribute name fmt/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>
