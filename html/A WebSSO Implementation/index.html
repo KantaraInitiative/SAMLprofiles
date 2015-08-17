@@ -416,11 +416,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre>:numbered:</pre>
-</div>
-</div>
 <div class="paragraph">
 <p>Table of Contents</p>
 </div>
@@ -432,7 +427,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_message_flows_and_bindings">Message Flows and Bindings</h2>
+<h2 id="_message_flows_and_bindings">1. Message Flows and Bindings</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1. Support for the combination of message flows, bindings and message authentication</caption>
@@ -714,7 +709,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_message_encryption">Message Encryption</h2>
+<h2 id="_message_encryption">2. Message Encryption</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>In conjunction with their support of the SAML V2.0 profiles referenced by subsequent sections, Identity Provider and Service Provider implementations MUST support the generation and consumption of &lt;saml2:Attribute&gt; elements that conform to the SAML V2.0 X.500/LDAP Attribute Profile [SAML-X500].
@@ -765,7 +760,7 @@ The ability to support &lt;saml2:AttributeValue&gt; elements whose values are no
 </div>
 </div>
 <div class="sect1">
-<h2 id="_attribute_name_formats">Attribute Name Formats</h2>
+<h2 id="_attribute_name_formats">3. Attribute Name Formats</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>In conjunction with their support of the SAML V2.0 profiles referenced by subsequent sections, Identity Provider and Service Provider implementations MUST support the generation and consumption of &lt;saml2:Attribute&gt; elements that conform to the SAML V2.0 X.500/LDAP Attribute Profile [SAML-X500].
@@ -816,7 +811,7 @@ The ability to support &lt;saml2:AttributeValue&gt; elements whose values are no
 </div>
 </div>
 <div class="sect1">
-<h2 id="_name_identifier_formats">Name Identifier Formats</h2>
+<h2 id="_name_identifier_formats">4. Name Identifier Formats</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>In conjunction with their support of the SAML V2.0 profiles referenced by subsequent sections, Identity Provider and Service Provider implementations MUST support the following SAML V2.0 name identifier formats, in accordance with the normative obligations associated with them by [SAML2Core]:</p>
@@ -859,10 +854,10 @@ The ability to support &lt;saml2:AttributeValue&gt; elements whose values are no
 </div>
 </div>
 <div class="sect1">
-<h2 id="_saml_metadata">SAML Metadata</h2>
+<h2 id="_saml_metadata">5. SAML Metadata</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_metadata_profiles_and_capabilites">Metadata Profiles and Capabilites</h3>
+<h3 id="_metadata_profiles_and_capabilites">5.1. Metadata Profiles and Capabilites</h3>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 5. Supported SAML metadata profiles and capabilites</caption>
 <colgroup>
@@ -1040,7 +1035,7 @@ The ability to support &lt;saml2:AttributeValue&gt; elements whose values are no
 </table>
 </div>
 <div class="sect2">
-<h3 id="_saml_metadata_exchange">SAML Metadata Exchange</h3>
+<h3 id="_saml_metadata_exchange">5.2. SAML Metadata Exchange</h3>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 6. Requirements for SAML metadata exchange</caption>
 <colgroup>
@@ -1180,7 +1175,7 @@ The ability to support &lt;saml2:AttributeValue&gt; elements whose values are no
 </div>
 </div>
 <div class="sect1">
-<h2 id="_idp_discovery">IDP Discovery</h2>
+<h2 id="_idp_discovery">6. IDP Discovery</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 7. Supported IDP discovery protocols</caption>
@@ -1213,7 +1208,7 @@ The ability to support &lt;saml2:AttributeValue&gt; elements whose values are no
 </div>
 </div>
 <div class="sect1">
-<h2 id="_saml_websso_message_formats">SAML WebSSO Message Formats</h2>
+<h2 id="_saml_websso_message_formats">7. SAML WebSSO Message Formats</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Support for the SAML V2.0 Web Browser SSO Profile [SAML2Prof] is required with following capabilites.</p>
@@ -1257,8 +1252,38 @@ The ability to support &lt;saml2:AttributeValue&gt; elements whose values are no
 <td class="tableblock halign-left valign-top"><p class="tableblock">SSO-002</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/259</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support all &lt;saml2p:AuthnRequest&gt; child elements and attributes defined by [SAML2Core], but MAY provide that support in the form of returning appropriate errors when confronted by particular request options.
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/249</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support all &lt;saml2p:AuthnRequest&gt; child elements and attributes defined by [SAML2Core], but MAY provide that support in the form of returning appropriate errors when confronted by particular request options.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSO-003</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/249</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST fully support the options enumerated below, and be configurable to utilize those options in a useful manner as defined by [SAML2Core].:
+----
+* AssertionConsumerServiceURL
+* ProtocolBinding
+* ForceAuthn
+* IsPassive
+* AttributeConsumingServiceIndex
+* &lt;saml2p:RequestedAuthnContext&gt;
+* &lt;saml2p:NameIDPolicy&gt;
+----</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSO-004</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/264</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support any allowable content of the &lt;saml2p:RequestedAuthnContext&gt; element but MAY limit their support of the element to the value "exact" for the Comparison attribute.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSO-004</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/268</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support verification of requested AssertionConsumerServiceURL locations via comparison to &lt;md:AssertionConsumerService&gt; elements supplied via metadata using case-sensitive string comparison. It is OPTIONAL to support other means of comparison (e.g., canonicalization or other manipulation of URL values) or alternatve verification mechanisms.
 ----</p></td>
 </tr>
 </tbody>
@@ -1268,7 +1293,7 @@ The ability to support &lt;saml2:AttributeValue&gt; elements whose values are no
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-08-17 15:17:16 CEST
+Last updated 2015-08-17 18:25:17 CEST
 </div>
 </div>
 </body>
