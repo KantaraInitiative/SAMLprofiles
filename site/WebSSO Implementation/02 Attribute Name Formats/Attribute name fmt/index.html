@@ -258,25 +258,17 @@
 
         
             
-    <ul class="subnav">
-    <li><span>01 Message Flows and Bindings</span></li>
-
-        
-            
     <li class="toctree-l1 ">
-        <a class="" href="../../01 Message Flows and Bindings/Message Flows/">Message Flows</a>
+        <a class="" href="../../010 Message Flows/">010 Message Flows</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../01 Message Flows and Bindings/enc elem/">Enc elem</a>
+        <a class="" href="../../011 enc elem/">011 enc elem</a>
         
     </li>
-
-        
-    </ul>
 
         
             
@@ -492,7 +484,46 @@
           <div role="main">
             <div class="section">
               
-                
+                <p>In conjunction with their support of the SAML V2.0 profiles referenced by subsequent sections, Identity Provider and Service Provider implementations MUST support the generation and consumption of <saml2:Attribute> elements that conform to the SAML V2.0 X.500/LDAP Attribute Profile [SAML-X500].
+The ability to support <saml2:AttributeValue> elements whose values are not simple strings (e.g., <saml2:NameID>, or other XML values) is OPTIONAL. Such content could be base64-encoded as an alternative.</p>
+<table>
+<thead>
+<tr>
+<th>RequID</th>
+<th>Requirement</th>
+<th>SAML specification</th>
+<th>IDP</th>
+<th>SP</th>
+<th>eGov IOP 2.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ATR-001</td>
+<td>Support attribute name format urn:oasis:names:tc:SAML:2.0:attrname-format:uri</td>
+<td>[SAML-X500] sect. 2.3</td>
+<td>MUST</td>
+<td>MUST</td>
+<td>227</td>
+</tr>
+<tr>
+<td>ATR-002</td>
+<td>Support xs:string as attribute values; other types are optional</td>
+<td>[SAML2Core] sect. 2.7.3.1.1</td>
+<td>MUST</td>
+<td>MUST</td>
+<td>231</td>
+</tr>
+<tr>
+<td>ATR-003</td>
+<td>Supply/consume explicit xs:type for <AttributeValue></td>
+<td>[SAML2Core] sect. 2.7.3.1.1</td>
+<td>new?</td>
+<td>new?</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
               
             </div>
           </div>
@@ -503,7 +534,7 @@
         <a href="../../03 Name Identifiers/NameID/" class="btn btn-neutral float-right" title="NameID"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../../01 Message Flows and Bindings/enc elem/" class="btn btn-neutral" title="Enc elem"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../011 enc elem/" class="btn btn-neutral" title="011 enc elem"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -531,7 +562,7 @@
           <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../../01 Message Flows and Bindings/enc elem/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../../011 enc elem/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../../03 Name Identifiers/NameID/" style="color: #fcfcfc">Next &raquo;</a></span>
