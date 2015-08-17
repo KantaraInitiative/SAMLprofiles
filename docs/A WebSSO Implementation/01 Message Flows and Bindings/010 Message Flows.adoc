@@ -1,0 +1,33 @@
+.Supported message flows and bindings
+[width="100%",options="header"]
+|====================
+| RequID   | IDP  | SP   | Source             | Message Flow                               | SAML specification      | Binding       | Message AuthN      
+| IMFB-001 | MUST | MUST | eGov/241           | Web SSO AuthnRequest                       | [SAML2Prof] sect. 4.1   | HTTP redirect | Signature          
+| IMFB-002 | MUST | MUST | eGov/274, 290      | Web SSO Response                           | [SAML2Prof] sect. 4.1   | HTTP POST     | Assertion signature
+| IMFB-003 | MAY  | MAY  | eGov/274, 290      | Web SSO Response                           | [SAML2Prof] sect. 4.1   | HTTP POST     | Response signature 
+| IMFB-004 | MUST | MUST | eGov/274, 290      | Web SSO Response                           | [SAML2Prof] sect. 4.1   | HTTP artifact | Signature          
+| IMFB-005 | MUST | MUST | eGov/274, 290      | Web SSO unsolicited Response               | [SAML2Prof] sect. 4.1.5 | n/a           | n/a  
+| IMFB-006 | MUST | MUST | eGov/323,330,333   | Artifact Resolution Request and Response   | [SAML2Prof] sect. 5     | SOAP          | Message signature  
+| IMFB-007 | MUST | MUST | eGov/323,330,333   | Artifact Resolution Request and Response   | [SAML2Prof] sect. 5     | SOAP          | TLS                
+| IMFB-008 | MUST | MAY  | eGov/377, 384      | SLO SP-initiated LogoutRequest             | [SAML2Prof] sect. 4.4   | HTTP redirect | Message signature  
+| IMFB-009 | MUST | MUST | eGov/377, 384      | SLO SP-initiated LogoutRequest             | [SAML2Prof] sect. 4.4   | SOAP          | Message signature  
+| IMFB-010 | MUST | MUST | eGov/375, 384      | SLO IdP-initiated LogoutRequest            | [SAML2Prof] sect. 4.4   | SOAP          | Message signature  
+| IMFB-011 | MUST | MAY  | eGov/377, 384      | SLO SP-initiated LogoutRequest             | [SAML2Prof] sect. 4.4   | HTTP redirect | TLS                
+| IMFB-012 | MUST | MUST | eGov/377, 384      | SLO SP-initiated LogoutRequest             | [SAML2Prof] sect. 4.4   | SOAP          | TLS                
+| IMFB-013 | MUST | MUST | eGov/375, 384      | SLO IdP-initiated LogoutRequest            | [SAML2Prof] sect. 4.4   | SOAP          | TLS                
+| IMFB-014 | MUST | MAY  | eGov/405, 410, 414 | SLO IDP-initiated LogoutResponse           | [SAML2Prof] sect. 4.4   | HTTP redirect | Message signature  
+| IMFB-015 | MUST | MUST | eGov/405, 410, 414 | SLO IDP-initiated LogoutResponse           | [SAML2Prof] sect. 4.4   | SOAP          | Message signature  
+| IMFB-016 | MUST | MUST | eGov/405, 410, 414 | SLO SP-initiated LogoutResponse            | [SAML2Prof] sect. 4.4   | SOAP          | Message signature  
+| IMFB-017 | MUST | MAY  | eGov/405, 410, 414 | SLO IDP-initiated LogoutResponse           | [SAML2Prof] sect. 4.4   | HTTP redirect | TLS                
+| IMFB-018 | MUST | MUST | eGov/405, 410, 414 | SLO IDP-initiated LogoutResponse           | [SAML2Prof] sect. 4.4   | SOAP          | TLS                
+| IMFB-019 | MUST | MUST | eGov/405, 410, 414 | SLO SP-initiated LogoutResponse            | [SAML2Prof] sect. 4.4   | SOAP          | TLS                
+| IMFB-020 |      |      |                    | IDP Discovery                              | [IdPDisco]  sect. 2.4.1 | (cookie)      | Message signature  
+| IMFB-021 |      |      |                    | Request Initiation Protocol                | [SAML-ReqInit]          | HTTP GET      |                    
+| IMFB-022 |      |      |                    | Assertion Query AttributeQuery             | [SAML2Prof] sect. 6     | SOAP          |                    
+| IMFB-023 |      |      |                    | Enhanced Client/Proxy SSO                  | [SAML2Prof] sect. 4.2   | PAOS          |                    
+| IMFB-024 |      |      |                    | Name Identifier Management (IdP-initiated) | [SAML2Prof] sect. 4.5   | HTTP redirect |                    
+| IMFB-025 |      |      |                    | Name Identifier Management (IdP-initiated) | [SAML2Prof] sect. 4.5   | SOAP          |                    
+| IMFB-026 |      |      |                    | Name Identifier Management (SP-initiated)  | [SAML2Prof] sect. 4.5   | HTTP redirect |                    
+| IMFB-027 |      |      |                    | Name Identifier Management (SP-initiated)  | [SAML2Prof] sect. 4.5   | SOAP          |                    
+| IMFB-028 |      |      |                    | Holder-of-Key WebSSO                       | [SAML2HoK]              |               |                    
+|====================
