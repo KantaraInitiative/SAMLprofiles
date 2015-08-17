@@ -1,1 +1,8 @@
-Service Provider and Discovery Service implementations MUST support the Identity Provider Discovery Service Protocol Profile in conformance with section 2.4.1 of [IdPDisco].
+== IDP Discovery
+
+.Supported IDP discovery protocols
+[width="100%", cols="4,2,2,3,20", options="header"]
+|====================
+| RequID  | IDP  | SP   | Source| Requirement    
+| DIS-001 | MUST | MUST | eGov/227 | MUST support the Identity Provider Discovery Service Protocol Profile in conformance with section 2.4.1 of [IdPDisco].
+|====================

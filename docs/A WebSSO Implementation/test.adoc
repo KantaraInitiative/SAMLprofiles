@@ -1,6 +1,8 @@
-:numbered:
-
 = WebSSO Scalable Federation Implementation Profile
+
+----
+:numbered:
+----
 
 Table of Contents
 -----

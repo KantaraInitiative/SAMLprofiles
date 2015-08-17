@@ -1,0 +1,37 @@
+== SAML WebSSO Message Formats
+
+Support for the SAML V2.0 Web Browser SSO Profile [SAML2Prof] is required with following capabilites.
+
+.SAML Authentication Request
+[width="100%", cols="4,2,2,3,20", options="header"]
+|====================
+| RequID  | IDP  | SP   | Source   | Requirement
+| SSO-001 |      | MUST | eGov/249 | MUST support the inclusion of at least the following <saml2p:AuthnRequest> child elements and attributes (when appropriate):
+----
+* AssertionConsumerServiceURL
+* ProtocolBinding
+* ForceAuthn
+* IsPassive
+* AttributeConsumingServiceIndex
+* <saml2p:RequestedAuthnContext>
+* <saml2p:NameIDPolicy>
+----
+
+| SSO-002 |MUST|  | eGov/249 | MUST support all <saml2p:AuthnRequest> child elements and attributes defined by [SAML2Core], but MAY provide that support in the form of returning appropriate errors when confronted by particular request options.
+
+| SSO-003 |MUST|  | eGov/249 | MUST fully support the options enumerated below, and be configurable to utilize those options in a useful manner as defined by [SAML2Core].:
+----
+* AssertionConsumerServiceURL
+* ProtocolBinding
+* ForceAuthn
+* IsPassive
+* AttributeConsumingServiceIndex
+* <saml2p:RequestedAuthnContext>
+* <saml2p:NameIDPolicy>
+----
+
+| SSO-004 | MUST     |  | eGov/264 | MUST support any allowable content of the <saml2p:RequestedAuthnContext> element but MAY limit their support of the element to the value "exact" for the Comparison attribute.
+
+
+
+| SSO-004 | MUST     |  | eGov/268 | MUST support verification of requested AssertionConsumerServiceURL locations via comparison to <md:AssertionConsumerService> elements supplied via metadata using case-sensitive string comparison. It is OPTIONAL to support other means of comparison (e.g., canonicalization or other manipulation of URL values) or alternatve verification mechanisms.
