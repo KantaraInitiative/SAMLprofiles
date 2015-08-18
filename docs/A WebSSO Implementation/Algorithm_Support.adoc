@@ -1,0 +1,24 @@
+== Signature and Encryption Algorithms
+(Status from 2010 - this specification does not conform the current recommendations of NIST, eCrypt and bettercrypto.org)
+
+=== Signature and digest algorithms
+Implementations MUST support the signature and digest algorithms identified by the following URIs in conjunction with the creation and verification of XML Signatures [XMLSig]:
+* http://www.w3.org/2001/04/xmldsig-more#rsa-sha256 (defined in [RFC4051])
+* http://www.w3.org/2001/04/xmlenc#sha256 (defined in [XMLEnc])
+Implementations SHOULD support the signature and digest algorithms identified by the following URIs in conjunction with the creation and verification of XML Signatures [XMLSig]:
+* http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256 (defined in [RFC4051])
+
+=== Block encryption algorithms
+Implementations MUST support the block encryption algorithms identified by the following URIs in conjunction with the use of XML Encryption [XMLEnc]:
+* http://www.w3.org/2001/04/xmlenc#tripledes-cbc
+* http://www.w3.org/2001/04/xmlenc#aes128-cbc
+* http://www.w3.org/2001/04/xmlenc#aes256-cbc
+
+=== Key transport algorithms
+Implementations MUST support the key transport algorithms identified by the following URIs in conjunction with the use of XML Encryption [XMLEnc]:
+* http://www.w3.org/2001/04/xmlenc#rsa-1_5
+* http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p
+
+=== key agreement algorithms
+Implementations SHOULD support the key agreement algorithms identified by the following URIs in conjunction with the use of XML Encryption [XMLEnc]:
+* http://www.w3.org/2009/xmlenc11#ECDH-ES (defined in [XMLEnc11])
