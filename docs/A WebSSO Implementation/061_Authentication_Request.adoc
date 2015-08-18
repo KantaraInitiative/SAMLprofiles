@@ -18,9 +18,9 @@ Support for the SAML V2.0 Web Browser SSO Profile [SAML2Prof] is required with f
 * <saml2p:NameIDPolicy>
 ----
 
-| ISSO-002 |MUST|  | eGov/249 | MUST support all <saml2p:AuthnRequest> child elements and attributes defined by [SAML2Core], but MAY provide that support in the form of returning appropriate errors when confronted by particular request options.
+| ISSO-002 |MUST|  | eGov/249 | MUST support all <saml2p:AuthnRequest> child elements and attributes defined by <<SAML2Core>>, but MAY provide that support in the form of returning appropriate errors when confronted by particular request options.
 
-| ISSO-003 |MUST|  | eGov/249 | MUST fully support the options enumerated below, and be configurable to utilize those options in a useful manner as defined by [SAML2Core].:
+| ISSO-003 |MUST|  | eGov/249 | MUST fully support the options enumerated below, and be configurable to utilize those options in a useful manner as defined by <<SAML2Core>>.:
 ----
 * AssertionConsumerServiceURL
 * ProtocolBinding

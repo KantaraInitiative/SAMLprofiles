@@ -5,7 +5,7 @@
 |====================
 | RequID  |  IDP | SP | Source    | Requirement                                                                     
 
-| ISSO-100 |  X   |   | eGov/284  | MUST support the issuance of `<saml2p:Response>` messages (with appropriate status codes) in the event of an error condition, provided that the user agent remains available and an acceptable location to which to deliver the response is available. The criteria for "acceptability" of a response location are not formally specified, but are subject to Identity Provider policy and reflect its responsibility to protect users from being sent to untrusted or possibly malicious parties. Note that this is a stronger requirement than the comparable language in [SAML2Prof].
+| ISSO-100 |  X   |   | eGov/284  | MUST support the issuance of `<saml2p:Response>` messages (with appropriate status codes) in the event of an error condition, provided that the user agent remains available and an acceptable location to which to deliver the response is available. The criteria for "acceptability" of a response location are not formally specified, but are subject to Identity Provider policy and reflect its responsibility to protect users from being sent to untrusted or possibly malicious parties. Note that this is a stronger requirement than the comparable language in <<SAML2Prof>>.
 
 | ISSO-101 |  X   |   | eGov/301  | MUST allow the number of `<saml2:Assertion>`, `<saml2:AuthnStatement>`, and `<saml2:AttributeStatement>` elements in the `<saml2p:Response>` message to be limited to one. 
 
@@ -21,7 +21,7 @@
 
 | ISSO-107 |     | X  | eGov/314  | MUST support the acceptance/rejection of particular `<saml2:AuthnContext>` content based on the identity of the Identity Provider.
 
-| ISSO-108 |  X   |   | eGov/316  | SHOULD support support the acceptance/rejection of particular <saml2:AuthnContext> content based on SAML V2.0 metadata as specified in [IAP]
+| ISSO-108 |  X   |   | eGov/316  | SHOULD support support the acceptance/rejection of particular <saml2:AuthnContext> content based on SAML V2.0 metadata as specified in <<IAP>>
 
 |====================
 

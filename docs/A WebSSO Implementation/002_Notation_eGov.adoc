@@ -1,6 +1,6 @@
 === Notation
 This specification uses normative text to describe the use of SAML capabilities.
-The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this specification are to be interpreted as described in [RFC2119]
+The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this specification are to be interpreted as described in <<RFC2119>>
 
 Conventional XML namespace prefixes are used throughout the listings in this specification to stand for their respective namespaces as follows, whether or not a namespace declaration is present in the example:
 
@@ -12,4 +12,4 @@ Conventional XML namespace prefixes are used throughout the listings in this spe
 
 This specification uses the following typographical conventions in text: `<ns:Element>`, `Attribute`, **Datatype**, `OtherCode`.
 
-Requirements are written in a terse table format with identifiers for better reference. Traceability to the previous format is provided by the "source" attribute with the format "document/line number(s)", with document being "eGov" for [eGov].
+Requirements are written in a terse table format with identifiers for better reference. Traceability to the previous format is provided by the "source" attribute with the format "document/line number(s)", with document being "eGov" for [eGov], and "InC Draft" for https://spaces.internet2.edu/display/InCFederation/SAML+Implementation+Profile[InCommon DRAFT SAML Implementation Profile].

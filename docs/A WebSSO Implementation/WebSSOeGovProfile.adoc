@@ -1,7 +1,11 @@
+= Kantara Initiative eGovernment Implementation Profile of SAML V2.0 (Version 2.0bis)
 :numbered:
+:toc:
 
-= Kantara Initiative eGovernment Implementation Profile of SAML V2.0 (Version 2.0)
+.Abstract
+This document contains an implementation profile for eGovernment use of SAML V2.0, suitable for the purposes of testing conformance of implementations of SAML V2.0. It is not a deployment profile, and does not provide for or reflect specific behavior expected of implementations when used within a particular deployment context.
 
+.Status
 This document is a transformation of the document from 11 June 2011 into the Asciidoc format. The intention is to keep the essential contents, but change the format to establish a baseline for future profiles.
 
 The original document is referenced as [eGov] can be downloaded at:
@@ -11,11 +15,6 @@ http://kantarainitiative.org/confluence/download/attachments/38929505/kantara-re
 For license and authors refer to the original document.
 
 Editor of this document format: Rainer Hörbe
-
-**Table of Contents**
------
-:toc:
------
 
 == Introduction
 include::001_Intro_eGov.adoc[]
@@ -36,5 +35,5 @@ include::061_Authentication_Request.adoc[]
 include::062_Response.adoc[]
 include::070_IDP_Proxy_eGov.adoc[]
 include::080_Single_Logout_eGov.adoc[]
-
+include::100_bibliography_eGov.adoc[]
 

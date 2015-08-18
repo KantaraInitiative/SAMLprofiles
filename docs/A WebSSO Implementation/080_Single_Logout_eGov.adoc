@@ -1,10 +1,8 @@
 === Single Logout
-This section defines an implementation profile of the SAML V2.0 Single Logout Profile [SAML2Prof].
+This section defines an implementation profile of the SAML V2.0 Single Logout Profile <SAML2Prof>.
 For clarification, the technical requirements for each message type below reflect the intent to normatively require initiation of logout by a Service Provider using either the front- or back-channel, and initiation/propagation of logout by an Identity Provider using the back-channel.
 
-==== Logout Requests - User Interface Behavior
-
-.Requirements for SAML SLO 
+.Requirements for SAML SLO User Interface Behavior
 [width="100%", cols="4,2,2,3,30", options="header"]
 |====================
 | RequID  |  IDP | SP | Source    | Requirement                                                                     

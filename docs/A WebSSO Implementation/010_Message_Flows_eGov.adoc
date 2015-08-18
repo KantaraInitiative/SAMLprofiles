@@ -1,29 +1,28 @@
 === Message Flows and Bindings
 ==== Message Authentication
 
-
 .Support for the combination of message flows, bindings with respect to message authentication
 [width="100%", cols="7,2,2,3,25,7,10", options="header"]
 
 |====================
 | RequID   | IDP  | SP   | Source             | Message Flow                   | Binding       | Message AuthN      
-| IMFB-001 | MUST | MUST | eGov/241           | Web SSO AuthnRequest (see [SAML2Prof] sect. 4.1) | HTTP redirect | Signature          
-| IMFB-002 | MUST | MUST | eGov/274, 290      | Web SSO Response (see [SAML2Prof] sect. 4.1) | HTTP POST     | Assertion signature
-| IMFB-003 | MAY  | MAY  | eGov/274, 290      | Web SSO Response (see [SAML2Prof] sect. 4.1) | HTTP POST     | Response signature 
-| IMFB-004 | MUST | MUST | eGov/274, 290      | Web SSO Response (see [SAML2Prof] sect. 4.1) | HTTP artifact | Signature          
-| IMFB-005 | MUST | MUST | eGov/274, 290      | Web SSO unsolicited Response (see [SAML2Prof] sect. 4.1.5) | n/a           | n/a  
-| IMFB-006 | MUST | MUST | eGov/323,330,333   | Artifact Resolution Request and Response (see [SAML2Prof] sect. 5) | SOAP          | Message signature  
-| IMFB-007 | MAY  | MAY  | eGov/323,330,333   | Artifact Resolution Request and Response (see [SAML2Prof] sect. 5) | SOAP          | TLS                
-| IMFB-008 | MUST | MAY  | eGov/377, 384      | SLO SP-initiated LogoutRequest (see [SAML2Prof] sect. 4.4) | HTTP redirect | Message signature  
-| IMFB-009 | MUST | MUST | eGov/377, 384      | SLO SP-initiated LogoutRequest (see [SAML2Prof] sect. 4.4) | SOAP          | Message signature  
-| IMFB-010 | MUST | MUST | eGov/375, 384      | SLO IdP-initiated LogoutRequest (see [SAML2Prof] sect. 4.4) | SOAP          | Message signature  
-| IMFB-011 | MUST | MAY  | eGov/377, 384      | SLO SP-initiated LogoutRequest (see [SAML2Prof] sect. 4.4) | HTTP redirect | TLS                
-| IMFB-012 | MUST | MUST | eGov/377, 384      | SLO SP-initiated LogoutRequest (see [SAML2Prof] sect. 4.4) | SOAP          | TLS                
-| IMFB-013 | MUST | MUST | eGov/375, 384      | SLO IdP-initiated LogoutRequest (see [SAML2Prof] sect. 4.4) | SOAP          | TLS                
-| IMFB-014 | MUST | MAY  | eGov/405, 410, 414 | SLO IDP-initiated LogoutResponse (see [SAML2Prof] sect. 4.4) | HTTP redirect | Message signature  
-| IMFB-015 | MUST | MUST | eGov/405, 410, 414 | SLO IDP-initiated LogoutResponse (see [SAML2Prof] sect. 4.4) | SOAP          | Message signature  
-| IMFB-016 | MUST | MUST | eGov/405, 410, 414 | SLO SP-initiated LogoutResponse (see [SAML2Prof] sect. 4.4) | SOAP          | Message signature  
-| IMFB-017 | MUST | MAY  | eGov/405, 410, 414 | SLO IDP-initiated LogoutResponse (see [SAML2Prof] sect. 4.4) | HTTP redirect | TLS                
-| IMFB-018 | MUST | MUST | eGov/405, 410, 414 | SLO IDP-initiated LogoutResponse (see [SAML2Prof] sect. 4.4) | SOAP          | TLS                
-| IMFB-019 | MUST | MUST | eGov/405, 410, 414 | SLO SP-initiated LogoutResponse (see [SAML2Prof] sect. 4.4) | SOAP          | TLS                
+| IMFB-001 | MUST | MUST | eGov/241           | Web SSO AuthnRequest (see <<SAML2Prof>> sect. 4.1) | HTTP redirect | Signature          
+| IMFB-002 | MUST | MUST | eGov/274, 290      | Web SSO Response (see <<SAML2Prof>> sect. 4.1) | HTTP POST     | Assertion signature
+| IMFB-003 | MAY  | MAY  | eGov/274, 290      | Web SSO Response (see <<SAML2Prof>> sect. 4.1) | HTTP POST     | Response signature 
+| IMFB-004 | MUST | MUST | eGov/274, 290      | Web SSO Response (see <<SAML2Prof>> sect. 4.1) | HTTP artifact | Signature          
+| IMFB-005 | MUST | MUST | eGov/274, 290      | Web SSO unsolicited Response (see <<SAML2Prof>> sect. 4.1.5) | n/a           | n/a  
+| IMFB-006 | MUST | MUST | eGov/323,330,333   | Artifact Resolution Request and Response (see <<SAML2Prof>> sect. 5) | SOAP          | Message signature  
+| IMFB-007 | MAY  | MAY  | eGov/323,330,333   | Artifact Resolution Request and Response (see <<SAML2Prof>> sect. 5) | SOAP          | TLS                
+| IMFB-008 | MUST | MAY  | eGov/377, 384      | SLO SP-initiated LogoutRequest (see <<SAML2Prof>> sect. 4.4) | HTTP redirect | Message signature  
+| IMFB-009 | MUST | MUST | eGov/377, 384      | SLO SP-initiated LogoutRequest (see <<SAML2Prof>> sect. 4.4) | SOAP          | Message signature  
+| IMFB-010 | MUST | MUST | eGov/375, 384      | SLO IdP-initiated LogoutRequest (see <<SAML2Prof>> sect. 4.4) | SOAP          | Message signature  
+| IMFB-011 | MUST | MAY  | eGov/377, 384      | SLO SP-initiated LogoutRequest (see <<SAML2Prof>> sect. 4.4) | HTTP redirect | TLS                
+| IMFB-012 | MUST | MUST | eGov/377, 384      | SLO SP-initiated LogoutRequest (see <<SAML2Prof>> sect. 4.4) | SOAP          | TLS                
+| IMFB-013 | MUST | MUST | eGov/375, 384      | SLO IdP-initiated LogoutRequest (see <<SAML2Prof>> sect. 4.4) | SOAP          | TLS                
+| IMFB-014 | MUST | MAY  | eGov/405, 410, 414 | SLO IDP-initiated LogoutResponse (see <<SAML2Prof>> sect. 4.4) | HTTP redirect | Message signature  
+| IMFB-015 | MUST | MUST | eGov/405, 410, 414 | SLO IDP-initiated LogoutResponse (see <<SAML2Prof>> sect. 4.4) | SOAP          | Message signature  
+| IMFB-016 | MUST | MUST | eGov/405, 410, 414 | SLO SP-initiated LogoutResponse (see <<SAML2Prof>> sect. 4.4) | SOAP          | Message signature  
+| IMFB-017 | MUST | MAY  | eGov/405, 410, 414 | SLO IDP-initiated LogoutResponse (see <<SAML2Prof>> sect. 4.4) | HTTP redirect | TLS                
+| IMFB-018 | MUST | MUST | eGov/405, 410, 414 | SLO IDP-initiated LogoutResponse (see <<SAML2Prof>> sect. 4.4) | SOAP          | TLS                
+| IMFB-019 | MUST | MUST | eGov/405, 410, 414 | SLO SP-initiated LogoutResponse (see <<SAML2Prof>> sect. 4.4) | SOAP          | TLS                
 |====================
