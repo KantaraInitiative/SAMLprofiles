@@ -1,6 +1,0 @@
-.Supported SAML message encryption modes (more)
-[width="100%", cols="4,2,2,3,20", options="header"]
-|====================
-| RequID  | IDP  | SP   | Source| Requirement    
-| IATR-003 | ?    | ?    | new| Supply/consume explicit xs:type for <AttributeValue> (see [SAML2Core] sect. 2.7.3.1.1)
-|====================
