@@ -1,0 +1,13 @@
+=== Changes since [eGov] from 11 June 2010
+
+Requirements have been changed to be context free, i.e. references like "as above" have been replaced by the referenced text.
+
+Binding and security requirements have been moved from the "Authentication Request" and "Reponse" sections of WebSSO and SLO to the "Message Flows and Bindings" heading.
+
+Requirements IMD-100, IMD-103 and IMD-105 have been implicit in [eGov], but added for clarification in this part to improve the sequence of requirements.
+
+The section "HolderOfKey" has been excluded .
+
+Cryptographic requirements already dated and have been moved into a separate document.
+
+Section "Conformance Classes" has been excluded.

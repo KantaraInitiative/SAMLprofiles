@@ -1,0 +1,20 @@
+
+
+.Supported SAML metadata profiles and capabilites (other)
+[width="100%", cols="4,2,2,2,3,30", options="header"]
+|====================
+| IMD-112  |  X   | X  |    | InC Draft | Key Rollover: MUST be able to consume and utilize two or more signing keys bound to a single role descriptor in metadata. To verify a signature, an implementation MUST try each signing key (in unspecified order) until the signature is verified or there are no more signing keys (in which case signature verification fails).                                                                                    
+
+| IMD-113  |  X   | X  |    | InC Draft | Key Rollover: MUST be able to consume and utilize two or more encryption keys bound to a single role descriptor in metadata. To encrypt a message, any encryption key in metadata MAY be used. If there are multiple encryption keys of a given type in metadata, the implementation may choose any one of them at its discretion and need not explicitly define which one will be used.                               
+
+| IMD-114  |  X   | X  |    | InC Draft | Key Rollover: If an implementation supports inbound encryption, it MUST itself be configurable with up to two decryption keys (this is not a metadata requirement but applies to the configuration of keys used by the implementation).                                                                   
+
+| IMD-115  |  X   | X  |    | InC Draft | An <md:KeyDescriptor> element in metadata that contains no use XML attribute MUST be valid as either a signing or encryption key.                                               
+
+| IMD-116  |  X   |    |    | new | MUST support the grouping of SPs by Entity Categories [SAMLEntityCat] and base policy decisions on Entity Categories
+
+| IMD-117  |  X   |    |    | new | MUST support the release of a minimal attribute set based on an Entity Category value [SAMLEntityCat] in absence of <md:RequestedAttribute> elements.
+
+| IMD-118  |  X   |    |    | new | MUST support the release of an attribute set based on an Entity Category value [SAMLEntityCat] that is the intersection of the SP's <md:RequestedAttribute> elements and a set of attributes defined fo the Entity Category
+
+|====================

@@ -1,0 +1,40 @@
+:numbered:
+
+= Kantara Initiative eGovernment Implementation Profile of SAML V2.0 (Version 2.0)
+
+This document is a transformation of the document from 11 June 2011 into the Asciidoc format. The intention is to keep the essential contents, but change the format to establish a baseline for future profiles.
+
+The original document is referenced as [eGov] can be downloaded at:
+
+http://kantarainitiative.org/confluence/download/attachments/38929505/kantara-report-egov-saml2-profile-2.0.pdf
+
+For license and authors refer to the original document.
+
+Editor of this document format: Rainer Hörbe
+
+**Table of Contents**
+-----
+:toc:
+-----
+
+== Introduction
+include::001_Intro_eGov.adoc[]
+
+include::002_Notation_eGov.adoc[]
+
+include::003_Changes_eGov.adoc[]
+
+== SAML V2.0 Implementation Profile
+include::010_Message_Flows_eGov.adoc[]
+include::015_Message_Encryption_eGov.adoc[]
+include::020_Attribute_Name_Formats.adoc[]
+include::030_Name_Identifiers.adoc[]
+include::041_Metadata_Profiles_eGov.adoc[]
+include::045_Metadata_Exchange.adoc[]
+include::050_Identity_Provider_Discovery.adoc[]
+include::061_Authentication_Request.adoc[]
+include::062_Response.adoc[]
+include::070_IDP_Proxy_eGov.adoc[]
+include::080_Single_Logout_eGov.adoc[]
+
+

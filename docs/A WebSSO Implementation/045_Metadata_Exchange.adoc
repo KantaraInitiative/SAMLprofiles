@@ -1,0 +1,29 @@
+==== SAML Metadata Exchange
+.Requirements for SAML metadata exchange
+[width="100%", cols="4,2,2,2,3,30", options="header"]
+|====================
+| RequID  |  IDP | SP | DS | Source    | Requirement
+| IMD-200  |  X   | X  | X  | eGov/190  | Support for the generation or exportation of metadata is OPTIONAL.
+| IMD-201  |  X   | X  | X  | eGov/191  | MUST support the publication of metadata using the Well-Known-Location method defined in section 4.1 of [SAML2Meta] (under the assumption that entityID values used are suitable for such support).
+
+| IMD-202  |  X   | X  | X  | eGov/196  | MUST support the importation of metadata from a local file.
+| IMD-203  |  X   | X  | X  | eGov/197  | MUST support the importation of metadata from a remote resource at fixed location accessible via HTTP 1.1 or HTTP 1.1 over TLS/SSL. Implementations MUST support use of the 'ETag' and 'Last-Modified' headers for cache management.
+
+| IMD-204  |  X   | X  | X  | eGov/200  | SHOULD support the use of more than one fixed location for the importation of metadata, but MAY leave their behavior unspecified if a single entity's metadata is present in more than one source.
+
+| IMD-205  |  X   | X  | X  | eGov/203  | Importation of multiple entities' metadata contained within an <md:EntitiesDescriptor> element MUST be supported.
+| IMD-206  |  X   | X  | X  | eGov/205  | SHOULD allow for the automated updating/reimportation of metadata without service degradation or interruption.
+| IMD-207  |  X   | X  | X  | eGov/208  | Verification of metadata, if supported, MUST include XML signature verification at least at the root element level
+| IMD-208  |  X   | X  | X  | eGov/211  | Verification of metadata SHOULD support direct comparison against known keys.
+
+| IMD-209  |  X   | X  | X  | eGov/212  | Verification of metadata SHOULD support some form of path-based certificate validation against one or more trusted certificate authorities, along with certificate revocation lists and/or OCSP [RFC2560]. Support for PKIX [RFC5280] is RECOMMENDED. Implementations SHOULD document the behavior of the validation mechanisms they employ, particular with respect to limitations or divergence from PKIX [RFC5280].
+
+| IMD-210  |  X   | X  | X  | InC Draft | MUST support metadata verification based on the presence of the validUntil XML attribute, and MUST have the ability to enforce limitations on the duration of validity (e.g., it must be possible to block consumption of metadata without such an attribute or one that is too far into the future)
+
+| IMD-211  |  X   | X  | X  | eGov/208  | Verification of metadata, if supported, MUST include XML signature verification at least at the root element level
+
+| IMD-212  |  X   | X  | X  | eGov/211  | Verification of metadata, if supported, SHOULD support the direct comparison against known keys as mechanism for signature key trust establishment.
+
+| IMD-213  |  X   | X  | X  | eGov/212  | Verification of metadata, if supported, SHOULD support Some form of path-based certificate validation against one or more trusted certificate authorities as mechanism for signature key trust establishment. Certificate revocation lists and/or OCSP [RFC2560] and support for PKIX [RFC5280] is RECOMMENDED; implementations SHOULD document the behavior of the validation mechanisms they employ, particular with respect to limitations or divergence from PKIX [RFC5280].
+
+|====================

@@ -1,0 +1,12 @@
+==== Message Encryption
+
+.Support for the combination of message flows, bindings with respect to message encryption
+[width="100%", cols="5,2,2,3,18,6,11", options="header"]
+
+|====================
+| RequID   | IDP  | SP   | Source             | Message Flow                   | Binding       | Message Encryption Element    
+| IMFB-101 | MUST | MUST | eGov/295           | Web SSO Response (see [SAML2Prof] sect. 4.1) | HTTP POST | `<saml2:EncryptedAssertion>` 
+| IMFB-102 | MAY  | MAY  | eGov/295           | Web SSO Response (see [SAML2Prof] sect. 4.1) | HTTP POST | `<saml2:EncryptedID>` or `<saml2:EncryptedAttribute>`
+| IMFB-103 | MUST | MUST | eGov/390           | SLO LogoutRequest (see [SAML2Prof] sect. 4.4) | HTTP redirect | `<saml2:EncryptedID>`
+|====================
+

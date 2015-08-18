@@ -1,0 +1,28 @@
+==== WebSSO Response
+
+.Requirements for SAML WebSSO Response message contents
+[width="100%", cols="4,2,2,3,30", options="header"]
+|====================
+| RequID  |  IDP | SP | Source    | Requirement                                                                     
+
+| ISSO-100 |  X   |   | eGov/284  | MUST support the issuance of `<saml2p:Response>` messages (with appropriate status codes) in the event of an error condition, provided that the user agent remains available and an acceptable location to which to deliver the response is available. The criteria for "acceptability" of a response location are not formally specified, but are subject to Identity Provider policy and reflect its responsibility to protect users from being sent to untrusted or possibly malicious parties. Note that this is a stronger requirement than the comparable language in [SAML2Prof].
+
+| ISSO-101 |  X   |   | eGov/301  | MUST allow the number of `<saml2:Assertion>`, `<saml2:AuthnStatement>`, and `<saml2:AttributeStatement>` elements in the `<saml2p:Response>` message to be limited to one. 
+
+| ISSO-102 |     | X  | eGov/304  | MAY limit support to a single instance of  `<saml2:Assertion>`, `<saml2:AuthnStatement>`, and `<saml2:AttributeStatement>` elements when processing <saml2p:Response> messages
+
+| ISSO-103 |  X   |   | eGov/306  | MUST support the inclusion of a `Consent` attribute in `<saml2p:Response>` messages
+
+| ISSO-104 |  X   |   | eGov/307  | MUST support the inclusion of a `SessionIndex` attribute in `<saml2:AuthnStatement>` elements
+
+| ISSO-105 |     | X  | eGov/309  | implementations that provide some form of session semantics MUST support the `<saml2:AuthnStatement>` element's `SessionNotOnOrAfter` attribute
+
+| ISSO-106 |     | X  | eGov/312  | MUST support the acceptance/rejection of assertions based on the content of the `<saml2:AuthnStatement>` element's `<saml2:AuthnContext>` element. 
+
+| ISSO-107 |     | X  | eGov/314  | MUST support the acceptance/rejection of particular `<saml2:AuthnContext>` content based on the identity of the Identity Provider.
+
+| ISSO-108 |  X   |   | eGov/316  | SHOULD support support the acceptance/rejection of particular <saml2:AuthnContext> content based on SAML V2.0 metadata as specified in [IAP]
+
+|====================
+
+

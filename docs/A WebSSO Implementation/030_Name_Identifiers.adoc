@@ -1,10 +1,10 @@
-== Name Identifier Formats
+=== Name Identifier Formats
 In conjunction with their support of the SAML V2.0 profiles referenced by subsequent sections, Identity Provider and Service Provider implementations MUST support the following SAML V2.0 name identifier formats, in accordance with the normative obligations associated with them by [SAML2Core]:
 
 .Supported SAML Name Identifier formats
 [width="100%", cols="4,2,2,3,27", options="header"]
 |====================
 | RequID  | IDP  | SP   | Source| Format Identifier                                                                  
-| NID-001 | MUST | MUST | eGov/223| urn:oasis:names:tc:SAML:2.0:nameid-format:persistent (see [SAML2Core] sect. 8.3)   
-| NID-002 | MUST | MUST | eGov/224| urn:oasis:names:tc:SAML:2.0:nameid-format:transient (see [SAML2Core] sect. 8.3)    
+| INID-001 | MUST | MUST | eGov/223| urn:oasis:names:tc:SAML:2.0:nameid-format:persistent (see [SAML2Core] sect. 8.3)   
+| INID-002 | MUST | MUST | eGov/224| urn:oasis:names:tc:SAML:2.0:nameid-format:transient (see [SAML2Core] sect. 8.3)    
 |====================

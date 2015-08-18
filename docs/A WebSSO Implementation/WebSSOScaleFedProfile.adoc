@@ -1,0 +1,25 @@
+:numbered:
+
+= WebSSO Scalable Federation Implementation Profile (working title)
+
+
+Table of Contents
+-----
+:toc:
+-----
+
+include::010_Message_Flows_eGov.adoc[]
+include::011_Message_Flows_other.adoc[]
+include::015_Message_Encryption.adoc[]
+include::020_Attribute_Name_Formats.adoc[]
+include::030_Name_Identifiers.adoc[]
+include::041_Metadata_Profiles.adoc[]
+include::045_Metadata_Exchange.adoc[]
+include::050_Identity_Provider_Discovery.adoc[]
+include::061_Authentication_Request.adoc[]
+include::062_Response.adoc[]
+include::063_Artifact_Resolution_Request.adoc[]
+include::064_Artifact_Resolution_Response.adoc[]
+include::065_Single_Logout_Requests.adoc[]
+include::066_Single_Logout_Responses.adoc[]
+----

@@ -1,0 +1,15 @@
+=== Notation
+This specification uses normative text to describe the use of SAML capabilities.
+The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this specification are to be interpreted as described in [RFC2119]
+
+Conventional XML namespace prefixes are used throughout the listings in this specification to stand for their respective namespaces as follows, whether or not a namespace declaration is present in the example:
+
+* The prefix saml2: stands for the SAML 2.0 assertion namespace, urn:oasis:names:tc:SAML:2.0:assertion
+* The prefix saml2p: stands for the SAML 2.0 protocol namespace, urn:oasis:names:tc:SAML:2.0:protocol
+* The prefix md: stands for the SAML 2.0 metadata namespace, urn:oasis:names:tc:SAML:2.0:metadata
+* The prefix idpdisc: stands for the Identity Provider Discovery Service Protocol and Profile [IdPDisco] namespace, urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol
+* The prefix mdattr: stands for the Metadata Extension for Entity Attributes Version 1.0 [MetaAttr] namespace, urn:oasis:names:tc:SAML:metadata:attribute
+
+This specification uses the following typographical conventions in text: `<ns:Element>`, `Attribute`, **Datatype**, `OtherCode`.
+
+Requirements are written in a terse table format with identifiers for better reference. Traceability to the previous format is provided by the "source" attribute with the format "document/line number(s)", with document being "eGov" for [eGov].
