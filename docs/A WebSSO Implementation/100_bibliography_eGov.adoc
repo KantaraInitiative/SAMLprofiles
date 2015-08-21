@@ -18,4 +18,4 @@
 - [[[SAML2Prof]]] OASIS Standard, Profiles for the OASIS Security Assertion Markup Language (SAML) V2.0, March 2005. http://docs.oasis-open.org/security/saml/v2.0/saml-profiles-2.0-os.pdf
 - [[[SAML2Err]]] OASIS Approved Errata, SAML V2.0 Errata, Dec 2009. SAML 2.0  Errata Document. http://docs.oasis-open.org/security/saml/v2.0/sstc-saml-approved-errata-2.0.html
 - [[[SAML-X500]]] OASIS Committee Specification, SAML V2.0 X.500/LDAP Attribute Profile, March 2008. http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-attribute-x500.html
-
+- [[[SAMLEntityCat]]] IETF Draft, The Entity Category SAML Entity Metadata Attribute Types, 2015-01-22. https://datatracker.ietf.org/doc/draft-young-entity-category/

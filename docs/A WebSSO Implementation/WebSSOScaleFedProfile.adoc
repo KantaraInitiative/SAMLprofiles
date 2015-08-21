@@ -6,7 +6,7 @@
 
 .Status
 Work in Progress 
-This document is an extension of the Kantara eGovernemnt Interoperability profile for SAML V2.0.
+This document is an extension of the Kantara eGovernemnt Interoperability profile for SAML V2.0. So far some metadata requirements were added from the InCommon Draft Implementaiton profile, and message flows from several sources.
 
 
 == SAML V2.0 Implementation Profile
@@ -15,6 +15,7 @@ include::011_Message_Flows_other.adoc[]
 include::015_Message_Encryption_eGov.adoc[]
 include::020_Attribute_Name_Formats.adoc[]
 include::030_Name_Identifiers.adoc[]
+include::031_Name_Identifiers_new.adoc[]
 include::041_Metadata_Profiles_eGov.adoc[]
 include::042_Metadata_Profiles_other.adoc[]
 include::045_Metadata_Exchange.adoc[]
@@ -25,4 +26,4 @@ include::070_IDP_Proxy_eGov.adoc[]
 include::080_Single_Logout_eGov.adoc[]
 include::100_bibliography_eGov.adoc[]
 
-----
+----«

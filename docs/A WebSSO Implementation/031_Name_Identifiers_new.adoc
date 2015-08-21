@@ -1,0 +1,7 @@
+
+.Supported SAML Name Identifier formats and semantics
+[width="100%", cols="4,2,2,3,27", options="header"]
+|====================
+| RequID  | IDP  | SP   | Source| Format Identifier                                                                  
+| INID-100 | ? | ? | - | Support grouping of Service Providers with affiliations (see <<SAML2Core>> sect. 8.3.7)   
+|====================

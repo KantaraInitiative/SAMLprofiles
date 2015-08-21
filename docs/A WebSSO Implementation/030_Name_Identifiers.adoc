@@ -1,7 +1,7 @@
 === Name Identifier Formats
 In conjunction with their support of the SAML V2.0 profiles referenced by subsequent sections, Identity Provider and Service Provider implementations MUST support the following SAML V2.0 name identifier formats, in accordance with the normative obligations associated with them by [SAML2Core]:
 
-.Supported SAML Name Identifier formats
+.Supported SAML Name Identifier formats and semantics (from eGov)
 [width="100%", cols="4,2,2,3,27", options="header"]
 |====================
 | RequID  | IDP  | SP   | Source| Format Identifier                                                                  
