@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>AsciidocFX Editor</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="SAML-AlgSupport_files/grid.css" type="text/css">
+    <link rel="stylesheet" href="SAML-AlgSupport_files/hljs.css" type="text/css">
+    <link rel="stylesheet" href="SAML-AlgSupport_files/font-awesome.css">
+    <link rel="stylesheet" href="SAML-AlgSupport_files/asciidoctor-default.css">
+    <link rel="stylesheet" href="SAML-AlgSupport_files/custom.css">
+</head>
+<body>
+<div class="row">
+    <div class="columns justify large-10 large-centered medium-12 small-12">
+        <div id="placeholder"><h1>Cryptographic Algorithms in SAML Implementations</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>==
+This document specifies the requirements for algorithm support for XML 
+signing and encryption to be used with SAML V2.0 implementation 
+profiles. As cryptographic requirements may change faster than other 
+protocol elements they are kept here to allow for a quicker document 
+life cycle.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="true-alg-01-xml-signature-digest-algorithms">[ALG-01] XML Signature digest algorithms</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Implementations MUST support the following XML Signature digest 
+algorithms identified by the following URIs in conjunction with the 
+creation and verification of XML Signatures <a href="#XMLSig">[XMLSig]</a>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><code><a href="http://www.w3.org/2001/04/xmlenc#sha256" class="bare">http://www.w3.org/2001/04/xmlenc#sha256</a></code></code> (defined in <a href="#XMLEnc">[XMLEnc]</a>)</p>
+</li>
+<li>
+<p><code><code><a href="http://www.w3.org/2000/09/xmldsig#sha1" class="bare">http://www.w3.org/2000/09/xmldsig#sha1</a></code></code> (defined in <a href="#XMLSig">[XMLSig]</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="true-alg-02-xml-signature-signing-algorithms">[ALG-02] XML Signature signing algorithms</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Implementations MUST support the following XML Signature digest 
+algorithms identified by the following URIs in conjunction with the 
+creation and verification of XML Signatures <a href="#XMLSig">[XMLSig]</a>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><code><a href="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256" class="bare">http://www.w3.org/2001/04/xmldsig-more#rsa-sha256</a></code></code> (defined in <a href="#RFC4051">[RFC4051]</a>)</p>
+</li>
+<li>
+<p><code><code><a href="http://www.w3.org/2000/09/xmldsig#rsa-sha1" class="bare">http://www.w3.org/2000/09/xmldsig#rsa-sha1</a></code></code> (defined in <a href="#XMLSig">[XMLSig]</a>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Implementations SHOULD support the signature and digest algorithms 
+identified by the following URIs in conjunction with the creation and 
+verification of XML Signatures <a href="#XMLSig">[XMLSig]</a>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><code><a href="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256" class="bare">http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256</a></code></code> (defined in <a href="#RFC4051">[RFC4051]</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="true-alg-03-xml-encryption-block-encryption-algorithms">[ALG-03] XML Encryption block encryption algorithms</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Implementations MUST support the XML Encryption block encryption 
+algorithms identified by the following URIs in conjunction with the use 
+of XML Encryption <a href="#XMLEnc">[XMLEnc]</a>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><code><a href="http://www.w3.org/2001/04/xmlenc#aes128-cbc" class="bare">http://www.w3.org/2001/04/xmlenc#aes128-cbc</a></code></code> (defined in <a href="#XMLEnc">[XMLEnc]</a>)</p>
+</li>
+<li>
+<p><code><code><a href="http://www.w3.org/2001/04/xmlenc#aes256-cbc" class="bare">http://www.w3.org/2001/04/xmlenc#aes256-cbc</a></code></code> (defined in <a href="#XMLEnc">[XMLEnc]</a>)</p>
+</li>
+<li>
+<p><code><code><a href="http://www.w3.org/2009/xmlenc11#aes128-gcm" class="bare">http://www.w3.org/2009/xmlenc11#aes128-gcm</a></code></code> (defined in <a href="#XMLEnc11">[XMLEnc11]</a>)</p>
+</li>
+<li>
+<p><code><code><a href="http://www.w3.org/2009/xmlenc11#aes256-gcm" class="bare">http://www.w3.org/2009/xmlenc11#aes256-gcm</a></code></code> (defined in <a href="#XMLEnc11">[XMLEnc11]</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="true-alg-04-xml-encryption-key-transport-algorithms">[ALG-04] XML Encryption key transport algorithms</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Implementations MUST support the XML Encryption key transport 
+algorithms identified by the following URIs in conjunction with the use 
+of XML Encryption <a href="#XMLEnc">[XMLEnc]</a>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><code><a href="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p" class="bare">http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p</a></code></code> (defined in <a href="#XMLEnc">[XMLEnc]</a>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following DigestMethod algorithms MUST be supported:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><code><a href="http://www.w3.org/2001/04/xmlenc#sha256" class="bare">http://www.w3.org/2001/04/xmlenc#sha256</a></code></code></p>
+</li>
+<li>
+<p><code><code><a href="http://www.w3.org/2000/09/xmldsig#sha1" class="bare">http://www.w3.org/2000/09/xmldsig#sha1</a></code></code></p>
+</li>
+<li>
+<p><code><code><a href="http://www.w3.org/2009/xmlenc11#rsa-oaep" class="bare">http://www.w3.org/2009/xmlenc11#rsa-oaep</a></code></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code><code><a href="http://www.w3.org/2009/xmlenc11#rsa-oaep" class="bare">http://www.w3.org/2009/xmlenc11#rsa-oaep</a></code></code> (defined in <a href="#XMLEnc11">[XMLEnc11]</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following DigestMethod algorithms MUST be supported:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><code><a href="http://www.w3.org/2001/04/xmlenc#sha256" class="bare">http://www.w3.org/2001/04/xmlenc#sha256</a></code></code></p>
+</li>
+<li>
+<p><code><code><a href="http://www.w3.org/2000/09/xmldsig#sha1" class="bare">http://www.w3.org/2000/09/xmldsig#sha1</a></code></code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="true-alg-05-tls-security-requirements">[ALG-05] TLS security requirements</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This document is not normative with respect to TLS security. However, it is RECOMMENDED that Implementers consider <a href="#RFC7457">[RFC7457]</a> and best current practice such as <a href="#BetterCrypto">[BetterCrypto]</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="truereferences">References</h2>
+<div class="sectionbody">
+<div class="ulist bibliography">
+<ul class="bibliography">
+<li>
+<p><a id="BetterCrypto"></a>[BetterCrypto] BetterCrypto.org, Applied Crypto Hardening. <a href="https://bettercrypto.org/" class="bare">https://bettercrypto.org</a></p>
+</li>
+<li>
+<p><a id="RFC7457"></a>[RFC7457] IETF RFC 7457, Summarizing Known Attacks on Transport Layer Security (TLS) and Datagram TLS (DTLS), February 2015. <a href="https://www.ietf.org/rfc/rfc7457.txt" class="bare">https://www.ietf.org/rfc/rfc7457.txt</a></p>
+</li>
+<li>
+<p><a id="RFC4051"></a>[RFC4051] IETF RFC 4051, Additional XML Security Uniform Resource Identifiers, April 2005. <a href="https://www.ietf.org/rfc/rfc4051.txt" class="bare">https://www.ietf.org/rfc/rfc4051.txt</a></p>
+</li>
+<li>
+<p><a id="XMLEnc"></a>[XMLEnc] D. Eastlake et al. XML Encryption Syntax and Processing. World Wide Web Consortium Recommendation. <a href="http://www.w3.org/TR/2002/REC-xmlenc-core-20021210/" class="bare">http://www.w3.org/TR/2002/REC-xmlenc-core-20021210/</a></p>
+</li>
+<li>
+<p><a id="XMLEnc11"></a>[XMLEnc11] D. Eastlake et al. XML Encryption 
+Syntax and Processing Version 1.1. World Wide Web Consortium Last Call 
+Working Draft. <a href="http://www.w3.org/TR/2010/WD-xmlenc-core1-20100513/" class="bare">http://www.w3.org/TR/2010/WD-xmlenc-core1-20100513/</a></p>
+</li>
+<li>
+<p><a id="XMLSig"></a>[XMLSig] D. Eastlake et al. XML-Signature Syntax 
+and Processing, Second Edition. World Wide Web Consortium 
+Recommendation, June 2008. <a href="http://www.w3.org/TR/xmldsig-core/" class="bare">http://www.w3.org/TR/xmldsig-core/</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div></div>
+    </div>
+</div>
+
+<!--<script src="/js/asciidoctor-all.js"></script>-->
+<!--<script src="/js/asciidoctor-uml-block.js"></script>-->
+<!--<script src="/js/asciidoctor-ditaa-block.js"></script>-->
+<!--<script src="/js/asciidoctor-math-block.js"></script>-->
+<!--<script src="/js/asciidoctor-tree-block.js"></script>-->
+<!--<script src="/js/asciidoctor-treee-block.js"></script>-->
+<!--<script src="/js/asciidoctor-docbook.js"></script>-->
+
+<script src="SAML-AlgSupport_files/jquery.js"></script>
+<script src="SAML-AlgSupport_files/sockjs.js"></script>
+<script src="SAML-AlgSupport_files/highlight.js"></script>
+<script src="SAML-AlgSupport_files/index.json"></script>
+
+<script>
+    var soket = new SockJS("/ws");
+
+    function refreshUI(data) {
+
+        $("#placeholder").html(data);
+        $('pre code').each(function (i, e) {
+            hljs.highlightBlock(e)
+        });
+
+    }
+
+    soket.onmessage = function (e) {
+        refreshUI(e.data);
+    };
+
+    soket.onerror = soket.onclose = function (e) {
+        $(".row.connection-closed").show();
+    };
+
+</script>
+
+</body></html>
