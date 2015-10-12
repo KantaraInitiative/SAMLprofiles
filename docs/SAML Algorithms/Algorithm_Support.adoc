@@ -1,6 +1,7 @@
 = Cryptographic Algorithms in SAML Implementations
 
-This document specifies the requirements for algorithm support for XML signing and encryption to be used with SAML V2.0 interoperability profiles. As cryptographic requirements may change faster than other protocol elements they are kept here to allow for a quicker document life cycle.
+==
+This document specifies the requirements for algorithm support for XML signing and encryption to be used with SAML V2.0 implementation profiles. As cryptographic requirements may change faster than other protocol elements they are kept here to allow for a quicker document life cycle.
 
 == [ALG-01] XML Signature digest algorithms
 Implementations MUST support the following XML Signature digest algorithms identified by the following URIs in conjunction with the creation and verification of XML Signatures <<XMLSig>>:
@@ -10,13 +11,17 @@ Implementations MUST support the following XML Signature digest algorithms ident
 
 == [ALG-02] XML Signature signing algorithms
 Implementations MUST support the following XML Signature digest algorithms identified by the following URIs in conjunction with the creation and verification of XML Signatures <<XMLSig>>:
+
 * ```http://www.w3.org/2001/04/xmldsig-more#rsa-sha256``` (defined in <<RFC4051>>)
 * ```http://www.w3.org/2000/09/xmldsig#rsa-sha1``` (defined in <<XMLSig>>)
+
 Implementations SHOULD support the signature and digest algorithms identified by the following URIs in conjunction with the creation and verification of XML Signatures <<XMLSig>>:
+
 * ```http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256``` (defined in <<RFC4051>>)
 
 == [ALG-03] XML Encryption block encryption algorithms
 Implementations MUST support the XML Encryption block encryption algorithms identified by the following URIs in conjunction with the use of XML Encryption <<XMLEnc>>:
+
 * ```http://www.w3.org/2001/04/xmlenc#aes128-cbc``` (defined in <<XMLEnc>>)
 * ```http://www.w3.org/2001/04/xmlenc#aes256-cbc``` (defined in <<XMLEnc>>)
 * ```http://www.w3.org/2009/xmlenc11#aes128-gcm``` (defined in <<XMLEnc11>>)
@@ -26,18 +31,22 @@ Implementations MUST support the XML Encryption block encryption algorithms iden
 Implementations MUST support the XML Encryption key transport algorithms identified by the following URIs in conjunction with the use of XML Encryption <<XMLEnc>>:
 
 * ```http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p``` (defined in <<XMLEnc>>)
+
 The following DigestMethod algorithms MUST be supported:
+
 ** ```http://www.w3.org/2001/04/xmlenc#sha256```
 ** ```http://www.w3.org/2000/09/xmldsig#sha1```
 ** ```http://www.w3.org/2009/xmlenc11#rsa-oaep```
 
 * ```http://www.w3.org/2009/xmlenc11#rsa-oaep``` (defined in <<XMLEnc11>>)
+
 The following DigestMethod algorithms MUST be supported:
+
 ** ```http://www.w3.org/2001/04/xmlenc#sha256```
 ** ```http://www.w3.org/2000/09/xmldsig#sha1```
 
 == [ALG-05] TLS security requirements
-This document is not normative with respect to TLS security. However, it is recommended that Implementations consider <<RFC7457>> and best current practice such as <<BetterCrypto>>
+This document is not normative with respect to TLS security. However, it is RECOMMENDED that Implementers consider <<RFC7457>> and best current practice such as <<BetterCrypto>>.
 
 
 == References
