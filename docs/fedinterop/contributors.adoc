@@ -1,0 +1,12 @@
+== Contributors
+
+* Editor: Walter Hoehn (The University of Memphis)
+* Scott Cantor (The Ohio State University)
+* Rainer Hörbe (Identinetics GmbH, Kantara Initiative)
+* Tom Scavo (InCommon)
+* Eric Goodman (University of California, Office of the President)
+* Brett Bieber (University of Nebraska-Lincoln)
+* Nick Roy (InCommon)
+* Barry Ribbeck (Rice University)
+* Judith E. Bush (OCLC)
+* Mike Grady (Unicon)

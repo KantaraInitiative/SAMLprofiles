@@ -1,0 +1,19 @@
+=== General
+
+[IIP-G01]:: Implementations  MUST support the following SAML V2.0 name identifier formats, in accordance with the normative obligations associated with them by <<SAML2Core>> sect. 8.3:
+
+ * urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+ * urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+
+[IIP-G02]:: Implementations MUST allow for reasonable clock skew between systems when interpreting **xsd:dateTime** values and enforcing security policies based thereupon. 
+
+_The following is a non-exhaustive list of items to which this directive applies: `NotBefore`, `NotOnOrAfter`, and `validUntil` XML attributes found on `Conditions`, `SubjectConfirmationData`, `LogoutRequest`, `EntityDescriptor`, `EntitiesDescriptor`, `RoleDescriptor`, and `AffiliationDescriptor` elements._
+
+_Tolerances of 3–5 minutes are a reasonable default, but allowing for configurability is a suggested practice._
+
+_Guidance is offered with regard to clock skew in E92 of <<SAML2Errata>>. Empirical evidence has shown that allowance for clock skew is critical to robust SAML deployments. It has thus been made a mandatory feature in this profile._
+
+[IIP-G03]:: When specific constraints are absent in the SAML standards or profile documents, implementations MUST be able to accept, without error or truncation, element and attribute values of type **xs:string** that are comprised of any combination of valid XML characters and contain up to 256 characters. This requirement applies both to types defined within the SAML standards (such as transient and persistent NameIDs) and to user-defined types. 
+
+_It is acceptable to allow for selective configuration of more restrictive constraints on specific NameID and AttributeValue types._
+

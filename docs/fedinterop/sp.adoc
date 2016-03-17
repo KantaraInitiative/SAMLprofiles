@@ -1,0 +1,49 @@
+== Service Provider Requirements
+
+=== Metadata and Trust Management
+
+[IIP-SP01]:: Service Providers SHOULD support the acquisition of SAML metadata rooted in `<md:EntityDescriptor>` elements via the Metadata Query Protocol, defined in <<SAML-MDQ>> and <<MDQ>>.
+
+[IIP-SP02]:: If a SAML peer has declared algorithm support according to <<SAML2MetaAlgSup>> in its EntityDescriptor, Service Providers SHOULD limit the use of algorithms for XML Signature and Encryption to these declared algorithms in the messages they produce for that peer.
+
+==== Avoiding Common Errors
+
+[IIP-SP03]:: Service Providers MUST NOT require that name identifiers with a format of 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent' be overloaded with semantics or content beyond what is outlined in <<SAML2Core>> sect. 8.3.7.
+
+_Note that if the name identifier format identifiers defined in_ <<SAML2Core>> _are inapplicable to a given use case, it should be possible for new ones to be established. Implementations not specific to a single deployment should support the use of arbitrary formats._
+
+=== Attributes
+
+[IIP-SP04]:: Service Providers MUST support the consumption of `<saml2:Attribute>` elements containing any arbitrary **xs:string** value in the `Name` attribute and any arbitrary **xs:anyURI** value in the `NameFormat` attribute.
+
+[IIP-SP05]:: Service Providers MUST support the consumption of `<saml2:AttributeValue>` elements containing any "simple" element content; that is, element content consisting only of text nodes, not mixed/complex content that may contain nested XML elements. It is OPTIONAL to support complex content. Service Providers MUST NOT require the presence of the `xsi:type` XML attribute.
+
+==== Avoiding Common Errors
+
+[IIP-SP06]:: Service Providers MUST NOT fail or reject responses due to the presence of unrecognized `<saml2:Attribute>` elements.
+
+[IIP-SP07]:: Service Providers MUST NOT treat the `FriendlyName` attribute normatively or make comparisons based on its value.
+
+=== Web Browser SSO
+
+[IIP-SP08]:: Service Providers MUST be capable of generating `<saml2p:AuthnRequest>` messages without a `<saml2p:NameIDPolicy>` element and with a `<saml2p:NameIDPolicy>` element but no `Format` attribute.
+
+[IIP-SP09]:: Service Providers MUST support IdP discovery in accordance with <<IdPDisco>>. 
+
+_Note that this requirement only implies support for the simple redirection conventions defined by that profile and does not demand implementation of an actual discovery interface, though that is of course not precluded._
+
+_Also note that discovery mechanisms should use SAML metadata to determine the endpoint(s) to which requests are to be issued._
+
+[IIP-SP10]:: Service Providers MUST support the processing of responses from any number of issuing IdPs for any given resource URL. That is, it MUST NOT be a restriction of an implementation that multiple IdPs can only be supported by requiring distinct resource URLs for each IdP.
+
+_Note that the requirement for support of <<IdPDisco>> in [IIP-SP09] leads naturally to the ability to satisfy this requirement._
+
+[IIP-SP11]:: Service Providers MUST be capable of generating `<saml2p:AuthnRequest>` messages with a `<saml2p:RequestedAuthnContext>` element containing the *exact* comparison method and any number of `<saml2p:AuthnContextClassRef>` elements.
+
+[IIP-SP12]:: Service Providers MUST support decryption of `<saml2:EncryptedAssertion>` elements. In order to fully support key rollover, Service Providers MUST be configurable with at least two decryption keys. When decrypting assertions, they MUST attempt to use each decryption key (in unspecified order) until the assertion is successfully decrypted or there are no more keys, in which case decryption fails.
+
+[IIP-SP13]:: Service Providers MUST support deep linking and maintain the direct addressability of protected resources in the presence of Web Browser SSO. That is, it MUST be possible to request an arbitrary protected resource and (authorization permitting) have it supplied as the result of a successful SAML SSO profile exchange. In addition, it is RECOMMENDED that Service Providers support the preservation of POST bodies across a successful SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.
+
+_The SAML binding-specific RelayState feature is typically used to maintain state required to satisfy both of these requirements, the exact detail of which is left to implementations._
+
+_Support for unsolicited responses (or so-called IdP-initiated SSO) is not a substitute for this requirement._

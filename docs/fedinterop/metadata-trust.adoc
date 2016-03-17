@@ -1,0 +1,70 @@
+=== Metadata and Trust Management
+
+This section identifies a basic set of features required for the interoperable use of SAML metadata. Although metadata support was optional in the original SAML V2.0 specification, it is now recognized as a critical component of all modern SAML software. Implementations must carefully adhere to the following procedures related to the exchange and validation of metadata in order to support a scalable federation model.
+
+The underlying intent of these requirements is to facilitate a configuration and provisioning model that is, to the greatest extent practical, based on metadata alone.
+
+==== Metadata Capabilities
+
+[IIP-MD01]:: Implementations MUST support SAML Metadata as defined in the following OASIS specifications:
+ * SAML V2.0 Metadata <<SAML2Meta>>, as updated by Errata <<SAML2Errata>>
+ * SAML V2.0 Metadata Schema <<SAML2MD-xsd>>
+ * SAML V2.0 Metadata Interoperability Profile <<SAML2MDIOP>>
+ * SAML V2.0 Metadata Extension for Entity Attributes <<MetaAttr>>
+ * SAML V2.0 Metadata Extension for Algorithm Support <<SAML2MetaAlgSup>>
+ * SAML V2.0 Metadata Extensions for Login and Discovery User Interface <<MetaUi>>
+
+The above list of specifications includes all material relevant to functionality required by this profile, but is not intended to be exhaustive. In accordance with the <<Extensibility>> section, other metadata extension content may be present and MUST NOT prevent consumption and use of the metadata.
+
+[IIP-MD02]:: Implementations MUST support the consumption of SAML metadata rooted in both `<md:EntityDescriptor>` and `<md:EntitiesDescriptor>` elements. In the latter case, any number of child elements MUST be allowed.
+
+[IIP-MD03]:: Implementations MUST support the interpretation and application of metadata as defined by the SAML V2.0 Metadata Interoperability Profile <<SAML2MDIOP>>. Support for other metadata profiles is OPTIONAL. It follows that implementations MUST be capable of interoperating (leading to success or failure as dictated by default configuration) with any number of SAML peers for which metadata is supplied, without additional inputs or separate configuration. In accordance with the SAML V2.0 Metadata Interoperability Profile <<SAML2MDIOP>>, metadata MUST be:
+
+----
+“usable as a self-contained vehicle for communicating trust such that a user of a conforming implementation can be guaranteed that any and all rules for processing digital signatures, encrypted XML... can be derived from the metadata alone, with no additional trust requirements imposed.”
+----
+
+_As an example, a separate trust store must not be required to verify the signature on a signed SAML message or to negotiate a TLS connection for SOAP messaging. The latter is a particularly common limitation of many TLS libraries; such libraries must not be used unmodified if TLS is used for SAML messaging. If this is a concern, signed and encrypted messages should be exchanged, or implementations should confine themselves to supporting front-channel bindings._
+
+_Note that this requirement does not preclude supporting a variety of configuration options on a per-peer (or other) basis; it simply requires that default behavior be possible without such._
+
+==== Metadata Exchange
+
+[IIP-MD04]:: Implementations MUST support the routine consumption of SAML metadata from a remote location via HTTP/1.1 <<RFC2616>> on a scheduled/recurring basis, with the contents automatically applied upon successful validation. HTTP/1.1 redirects (status codes 301, 302, and 307) MUST be honored.
+
+[IIP-MD05]:: Implementations MUST be able to validate the authenticity and integrity of SAML metadata by verifying an enveloped XML Signature <<XMLDsig>>. Public keys used for signature verification MUST be configured out of band. These keys MAY be contained in X.509 certificates but it MUST be possible to ignore the other contents of the certificate and verify the XML Signature based solely on the public key. It MUST be possible to limit the use of a trusted key to a single metadata source.
+
+_Note that this requirement applies regardless of the means by which the metadata was obtained (scheduled transfer over HTTP/1.1, Metadata Query Protocol, etc)._
+
+[IIP-MD06]:: Implementations MUST be capable of rejecting SAML metadata if any one of the following conditions is true:
+
+ . The `validUntil` XML attribute on the root element is missing
+ . The value of the `validUntil` XML attribute on the root element is a **xsd:dateTime** in the past
+ . The value of the `validUntil` XML attribute on the root element is a **xsd:dateTime** too far into the future, where "too far into the future" is a configurable option.
+
+_Note that this requirement applies to the root element only. If the root element encloses any child elements containing additional `validUntil` XML attributes, these must be processed in accordance with <<SAML2Meta>>._
+
+==== Key Rollover
+
+[IIP-MD07]:: Implementations MUST have the ability to consume and make use of any number of signing keys bound to a single role descriptor in metadata. When verifying digital signatures, they MUST attempt to use each signing key (in unspecified order) until the signature is successfully verified or there are no remaining keys, in which case signature verification fails.
+
+[IIP-MD08]:: If an implementation supports outbound encryption, it MUST be able to consume any number of encryption keys bound to a single role descriptor in metadata. If multiple encryption keys are specified, any one of them may be used to encrypt outbound messages.
+
+==== Algorithm Support
+
+The migration from suspicious and broken algorithms deployed in production systems requiring a coordinated update at a single point in time is not feasible in large federations. An alternative strategy is the support of both good and bad algorithms at the endpoints for some time to relax the schedule for system updates. Negotiating better algorithms automatically provides immediate benefit to communications within the group of updated entities. Thus the network as a whole is not completely stuck because of entity operators unable/unwilling to update. Algorithm support for TLS endpoints is out of scope for SAML metadata.
+
+[IIP-MD09]:: Implementations MUST be capable of publishing the cryptographic capabilities of their runtime configurations with regard to XML Signature and Encryption. It is RECOMMENDED that they support dynamic generation and export of this information and provide it in a machine-readable format that can be included in metadata according to <<SAML2MetaAlgSup>>.
+
+==== Avoiding Common Errors
+
+[IIP-MD10]:: An `<md:KeyDescriptor>` element in metadata that contains no `use` XML attribute MUST be valid as both a signing and encryption key. This is clarified in E62 of the SAML V2.0 Errata <<SAML2Errata>>:
+----
+If the use attribute is omitted, then the contained key information is applicable to both of the above uses.
+----
+
+[IIP-MD11]:: Support for any number of long-lived, self-signed end entity certificates is REQUIRED as is support for expired certificates, and certificates signed with any digest algorithm.  The SAML V2.0 Metadata Interoperability Profile <<SAML2MDIOP>> states:
+
+----
+In the case of an X.509 certificate, there are no requirements as to the content of the certificate apart from the requirement that it contain the appropriate public key. Specifically, the certificate may be expired, not yet valid, carry critical or non-critical extensions or usage flags, and contain any subject or issuer. The use of the certificate structure is merely a matter of notational convenience to communicate a key and has no semantics in this profile apart from that.
+----
