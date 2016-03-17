@@ -46,7 +46,7 @@ The following DigestMethod algorithms MUST be supported:
 ** ```http://www.w3.org/2000/09/xmldsig#sha1```
 
 == [ALG-05] TLS security requirements
-This document is not normative with respect to TLS security. However, it is RECOMMENDED that Implementers consider <<RFC7457>> and best current practice such as <<BetterCrypto>>.
+This document is not normative with respect to TLS security. However, it is RECOMMENDED that implementers consider <<RFC7457>> and best current practice such as <<BetterCrypto>>.
 
 
 == References
