@@ -1,5 +1,3 @@
 === Changes since [eGov] from 11 June 2010
 
 Requirements are enumerated and have been changed to be context free, i.e. references like "as above" have been replaced by the referenced text.
-
-Section "Conformance Classes" has been excluded.

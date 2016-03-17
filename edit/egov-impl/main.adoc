@@ -10,7 +10,6 @@ This document contains an implementation profile for eGovernment use of SAML V2.
 This document is a transformation of the document from 11 June 2011 into the Asciidoc format.
 While keeping the requirements as-is, the goal was to change the format to establish a more formally
 structured baseline for a comparison with the successor of this profile.
-For exceptions see the section "Changes" below.
 
 The original document is referenced as [eGov] can be downloaded at:
 http://kantarainitiative.org/confluence/download/attachments/38929505/kantara-report-egov-saml2-profile-2.0.pdf
@@ -21,9 +20,7 @@ Editor of this document format: Rainer Hörbe
 
 == Introduction
 include::001_Intro_eGov.adoc[]
-
 include::002_Notation_eGov.adoc[]
-
 include::003_Changes_eGov.adoc[]
 
 == SAML V2.0 Implementation Profile
@@ -42,6 +39,18 @@ include::040_BrowserSSO.adoc[]
 include::050_HoK.adoc[]
 include::060_IDP_Proxy_eGov.adoc[]
 include::070_SLO.adoc[]
-include::080_Single_Logout_eGov.adoc[]
+
+== Conformance Classes
+=== Standard
+Conforming Identity Provider and/or Service Provider implementations MUST support the normative requirements in sections 2.2, 2.3, 2.4, and 2.5.
+
 include::090_Algorithm_Support.adoc[]
+
+=== Standard with Logout
+Conforming Identity Provider and/or Service Provider implementations MUST meet the conformance requirements in section 3.1, and MUST in addition support the normative requirements in section 2.8.
+
+=== Standard with Logout
+Conforming Identity Provider and/or Service Provider implementations MUST meet the conformance requirements in section 3.1, and MUST in addition support the normative requirements in sections 2.6, 2.7, and 2.8.
+
+== References
 include::100_bibliography_eGov.adoc[]

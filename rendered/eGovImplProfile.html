@@ -423,12 +423,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_introduction">1. Introduction</a>
-<ul class="sectlevel2">
-<li><a href="#_notation">1.1. Notation</a></li>
-<li><a href="#_changes_since_egov_from_11_june_2010">1.2. Changes since [eGov] from 11 June 2010</a></li>
-</ul>
-</li>
+<li><a href="#_introduction">1. Introduction</a></li>
 <li><a href="#_saml_v2_0_implementation_profile">2. SAML V2.0 Implementation Profile</a>
 <ul class="sectlevel2">
 <li><a href="#_required_information">2.1. Required Information</a></li>
@@ -436,17 +431,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_name_identifier_formats">2.3. Name Identifier Formats</a></li>
 <li><a href="#_attribute_name_formats">2.4. Attribute Name Formats</a></li>
 <li><a href="#_browser_single_sign_on">2.5. Browser Single Sign-On</a></li>
-<li><a href="#_websso_message_contents">2.6. WebSSO Message Contents</a></li>
+<li><a href="#_browser_holder_of_key_single_sign_on">2.6. Browser Holder of Key Single Sign-On</a></li>
 <li><a href="#_saml_2_0_proxying">2.7. SAML 2.0 Proxying</a></li>
 <li><a href="#_single_logout">2.8. Single Logout</a></li>
 </ul>
 </li>
-<li><a href="#_cryptographic_algorithms_in_saml_implementations">3. Cryptographic Algorithms in SAML Implementations</a>
+<li><a href="#_conformance_classes">3. Conformance Classes</a>
 <ul class="sectlevel2">
-<li><a href="#_signature_and_digest_algorithms">3.1. Signature and digest algorithms</a></li>
-<li><a href="#_block_encryption_algorithms">3.2. Block encryption algorithms</a></li>
-<li><a href="#_key_transport_algorithms">3.3. Key transport algorithms</a></li>
-<li><a href="#_key_agreement_algorithms">3.4. Key agreement algorithms</a></li>
+<li><a href="#_standard">3.1. Standard</a></li>
+<li><a href="#_standard_with_logout">3.2. Standard with Logout</a></li>
+<li><a href="#_standard_with_logout_2">3.3. Standard with Logout</a></li>
+</ul>
+</li>
+<li><a href="#_references">4. References</a>
+<ul class="sectlevel2">
+<li><a href="#_normative_references">4.1. Normative References</a></li>
 </ul>
 </li>
 </ul>
@@ -463,8 +462,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">Status</div>
 <p>This document is a transformation of the document from 11 June 2011 into the Asciidoc format.
 While keeping the requirements as-is, the goal was to change the format to establish a more formally
-structured baseline for a comparison with the successor of this profile.
-For exceptions see the section "Changes" below.</p>
+structured baseline for a comparison with the successor of this profile.</p>
 </div>
 <div class="paragraph">
 <p>The original document is referenced as [eGov] can be downloaded at:
@@ -500,12 +498,9 @@ provide criteria against which actual deployments may be tested. This document d
 include a deployment profile, but reflects the features deemed necessary or desirable
 from software implementations in support of a variety of deployment profiles planned and
 in use. This includes requirements deemed useful to further the eventual goal of
-interfederation between deployments.</p>
-</div>
-<div class="sect2">
-<h3 id="_notation">1.1. Notation</h3>
-<div class="paragraph">
-<p>This specification uses normative text to describe the use of SAML capabilities.
+interfederation between deployments.
+=== Notation
+This specification uses normative text to describe the use of SAML capabilities.
 The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this specification are to be interpreted as described in <a href="#RFC2119">[RFC2119]</a></p>
 </div>
 <div class="paragraph">
@@ -534,26 +529,11 @@ The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SH
 <p>This specification uses the following typographical conventions in text: <code>&lt;ns:Element&gt;</code>, <code>Attribute</code>, <strong>Datatype</strong>, <code>OtherCode</code>.</p>
 </div>
 <div class="paragraph">
-<p>Requirements are written in a terse table format with identifiers for better reference. Traceability to the previous format is provided by the "source" attribute with the format "document/line number(s)", with document being "eGov" for [eGov], and "InC Draft" for <a href="https://spaces.internet2.edu/display/InCFederation/SAML+Implementation+Profile">InCommon DRAFT SAML Implementation Profile</a>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_changes_since_egov_from_11_june_2010">1.2. Changes since [eGov] from 11 June 2010</h3>
-<div class="paragraph">
-<p>Requirements have been changed to be context free, i.e. references like "as above" have been replaced by the referenced text.</p>
+<p>Requirements are written in a terse table format with identifiers for better reference. Traceability to the previous format is provided by the "source" attribute with the format "document/line number(s)", with document being "eGov" for [eGov], and "InC Draft" for <a href="https://spaces.internet2.edu/display/InCFederation/SAML+Implementation+Profile">InCommon DRAFT SAML Implementation Profile</a>.
+=== Changes since [eGov] from 11 June 2010</p>
 </div>
 <div class="paragraph">
-<p>Binding and security requirements have been moved from the "Authentication Request" and "Reponse" sections of WebSSO and SLO to the "Message Flows and Bindings" heading.</p>
-</div>
-<div class="paragraph">
-<p>Requirements IMD-100, IMD-103 and IMD-105 have been implicit in [eGov], but added for clarification in this part to improve the sequence of requirements.</p>
-</div>
-<div class="paragraph">
-<p>The section "HolderOfKey" has been excluded .</p>
-</div>
-<div class="paragraph">
-<p>Section "Conformance Classes" has been excluded.</p>
-</div>
+<p>Requirements are enumerated and have been changed to be context free, i.e. references like "as above" have been replaced by the referenced text.</p>
 </div>
 </div>
 </div>
@@ -579,10 +559,10 @@ The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SH
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1. Supported SAML metadata profiles and capabilites ([eGov])</caption>
 <colgroup>
-<col style="width: 9%;">
-<col style="width: 4%;">
-<col style="width: 4%;">
-<col style="width: 7%;">
+<col style="width: 8%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
 <col style="width: 73%;">
 </colgroup>
 <thead>
@@ -659,10 +639,10 @@ The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SH
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 2. Requirements for SAML metadata exchange</caption>
 <colgroup>
-<col style="width: 9%;">
-<col style="width: 4%;">
-<col style="width: 4%;">
-<col style="width: 7%;">
+<col style="width: 8%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
 <col style="width: 73%;">
 </colgroup>
 <thead>
@@ -757,11 +737,11 @@ The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SH
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 3. Supported SAML Name Identifier formats and semantics (from eGov)</caption>
 <colgroup>
-<col style="width: 10%;">
+<col style="width: 8%;">
 <col style="width: 5%;">
 <col style="width: 5%;">
-<col style="width: 7%;">
-<col style="width: 71%;">
+<col style="width: 5%;">
+<col style="width: 73%;">
 </colgroup>
 <thead>
 <tr>
@@ -799,11 +779,11 @@ The ability to support &lt;saml2:AttributeValue&gt; elements whose values are no
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 4. Supported SAML attribute elements</caption>
 <colgroup>
-<col style="width: 10%;">
-<col style="width: 6%;">
-<col style="width: 6%;">
-<col style="width: 10%;">
-<col style="width: 66%;">
+<col style="width: 8%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
+<col style="width: 73%;">
 </colgroup>
 <thead>
 <tr>
@@ -840,13 +820,13 @@ The ability to support &lt;saml2:AttributeValue&gt; elements whose values are no
 <div class="sect3">
 <h4 id="_identity_provider_discovery">2.5.1. Identity Provider Discovery</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 5. Supported IDP discovery protocols</caption>
+<caption class="title">Table 5. IDP discovery protocol</caption>
 <colgroup>
-<col style="width: 12%;">
-<col style="width: 6%;">
-<col style="width: 6%;">
-<col style="width: 9%;">
-<col style="width: 64%;">
+<col style="width: 8%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
+<col style="width: 73%;">
 </colgroup>
 <thead>
 <tr>
@@ -871,13 +851,13 @@ The ability to support &lt;saml2:AttributeValue&gt; elements whose values are no
 <div class="sect3">
 <h4 id="_authentication_requests">2.5.2. Authentication Requests</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 6. Support for Binding and Security Requirements</caption>
+<caption class="title">Table 6. Authentication Request Binding and Security Requirements</caption>
 <colgroup>
-<col style="width: 12%;">
-<col style="width: 6%;">
-<col style="width: 6%;">
-<col style="width: 9%;">
-<col style="width: 64%;">
+<col style="width: 8%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
+<col style="width: 73%;">
 </colgroup>
 <thead>
 <tr>
@@ -899,13 +879,13 @@ The ability to support &lt;saml2:AttributeValue&gt; elements whose values are no
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 7. SAML Authentication Request Message Contents</caption>
+<caption class="title">Table 7. Authentication Request Message Contents</caption>
 <colgroup>
-<col style="width: 12%;">
-<col style="width: 6%;">
-<col style="width: 6%;">
-<col style="width: 9%;">
-<col style="width: 64%;">
+<col style="width: 8%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
+<col style="width: 73%;">
 </colgroup>
 <thead>
 <tr>
@@ -991,152 +971,14 @@ The ability to support &lt;saml2:AttributeValue&gt; elements whose values are no
 </table>
 </div>
 <div class="sect3">
-<h4 id="_message_encryption">2.5.3. Message Encryption</h4>
+<h4 id="_responses">2.5.3. Responses</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 8. Support for the combination of message flows, bindings with respect to message encryption</caption>
+<caption class="title">Table 8. Response Binding and Security Requirements</caption>
 <colgroup>
-<col style="width: 10%;">
-<col style="width: 4%;">
-<col style="width: 4%;">
-<col style="width: 6%;">
-<col style="width: 38%;">
-<col style="width: 12%;">
-<col style="width: 23%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">RequID</th>
-<th class="tableblock halign-left valign-top">IDP</th>
-<th class="tableblock halign-left valign-top">SP</th>
-<th class="tableblock halign-left valign-top">Source</th>
-<th class="tableblock halign-left valign-top">Message Flow</th>
-<th class="tableblock halign-left valign-top">Binding</th>
-<th class="tableblock halign-left valign-top">Message Encryption Element</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMFB-101</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/295</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Web SSO Response (see <a href="#SAML2Prof">[SAML2Prof]</a> sect. 4.1)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP POST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;saml2:EncryptedAssertion&gt;</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMFB-102</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MAY</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MAY</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/295</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Web SSO Response (see <a href="#SAML2Prof">[SAML2Prof]</a> sect. 4.1)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP POST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;saml2:EncryptedID&gt;</code> or <code>&lt;saml2:EncryptedAttribute&gt;</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMFB-103</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/390</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SLO LogoutRequest (see <a href="#SAML2Prof">[SAML2Prof]</a> sect. 4.4)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP redirect</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;saml2:EncryptedID&gt;</code></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_websso_message_contents">2.6. WebSSO Message Contents</h3>
-<div class="sect3">
-<h4 id="_websso_authentication_request">2.6.1. WebSSO Authentication Request</h4>
-<div class="paragraph">
-<p>Support for the SAML V2.0 Web Browser SSO Profile [SAML2Prof] is required with following capabilites.</p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 9. SAML Authentication Request Message Contents</caption>
-<colgroup>
-<col style="width: 12%;">
-<col style="width: 6%;">
-<col style="width: 6%;">
-<col style="width: 9%;">
-<col style="width: 64%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">RequID</th>
-<th class="tableblock halign-left valign-top">IDP</th>
-<th class="tableblock halign-left valign-top">SP</th>
-<th class="tableblock halign-left valign-top">Source</th>
-<th class="tableblock halign-left valign-top">Requirement</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISSO-001</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/249</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support the inclusion of at least the following &lt;saml2p:AuthnRequest&gt; child elements and attributes (when appropriate):
-----
-* AssertionConsumerServiceURL
-* ProtocolBinding
-* ForceAuthn
-* IsPassive
-* AttributeConsumingServiceIndex
-* &lt;saml2p:RequestedAuthnContext&gt;
-* &lt;saml2p:NameIDPolicy&gt;
-----</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISSO-002</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/249</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support all &lt;saml2p:AuthnRequest&gt; child elements and attributes defined by <a href="#SAML2Core">[SAML2Core]</a>, but MAY provide that support in the form of returning appropriate errors when confronted by particular request options.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISSO-003</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/249</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST fully support the options enumerated below, and be configurable to utilize those options in a useful manner as defined by <a href="#SAML2Core">[SAML2Core]</a>.:
-----
-* AssertionConsumerServiceURL
-* ProtocolBinding
-* ForceAuthn
-* IsPassive
-* AttributeConsumingServiceIndex
-* &lt;saml2p:RequestedAuthnContext&gt;
-* &lt;saml2p:NameIDPolicy&gt;
-----</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISSO-004</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/264</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support any allowable content of the &lt;saml2p:RequestedAuthnContext&gt; element but MAY limit their support of the element to the value "exact" for the Comparison attribute.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISSO-004</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/268</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support verification of requested AssertionConsumerServiceURL locations via comparison to &lt;md:AssertionConsumerService&gt; elements supplied via metadata using case-sensitive string comparison. It is OPTIONAL to support other means of comparison (e.g., canonicalization or other manipulation of URL values) or alternatve verification mechanisms.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_websso_response">2.6.2. WebSSO Response</h4>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 10. Requirements for SAML WebSSO Response message contents</caption>
-<colgroup>
-<col style="width: 9%;">
-<col style="width: 4%;">
-<col style="width: 4%;">
-<col style="width: 7%;">
+<col style="width: 8%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
 <col style="width: 73%;">
 </colgroup>
 <thead>
@@ -1144,77 +986,222 @@ The ability to support &lt;saml2:AttributeValue&gt; elements whose values are no
 <th class="tableblock halign-left valign-top">RequID</th>
 <th class="tableblock halign-left valign-top">IDP</th>
 <th class="tableblock halign-left valign-top">SP</th>
-<th class="tableblock halign-left valign-top">Source</th>
+<th class="tableblock halign-left valign-top">Line</th>
 <th class="tableblock halign-left valign-top">Requirement</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISSO-100</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/284</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support the issuance of <code>&lt;saml2p:Response&gt;</code> messages (with appropriate status codes) in the event of an error condition, provided that the user agent remains available and an acceptable location to which to deliver the response is available. The criteria for "acceptability" of a response location are not formally specified, but are subject to Identity Provider policy and reflect its responsibility to protect users from being sent to untrusted or possibly malicious parties. Note that this is a stronger requirement than the comparable language in <a href="#SAML2Prof">[SAML2Prof]</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-050</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">274</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the use of the HTTP-POST and HTTP-Artifact bindings [SAML2Bind] for the transmission of &lt;saml2p:Response&gt; messages.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISSO-101</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/301</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST allow the number of <code>&lt;saml2:Assertion&gt;</code>, <code>&lt;saml2:AuthnStatement&gt;</code>, and <code>&lt;saml2:AttributeStatement&gt;</code> elements in the <code>&lt;saml2p:Response&gt;</code> message to be limited to one.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-051</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MAY</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MAY</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">277</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support for other bindings, and for artifact types other than urn:oasis:names:tc:SAML:2.0:artifact-04</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISSO-102</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/304</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MAY limit support to a single instance of  <code>&lt;saml2:Assertion&gt;</code>, <code>&lt;saml2:AuthnStatement&gt;</code>, and <code>&lt;saml2:AttributeStatement&gt;</code> elements when processing &lt;saml2p:Response&gt; messages</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-052</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">279</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the generation and consumption of unsolicited &lt;saml2p:Response&gt; messages (i.e., responses that are not the result of a &lt;saml2p:AuthnRequest&gt; message). (see <a href="#SAML2Prof">[SAML2Prof]</a> sect. 4.1.5)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISSO-103</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-053</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/306</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support the inclusion of a <code>Consent</code> attribute in <code>&lt;saml2p:Response&gt;</code> messages</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">282</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the issuance of &lt;saml2p:Response&gt; messages (with appropriate status codes) in the event of an error condition, provided that the user agent remains available and an acceptable location to which to deliver the response is available. The criteria for "acceptability" of a response location are not formally specified, but are subject to Identity Provider policy and reflect its responsibility to protect users from being sent to untrusted or possibly malicious parties. Note that this is a stronger requirement than the comparable language in [SAML2Prof].</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISSO-104</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/307</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support the inclusion of a <code>SessionIndex</code> attribute in <code>&lt;saml2:AuthnStatement&gt;</code> elements</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-054</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">290</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the signing of &lt;saml2:Assertion&gt; elements in responses; support for signing of the &lt;saml2p:Response&gt; element is OPTIONAL.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISSO-105</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-055</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">293</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the use of XML Encryption via the &lt;saml2:EncryptedAssertion&gt; element when using the HTTP-POST binding; support for the &lt;saml2:EncryptedID&gt; and &lt;saml2:EncryptedAttribute&gt; elements is OPTIONAL.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 9. Response Message Contents</caption>
+<colgroup>
+<col style="width: 8%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
+<col style="width: 73%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">RequID</th>
+<th class="tableblock halign-left valign-top">IDP</th>
+<th class="tableblock halign-left valign-top">SP</th>
+<th class="tableblock halign-left valign-top">Line</th>
+<th class="tableblock halign-left valign-top">Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-061</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/309</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">implementations that provide some form of session semantics MUST support the <code>&lt;saml2:AuthnStatement&gt;</code> element&#8217;s <code>SessionNotOnOrAfter</code> attribute</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">299</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allow the number of <code>&lt;saml2:Assertion&gt;</code>, <code>&lt;saml2:AuthnStatement&gt;</code>, and <code>&lt;saml2:AttributeStatement&gt;</code> elements in the <code>&lt;saml2p:Response&gt;</code> message to be limited to one.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISSO-106</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-062</p></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/312</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support the acceptance/rejection of assertions based on the content of the <code>&lt;saml2:AuthnStatement&gt;</code> element&#8217;s <code>&lt;saml2:AuthnContext&gt;</code> element.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MAY</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">302</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Limit support to a single instance of  <code>&lt;saml2:Assertion&gt;</code>, <code>&lt;saml2:AuthnStatement&gt;</code>, and <code>&lt;saml2:AttributeStatement&gt;</code> elements when processing &lt;saml2p:Response&gt; messages</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISSO-107</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-063</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/314</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support the acceptance/rejection of particular <code>&lt;saml2:AuthnContext&gt;</code> content based on the identity of the Identity Provider.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">304</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the inclusion of a <code>Consent</code> attribute in <code>&lt;saml2p:Response&gt;</code> messages</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISSO-108</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-064</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/316</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SHOULD support support the acceptance/rejection of particular &lt;saml2:AuthnContext&gt; content based on SAML V2.0 metadata as specified in <a href="#IAP">[IAP]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">305</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the inclusion of a <code>SessionIndex</code> attribute in <code>&lt;saml2:AuthnStatement&gt;</code> elements</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-065</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">307</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Implementations that provide some form of session semantics MUST support the <code>&lt;saml2:AuthnStatement&gt;</code> element&#8217;s <code>SessionNotOnOrAfter</code> attribute</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-066</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">310</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the acceptance/rejection of assertions based on the content of the <code>&lt;saml2:AuthnStatement&gt;</code> element&#8217;s <code>&lt;saml2:AuthnContext&gt;</code> element.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-067</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">312</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the acceptance/rejection of particular <code>&lt;saml2:AuthnContext&gt;</code> content based on the identity of the Identity Provider.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-068</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHOULD</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">314</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support support the acceptance/rejection of particular &lt;saml2:AuthnContext&gt; content based on SAML V2.0 metadata as specified in <a href="#IAP">[IAP]</a></p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<div class="sect3">
+<h4 id="_artifact_resolution">2.5.4. Artifact Resolution</h4>
+<div class="paragraph">
+<p>Implementations MUST support the SAML V2.0 Artifact Resolution profile [SAML2Prof] as constrained by the following requirements.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 10. Response Message Contents</caption>
+<colgroup>
+<col style="width: 8%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
+<col style="width: 73%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">RequID</th>
+<th class="tableblock halign-left valign-top">IDP</th>
+<th class="tableblock halign-left valign-top">SP</th>
+<th class="tableblock halign-left valign-top">Line</th>
+<th class="tableblock halign-left valign-top">Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-070</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">323</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the use of the SAML SOAP (using HTTP as a transport) binding [SAML2Bind] for the transmission of &lt;saml2p:ArtifactResolve&gt; messages.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-071</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">326</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the use of SAML message signatures and TLS server authentication to authenticate artifact resolution requests</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-072</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">330</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the use of the SAML SOAP (using HTTP as a transport) binding [SAML2Bind] for the transmission of &lt;saml2p:ArtifactResponse&gt; messages.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-073</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">333</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the use of SAML message signatures and TLS server authentication to authenticate artifact resolution responses</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_browser_holder_of_key_single_sign_on">2.6. Browser Holder of Key Single Sign-On</h3>
+<div class="paragraph">
+<p>This section defines an implementation profile of the SAML V2.0 Holder-of-Key Web Browser SSO Profile Version 1.0 [HoKSSO].</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 11. HoK profile</caption>
+<colgroup>
+<col style="width: 8%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
+<col style="width: 73%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">RequID</th>
+<th class="tableblock halign-left valign-top">IDP</th>
+<th class="tableblock halign-left valign-top">SP</th>
+<th class="tableblock halign-left valign-top">Line</th>
+<th class="tableblock halign-left valign-top">Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-074</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MAY</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MAY</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">337</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support this implementation profile of the SAML V2.0 Holder-of-Key Web Browser SSO Profile Version 1.0 [HoKSSO]. The implementation requirements defined in section "Browser Single Sign-On" for the non-holder-of-key profile apply to implementations of this profile.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
 <h3 id="_saml_2_0_proxying">2.7. SAML 2.0 Proxying</h3>
@@ -1223,12 +1210,12 @@ The ability to support &lt;saml2:AttributeValue&gt; elements whose values are no
 The requirements of the profile are imposed on Identity Provider implementations acting as a proxy.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 11. Requirements for Proxying Identity Provider implementations</caption>
+<caption class="title">Table 12. Requirements for Proxying Identity Provider implementations</caption>
 <colgroup>
-<col style="width: 9%;">
-<col style="width: 4%;">
-<col style="width: 4%;">
-<col style="width: 7%;">
+<col style="width: 8%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
 <col style="width: 73%;">
 </colgroup>
 <thead>
@@ -1242,39 +1229,39 @@ The requirements of the profile are imposed on Identity Provider implementations
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISPR-001</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-081</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/350</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">(If acting as a proxy) MUST support the technical requirements outlined in section 3.4.1.5.1 of <a href="#SAML2Core">[SAML2Core]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">350</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(If acting as a proxy) support the technical requirements outlined in section 3.4.1.5.1 of <a href="#SAML2Core">[SAML2Core]</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISPR-002</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-082</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/350</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">(When processing Authentication Requests) MUST support the mapping of incoming to outgoing <code>&lt;saml2p:RequestedAuthnContext&gt;</code> and <code>&lt;saml2p:NameIDPolicy&gt;</code> elements, such that deployers may choose to pass through values or map between different vocabularies as required.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">350</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(When processing Authentication Requests) support the mapping of incoming to outgoing <code>&lt;saml2p:RequestedAuthnContext&gt;</code> and <code>&lt;saml2p:NameIDPolicy&gt;</code> elements, such that deployers may choose to pass through values or map between different vocabularies as required.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISPR-003</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-083</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/354</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">(When processing Authentication Requests) MUST support the suppression/eliding of <code>&lt;saml2p:RequesterID&gt;</code> elements from outgoing <code>&lt;saml2p:AuthnRequest&gt;</code> messages to allow for hiding the identity of the Service Provider from proxied Identity Providers.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">354</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(When processing Authentication Requests) support the suppression/eliding of <code>&lt;saml2p:RequesterID&gt;</code> elements from outgoing <code>&lt;saml2p:AuthnRequest&gt;</code> messages to allow for hiding the identity of the Service Provider from proxied Identity Providers.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISPR-004</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-084</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/359</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">(When processing WebSSO Response) MUST support the mapping of incoming to outgoing <code>&lt;saml2:AuthnContext&gt;</code> elements, such that deployers may choose to pass through values or map between different vocabularies as required.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">359</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(When processing WebSSO Response) support the mapping of incoming to outgoing <code>&lt;saml2:AuthnContext&gt;</code> elements, such that deployers may choose to pass through values or map between different vocabularies as required.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISPR-005</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-085</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/362</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">(When processing WebSSO Response) MUST support the suppression of <code>&lt;saml2:AuthenticatingAuthority&gt;</code> elements from outgoing <code>&lt;saml2:AuthnContext&gt;</code> elements to allow for hiding the identity of the proxied Identity Provider from Service Providers.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">362</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(When processing WebSSO Response) support the suppression of <code>&lt;saml2:AuthenticatingAuthority&gt;</code> elements from outgoing <code>&lt;saml2:AuthnContext&gt;</code> elements to allow for hiding the identity of the proxied Identity Provider from Service Providers.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1282,16 +1269,18 @@ The requirements of the profile are imposed on Identity Provider implementations
 <div class="sect2">
 <h3 id="_single_logout">2.8. Single Logout</h3>
 <div class="paragraph">
-<p>This section defines an implementation profile of the SAML V2.0 Single Logout Profile &lt;SAML2Prof&gt;.
+<p>This section defines an implementation profile of the SAML V2.0 Single Logout Profile <a href="#SAML2Prof">[SAML2Prof]</a>.
 For clarification, the technical requirements for each message type below reflect the intent to normatively require initiation of logout by a Service Provider using either the front- or back-channel, and initiation/propagation of logout by an Identity Provider using the back-channel.</p>
 </div>
+<div class="sect3">
+<h4 id="_logout_requests">2.8.1. Logout Requests</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 12. Requirements for SAML SLO User Interface Behavior</caption>
+<caption class="title">Table 13. Binding and Security Requirements</caption>
 <colgroup>
-<col style="width: 9%;">
-<col style="width: 4%;">
-<col style="width: 4%;">
-<col style="width: 7%;">
+<col style="width: 8%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
 <col style="width: 73%;">
 </colgroup>
 <thead>
@@ -1299,45 +1288,149 @@ For clarification, the technical requirements for each message type below reflec
 <th class="tableblock halign-left valign-top">RequID</th>
 <th class="tableblock halign-left valign-top">IDP</th>
 <th class="tableblock halign-left valign-top">SP</th>
-<th class="tableblock halign-left valign-top">Source</th>
+<th class="tableblock halign-left valign-top">Line</th>
 <th class="tableblock halign-left valign-top">Requirement</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISLO-000</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-090</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/392</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support both user-initiated termination of the local session only and user-initiated Single Logout. Upon receipt of a &lt;saml2p:LogoutRequest&gt; message via a front-channel binding, Identity Provider implementations MUST support user intervention governing the choice of propagating logout to other Service Providers, or limiting the operation to the Identity Provider. Of course, implementations MUST return status information to the requesting entity (e.g. partial logout indication) as appropriate.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">375</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the SAML SOAP (using HTTP as a transport) binding [SAML2Bind] for the issuance of &lt;saml2p:LogoutRequest&gt; messages.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISLO-001</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-091</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/399</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support both user-initiated termination of the local session only and user-initiated Single Logout.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">377</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the SAML SOAP (using HTTP as a transport) and HTTP-Redirect bindings [SAML2Bind] for the reception of &lt;saml2p:LogoutRequest&gt; messages.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISLO-002</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-092</p></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/399</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST also support the administrative initiation of Single Logout for any active session, subject to appropriate policy.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">380</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the SAML SOAP (using HTTP as a transport) binding [SAML2Bind] for both issuance and reception of &lt;saml2p:LogoutRequest&gt; messages.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-093</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">384</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the use of SAML message signatures and TLS server authentication to authenticate &lt;saml2p:LogoutRequest&gt; messages.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-094</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">388</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the use of XML Encryption via the &lt;saml2:EncryptedID&gt; element when using the HTTP-Redirect binding.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 14. User Interface Behavior</caption>
+<colgroup>
+<col style="width: 8%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
+<col style="width: 73%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">eGOV-095</th>
+<th class="tableblock halign-left valign-top">MUST</th>
+<th class="tableblock halign-left valign-top">MUST</th>
+<th class="tableblock halign-left valign-top">392</th>
+<th class="tableblock halign-left valign-top">Support both user-initiated termination of the local session only and user-initiated Single Logout.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-096</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">393</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Upon receipt of a &lt;saml2p:LogoutRequest&gt; message via a front-channel binding, support user intervention governing the choice of propagatin logout to other Service Providers, or limiting the operation to the Identity Provider. Of course, implementations MUST return status information to the requesting entity (e.g. partial logout indication) as appropriate.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-097</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">399</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support both user-initiated termination of the local session only and user-initiated Single Logout.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-097</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">399</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the administrative initiation of Single Logout for any active session, subject to appropriate policy.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_logout_responses">2.8.2. Logout Responses</h4>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 15. Binding and Security Requirements</caption>
+<colgroup>
+<col style="width: 8%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
+<col style="width: 73%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">RequID</th>
+<th class="tableblock halign-left valign-top">IDP</th>
+<th class="tableblock halign-left valign-top">SP</th>
+<th class="tableblock halign-left valign-top">Line</th>
+<th class="tableblock halign-left valign-top">Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-100</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">405</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the SAML SOAP (using HTTP as a transport) and HTTP-Redirect bindings [SAML2Bind] for the issuance of &lt;saml2p:LogoutResponse&gt; messages.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-101</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">407</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the SAML SOAP (using HTTP as a transport) binding [SAML2Bind] for the reception of &lt;saml2p:LogoutResponse&gt; messages.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-102</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">414</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the use of SAML message signatures and TLS server authentication to authenticate &lt;saml2p:LogoutResponse&gt; messages.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_cryptographic_algorithms_in_saml_implementations">3. Cryptographic Algorithms in SAML Implementations</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>(Status from 2010 - this specification does not conform the current recommendations of NIST, eCrypt and bettercrypto.org)</p>
 </div>
+<div class="sect1">
+<h2 id="_conformance_classes">3. Conformance Classes</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="_signature_and_digest_algorithms">3.1. Signature and digest algorithms</h3>
+<h3 id="_standard">3.1. Standard</h3>
+<div class="paragraph">
+<p>Conforming Identity Provider and/or Service Provider implementations MUST support the normative requirements in sections 2.2, 2.3, 2.4, and 2.5.</p>
+</div>
+<div class="sect3">
+<h4 id="_signature_and_encryption_algorithms">3.1.1. Signature and Encryption Algorithms</h4>
 <div class="paragraph">
 <p>Implementations MUST support the signature and digest algorithms identified by the following URIs in conjunction with the creation and verification of XML Signatures <a href="#XMLSig">[XMLSig]</a>:</p>
 </div>
@@ -1355,9 +1448,6 @@ Implementations SHOULD support the signature and digest algorithms identified by
 </li>
 </ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_block_encryption_algorithms">3.2. Block encryption algorithms</h3>
 <div class="paragraph">
 <p>Implementations MUST support the block encryption algorithms identified by the following URIs in conjunction with the use of XML Encryption <a href="#XMLEnc">[XMLEnc]</a>:</p>
 </div>
@@ -1374,9 +1464,6 @@ Implementations SHOULD support the signature and digest algorithms identified by
 </li>
 </ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_key_transport_algorithms">3.3. Key transport algorithms</h3>
 <div class="paragraph">
 <p>Implementations MUST support the key transport algorithms identified by the following URIs in conjunction with the use of XML Encryption <a href="#XMLEnc">[XMLEnc]</a>:</p>
 </div>
@@ -1390,20 +1477,37 @@ Implementations SHOULD support the signature and digest algorithms identified by
 </li>
 </ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_key_agreement_algorithms">3.4. Key agreement algorithms</h3>
 <div class="paragraph">
 <p>Implementations SHOULD support the key agreement algorithms identified by the following URIs in conjunction with the use of XML Encryption <a href="#XMLEnc">[XMLEnc]</a>:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code><code><a href="http://www.w3.org/2009/xmlenc11#ECDH-ES" class="bare">http://www.w3.org/2009/xmlenc11#ECDH-ES</a></code></code> (defined in <a href="#XMLEnc11">[XMLEnc11]</a>)
-== References</p>
+<p><code><code><a href="http://www.w3.org/2009/xmlenc11#ECDH-ES" class="bare">http://www.w3.org/2009/xmlenc11#ECDH-ES</a></code></code> (defined in <a href="#XMLEnc11">[XMLEnc11]</a>)</p>
 </li>
 </ul>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_standard_with_logout">3.2. Standard with Logout</h3>
+<div class="paragraph">
+<p>Conforming Identity Provider and/or Service Provider implementations MUST meet the conformance requirements in section 3.1, and MUST in addition support the normative requirements in section 2.8.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_standard_with_logout_2">3.3. Standard with Logout</h3>
+<div class="paragraph">
+<p>Conforming Identity Provider and/or Service Provider implementations MUST meet the conformance requirements in section 3.1, and MUST in addition support the normative requirements in sections 2.6, 2.7, and 2.8.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_references">4. References</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_normative_references">4.1. Normative References</h3>
 <div class="ulist bibliography">
 <ul class="bibliography">
 <li>
@@ -1477,7 +1581,7 @@ Implementations SHOULD support the signature and digest algorithms identified by
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-03-17 21:50:37 CET
+Last updated 2016-03-18 00:06:57 CET
 </div>
 </div>
 </body>
