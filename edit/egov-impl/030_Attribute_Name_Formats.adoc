@@ -4,7 +4,7 @@ In conjunction with their support of the SAML V2.0 profiles referenced by subseq
 The ability to support <saml2:AttributeValue> elements whose values are not simple strings (e.g., <saml2:NameID>, or other XML values) is OPTIONAL. Such content could be base64-encoded as an alternative.
 
 .Supported SAML attribute elements
-[width="100%", cols="3,2,2,3,20", options="header"]
+[width="100%", cols="3,2,2,2,25", options="header"]
 |====================
 | RequID   | IDP  | SP   | Line | Requirement
 | eGov-030 | MUST | MUST | 225  | Support attribute name format urn:oasis:names:tc:SAML:2.0:attrname-format:uri (see <<SAML-X500>> sect. 2.3)

@@ -1,0 +1,10 @@
+
+=== Browser Holder of Key Single Sign-On
+This section defines an implementation profile of the SAML V2.0 Holder-of-Key Web Browser SSO Profile Version 1.0 [HoKSSO].
+
+.HoK profile
+[width="100%", cols="3,2,2,2,25", options="header"]
+|====================
+| RequID   | IDP | SP  | Line | Requirement
+| eGov-074 | MAY | MAY | 337  | Support this implementation profile of the SAML V2.0 Holder-of-Key Web Browser SSO Profile Version 1.0 [HoKSSO]. The implementation requirements defined in section "Browser Single Sign-On" for the non-holder-of-key profile apply to implementations of this profile.
+|====================

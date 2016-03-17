@@ -1,8 +1,8 @@
 === Metadata and Trust Management
-==== Metadata Profiles 
+==== Metadata Profiles
 
 .Supported SAML metadata profiles and capabilites ([eGov])
-[width="100%", cols="4,2,2,3,30", options="header"]
+[width="100%", cols="3,2,2,2,25", options="header"]
 |====================
 | RequID   |  IDP    | SP     | Line | Requirement
 | eGov-001 |  MUST   | MUST   | 161  |  Support the SAML V2.0 Metadata Interoperability Profile Version 1.0 <<SAML2MDIOP>>.

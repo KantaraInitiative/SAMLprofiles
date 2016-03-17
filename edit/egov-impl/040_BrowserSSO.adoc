@@ -3,8 +3,8 @@ This section defines an implementation profile of the SAML V2.0 Web Browser SSO 
 
 ==== Identity Provider Discovery
 
-.Supported IDP discovery protocols
-[width="100%", cols="4,2,2,3,20", options="header"]
+.IDP discovery protocol
+[width="100%", cols="3,2,2,2,25", options="header"]
 |====================
 | RequID   | IDP  | SP   | Line | Requirement
 | eGov-035 | MUST | MUST | 227  | Support the Identity Provider Discovery Service Protocol Profile in conformance with section 2.4.1 of <<IdPDisco>>.
@@ -13,16 +13,15 @@ This section defines an implementation profile of the SAML V2.0 Web Browser SSO 
 
 ==== Authentication Requests
 
-.Support for Binding and Security Requirements
-[width="100%", cols="4,2,2,3,20", options="header"]
-
+.Authentication Request Binding and Security Requirements
+[width="100%", cols="3,2,2,2,25", options="header"]
 |====================
 | RequID   | IDP  | SP   | Line  | Requirement
 | eGov-040 | MUST | MUST | 241   | Support the use of the HTTP-Redirect binding [SAML2Bind] for the transmission of <saml2p:AuthnRequest> messages, including the generation or verification of signatures in conjunction with this binding.
 |====================
 
-.SAML Authentication Request Message Contents
-[width="100%", cols="4,2,2,3,20a", options="header"]
+.Authentication Request Message Contents
+[width="100%", cols="3,2,2,2,25a", options="header"]
 |====================
 | RequID   | IDP  | SP   | Line | Requirement
 | eGov-041 |      | MUST | 247  | Support the inclusion of at least the following <saml2p:AuthnRequest> child elements and attributes (when appropriate).
@@ -39,4 +38,46 @@ This section defines an implementation profile of the SAML V2.0 Web Browser SSO 
 | eGov-043 | MUST |  | 262 | MUST support any allowable content of the <saml2p:RequestedAuthnContext> element but MAY limit their support of the element to the value "exact" for the Comparison attribute.
 | eGov-044 | MUST |  | 260 | MUST fully support the options enumerated in [eGov-041], and be configurable to utilize those options in a useful manner as defined by <<SAML2Core>>.
 | eGov-045 | MUST |  | 266 | MUST support verification of requested AssertionConsumerServiceURL locations via comparison to <md:AssertionConsumerService> elements supplied via metadata using case-sensitive string comparison. It is OPTIONAL to support other means of comparison (e.g., canonicalization or other manipulation of URL values) or alternative verification mechanisms.
+|====================
+
+==== Responses
+
+.Response Binding and Security Requirements
+[width="100%", cols="3,2,2,2,25", options="header"]
+|====================
+| RequID   | IDP  | SP   | Line  | Requirement
+| eGov-050 | MUST | MUST | 274   | Support the use of the HTTP-POST and HTTP-Artifact bindings [SAML2Bind] for the transmission of <saml2p:Response> messages.
+| eGov-051 | MAY  | MAY  | 277   | Support for other bindings, and for artifact types other than urn:oasis:names:tc:SAML:2.0:artifact-04
+| eGov-052 | MUST | MUST | 279   | Support the generation and consumption of unsolicited <saml2p:Response> messages (i.e., responses that are not the result of a <saml2p:AuthnRequest> message). (see <<SAML2Prof>> sect. 4.1.5)
+| eGov-053 | MUST |      | 282   | Support the issuance of <saml2p:Response> messages (with appropriate status codes) in the event of an error condition, provided that the user agent remains available and an acceptable location to which to deliver the response is available. The criteria for "acceptability" of a response location are not formally specified, but are subject to Identity Provider policy and reflect its responsibility to protect users from being sent to untrusted or possibly malicious parties. Note that this is a stronger requirement than the comparable language in [SAML2Prof].
+| eGov-054 | MUST | MUST | 290   | Support the signing of <saml2:Assertion> elements in responses; support for signing of the <saml2p:Response> element is OPTIONAL.
+| eGov-055 | MUST | MUST | 293   | Support the use of XML Encryption via the <saml2:EncryptedAssertion> element when using the HTTP-POST binding; support for the <saml2:EncryptedID> and <saml2:EncryptedAttribute> elements is OPTIONAL.
+|====================
+
+.Response Message Contents
+[width="100%", cols="3,2,2,2,25", options="header"]
+|====================
+| RequID   |  IDP   | SP   | Line | Requirement
+| eGov-061 | MUST   |      | 299 | Allow the number of `<saml2:Assertion>`, `<saml2:AuthnStatement>`, and `<saml2:AttributeStatement>` elements in the `<saml2p:Response>` message to be limited to one.
+| eGov-062 |        | MAY  | 302 | Limit support to a single instance of  `<saml2:Assertion>`, `<saml2:AuthnStatement>`, and `<saml2:AttributeStatement>` elements when processing <saml2p:Response> messages
+| eGov-063 | MUST   |      | 304 | Support the inclusion of a `Consent` attribute in `<saml2p:Response>` messages
+| eGov-064 | MUST   |      | 305 | Support the inclusion of a `SessionIndex` attribute in `<saml2:AuthnStatement>` elements
+| eGov-065 |        | MUST | 307 | Implementations that provide some form of session semantics MUST support the `<saml2:AuthnStatement>` element's `SessionNotOnOrAfter` attribute
+| eGov-066 |        | MUST | 310 | Support the acceptance/rejection of assertions based on the content of the `<saml2:AuthnStatement>` element's `<saml2:AuthnContext>` element.
+| eGov-067 |        | MUST | 312 | Support the acceptance/rejection of particular `<saml2:AuthnContext>` content based on the identity of the Identity Provider.
+| eGov-068 | SHOULD |      | 314 | Support support the acceptance/rejection of particular <saml2:AuthnContext> content based on SAML V2.0 metadata as specified in <<IAP>>
+
+|====================
+
+==== Artifact Resolution
+Implementations MUST support the SAML V2.0 Artifact Resolution profile [SAML2Prof] as constrained by the following requirements.
+
+.Response Message Contents
+[width="100%", cols="3,2,2,2,25", options="header"]
+|====================
+| RequID   | IDP  | SP   | Line | Requirement
+| eGov-070 | MUST | MUST | 323  | Support the use of the SAML SOAP (using HTTP as a transport) binding [SAML2Bind] for the transmission of <saml2p:ArtifactResolve> messages.
+| eGov-071 | MUST | MUST | 326  | Support the use of SAML message signatures and TLS server authentication to authenticate artifact resolution requests
+| eGov-072 | MUST | MUST | 330  | Support the use of the SAML SOAP (using HTTP as a transport) binding [SAML2Bind] for the transmission of <saml2p:ArtifactResponse> messages.
+| eGov-073 | MUST | MUST | 333  | Support the use of SAML message signatures and TLS server authentication to authenticate artifact resolution responses
 |====================

@@ -1,6 +1,6 @@
 ==== Metadata Exchange
 .Requirements for SAML metadata exchange
-[width="100%", cols="4,2,2,3,30", options="header"]
+[width="100%", cols="3,2,2,2,25", options="header"]
 |====================
 | RequID    |  IDP    | SP     |Line | Requirement
 | eGov-010  |  MAY    | MAY    |188  | Support the generation or exportation of metadata.

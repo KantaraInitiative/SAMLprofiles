@@ -1,0 +1,15 @@
+=== SAML 2.0 Proxying
+
+Section 3.4.1.5 of <<SAML2Core>> defines a formalized approach to proxying the SAML 2.0 Authentication Request protocol between multiple Identity Providers. This section defines an implementation profile for this behavior suitable for composition with the Single Sign-On profiles defined in sections 2.5 and 2.6.
+The requirements of the profile are imposed on Identity Provider implementations acting as a proxy.
+
+.Requirements for Proxying Identity Provider implementations
+[width="100%", cols="3,2,2,2,25", options="header"]
+|====================
+| RequID  | IDP  | SP   | Source| Format Identifier
+| eGov-081 | MUST | MUST | 350| (If acting as a proxy) support the technical requirements outlined in section 3.4.1.5.1 of <<SAML2Core>>
+| eGov-082 | MUST | MUST | 350| (When processing Authentication Requests) support the mapping of incoming to outgoing `<saml2p:RequestedAuthnContext>` and `<saml2p:NameIDPolicy>` elements, such that deployers may choose to pass through values or map between different vocabularies as required.
+| eGov-083 | MUST | MUST | 354| (When processing Authentication Requests) support the suppression/eliding of `<saml2p:RequesterID>` elements from outgoing `<saml2p:AuthnRequest>` messages to allow for hiding the identity of the Service Provider from proxied Identity Providers.
+| eGov-084 | MUST | MUST | 359| (When processing WebSSO Response) support the mapping of incoming to outgoing `<saml2:AuthnContext>` elements, such that deployers may choose to pass through values or map between different vocabularies as required.
+| eGov-085 | MUST | MUST | 362| (When processing WebSSO Response) support the suppression of `<saml2:AuthenticatingAuthority>` elements from outgoing `<saml2:AuthnContext>` elements to allow for hiding the identity of the proxied Identity Provider from Service Providers.
+|====================

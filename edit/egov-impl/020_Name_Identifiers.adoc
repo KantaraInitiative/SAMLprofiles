@@ -2,9 +2,9 @@
 In conjunction with their support of the SAML V2.0 profiles referenced by subsequent sections, Identity Provider and Service Provider implementations MUST support the following SAML V2.0 name identifier formats, in accordance with the normative obligations associated with them by [SAML2Core]:
 
 .Supported SAML Name Identifier formats and semantics (from eGov)
-[width="100%", cols="4,2,2,3,27", options="header"]
+[width="100%", cols="3,2,2,2,25", options="header"]
 |====================
 | RequID   | IDP  | SP   | Line| Format Identifier
 | eGov-021 | MUST | MUST | 221 | urn:oasis:names:tc:SAML:2.0:nameid-format:persistent (see <<SAML2Core>> sect. 8.3)
-| eGov-022 | MUST | MUST | 222 | urn:oasis:names:tc:SAML:2.0:nameid-format:transient (see <<SAML2Core>> sect. 8.3)    
+| eGov-022 | MUST | MUST | 222 | urn:oasis:names:tc:SAML:2.0:nameid-format:transient (see <<SAML2Core>> sect. 8.3)
 |====================

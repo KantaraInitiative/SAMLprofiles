@@ -1,0 +1,37 @@
+=== Single Logout
+This section defines an implementation profile of the SAML V2.0 Single Logout Profile <<SAML2Prof>>.
+For clarification, the technical requirements for each message type below reflect the intent to normatively require initiation of logout by a Service Provider using either the front- or back-channel, and initiation/propagation of logout by an Identity Provider using the back-channel.
+
+==== Logout Requests
+
+.Binding and Security Requirements
+[width="100%", cols="3,2,2,2,25", options="header"]
+|====================
+| RequID   |  IDP  | SP   | Line | Requirement
+| eGOV-090 |  MUST |      | 375  | Support the SAML SOAP (using HTTP as a transport) binding [SAML2Bind] for the issuance of <saml2p:LogoutRequest> messages.
+| eGOV-091 |  MUST |      | 377  | Support the SAML SOAP (using HTTP as a transport) and HTTP-Redirect bindings [SAML2Bind] for the reception of <saml2p:LogoutRequest> messages.
+| eGOV-092 |       | MUST | 380  | Support the SAML SOAP (using HTTP as a transport) binding [SAML2Bind] for both issuance and reception of <saml2p:LogoutRequest> messages.
+| eGOV-093 |  MUST | MUST | 384  | Support the use of SAML message signatures and TLS server authentication to authenticate <saml2p:LogoutRequest> messages.
+| eGOV-094 |  MUST | MUST | 388  | Support the use of XML Encryption via the <saml2:EncryptedID> element when using the HTTP-Redirect binding.
+|====================
+
+.User Interface Behavior
+[width="100%", cols="3,2,2,2,25", options="header"]
+|====================
+| eGOV-095 |  MUST | MUST | 392  | Support both user-initiated termination of the local session only and user-initiated Single Logout.
+| eGOV-096 |  MUST |      | 393  | Upon receipt of a <saml2p:LogoutRequest> message via a front-channel binding, support user intervention governing the choice of propagatin logout to other Service Providers, or limiting the operation to the Identity Provider. Of course, implementations MUST return status information to the requesting entity (e.g. partial logout indication) as appropriate.
+| eGOV-097 |       | MUST | 399  | Support both user-initiated termination of the local session only and user-initiated Single Logout.
+| eGOV-097 |  MUST |      | 399  | Support the administrative initiation of Single Logout for any active session, subject to appropriate policy.
+
+|====================
+
+==== Logout Responses
+
+.Binding and Security Requirements
+[width="100%", cols="3,2,2,2,25", options="header"]
+|====================
+| RequID   |  IDP  | SP   | Line | Requirement
+| eGOV-100 |  MUST |      | 405  | Support the SAML SOAP (using HTTP as a transport) and HTTP-Redirect bindings [SAML2Bind] for the issuance of <saml2p:LogoutResponse> messages.
+| eGOV-101 |  MUST |      | 407  | Support the SAML SOAP (using HTTP as a transport) binding [SAML2Bind] for the reception of <saml2p:LogoutResponse> messages.
+| eGOV-102 |       | MUST | 414  | Support the use of SAML message signatures and TLS server authentication to authenticate <saml2p:LogoutResponse> messages.
+|====================
