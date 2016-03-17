@@ -1,7 +1,5 @@
 ## View contents in final form
 
-[Kantara eGovernment WebSSO Implementation Profile@Github](http://htmlpreview.github.io/?https://github.com/rhoerbe/SAMLprofiles/blob/master/rendered/WebSSOeGovProfile.html)
+[SAML V2.0 Implementation Profile for Federation Interoperability Profile (Draft 17 March 2016)] (http://htmlpreview.github.io/?https://github.com/rhoerbe/SAMLprofiles/blob/master/rendered/WebSSOScaleFedProfile.html)
 
-[WebSSO Scaleable Federation Implementation Profile@Github](http://htmlpreview.github.io/?https://github.com/rhoerbe/SAMLprofiles/blob/master/rendered/WebSSOScaleFedProfile.html)
-
-[Cryptographic Algorithms in SAML Implementations@Github](http://htmlpreview.github.io/?https://github.com/rhoerbe/SAMLprofiles/blob/master/rendered/Algorithm_Support.html)
+[Kantara Initiative eGovernment Implementation Profile of SAML V2.0 Profile (June 2010)] (http://htmlpreview.github.io/?https://github.com/rhoerbe/SAMLprofiles/blob/master/rendered/WebSSOeGovProfile.html)
