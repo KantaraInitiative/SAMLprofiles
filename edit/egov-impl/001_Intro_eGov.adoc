@@ -1,3 +1,19 @@
-SAML V2.0 is a rich and extensible standard that must be profiled to be used interoperably, and the profiles that typically emerge from the broader standardization process usually remain fairly broad and include a number of options and features that increase the burden for implementers and make deployment-time decisions more difficult.
-The Kantara Initiative eGovernment Implementation Profile provides a SAML V2.0 conformance specification for Identity Provider and Service Provider implementations operating in eGovernment federations and deployments. The profile is based on the SAML V2.0 specifications created by the Security Services Technical Committee (SSTC) of OASIS, and related specifications approved by that body. It constrains and supplements the base SAML V2.0 features, elements, and attributes required for eGovernment federations and deployments. 
-Implementation profiles define the features that software implementations must support such that deployers can be assured of the ability to meet their own (possibly varied) deployment requirements. Deployment profiles define specific options and constraints to which deployments are required to conform; they guide product configuration and federation operations, and provide criteria against which actual deployments may be tested. This document does not include a deployment profile, but reflects the features deemed necessary or desirable from software implementations in support of a variety of deployment profiles planned and in use. This includes requirements deemed useful to further the eventual goal of interfederation between deployments.
+SAML V2.0 is a rich and extensible standard that must be profiled to be used interoperably,
+and the profiles that typically emerge from the broader standardization process usually
+remain fairly broad and include a number of options and features that increase the burden
+for implementers and make deployment-time decisions more difficult.
+The Kantara Initiative eGovernment Implementation Profile provides a SAML V2.0 conformance
+specification for Identity Provider and Service Provider implementations operating in eGovernment
+federations and deployments. The profile is based on the SAML V2.0 specifications created
+by the Security Services Technical Committee (SSTC) of OASIS, and related specifications
+approved by that body. It constrains and supplements the base SAML V2.0 features, elements,
+and attributes required for eGovernment federations and deployments.
+Implementation profiles define the features that software implementations must support such
+that deployers can be assured of the ability to meet their own (possibly varied) deployment
+requirements. Deployment profiles define specific options and constraints to which deployments
+are required to conform; they guide product configuration and federation operations, and
+provide criteria against which actual deployments may be tested. This document does not
+include a deployment profile, but reflects the features deemed necessary or desirable
+from software implementations in support of a variety of deployment profiles planned and
+in use. This includes requirements deemed useful to further the eventual goal of
+interfederation between deployments.

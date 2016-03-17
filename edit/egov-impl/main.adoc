@@ -2,14 +2,17 @@
 :numbered:
 :toc:
 
+:toc!:
 .Abstract
 This document contains an implementation profile for eGovernment use of SAML V2.0, suitable for the purposes of testing conformance of implementations of SAML V2.0. It is not a deployment profile, and does not provide for or reflect specific behavior expected of implementations when used within a particular deployment context.
 
 .Status
-This document is a transformation of the document from 11 June 2011 into the Asciidoc format. The intention is to keep the essential contents, but change the format to establish a baseline for future profiles.
+This document is a transformation of the document from 11 June 2011 into the Asciidoc format.
+While keeping the requirements as-is, the goal was to change the format to establish a more formally
+structured baseline for a comparison with the successor of this profile.
+For exceptions see the section "Changes" below.
 
 The original document is referenced as [eGov] can be downloaded at:
-
 http://kantarainitiative.org/confluence/download/attachments/38929505/kantara-report-egov-saml2-profile-2.0.pdf
 
 For license and authors refer to the original document.
@@ -24,16 +27,22 @@ include::002_Notation_eGov.adoc[]
 include::003_Changes_eGov.adoc[]
 
 == SAML V2.0 Implementation Profile
-include::010_Message_Flows_eGov.adoc[]
-include::015_Message_Encryption_eGov.adoc[]
-include::020_Attribute_Name_Formats.adoc[]
-include::030_Name_Identifiers.adoc[]
-include::041_Metadata_Profiles_eGov.adoc[]
-include::045_Metadata_Exchange.adoc[]
-include::050_Identity_Provider_Discovery.adoc[]
+=== Required Information
+Identification of the original document: http://kantarainitiative.org/eGov/profiles/SAML2.0/v2.0
+
+Contact information: http://kantarainitiative.org/confluence/display/eGov/Home
+
+Updates: Liberty Alliance eGov Profile for SAML 2.0 [eGov15]
+
+include::010_Metadata_Profiles_eGov.adoc[]
+include::015_Metadata_Exchange.adoc[]
+include::020_Name_Identifiers.adoc[]
+include::030_Attribute_Name_Formats.adoc[]
+include::040_BrowserSSO.adoc[]
+include::043_Message_Encryption_eGov.adoc[]
 include::061_Authentication_Request.adoc[]
 include::062_Response.adoc[]
 include::070_IDP_Proxy_eGov.adoc[]
 include::080_Single_Logout_eGov.adoc[]
+include::090_Algorithm_Support.adoc[]
 include::100_bibliography_eGov.adoc[]
-

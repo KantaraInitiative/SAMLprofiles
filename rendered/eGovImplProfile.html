@@ -431,17 +431,24 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_saml_v2_0_implementation_profile">2. SAML V2.0 Implementation Profile</a>
 <ul class="sectlevel2">
-<li><a href="#_message_flows_and_bindings">2.1. Message Flows and Bindings</a></li>
-<li><a href="#_attribute_name_formats">2.2. Attribute Name Formats</a></li>
+<li><a href="#_required_information">2.1. Required Information</a></li>
+<li><a href="#_metadata_and_trust_management">2.2. Metadata and Trust Management</a></li>
 <li><a href="#_name_identifier_formats">2.3. Name Identifier Formats</a></li>
-<li><a href="#_metadata_and_trust_management">2.4. Metadata and Trust Management</a></li>
-<li><a href="#_idp_discovery">2.5. IDP Discovery</a></li>
+<li><a href="#_attribute_name_formats">2.4. Attribute Name Formats</a></li>
+<li><a href="#_browser_single_sign_on">2.5. Browser Single Sign-On</a></li>
 <li><a href="#_websso_message_contents">2.6. WebSSO Message Contents</a></li>
 <li><a href="#_saml_2_0_proxying">2.7. SAML 2.0 Proxying</a></li>
 <li><a href="#_single_logout">2.8. Single Logout</a></li>
 </ul>
 </li>
-<li><a href="#_references">3. References</a></li>
+<li><a href="#_cryptographic_algorithms_in_saml_implementations">3. Cryptographic Algorithms in SAML Implementations</a>
+<ul class="sectlevel2">
+<li><a href="#_signature_and_digest_algorithms">3.1. Signature and digest algorithms</a></li>
+<li><a href="#_block_encryption_algorithms">3.2. Block encryption algorithms</a></li>
+<li><a href="#_key_transport_algorithms">3.3. Key transport algorithms</a></li>
+<li><a href="#_key_agreement_algorithms">3.4. Key agreement algorithms</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -454,13 +461,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="paragraph">
 <div class="title">Status</div>
-<p>This document is a transformation of the document from 11 June 2011 into the Asciidoc format. The intention is to keep the essential contents, but change the format to establish a baseline for future profiles.</p>
+<p>This document is a transformation of the document from 11 June 2011 into the Asciidoc format.
+While keeping the requirements as-is, the goal was to change the format to establish a more formally
+structured baseline for a comparison with the successor of this profile.
+For exceptions see the section "Changes" below.</p>
 </div>
 <div class="paragraph">
-<p>The original document is referenced as [eGov] can be downloaded at:</p>
-</div>
-<div class="paragraph">
-<p><a href="http://kantarainitiative.org/confluence/download/attachments/38929505/kantara-report-egov-saml2-profile-2.0.pdf" class="bare">http://kantarainitiative.org/confluence/download/attachments/38929505/kantara-report-egov-saml2-profile-2.0.pdf</a></p>
+<p>The original document is referenced as [eGov] can be downloaded at:
+<a href="http://kantarainitiative.org/confluence/download/attachments/38929505/kantara-report-egov-saml2-profile-2.0.pdf" class="bare">http://kantarainitiative.org/confluence/download/attachments/38929505/kantara-report-egov-saml2-profile-2.0.pdf</a></p>
 </div>
 <div class="paragraph">
 <p>For license and authors refer to the original document.</p>
@@ -474,9 +482,25 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_introduction">1. Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>SAML V2.0 is a rich and extensible standard that must be profiled to be used interoperably, and the profiles that typically emerge from the broader standardization process usually remain fairly broad and include a number of options and features that increase the burden for implementers and make deployment-time decisions more difficult.
-The Kantara Initiative eGovernment Implementation Profile provides a SAML V2.0 conformance specification for Identity Provider and Service Provider implementations operating in eGovernment federations and deployments. The profile is based on the SAML V2.0 specifications created by the Security Services Technical Committee (SSTC) of OASIS, and related specifications approved by that body. It constrains and supplements the base SAML V2.0 features, elements, and attributes required for eGovernment federations and deployments.
-Implementation profiles define the features that software implementations must support such that deployers can be assured of the ability to meet their own (possibly varied) deployment requirements. Deployment profiles define specific options and constraints to which deployments are required to conform; they guide product configuration and federation operations, and provide criteria against which actual deployments may be tested. This document does not include a deployment profile, but reflects the features deemed necessary or desirable from software implementations in support of a variety of deployment profiles planned and in use. This includes requirements deemed useful to further the eventual goal of interfederation between deployments.</p>
+<p>SAML V2.0 is a rich and extensible standard that must be profiled to be used interoperably,
+and the profiles that typically emerge from the broader standardization process usually
+remain fairly broad and include a number of options and features that increase the burden
+for implementers and make deployment-time decisions more difficult.
+The Kantara Initiative eGovernment Implementation Profile provides a SAML V2.0 conformance
+specification for Identity Provider and Service Provider implementations operating in eGovernment
+federations and deployments. The profile is based on the SAML V2.0 specifications created
+by the Security Services Technical Committee (SSTC) of OASIS, and related specifications
+approved by that body. It constrains and supplements the base SAML V2.0 features, elements,
+and attributes required for eGovernment federations and deployments.
+Implementation profiles define the features that software implementations must support such
+that deployers can be assured of the ability to meet their own (possibly varied) deployment
+requirements. Deployment profiles define specific options and constraints to which deployments
+are required to conform; they guide product configuration and federation operations, and
+provide criteria against which actual deployments may be tested. This document does not
+include a deployment profile, but reflects the features deemed necessary or desirable
+from software implementations in support of a variety of deployment profiles planned and
+in use. This includes requirements deemed useful to further the eventual goal of
+interfederation between deployments.</p>
 </div>
 <div class="sect2">
 <h3 id="_notation">1.1. Notation</h3>
@@ -528,9 +552,6 @@ The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SH
 <p>The section "HolderOfKey" has been excluded .</p>
 </div>
 <div class="paragraph">
-<p>Cryptographic requirements already dated and have been moved into a separate document.</p>
-</div>
-<div class="paragraph">
 <p>Section "Conformance Classes" has been excluded.</p>
 </div>
 </div>
@@ -540,210 +561,439 @@ The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SH
 <h2 id="_saml_v2_0_implementation_profile">2. SAML V2.0 Implementation Profile</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_message_flows_and_bindings">2.1. Message Flows and Bindings</h3>
+<h3 id="_required_information">2.1. Required Information</h3>
+<div class="paragraph">
+<p>Identification of the original document: <a href="http://kantarainitiative.org/eGov/profiles/SAML2.0/v2.0" class="bare">http://kantarainitiative.org/eGov/profiles/SAML2.0/v2.0</a></p>
+</div>
+<div class="paragraph">
+<p>Contact information: <a href="http://kantarainitiative.org/confluence/display/eGov/Home" class="bare">http://kantarainitiative.org/confluence/display/eGov/Home</a></p>
+</div>
+<div class="paragraph">
+<p>Updates: Liberty Alliance eGov Profile for SAML 2.0 [eGov15]</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_metadata_and_trust_management">2.2. Metadata and Trust Management</h3>
 <div class="sect3">
-<h4 id="_message_authentication">2.1.1. Message Authentication</h4>
+<h4 id="_metadata_profiles">2.2.1. Metadata Profiles</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1. Support for the combination of message flows, bindings with respect to message authentication</caption>
+<caption class="title">Table 1. Supported SAML metadata profiles and capabilites ([eGov])</caption>
 <colgroup>
-<col style="width: 12%;">
-<col style="width: 3%;">
-<col style="width: 3%;">
-<col style="width: 5%;">
-<col style="width: 44%;">
-<col style="width: 12%;">
-<col style="width: 17%;">
+<col style="width: 9%;">
+<col style="width: 4%;">
+<col style="width: 4%;">
+<col style="width: 7%;">
+<col style="width: 73%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">RequID</th>
 <th class="tableblock halign-left valign-top">IDP</th>
 <th class="tableblock halign-left valign-top">SP</th>
-<th class="tableblock halign-left valign-top">Source</th>
-<th class="tableblock halign-left valign-top">Message Flow</th>
-<th class="tableblock halign-left valign-top">Binding</th>
-<th class="tableblock halign-left valign-top">Message AuthN</th>
+<th class="tableblock halign-left valign-top">Line</th>
+<th class="tableblock halign-left valign-top">Requirement</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMFB-001</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-001</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/241</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Web SSO AuthnRequest (see <a href="#SAML2Prof">[SAML2Prof]</a> sect. 4.1)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP redirect</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Signature</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">161</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the SAML V2.0 Metadata Interoperability Profile Version 1.0 <a href="#SAML2MDIOP">[SAML2MDIOP]</a>.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMFB-002</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-002</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/274, 290</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Web SSO Response (see <a href="#SAML2Prof">[SAML2Prof]</a> sect. 4.1)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP POST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Assertion signature</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">165</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the &lt;ds:X509Certificate&gt; element as key representation int the &lt;md:KeyDescriptor&gt; element</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMFB-003</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-003</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MAY</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MAY</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/274, 290</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Web SSO Response (see <a href="#SAML2Prof">[SAML2Prof]</a> sect. 4.1)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP POST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Response signature</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">166</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support for other key representations than &lt;ds:X509Certificate&gt;, and for other mechanisms for credential distribution</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMFB-004</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-004</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/274, 290</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Web SSO Response (see <a href="#SAML2Prof">[SAML2Prof]</a> sect. 4.1)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP artifact</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Signature</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">168</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support some form of path validation of signing, TLS, and encryption credentials used to secure SAML exchanges against one or more trusted certificate authorities.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMFB-005</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/274, 290</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Web SSO unsolicited Response (see <a href="#SAML2Prof">[SAML2Prof]</a> sect. 4.1.5)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">n/a</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">n/a</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-005</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHOULD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHOULD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">170</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support for PKIX <a href="#RFC5280">[RFC5280]</a>. Implementations SHOULD document the behavior of the validation mechanisms they employ, particular with respect to limitations or divergence from PKIX <a href="#RFC5280">[RFC5280]</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMFB-006</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-006</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/323,330,333</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Artifact Resolution Request and Response (see <a href="#SAML2Prof">[SAML2Prof]</a> sect. 5)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SOAP</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Message signature</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">175</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the use of OCSP <a href="#RFC2560">[RFC2560]</a> and Certificate Revocation Lists (CRLs) obtained via the 'CRL Distribution Point' X.509 extension <a href="#RFC5280">[RFC5280]</a> for revocation checking of those credentials.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMFB-007</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-007</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MAY</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MAY</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/323,330,333</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Artifact Resolution Request and Response (see <a href="#SAML2Prof">[SAML2Prof]</a> sect. 5)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SOAP</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TLS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">177</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support additional constraints on the contents of certificates used by particular entities, such as 'subjectAltName' or 'DN', key usage constraints, or policy extensions. Implementations SHOULD document such features and make them optional to enable where possible.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMFB-008</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MAY</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/377, 384</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SLO SP-initiated LogoutRequest (see <a href="#SAML2Prof">[SAML2Prof]</a> sect. 4.4)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP redirect</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Message signature</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMFB-009</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/377, 384</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SLO SP-initiated LogoutRequest (see <a href="#SAML2Prof">[SAML2Prof]</a> sect. 4.4)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SOAP</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Message signature</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMFB-010</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/375, 384</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SLO IdP-initiated LogoutRequest (see <a href="#SAML2Prof">[SAML2Prof]</a> sect. 4.4)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SOAP</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Message signature</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMFB-011</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MAY</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/377, 384</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SLO SP-initiated LogoutRequest (see <a href="#SAML2Prof">[SAML2Prof]</a> sect. 4.4)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP redirect</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TLS</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMFB-012</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/377, 384</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SLO SP-initiated LogoutRequest (see <a href="#SAML2Prof">[SAML2Prof]</a> sect. 4.4)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SOAP</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TLS</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMFB-013</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/375, 384</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SLO IdP-initiated LogoutRequest (see <a href="#SAML2Prof">[SAML2Prof]</a> sect. 4.4)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SOAP</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TLS</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMFB-014</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MAY</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/405, 410, 414</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SLO IDP-initiated LogoutResponse (see <a href="#SAML2Prof">[SAML2Prof]</a> sect. 4.4)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP redirect</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Message signature</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMFB-015</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/405, 410, 414</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SLO IDP-initiated LogoutResponse (see <a href="#SAML2Prof">[SAML2Prof]</a> sect. 4.4)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SOAP</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Message signature</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMFB-016</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/405, 410, 414</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SLO SP-initiated LogoutResponse (see <a href="#SAML2Prof">[SAML2Prof]</a> sect. 4.4)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SOAP</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Message signature</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMFB-017</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MAY</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/405, 410, 414</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SLO IDP-initiated LogoutResponse (see <a href="#SAML2Prof">[SAML2Prof]</a> sect. 4.4)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP redirect</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TLS</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMFB-018</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/405, 410, 414</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SLO IDP-initiated LogoutResponse (see <a href="#SAML2Prof">[SAML2Prof]</a> sect. 4.4)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SOAP</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TLS</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMFB-019</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/405, 410, 414</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SLO SP-initiated LogoutResponse (see <a href="#SAML2Prof">[SAML2Prof]</a> sect. 4.4)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SOAP</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TLS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-008</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHOULD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHOULD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">184</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the SAML V2.0 Metadata Extension for Entity Attributes Version 1.0 <a href="#MetaAttr">[MetaAttr]</a> and provide policy controls on the basis of SAML attributes supplied via this extension mechanism.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_message_encryption">2.1.2. Message Encryption</h4>
+<h4 id="_metadata_exchange">2.2.2. Metadata Exchange</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 2. Support for the combination of message flows, bindings with respect to message encryption</caption>
+<caption class="title">Table 2. Requirements for SAML metadata exchange</caption>
+<colgroup>
+<col style="width: 9%;">
+<col style="width: 4%;">
+<col style="width: 4%;">
+<col style="width: 7%;">
+<col style="width: 73%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">RequID</th>
+<th class="tableblock halign-left valign-top">IDP</th>
+<th class="tableblock halign-left valign-top">SP</th>
+<th class="tableblock halign-left valign-top">Line</th>
+<th class="tableblock halign-left valign-top">Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-010</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MAY</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MAY</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">188</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the generation or exportation of metadata.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-011</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">189</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the publication of metadata using the Well-Known-Location method defined in section 4.1 of <a href="#SAML2Meta">[SAML2Meta]</a> (under the assumption that entityID values used are suitable for such support).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-012</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">194</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the importation of metadata from a local file.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-013</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">195</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the importation of metadata from a remote resource at fixed location accessible via HTTP 1.1 or HTTP 1.1 over TLS/SSL. Implementations MUST support use of the 'ETag' and 'Last-Modified' headers for cache management.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-014</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHOULD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHOULD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">198</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the use of more than one fixed location for the importation of metadata, but MAY leave their behavior unspecified if a single entity&#8217;s metadata is present in more than one source.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-015</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">201</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support importation of multiple entities' metadata contained within an &lt;md:EntitiesDescriptor&gt; element.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-016</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHOULD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHOULD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">203</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allow for the automated updating/reimportation of metadata without service degradation or interruption.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-017</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">206</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verification of metadata, if supported, MUST include XML signature verification at least at the root element level</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHOULD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHOULD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">209</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verification of metadata SHOULD support direct comparison against known keys as mechanism for signature key trust establishment.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHOULD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHOULD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">210</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verification of metadata SHOULD support some form of path-based certificate validation against one or more trusted certificate authorities, along with certificate revocation lists and/or OCSP <a href="#RFC2560">[RFC2560]</a>. Support for PKIX <a href="#RFC5280">[RFC5280]</a> is RECOMMENDED. Implementations SHOULD document the behavior of the validation mechanisms they employ, particular with respect to limitations or divergence from PKIX <a href="#RFC5280">[RFC5280]</a>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_name_identifier_formats">2.3. Name Identifier Formats</h3>
+<div class="paragraph">
+<p>In conjunction with their support of the SAML V2.0 profiles referenced by subsequent sections, Identity Provider and Service Provider implementations MUST support the following SAML V2.0 name identifier formats, in accordance with the normative obligations associated with them by [SAML2Core]:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 3. Supported SAML Name Identifier formats and semantics (from eGov)</caption>
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
+<col style="width: 7%;">
+<col style="width: 71%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">RequID</th>
+<th class="tableblock halign-left valign-top">IDP</th>
+<th class="tableblock halign-left valign-top">SP</th>
+<th class="tableblock halign-left valign-top">Line</th>
+<th class="tableblock halign-left valign-top">Format Identifier</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-021</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">221</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">urn:oasis:names:tc:SAML:2.0:nameid-format:persistent (see <a href="#SAML2Core">[SAML2Core]</a> sect. 8.3)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-022</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">222</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">urn:oasis:names:tc:SAML:2.0:nameid-format:transient (see <a href="#SAML2Core">[SAML2Core]</a> sect. 8.3)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_attribute_name_formats">2.4. Attribute Name Formats</h3>
+<div class="paragraph">
+<p>In conjunction with their support of the SAML V2.0 profiles referenced by subsequent sections, Identity Provider and Service Provider implementations MUST support the generation and consumption of &lt;saml2:Attribute&gt; elements that conform to the SAML V2.0 X.500/LDAP Attribute Profile [SAML-X500].
+The ability to support &lt;saml2:AttributeValue&gt; elements whose values are not simple strings (e.g., &lt;saml2:NameID&gt;, or other XML values) is OPTIONAL. Such content could be base64-encoded as an alternative.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 4. Supported SAML attribute elements</caption>
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 6%;">
+<col style="width: 6%;">
+<col style="width: 10%;">
+<col style="width: 66%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">RequID</th>
+<th class="tableblock halign-left valign-top">IDP</th>
+<th class="tableblock halign-left valign-top">SP</th>
+<th class="tableblock halign-left valign-top">Line</th>
+<th class="tableblock halign-left valign-top">Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-030</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">225</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support attribute name format urn:oasis:names:tc:SAML:2.0:attrname-format:uri (see <a href="#SAML-X500">[SAML-X500]</a> sect. 2.3)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-031</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">231</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support xs:string as attribute values; other types are optional (see <a href="#SAML2Core">[SAML2Core]</a> sect. 2.7.3.1.1)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_browser_single_sign_on">2.5. Browser Single Sign-On</h3>
+<div class="paragraph">
+<p>This section defines an implementation profile of the SAML V2.0 Web Browser SSO Profile [SAML2Prof].</p>
+</div>
+<div class="sect3">
+<h4 id="_identity_provider_discovery">2.5.1. Identity Provider Discovery</h4>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 5. Supported IDP discovery protocols</caption>
+<colgroup>
+<col style="width: 12%;">
+<col style="width: 6%;">
+<col style="width: 6%;">
+<col style="width: 9%;">
+<col style="width: 64%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">RequID</th>
+<th class="tableblock halign-left valign-top">IDP</th>
+<th class="tableblock halign-left valign-top">SP</th>
+<th class="tableblock halign-left valign-top">Line</th>
+<th class="tableblock halign-left valign-top">Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-035</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">227</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the Identity Provider Discovery Service Protocol Profile in conformance with section 2.4.1 of <a href="#IdPDisco">[IdPDisco]</a>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_authentication_requests">2.5.2. Authentication Requests</h4>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 6. Support for Binding and Security Requirements</caption>
+<colgroup>
+<col style="width: 12%;">
+<col style="width: 6%;">
+<col style="width: 6%;">
+<col style="width: 9%;">
+<col style="width: 64%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">RequID</th>
+<th class="tableblock halign-left valign-top">IDP</th>
+<th class="tableblock halign-left valign-top">SP</th>
+<th class="tableblock halign-left valign-top">Line</th>
+<th class="tableblock halign-left valign-top">Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-040</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">241</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support the use of the HTTP-Redirect binding [SAML2Bind] for the transmission of &lt;saml2p:AuthnRequest&gt; messages, including the generation or verification of signatures in conjunction with this binding.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 7. SAML Authentication Request Message Contents</caption>
+<colgroup>
+<col style="width: 12%;">
+<col style="width: 6%;">
+<col style="width: 6%;">
+<col style="width: 9%;">
+<col style="width: 64%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">RequID</th>
+<th class="tableblock halign-left valign-top">IDP</th>
+<th class="tableblock halign-left valign-top">SP</th>
+<th class="tableblock halign-left valign-top">Line</th>
+<th class="tableblock halign-left valign-top">Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-041</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">247</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Support the inclusion of at least the following &lt;saml2p:AuthnRequest&gt; child elements and attributes (when appropriate).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>AssertionConsumerServiceURL</p>
+</li>
+<li>
+<p>ProtocolBinding</p>
+</li>
+<li>
+<p>ForceAuthn</p>
+</li>
+<li>
+<p>IsPassive</p>
+</li>
+<li>
+<p>AttributeConsumingServiceIndex</p>
+</li>
+<li>
+<p>&lt;saml2p:RequestedAuthnContext&gt;</p>
+</li>
+<li>
+<p>&lt;saml2p:NameIDPolicy&gt;</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-042</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">257</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Support all &lt;saml2p:AuthnRequest&gt; child elements and attributes defined by <a href="#SAML2Core">[SAML2Core]</a>, but MAY provide that support in the form of returning appropriate errors when confronted by particular request options.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-043</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">262</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>MUST support any allowable content of the &lt;saml2p:RequestedAuthnContext&gt; element but MAY limit their support of the element to the value "exact" for the Comparison attribute.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-044</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">260</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>MUST fully support the options enumerated in [eGov-041], and be configurable to utilize those options in a useful manner as defined by <a href="#SAML2Core">[SAML2Core]</a>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-045</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">266</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>MUST support verification of requested AssertionConsumerServiceURL locations via comparison to &lt;md:AssertionConsumerService&gt; elements supplied via metadata using case-sensitive string comparison. It is OPTIONAL to support other means of comparison (e.g., canonicalization or other manipulation of URL values) or alternative verification mechanisms.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_message_encryption">2.5.3. Message Encryption</h4>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 8. Support for the combination of message flows, bindings with respect to message encryption</caption>
 <colgroup>
 <col style="width: 10%;">
 <col style="width: 4%;">
@@ -797,390 +1047,6 @@ The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SH
 </div>
 </div>
 <div class="sect2">
-<h3 id="_attribute_name_formats">2.2. Attribute Name Formats</h3>
-<div class="paragraph">
-<p>In conjunction with their support of the SAML V2.0 profiles referenced by subsequent sections, Identity Provider and Service Provider implementations MUST support the generation and consumption of &lt;saml2:Attribute&gt; elements that conform to the SAML V2.0 X.500/LDAP Attribute Profile [SAML-X500].
-The ability to support &lt;saml2:AttributeValue&gt; elements whose values are not simple strings (e.g., &lt;saml2:NameID&gt;, or other XML values) is OPTIONAL. Such content could be base64-encoded as an alternative.</p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 3. Supported SAML attribute elements</caption>
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 6%;">
-<col style="width: 6%;">
-<col style="width: 10%;">
-<col style="width: 66%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">RequID</th>
-<th class="tableblock halign-left valign-top">IDP</th>
-<th class="tableblock halign-left valign-top">SP</th>
-<th class="tableblock halign-left valign-top">Source</th>
-<th class="tableblock halign-left valign-top">Requirement</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IATR-001</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/227</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Support attribute name format urn:oasis:names:tc:SAML:2.0:attrname-format:uri (see <a href="#SAML-X500">[SAML-X500]</a> sect. 2.3)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IATR-002</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/231</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Support xs:string as attribute values; other types are optional (see <a href="#SAML2Core">[SAML2Core]</a> sect. 2.7.3.1.1)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IATR-003</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">implied?</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Supply/consume explicit xs:type for &lt;AttributeValue&gt; (see <a href="#SAML2Core">[SAML2Core]</a> sect. 2.7.3.1.1)</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_name_identifier_formats">2.3. Name Identifier Formats</h3>
-<div class="paragraph">
-<p>In conjunction with their support of the SAML V2.0 profiles referenced by subsequent sections, Identity Provider and Service Provider implementations MUST support the following SAML V2.0 name identifier formats, in accordance with the normative obligations associated with them by [SAML2Core]:</p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 4. Supported SAML Name Identifier formats and semantics (from eGov)</caption>
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 5%;">
-<col style="width: 5%;">
-<col style="width: 7%;">
-<col style="width: 71%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">RequID</th>
-<th class="tableblock halign-left valign-top">IDP</th>
-<th class="tableblock halign-left valign-top">SP</th>
-<th class="tableblock halign-left valign-top">Source</th>
-<th class="tableblock halign-left valign-top">Format Identifier</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">INID-001</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/223</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">urn:oasis:names:tc:SAML:2.0:nameid-format:persistent (see <a href="#SAML2Core">[SAML2Core]</a> sect. 8.3)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">INID-002</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/224</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">urn:oasis:names:tc:SAML:2.0:nameid-format:transient (see <a href="#SAML2Core">[SAML2Core]</a> sect. 8.3)</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_metadata_and_trust_management">2.4. Metadata and Trust Management</h3>
-<div class="sect3">
-<h4 id="_saml_metadata_profiles_and_capabilites">2.4.1. SAML Metadata Profiles and Capabilites</h4>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 5. Supported SAML metadata profiles and capabilites ([eGov])</caption>
-<colgroup>
-<col style="width: 9%;">
-<col style="width: 4%;">
-<col style="width: 4%;">
-<col style="width: 4%;">
-<col style="width: 6%;">
-<col style="width: 69%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">RequID</th>
-<th class="tableblock halign-left valign-top">IDP</th>
-<th class="tableblock halign-left valign-top">SP</th>
-<th class="tableblock halign-left valign-top">DS</th>
-<th class="tableblock halign-left valign-top">Source</th>
-<th class="tableblock halign-left valign-top">Requirement</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMD-100</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">InC Draft</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support SAML V2.0 Metadata <a href="#SAML2MD">[SAML2MD]</a> as updated by Errata <a href="#SAML2Errata">[SAML2Errata]</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMD-101</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">InC Draft</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support SAML V2.0 Metadata Schema <a href="#SAML2MD-xsd">[SAML2MD-xsd]</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMD-102</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/163</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support the SAML V2.0 Metadata Interoperability Profile Version 1.0 <a href="#SAML2MDIOP">[SAML2MDIOP]</a>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMD-103</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">InC Draft</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Per <a href="#SAML2MDIOP">[SAML2MDIOP]</a>, all run-time configuration of SAML profiles (technical trust and general operational configuration) MUST be manageable via SAML metadata alone. Further, it MUST be possible to configure an IdP or SP to allow basic interop with any peer for which metadata is supplied, without intervention by the deployer.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMD-104</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/167</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support the &lt;ds:X509Certificate&gt; element as key representation int the &lt;md:KeyDescriptor&gt; element</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMD-105</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">InC Draft</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Per <a href="#SAML2MDIOP">[SAML2MDIOP]</a>, support for any number of long-lived, self-signed end entity certificates is REQUIRED, as is support for expired certificates, and certificates signed with any digest algorithm.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMD-106</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/168</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Support for other key representations than &lt;ds:X509Certificate&gt;, and for other mechanisms for credential distribution, is OPTIONAL</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMD-107</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/170</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support some form of path validation of signing, TLS, and encryption credentials used to secure SAML exchanges against one or more trusted certificate authorities.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMD-108</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/172</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Support for PKIX <a href="#RFC5280">[RFC5280]</a> is RECOMMENDED. Implementations SHOULD document the behavior of the validation mechanisms they employ, particular with respect to limitations or divergence from PKIX <a href="#RFC5280">[RFC5280]</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMD-109</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/176</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support the use of OCSP <a href="#RFC2560">[RFC2560]</a> and Certificate Revocation Lists (CRLs) obtained via the 'CRL Distribution Point' X.509 extension <a href="#RFC5280">[RFC5280]</a> for revocation checking of those credentials.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMD-110</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/179</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MAY support additional constraints on the contents of certificates used by particular entities, such as 'subjectAltName' or 'DN', key usage constraints, or policy extensions, but SHOULD document such features and make them optional to enable where possible.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMD-111</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/186</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SHOULD support the SAML V2.0 Metadata Extension for Entity Attributes Version 1.0 <a href="#MetaAttr">[MetaAttr]</a> and provide policy controls on the basis of SAML attributes supplied via this extension mechanism.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_saml_metadata_exchange">2.4.2. SAML Metadata Exchange</h4>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 6. Requirements for SAML metadata exchange</caption>
-<colgroup>
-<col style="width: 9%;">
-<col style="width: 4%;">
-<col style="width: 4%;">
-<col style="width: 4%;">
-<col style="width: 6%;">
-<col style="width: 69%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">RequID</th>
-<th class="tableblock halign-left valign-top">IDP</th>
-<th class="tableblock halign-left valign-top">SP</th>
-<th class="tableblock halign-left valign-top">DS</th>
-<th class="tableblock halign-left valign-top">Source</th>
-<th class="tableblock halign-left valign-top">Requirement</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMD-200</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/190</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Support for the generation or exportation of metadata is OPTIONAL.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMD-201</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/191</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support the publication of metadata using the Well-Known-Location method defined in section 4.1 of <a href="#SAML2Meta">[SAML2Meta]</a> (under the assumption that entityID values used are suitable for such support).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMD-202</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/196</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support the importation of metadata from a local file.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMD-203</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/197</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support the importation of metadata from a remote resource at fixed location accessible via HTTP 1.1 or HTTP 1.1 over TLS/SSL. Implementations MUST support use of the 'ETag' and 'Last-Modified' headers for cache management.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMD-204</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/200</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SHOULD support the use of more than one fixed location for the importation of metadata, but MAY leave their behavior unspecified if a single entity&#8217;s metadata is present in more than one source.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMD-205</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/203</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Importation of multiple entities' metadata contained within an &lt;md:EntitiesDescriptor&gt; element MUST be supported.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMD-206</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/205</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SHOULD allow for the automated updating/reimportation of metadata without service degradation or interruption.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMD-207</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/208</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Verification of metadata, if supported, MUST include XML signature verification at least at the root element level</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMD-208</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/211</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Verification of metadata SHOULD support direct comparison against known keys.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMD-209</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/212</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Verification of metadata SHOULD support some form of path-based certificate validation against one or more trusted certificate authorities, along with certificate revocation lists and/or OCSP <a href="#RFC2560">[RFC2560]</a>. Support for PKIX <a href="#RFC5280">[RFC5280]</a> is RECOMMENDED. Implementations SHOULD document the behavior of the validation mechanisms they employ, particular with respect to limitations or divergence from PKIX <a href="#RFC5280">[RFC5280]</a>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMD-210</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">InC Draft</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support metadata verification based on the presence of the validUntil XML attribute, and MUST have the ability to enforce limitations on the duration of validity (e.g., it must be possible to block consumption of metadata without such an attribute or one that is too far into the future)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMD-211</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/208</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Verification of metadata, if supported, MUST include XML signature verification at least at the root element level</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMD-212</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/211</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Verification of metadata, if supported, SHOULD support the direct comparison against known keys as mechanism for signature key trust establishment.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IMD-213</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/212</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Verification of metadata, if supported, SHOULD support Some form of path-based certificate validation against one or more trusted certificate authorities as mechanism for signature key trust establishment. Certificate revocation lists and/or OCSP <a href="#RFC2560">[RFC2560]</a> and support for PKIX <a href="#RFC5280">[RFC5280]</a> is RECOMMENDED; implementations SHOULD document the behavior of the validation mechanisms they employ, particular with respect to limitations or divergence from PKIX <a href="#RFC5280">[RFC5280]</a>.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_idp_discovery">2.5. IDP Discovery</h3>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 7. Supported IDP discovery protocols</caption>
-<colgroup>
-<col style="width: 12%;">
-<col style="width: 6%;">
-<col style="width: 6%;">
-<col style="width: 9%;">
-<col style="width: 64%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">RequID</th>
-<th class="tableblock halign-left valign-top">IDP</th>
-<th class="tableblock halign-left valign-top">SP</th>
-<th class="tableblock halign-left valign-top">Source</th>
-<th class="tableblock halign-left valign-top">Requirement</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IDIS-001</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGov/227</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support the Identity Provider Discovery Service Protocol Profile in conformance with section 2.4.1 of <a href="#IdPDisco">[IdPDisco]</a>.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
 <h3 id="_websso_message_contents">2.6. WebSSO Message Contents</h3>
 <div class="sect3">
 <h4 id="_websso_authentication_request">2.6.1. WebSSO Authentication Request</h4>
@@ -1188,7 +1054,7 @@ The ability to support &lt;saml2:AttributeValue&gt; elements whose values are no
 <p>Support for the SAML V2.0 Web Browser SSO Profile [SAML2Prof] is required with following capabilites.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 8. SAML Authentication Request Message Contents</caption>
+<caption class="title">Table 9. SAML Authentication Request Message Contents</caption>
 <colgroup>
 <col style="width: 12%;">
 <col style="width: 6%;">
@@ -1265,7 +1131,7 @@ The ability to support &lt;saml2:AttributeValue&gt; elements whose values are no
 <div class="sect3">
 <h4 id="_websso_response">2.6.2. WebSSO Response</h4>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 9. Requirements for SAML WebSSO Response message contents</caption>
+<caption class="title">Table 10. Requirements for SAML WebSSO Response message contents</caption>
 <colgroup>
 <col style="width: 9%;">
 <col style="width: 4%;">
@@ -1357,7 +1223,7 @@ The ability to support &lt;saml2:AttributeValue&gt; elements whose values are no
 The requirements of the profile are imposed on Identity Provider implementations acting as a proxy.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 10. Requirements for Proxying Identity Provider implementations</caption>
+<caption class="title">Table 11. Requirements for Proxying Identity Provider implementations</caption>
 <colgroup>
 <col style="width: 9%;">
 <col style="width: 4%;">
@@ -1420,7 +1286,7 @@ The requirements of the profile are imposed on Identity Provider implementations
 For clarification, the technical requirements for each message type below reflect the intent to normatively require initiation of logout by a Service Provider using either the front- or back-channel, and initiation/propagation of logout by an Identity Provider using the back-channel.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 11. Requirements for SAML SLO User Interface Behavior</caption>
+<caption class="title">Table 12. Requirements for SAML SLO User Interface Behavior</caption>
 <colgroup>
 <col style="width: 9%;">
 <col style="width: 4%;">
@@ -1465,8 +1331,79 @@ For clarification, the technical requirements for each message type below reflec
 </div>
 </div>
 <div class="sect1">
-<h2 id="_references">3. References</h2>
+<h2 id="_cryptographic_algorithms_in_saml_implementations">3. Cryptographic Algorithms in SAML Implementations</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>(Status from 2010 - this specification does not conform the current recommendations of NIST, eCrypt and bettercrypto.org)</p>
+</div>
+<div class="sect2">
+<h3 id="_signature_and_digest_algorithms">3.1. Signature and digest algorithms</h3>
+<div class="paragraph">
+<p>Implementations MUST support the signature and digest algorithms identified by the following URIs in conjunction with the creation and verification of XML Signatures <a href="#XMLSig">[XMLSig]</a>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><code><a href="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256" class="bare">http://www.w3.org/2001/04/xmldsig-more#rsa-sha256</a></code></code> (defined in <a href="#RFC4051">[RFC4051]</a>)</p>
+</li>
+<li>
+<p><code><code><a href="http://www.w3.org/2001/04/xmlenc#sha256" class="bare">http://www.w3.org/2001/04/xmlenc#sha256</a></code></code> (defined in <a href="#XMLEnc">[XMLEnc]</a>)
+Implementations SHOULD support the signature and digest algorithms identified by the following URIs in conjunction with the creation and verification of XML Signatures <a href="#XMLSig">[XMLSig]</a>:</p>
+</li>
+<li>
+<p><code><code><a href="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256" class="bare">http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256</a></code></code> (defined in <a href="#RFC4051">[RFC4051]</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_block_encryption_algorithms">3.2. Block encryption algorithms</h3>
+<div class="paragraph">
+<p>Implementations MUST support the block encryption algorithms identified by the following URIs in conjunction with the use of XML Encryption <a href="#XMLEnc">[XMLEnc]</a>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><code><a href="http://www.w3.org/2001/04/xmlenc#tripledes-cbc" class="bare">http://www.w3.org/2001/04/xmlenc#tripledes-cbc</a></code></code></p>
+</li>
+<li>
+<p><code><code><a href="http://www.w3.org/2001/04/xmlenc#aes128-cbc" class="bare">http://www.w3.org/2001/04/xmlenc#aes128-cbc</a></code></code></p>
+</li>
+<li>
+<p><code><code><a href="http://www.w3.org/2001/04/xmlenc#aes256-cbc" class="bare">http://www.w3.org/2001/04/xmlenc#aes256-cbc</a></code></code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_key_transport_algorithms">3.3. Key transport algorithms</h3>
+<div class="paragraph">
+<p>Implementations MUST support the key transport algorithms identified by the following URIs in conjunction with the use of XML Encryption <a href="#XMLEnc">[XMLEnc]</a>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><code><a href="http://www.w3.org/2001/04/xmlenc#rsa-1_5" class="bare">http://www.w3.org/2001/04/xmlenc#rsa-1_5</a></code></code></p>
+</li>
+<li>
+<p><code><code><a href="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p" class="bare">http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p</a></code></code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_key_agreement_algorithms">3.4. Key agreement algorithms</h3>
+<div class="paragraph">
+<p>Implementations SHOULD support the key agreement algorithms identified by the following URIs in conjunction with the use of XML Encryption <a href="#XMLEnc">[XMLEnc]</a>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><code><a href="http://www.w3.org/2009/xmlenc11#ECDH-ES" class="bare">http://www.w3.org/2009/xmlenc11#ECDH-ES</a></code></code> (defined in <a href="#XMLEnc11">[XMLEnc11]</a>)
+== References</p>
+</li>
+</ul>
+</div>
 <div class="ulist bibliography">
 <ul class="bibliography">
 <li>
@@ -1480,6 +1417,9 @@ For clarification, the technical requirements for each message type below reflec
 </li>
 <li>
 <p><a id="RFC2818"></a>[RFC2818] IETF RFC 2818, HTTP Over TLS, May 2000. <a href="http://www.ietf.org/rfc/rfc2818.txt" class="bare">http://www.ietf.org/rfc/rfc2818.txt</a></p>
+</li>
+<li>
+<p><a id="RFC4051"></a>[RFC4051] IETF RFC 4051, Additional XML Security Uniform Resource Identifiers, April 2005. <a href="http://www.ietf.org/rfc/rfc4051.txt" class="bare">http://www.ietf.org/rfc/rfc4051.txt</a></p>
 </li>
 <li>
 <p><a id="RFC5280"></a>[RFC5280] IETF RFC 5280, Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile, May 2008. <a href="http://www.ietf.org/rfc/rfc5280.txt" class="bare">http://www.ietf.org/rfc/rfc5280.txt</a></p>
@@ -1520,14 +1460,24 @@ For clarification, the technical requirements for each message type below reflec
 <li>
 <p><a id="SAMLEntityCat"></a>[SAMLEntityCat] IETF Draft, The Entity Category SAML Entity Metadata Attribute Types, 2015-01-22. <a href="https://datatracker.ietf.org/doc/draft-young-entity-category/" class="bare">https://datatracker.ietf.org/doc/draft-young-entity-category/</a></p>
 </li>
+<li>
+<p><a id="XMLEnc"></a>[XMLEnc] D. Eastlake et al. XML Encryption Syntax and Processing. World Wide Web Consortium Recommendation. <a href="http://www.w3.org/TR/2002/REC-xmlenc-core-20021210/" class="bare">http://www.w3.org/TR/2002/REC-xmlenc-core-20021210/</a></p>
+</li>
+<li>
+<p><a id="XMLEnc11"></a>[XMLEnc11] D. Eastlake et al. XML Encryption Syntax and Processing Version 1.1. World Wide Web Consortium Last Call Working Draft. <a href="http://www.w3.org/TR/2010/WD-xmlenc-core1-20100513/" class="bare">http://www.w3.org/TR/2010/WD-xmlenc-core1-20100513/</a></p>
+</li>
+<li>
+<p><a id="XMLSig"></a>[XMLSig] D. Eastlake et al. XML-Signature Syntax and Processing, Second Edition. World Wide Web Consortium Recommendation, June 2008. <a href="http://www.w3.org/TR/xmldsig-core/" class="bare">http://www.w3.org/TR/xmldsig-core/</a></p>
+</li>
 </ul>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-08-25 15:08:28 CEST
+Last updated 2016-03-17 21:50:37 CET
 </div>
 </div>
 </body>

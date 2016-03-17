@@ -1,8 +1,8 @@
-= Cryptographic Algorithms in SAML Implementations
+== Cryptographic Algorithms in SAML Implementations
 
 (Status from 2010 - this specification does not conform the current recommendations of NIST, eCrypt and bettercrypto.org)
 
-== Signature and digest algorithms
+=== Signature and digest algorithms
 Implementations MUST support the signature and digest algorithms identified by the following URIs in conjunction with the creation and verification of XML Signatures <<XMLSig>>:
 
 * ```http://www.w3.org/2001/04/xmldsig-more#rsa-sha256``` (defined in <<RFC4051>>)
@@ -10,29 +10,20 @@ Implementations MUST support the signature and digest algorithms identified by t
 Implementations SHOULD support the signature and digest algorithms identified by the following URIs in conjunction with the creation and verification of XML Signatures <<XMLSig>>:
 * ```http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256``` (defined in <<RFC4051>>)
 
-== Block encryption algorithms
+=== Block encryption algorithms
 Implementations MUST support the block encryption algorithms identified by the following URIs in conjunction with the use of XML Encryption <<XMLEnc>>:
 
 * ```http://www.w3.org/2001/04/xmlenc#tripledes-cbc```
 * ```http://www.w3.org/2001/04/xmlenc#aes128-cbc```
 * ```http://www.w3.org/2001/04/xmlenc#aes256-cbc```
 
-== Key transport algorithms
+=== Key transport algorithms
 Implementations MUST support the key transport algorithms identified by the following URIs in conjunction with the use of XML Encryption <<XMLEnc>>:
 
 * ```http://www.w3.org/2001/04/xmlenc#rsa-1_5```
 * ```http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p```
 
-== Key agreement algorithms
+=== Key agreement algorithms
 Implementations SHOULD support the key agreement algorithms identified by the following URIs in conjunction with the use of XML Encryption <<XMLEnc>>:
 
 * ```http://www.w3.org/2009/xmlenc11#ECDH-ES``` (defined in <<XMLEnc11>>)
-
-== References
-
-[bibliography]
-
-- [[[RFC4051]]] IETF RFC 4051, Additional XML Security Uniform Resource Identifiers, April 2005. http://www.ietf.org/rfc/rfc4051.txt
-- [[[XMLEnc]]] D. Eastlake et al. XML Encryption Syntax and Processing. World Wide Web Consortium Recommendation. http://www.w3.org/TR/2002/REC-xmlenc-core-20021210/
-- [[[XMLEnc11]]] D. Eastlake et al. XML Encryption Syntax and Processing Version 1.1. World Wide Web Consortium Last Call Working Draft. http://www.w3.org/TR/2010/WD-xmlenc-core1-20100513/
-- [[[XMLSig]]] D. Eastlake et al. XML-Signature Syntax and Processing, Second Edition. World Wide Web Consortium Recommendation, June 2008. http://www.w3.org/TR/xmldsig-core/

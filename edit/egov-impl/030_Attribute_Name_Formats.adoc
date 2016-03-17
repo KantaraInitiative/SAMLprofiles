@@ -6,9 +6,7 @@ The ability to support <saml2:AttributeValue> elements whose values are not simp
 .Supported SAML attribute elements
 [width="100%", cols="3,2,2,3,20", options="header"]
 |====================
-| RequID  | IDP  | SP   | Source | Requirement           
-| IATR-001 | MUST | MUST | eGov/227          | Support attribute name format urn:oasis:names:tc:SAML:2.0:attrname-format:uri (see <<SAML-X500>> sect. 2.3)
-| IATR-002 | MUST | MUST | eGov/231          | Support xs:string as attribute values; other types are optional (see <<SAML2Core>> sect. 2.7.3.1.1)
-| IATR-003 | ? | ? | implied?            | Supply/consume explicit xs:type for <AttributeValue> (see <<SAML2Core>> sect. 2.7.3.1.1)
+| RequID   | IDP  | SP   | Line | Requirement
+| eGov-030 | MUST | MUST | 225  | Support attribute name format urn:oasis:names:tc:SAML:2.0:attrname-format:uri (see <<SAML-X500>> sect. 2.3)
+| eGov-031 | MUST | MUST | 231  | Support xs:string as attribute values; other types are optional (see <<SAML2Core>> sect. 2.7.3.1.1)
 |====================
-

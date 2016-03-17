@@ -1,0 +1,16 @@
+==== Metadata Exchange
+.Requirements for SAML metadata exchange
+[width="100%", cols="4,2,2,3,30", options="header"]
+|====================
+| RequID    |  IDP    | SP     |Line | Requirement
+| eGov-010  |  MAY    | MAY    |188  | Support the generation or exportation of metadata.
+| eGov-011  |  MUST   | MUST   |189  | Support the publication of metadata using the Well-Known-Location method defined in section 4.1 of <<SAML2Meta>> (under the assumption that entityID values used are suitable for such support).
+| eGov-012  |  MUST   | MUST   |194  | Support the importation of metadata from a local file.
+| eGov-013  |  MUST   | MUST   |195  | Support the importation of metadata from a remote resource at fixed location accessible via HTTP 1.1 or HTTP 1.1 over TLS/SSL. Implementations MUST support use of the 'ETag' and 'Last-Modified' headers for cache management.
+| eGov-014  |  SHOULD | SHOULD |198  | Support the use of more than one fixed location for the importation of metadata, but MAY leave their behavior unspecified if a single entity's metadata is present in more than one source.
+| eGov-015  |  MUST   | MUST   |201  | Support importation of multiple entities' metadata contained within an <md:EntitiesDescriptor> element.
+| eGov-016  |  SHOULD | SHOULD |203  | Allow for the automated updating/reimportation of metadata without service degradation or interruption.
+| eGov-017  |  MUST   | MUST   |206  | Verification of metadata, if supported, MUST include XML signature verification at least at the root element level
+| eGov-018  |  SHOULD | SHOULD |209  | Verification of metadata SHOULD support direct comparison against known keys as mechanism for signature key trust establishment.
+| eGov-019  |  SHOULD | SHOULD |210  | Verification of metadata SHOULD support some form of path-based certificate validation against one or more trusted certificate authorities, along with certificate revocation lists and/or OCSP <<RFC2560>>. Support for PKIX <<RFC5280>> is RECOMMENDED. Implementations SHOULD document the behavior of the validation mechanisms they employ, particular with respect to limitations or divergence from PKIX <<RFC5280>>.
+|====================

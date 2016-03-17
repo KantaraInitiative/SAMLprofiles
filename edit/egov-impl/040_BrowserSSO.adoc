@@ -1,0 +1,42 @@
+=== Browser Single Sign-On
+This section defines an implementation profile of the SAML V2.0 Web Browser SSO Profile [SAML2Prof].
+
+==== Identity Provider Discovery
+
+.Supported IDP discovery protocols
+[width="100%", cols="4,2,2,3,20", options="header"]
+|====================
+| RequID   | IDP  | SP   | Line | Requirement
+| eGov-035 | MUST | MUST | 227  | Support the Identity Provider Discovery Service Protocol Profile in conformance with section 2.4.1 of <<IdPDisco>>.
+|====================
+
+
+==== Authentication Requests
+
+.Support for Binding and Security Requirements
+[width="100%", cols="4,2,2,3,20", options="header"]
+
+|====================
+| RequID   | IDP  | SP   | Line  | Requirement
+| eGov-040 | MUST | MUST | 241   | Support the use of the HTTP-Redirect binding [SAML2Bind] for the transmission of <saml2p:AuthnRequest> messages, including the generation or verification of signatures in conjunction with this binding.
+|====================
+
+.SAML Authentication Request Message Contents
+[width="100%", cols="4,2,2,3,20a", options="header"]
+|====================
+| RequID   | IDP  | SP   | Line | Requirement
+| eGov-041 |      | MUST | 247  | Support the inclusion of at least the following <saml2p:AuthnRequest> child elements and attributes (when appropriate).
+
+* AssertionConsumerServiceURL
+* ProtocolBinding
+* ForceAuthn
+* IsPassive
+* AttributeConsumingServiceIndex
+* <saml2p:RequestedAuthnContext>
+* <saml2p:NameIDPolicy>
+
+| eGov-042 | MUST |  | 257 | Support all <saml2p:AuthnRequest> child elements and attributes defined by <<SAML2Core>>, but MAY provide that support in the form of returning appropriate errors when confronted by particular request options.
+| eGov-043 | MUST |  | 262 | MUST support any allowable content of the <saml2p:RequestedAuthnContext> element but MAY limit their support of the element to the value "exact" for the Comparison attribute.
+| eGov-044 | MUST |  | 260 | MUST fully support the options enumerated in [eGov-041], and be configurable to utilize those options in a useful manner as defined by <<SAML2Core>>.
+| eGov-045 | MUST |  | 266 | MUST support verification of requested AssertionConsumerServiceURL locations via comparison to <md:AssertionConsumerService> elements supplied via metadata using case-sensitive string comparison. It is OPTIONAL to support other means of comparison (e.g., canonicalization or other manipulation of URL values) or alternative verification mechanisms.
+|====================

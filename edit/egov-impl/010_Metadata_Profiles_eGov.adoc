@@ -1,0 +1,16 @@
+=== Metadata and Trust Management
+==== Metadata Profiles 
+
+.Supported SAML metadata profiles and capabilites ([eGov])
+[width="100%", cols="4,2,2,3,30", options="header"]
+|====================
+| RequID   |  IDP    | SP     | Line | Requirement
+| eGov-001 |  MUST   | MUST   | 161  |  Support the SAML V2.0 Metadata Interoperability Profile Version 1.0 <<SAML2MDIOP>>.
+| eGov-002 |  MUST   | MUST   | 165  | Support the <ds:X509Certificate> element as key representation int the <md:KeyDescriptor> element
+| eGov-003 |  MAY    | MAY    | 166  | Support for other key representations than <ds:X509Certificate>, and for other mechanisms for credential distribution
+| eGov-004 |  MUST   | MUST   | 168  | Support some form of path validation of signing, TLS, and encryption credentials used to secure SAML exchanges against one or more trusted certificate authorities.
+| eGov-005 |  SHOULD | SHOULD | 170  | Support for PKIX <<RFC5280>>. Implementations SHOULD document the behavior of the validation mechanisms they employ, particular with respect to limitations or divergence from PKIX <<RFC5280>>
+| eGov-006 |  MUST   | MUST   | 175  | Support the use of OCSP <<RFC2560>> and Certificate Revocation Lists (CRLs) obtained via the 'CRL Distribution Point' X.509 extension <<RFC5280>> for revocation checking of those credentials.
+| eGov-007 |  MAY    | MAY    | 177  | Support additional constraints on the contents of certificates used by particular entities, such as 'subjectAltName' or 'DN', key usage constraints, or policy extensions. Implementations SHOULD document such features and make them optional to enable where possible.
+| eGov-008 |  SHOULD | SHOULD | 184  | Support the SAML V2.0 Metadata Extension for Entity Attributes Version 1.0 <<MetaAttr>> and provide policy controls on the basis of SAML attributes supplied via this extension mechanism.
+|====================

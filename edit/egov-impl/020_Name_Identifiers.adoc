@@ -4,7 +4,7 @@ In conjunction with their support of the SAML V2.0 profiles referenced by subseq
 .Supported SAML Name Identifier formats and semantics (from eGov)
 [width="100%", cols="4,2,2,3,27", options="header"]
 |====================
-| RequID  | IDP  | SP   | Source| Format Identifier                                                                  
-| INID-001 | MUST | MUST | eGov/223| urn:oasis:names:tc:SAML:2.0:nameid-format:persistent (see <<SAML2Core>> sect. 8.3)   
-| INID-002 | MUST | MUST | eGov/224| urn:oasis:names:tc:SAML:2.0:nameid-format:transient (see <<SAML2Core>> sect. 8.3)    
+| RequID   | IDP  | SP   | Line| Format Identifier
+| eGov-021 | MUST | MUST | 221 | urn:oasis:names:tc:SAML:2.0:nameid-format:persistent (see <<SAML2Core>> sect. 8.3)
+| eGov-022 | MUST | MUST | 222 | urn:oasis:names:tc:SAML:2.0:nameid-format:transient (see <<SAML2Core>> sect. 8.3)    
 |====================

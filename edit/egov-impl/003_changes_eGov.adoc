@@ -8,6 +8,4 @@ Requirements IMD-100, IMD-103 and IMD-105 have been implicit in [eGov], but adde
 
 The section "HolderOfKey" has been excluded .
 
-Cryptographic requirements already dated and have been moved into a separate document.
-
 Section "Conformance Classes" has been excluded.
