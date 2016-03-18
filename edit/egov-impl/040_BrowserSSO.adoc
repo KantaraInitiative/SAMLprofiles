@@ -1,5 +1,9 @@
 === Browser Single Sign-On
-This section defines an implementation profile of the SAML V2.0 Web Browser SSO Profile [SAML2Prof].
+[width="100%", cols="3,2,2,2,25", options="header"]
+|====================
+| RequID   | IDP  | SP   | Line | Requirement
+| eGov-032 | MUST | MUST | 233  | Support the implementation profile of the SAML V2.0 Web Browser SSO Profile [SAML2Prof].
+|====================
 
 ==== Identity Provider Discovery
 
@@ -7,7 +11,7 @@ This section defines an implementation profile of the SAML V2.0 Web Browser SSO 
 [width="100%", cols="3,2,2,2,25", options="header"]
 |====================
 | RequID   | IDP  | SP   | Line | Requirement
-| eGov-035 | MUST | MUST | 227  | Support the Identity Provider Discovery Service Protocol Profile in conformance with section 2.4.1 of <<IdPDisco>>.
+| eGov-033 | MUST | MUST | 227  | Support the Identity Provider Discovery Service Protocol Profile in conformance with section 2.4.1 of <<IdPDisco>>.
 |====================
 
 

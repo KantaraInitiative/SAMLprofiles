@@ -1,0 +1,78 @@
+== Differences to eGovernment Implementation Profile of SAML V2.0
+The Implementation Profile for Federation Interoperability shall replace the older
+eGov profile, which was not limited in its application to government agencies.
+This section provides an overview of the differences between the two profiles.
+The profiles will be abbreviated "Interop profile" and "eGov profile" respectively.
+
+=== Structure and General Approach
+- The InteropProfile introduces a new layer in its outline for requirements that are
+related to IDPs, SPs or are common.
+- The conformance classes have been dropped in favor of a single set or requirements.
+- Requirements were scrutinized to be testable and related to the implementation level.
+
+=== Requirement Mapping
+The June 2010 version of the eGov profile was reformatted in a more formal way
+with a requirement identifiers for better reference as version 2.0bis. The following
+mapping table is using these identifiers.
+Requirements have been reworded in the Interop profile for better precision and to
+reflect lessons learned. This section is not going into the fine details, but tries
+to give a guide to the changes in general. Differences in optional ('MAY') requirements
+have not been listed.
+
+.eGov to Interop profile mapping
+[width="100%", cols="3,3,30", options="header"]
+|====================
+| RequID   | RequID   | Change
+| eGov-001 | IIP-MD01 | Extended: MUST support Entity Attributes; Algorithm Support; Login and Discovery User Interface;
+|          | IIP-MD03 | Extended: MUST be capable of "configuration by metadata only".
+| eGov-002 | IIP-MD01 | Implied by <MetaIOP> Section 2.6.1
+| eGov-003 |          | Extended: Implied by <MetaIOP> Interop requires mandatory support for <ds:KeyValue> elements; eGov was relaxed to require support for <ds:X509Certificate> only.
+| eGov-004 |          | Excluded: Path validation of signatures, TLS, and encryption credentials not mandatory in Interop
+| eGov-005 |          | Excluded: Recommended support for PKIX not mandatory in Interop.
+| eGov-006 |          | Excluded: Support for OCSP and CRLs in Interop.
+| eGov-008 | IIP-MD01 | Entity Attributes and related policy controls: support changed from SHOULD to MUST.
+| eGov-010 |          | Excluded: (Support the generation or exportation of metadata).
+| eGov-011 |          | Excluded: By inheritance from [MetaIOP] the publication of metadata at a well-know location is OPTIONAL
+| eGov-012 |          | Excluded: Interop does not mandate to support the importation of metadata from a local file.
+| eGov-013 | IIP-MD04 | Modified: Dropped mandatory support for TLS; Added redirect support.
+| eGov-014 |          | Excluded: Support the use of more than one fixed location for the importation of metadata.
+| eGov-015 | IIP-MD02 | -
+| eGov-016 | IIP-MD04 | -
+| eGov-017 | IIP-MD05 | Excluded: Limiting signature verification to metadata root element.
+| eGov-018 | IIP-MD05 | Extended: Key management for metadata signature verification.
+| eGov-019 |          | Excluded: Path-based certificate validation for metadata signatures.
+|          | IIP-MD06 | Added: Processing requirements in the validUntil attribute in metadata root elements.
+|          | IIP-MD07 | Added: Key rollover for singing keys.
+|          | IIP-MD08 | Added: Key rollover for singing keys.
+|          | IIP-MD09 | Added: Algorithm support in metadata.
+|          | IIP-MD10 | Clarified: <md:KeyDescriptor> without use=".." is valid as both a signing and encryption key.
+|          | IIP-MD11 | Clarified: Only public key is relevant in a certificate.
+
+| eGov-021 | IIP-G01  |
+| eGov-022 | IIP-G01  |
+|          | IIP-G02  | Added: Handling of clock skew.
+|          | IIP-G03  | Added: Minimal value range of type xs:string.
+
+| eGov-030 | IIP-SP04 | Extended: arbitrary xs:string value in the Name attribute and any arbitrary xs:anyURI value in the NameFormat attribute.
+| eGov-031 | IIP-SP05 | Extended: Service Providers MUST NOT require the presence of the xsi:type XML attribute.
+|          | IIP-SP06 | Clarified: SPs MUST NOT fail or reject responses due to the presence of unrecognized <saml2:Attribute> elements.
+|          | IIP-SP07 | Clarified: SPs MUST NOT treat the FriendlyName attribute normatively or make comparisons based on its value.
+
+| eGov-032 | IIP-SSO01|
+| eGov-033 | IIP-SP09 |
+
+| eGov-040 | IIP-SSO02| Added: HTTP-POST bindings for authentication requests.
+| eGov-021 | IIP-MD?? |
+| eGov-021 | IIP-MD?? |
+| eGov-021 | IIP-MD?? |
+| eGov-021 | IIP-MD?? |
+| eGov-021 | IIP-MD?? |
+| eGov-021 | IIP-MD?? |
+| eGov-021 | IIP-MD?? |
+| eGov-021 | IIP-MD?? |
+| eGov-021 | IIP-MD?? |
+| eGov-021 | IIP-MD?? |
+| eGov-021 | IIP-MD?? |
+
+
+|====================
