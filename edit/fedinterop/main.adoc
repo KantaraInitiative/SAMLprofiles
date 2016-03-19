@@ -32,3 +32,5 @@ include::idp.adoc[]
 include::references.adoc[]
 
 include::contributors.adoc[]
+
+include::egov-profile-diff.adoc[]
