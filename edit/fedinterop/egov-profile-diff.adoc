@@ -1,14 +1,14 @@
 == Differences to eGovernment Implementation Profile of SAML V2.0
-The Implementation Profile for Federation Interoperability shall replace the older
-eGov profile, which was not limited in its application to government agencies.
+The Implementation Profile for Federation Interoperability supercedes the older
+eGovernment Implementation Profile, which was not limited in its application to government agencies.
 This section provides an overview of the differences between the two profiles.
-The profiles will be abbreviated "Interop profile" and "eGov profile" respectively.
+The profiles will be abbreviated "Interop" and "eGov" respectively.
 
 === Structure and General Approach
 - The InteropProfile introduces a new layer in its outline for requirements that are
 related to IDPs, SPs or are common.
-- The conformance classes have been dropped in favor of a single set or requirements.
-- Requirements were scrutinized to be testable and related to the implementation level.
+- The conformance classes have been dropped in favor of a single set of requirements.
+- Requirements have been selected to be testable and related to the implementation perspective.
 
 === Requirement Mapping
 The June 2010 version of the eGov profile was reformatted in a more formal way
@@ -20,59 +20,112 @@ to give a guide to the changes in general. Differences in optional ('MAY') requi
 have not been listed.
 
 .eGov to Interop profile mapping
-[width="100%", cols="3,3,30", options="header"]
+[width="100%", cols="3,3,30a", options="header"]
 |====================
-| RequID   | RequID   | Change
+| RequID   | RequID   | Change in Interop profile
 | eGov-001 | IIP-MD01 | Extended: MUST support Entity Attributes; Algorithm Support; Login and Discovery User Interface;
 |          | IIP-MD03 | Extended: MUST be capable of "configuration by metadata only".
-| eGov-002 | IIP-MD01 | Implied by <MetaIOP> Section 2.6.1
-| eGov-003 |          | Extended: Implied by <MetaIOP> Interop requires mandatory support for <ds:KeyValue> elements; eGov was relaxed to require support for <ds:X509Certificate> only.
-| eGov-004 |          | Excluded: Path validation of signatures, TLS, and encryption credentials not mandatory in Interop
-| eGov-005 |          | Excluded: Recommended support for PKIX not mandatory in Interop.
-| eGov-006 |          | Excluded: Support for OCSP and CRLs in Interop.
-| eGov-008 | IIP-MD01 | Entity Attributes and related policy controls: support changed from SHOULD to MUST.
-| eGov-010 |          | Excluded: (Support the generation or exportation of metadata).
-| eGov-011 |          | Excluded: By inheritance from [MetaIOP] the publication of metadata at a well-know location is OPTIONAL
-| eGov-012 |          | Excluded: Interop does not mandate to support the importation of metadata from a local file.
-| eGov-013 | IIP-MD04 | Modified: Dropped mandatory support for TLS; Added redirect support.
-| eGov-014 |          | Excluded: Support the use of more than one fixed location for the importation of metadata.
+| eGov-002 |          | No change. Implied by <MetaIOP> Section 2.6.1.
+| eGov-003 |          | Extended. Interop requires mandatory support for <ds:KeyValue> elements; eGov was relaxed to require support for <ds:X509Certificate> only (Implied by <MetaIOP>).
+| eGov-004 |          | Removed. Path validation of signatures, TLS, and encryption credentials not mandatory in Interop
+| eGov-005 |          | Removed. Recommended support for PKIX not mandatory in Interop.
+| eGov-006 |          | Removed. Support for OCSP and CRLs in Interop.
+| eGov-008 | IIP-MD01 | Entity Attributes and related policy controls. support changed from SHOULD to MUST.
+| eGov-010 |          | Removed. (Support the generation or exportation of metadata).
+| eGov-011 |          | Removed. By inheritance from [MetaIOP] the publication of metadata at a well-know location is OPTIONAL
+| eGov-012 |          | Removed. Interop does not mandate to support the importation of metadata from a local file.
+| eGov-013 | IIP-MD04 | Modified. Dropped mandatory support for TLS; Added redirect support.
+| eGov-014 |          | Removed. Support the use of more than one fixed location for the importation of metadata.
 | eGov-015 | IIP-MD02 | -
 | eGov-016 | IIP-MD04 | -
-| eGov-017 | IIP-MD05 | Excluded: Limiting signature verification to metadata root element.
-| eGov-018 | IIP-MD05 | Extended: Key management for metadata signature verification.
-| eGov-019 |          | Excluded: Path-based certificate validation for metadata signatures.
+| eGov-017 | IIP-MD05 | Removed. Interop does not limit signature verification to the metadata root element.
+| eGov-018 | IIP-MD05 | Extended. Key management for metadata signature verification.
+| eGov-019 |          | Removed. Path-based certificate validation for metadata signatures.
 |          | IIP-MD06 | Added: Processing requirements in the validUntil attribute in metadata root elements.
 |          | IIP-MD07 | Added: Key rollover for singing keys.
 |          | IIP-MD08 | Added: Key rollover for singing keys.
 |          | IIP-MD09 | Added: Algorithm support in metadata.
-|          | IIP-MD10 | Clarified: <md:KeyDescriptor> without use=".." is valid as both a signing and encryption key.
-|          | IIP-MD11 | Clarified: Only public key is relevant in a certificate.
-
-| eGov-021 | IIP-G01  |
-| eGov-022 | IIP-G01  |
+|          | IIP-MD10 | Clarified. <md:KeyDescriptor> without use=".." is valid as both a signing and encryption key.
+|          | IIP-MD11 | Clarified: only public key is relevant in a certificate.
+|          | IIP-IDP01 IIP-SP01 | Added: SHOULD support SAML-MDQ.
+|          | IIP-IDP02 IIP-SP02 | Added: SHOULD limit use of algorithms for XMLSig and XMLEnc to those declared in the peer's metadata.
+|          | IIP-SP03 | Clarification: Do not overload semantics of persistent Name Identifiers.
+|          | IIP-IDP04 | Added: MUST include specific SAML attributes or values in a response based on the the entityID of the SP.
+|          | IIP-IDP05 | Added: MUST include specific SAML attributes or values in a response based on <mdattr:EntityAttributes> elements.
+|          | IIP-IDP06 | Added: MUST include specific SAML attributes or values in a response based on <md:RequestedAttribute> elements.
+| eGov-021 | IIP-G01  | -
+| eGov-022 | IIP-G01  | -
 |          | IIP-G02  | Added: Handling of clock skew.
-|          | IIP-G03  | Added: Minimal value range of type xs:string.
-
-| eGov-030 | IIP-SP04 | Extended: arbitrary xs:string value in the Name attribute and any arbitrary xs:anyURI value in the NameFormat attribute.
-| eGov-031 | IIP-SP05 | Extended: Service Providers MUST NOT require the presence of the xsi:type XML attribute.
-|          | IIP-SP06 | Clarified: SPs MUST NOT fail or reject responses due to the presence of unrecognized <saml2:Attribute> elements.
-|          | IIP-SP07 | Clarified: SPs MUST NOT treat the FriendlyName attribute normatively or make comparisons based on its value.
-
-| eGov-032 | IIP-SSO01|
-| eGov-033 | IIP-SP09 |
-
+|          | IIP-G03  | Added: Minimal value range of type xs.string.
+| eGov-030 | IIP-IDP03 IIP-SP04 | Extended. Arbitrary xs.string value in the Name attribute and any arbitrary xs.anyURI value in the NameFormat attribute.
+| eGov-031 | IIP-IDP03 IIP-SP05 | Extended. Service Providers MUST NOT require the presence of the xsi.type XML attribute.
+|          | IIP-SP06 | Clarified. SPs MUST NOT fail or reject responses due to the presence of unrecognized <saml2:Attribute> elements.
+|          | IIP-SP07 | Clarified. SPs MUST NOT treat the FriendlyName attribute normatively or make comparisons based on its value.
+|          | IIP-SP08 | Added: <saml2p:AuthnRequest> without <saml2p:NameIDPolicy>, and with <saml2p:NameIDPolicy> but no Format attribute.
+| eGov-032 | IIP-SSO01| Clarified: regard Errata
+|          | IIP-SSO05| Added: consumption of peer configuration values from SAML metadata.
+|          | IIP-EXT01| Added: MUST successfully consume any and all well-formed extensions.
+| eGov-033 | IIP-SP09 | -
+|          | IIP-SP10 | Added: Process responses from any number of issuing IdPs for any given resource URL.
 | eGov-040 | IIP-SSO02| Added: HTTP-POST bindings for authentication requests.
-| eGov-021 | IIP-MD?? |
-| eGov-021 | IIP-MD?? |
-| eGov-021 | IIP-MD?? |
-| eGov-021 | IIP-MD?? |
-| eGov-021 | IIP-MD?? |
-| eGov-021 | IIP-MD?? |
-| eGov-021 | IIP-MD?? |
-| eGov-021 | IIP-MD?? |
-| eGov-021 | IIP-MD?? |
-| eGov-021 | IIP-MD?? |
-| eGov-021 | IIP-MD?? |
+| eGov-041 | IIP-SP08 IIP-SP11 | Removed. Interop does not mandate the support of following child elements of <saml2p:AuthnRequest>:
 
+* AssertionConsumerServiceURL
+* ProtocolBinding
+* ForceAuthn
+* IsPassive
+* AttributeConsumingServiceIndex
+
+(Support for <saml2p:RequestedAuthnContext> and <saml2p:NameIDPolicy> is still mandatory as in eGov.)
+
+| eGov-042 | IIP-IDP08, IIP-IDP09, IIP-IDP10 | Extended. MUST support ForceAuthn, IsPassive and RequestedAuthnContext.
+| eGov-043 | IIP-IDP10| -
+| eGov-044 | IIP-IDP08, IIP-IDP09, IIP-IDP10 | Removed. no support is mandated except ForceAuthn, IsPassive and RequestedAuthnContext.
+| eGov-045 |          | Removed. Interop has not explicit rule for the verification of requested AssertionConsumerServiceURL locations via comparison to metadata; however, it can be derived from [SAMLProf] 4.1.4.1 ("identity provider MUST ensure that any <AssertionConsumerServiceURL> or <AssertionConsumerServiceIndex> elements in the request are verified") and IIP-MD03.
+| eGov-050 | IIP-SSO03| Restricted. Interop requires support for HTTP-POST, but not for HTTP-Artifact binding for <saml2p:Response> messages.
+| eGov-052 |          | Removed requirement to support unsolicited <saml2p:Response> messages.
+| eGov-053 | IIP-IDP07| -
+| eGov-054 | IIP-SSO04| Extended. MUST support the signing of assertions and responses, both together and independently.
+| eGov-055 | IIP-IDP11, IIP-SP12 | -
+| eGov-061 |          | Removed requirement to support to set the limit of Assertion, AuthnStatement and AttributeStatement elements per Response to 1 each.
+| eGov-063 |          | Removed requirement to support the Consent attribute in <saml2p:Response> messages.
+| eGov-064 |          | Removed requirement to support the inclusion of a SessionIndex attribute in <saml2:AuthnStatement> elements.
+| eGov-065 |          | Removed requirement to support the SessionNotOnOrAfter attribute.
+| eGov-066 |          | Removed requirement to support acceptance/rejection of assertions based on the content of the <saml2:AuthnContext> element.
+| eGov-067 |          | Removed with eGov-066.
+| eGov-068 |          | Removed with eGov-066.
+| eGov-070 - 073 |    | Removed requirement to support  artifact binding.
+| eGov-074 |          | Removed requirement to support HoK SSO.
+| eGov-081 - 085 |    | Removed requirement to support SAML 2.0 Proxying.
+|          | IIP-SP13 | Added: Support for deep linking and direct addressability with WebSSO.
+|          | IIP-IDP13| Added: Support for the ECP profile.
+|          | IIP-IDP14| Added: Support for HTTP Basic Authentication.
+|          | IIP-IDP15| Added: Support for the generation and inclusion of a random key.
+|          | IIP-IDP16| Added: Support for  the consumption of peer configuration values from SAML metadata for ECP.
+| eGov-090 | IIP-IDP17| Extended. include Errata and Asynchronous SLO.
+| eGov-091 |          | Removed requirement to support SOAP binding for SLO.
+| eGov-092 | IIP-IDP18| Restricted. HTTP-Redirect binding is mandatory, but SOAP binding for SLO is optional in Interop.
+| eGov-093 |          | Removed. SOAP binding for SLO is optional in Interop.
+| eGov-094 |          | Removed requirement to support  signatures and TLS server authentication to authenticate <saml2p:LogoutRequest> messages.
+| eGov-095 | IIP-IDP19| Extended. Support multiple keys to allow rollover.
+| eGov-096 |          | Removed requirement to support  both local logout and SLO.
+| eGov-097 |          | Removed requirement to support  UI for scope of logout when using front-channel binding.
+| eGov-098 |          | Removed requirement to support UI for status information (e.g. partial logout indication).
+| eGov-099 |          | Removed requirement to support  both local logout and SLO.
+| eGov-100 |          | Removed requirement to support administrative initiation of SLO.
+| eGov-101 | IIP-IDP18| Restricted. HTTP-Redirect binding is mandatory, but SOAP binding for SLO is optional in Interop.
+| eGov-102 |          | Removed. SOAP binding for SLO is optional in Interop.
+| eGov-103 |          | Removed requirement to support signatures and TLS server authentication to authenticate <saml2p:LogoutRequest> messages.
+|          | IIP-IDP20| Added: Support for  the consumption of peer configuration values from SAML metadata for SLO.
+
+| eGov-110 | IIP-ALG02| Extended: Added support for rsa-sha1.
+| eGov-111 | IIP-ALG01| Extended: Added support for sha1.
+| eGov-112 | IIP-ALG03| -
+| eGov-113 |          | Removed tripledes-cbc.
+| eGov-114 | IIP-ALG04| Extended: Added Support for aes128-gcm.
+| eGov-115 | IIP-ALG04| Extended: Added Support for aes256-gcm.
+| eGov-116 |          | Removed rsa-1_5.
+| eGov-117 | IIP-ALG05| Extended. Added  rsa-oep.
+| eGov-118 |          | Removed requirement to support ECDH-ES
 
 |====================

@@ -5,6 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3">
+<meta name="author" content=".Abstract">
 <title>SAML V2.0 Implementation Profile for Federation Interoperability</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -420,51 +421,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <body class="article">
 <div id="header">
 <h1>SAML V2.0 Implementation Profile for Federation Interoperability</h1>
-<div id="toc" class="toc">
-<div id="toctitle">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#_introduction">1. Introduction</a>
-<ul class="sectlevel2">
-<li><a href="#_notation">1.1. Notation</a></li>
-</ul>
-</li>
-<li><a href="#_common_requirements">2. Common Requirements</a>
-<ul class="sectlevel2">
-<li><a href="#_metadata_and_trust_management">2.1. Metadata and Trust Management</a></li>
-<li><a href="#_general">2.2. General</a></li>
-<li><a href="#_web_browser_sso">2.3. Web Browser SSO</a></li>
-<li><a href="#_extensibility">2.4. Extensibility</a></li>
-<li><a href="#_cryptographic_algorithms">2.5. Cryptographic Algorithms</a></li>
-</ul>
-</li>
-<li><a href="#_service_provider_requirements">3. Service Provider Requirements</a>
-<ul class="sectlevel2">
-<li><a href="#_metadata_and_trust_management_2">3.1. Metadata and Trust Management</a></li>
-<li><a href="#_attributes">3.2. Attributes</a></li>
-<li><a href="#_web_browser_sso_2">3.3. Web Browser SSO</a></li>
-</ul>
-</li>
-<li><a href="#_identity_provider_requirements">4. Identity Provider Requirements</a>
-<ul class="sectlevel2">
-<li><a href="#_metadata_and_trust_management_3">4.1. Metadata and Trust Management</a></li>
-<li><a href="#_attributes_2">4.2. Attributes</a></li>
-<li><a href="#_web_browser_sso_3">4.3. Web Browser SSO</a></li>
-<li><a href="#_enhanced_client_or_proxy">4.4. Enhanced Client or Proxy</a></li>
-<li><a href="#_single_logout">4.5. Single Logout</a></li>
-</ul>
-</li>
-<li><a href="#_references">5. References</a></li>
-<li><a href="#_contributors">6. Contributors</a></li>
-</ul>
+<div class="details">
+<span id="author" class="author">.Abstract</span><br>
+<span id="revnumber">version ,</span>
+<span id="revdate">such as those found in the research and education sector. It attempts to address a number of common barriers to interoperability and details features that are necessary in order to use SAML metadata as a foundation for scalable trust fabrics.</span>
 </div>
 </div>
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph">
-<div class="title">Abstract</div>
-<p>This document encompasses a set of software conformance requirements intended to facilitate interoperability within the context of full mesh identity federations, such as those found in the research and education sector. It attempts to address a number of common barriers to interoperability and details features that are necessary in order to use SAML metadata as a foundation for scalable trust fabrics.</p>
-</div>
 <div class="paragraph">
 <div class="title">Status</div>
 <p>Awaiting Final Approval</p>
@@ -1240,10 +1205,748 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_differences_to_egovernment_implementation_profile_of_saml_v2_0">7. Differences to eGovernment Implementation Profile of SAML V2.0</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Implementation Profile for Federation Interoperability supercedes the older
+eGovernment Implementation Profile, which was not limited in its application to government agencies.
+This section provides an overview of the differences between the two profiles.
+The profiles will be abbreviated "Interop" and "eGov" respectively.</p>
+</div>
+<div class="sect2">
+<h3 id="_structure_and_general_approach">7.1. Structure and General Approach</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>The InteropProfile introduces a new layer in its outline for requirements that are
+related to IDPs, SPs or are common.</p>
+</li>
+<li>
+<p>The conformance classes have been dropped in favor of a single set of requirements.</p>
+</li>
+<li>
+<p>Requirements have been selected to be testable and related to the implementation perspective.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_requirement_mapping">7.2. Requirement Mapping</h3>
+<div class="paragraph">
+<p>The June 2010 version of the eGov profile was reformatted in a more formal way
+with a requirement identifiers for better reference as version 2.0bis. The following
+mapping table is using these identifiers.
+Requirements have been reworded in the Interop profile for better precision and to
+reflect lessons learned. This section is not going into the fine details, but tries
+to give a guide to the changes in general. Differences in optional ('MAY') requirements
+have not been listed.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. eGov to Interop profile mapping</caption>
+<colgroup>
+<col style="width: 8%;">
+<col style="width: 8%;">
+<col style="width: 83%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">RequID</th>
+<th class="tableblock halign-left valign-top">RequID</th>
+<th class="tableblock halign-left valign-top">Change in Interop profile</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-001</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-MD01</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Extended: MUST support Entity Attributes; Algorithm Support; Login and Discovery User Interface;</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-MD03</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Extended: MUST be capable of "configuration by metadata only".</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-002</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>No change. Implied by &lt;MetaIOP&gt; Section 2.6.1.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-003</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Extended. Interop requires mandatory support for &lt;ds:KeyValue&gt; elements; eGov was relaxed to require support for &lt;ds:X509Certificate&gt; only (Implied by &lt;MetaIOP&gt;).</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-004</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed. Path validation of signatures, TLS, and encryption credentials not mandatory in Interop</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-005</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed. Recommended support for PKIX not mandatory in Interop.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-006</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed. Support for OCSP and CRLs in Interop.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-008</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-MD01</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Entity Attributes and related policy controls. support changed from SHOULD to MUST.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-010</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed. (Support the generation or exportation of metadata).</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-011</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed. By inheritance from [MetaIOP] the publication of metadata at a well-know location is OPTIONAL</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-012</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed. Interop does not mandate to support the importation of metadata from a local file.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-013</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-MD04</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Modified. Dropped mandatory support for TLS; Added redirect support.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-014</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed. Support the use of more than one fixed location for the importation of metadata.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-015</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-MD02</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>-</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-016</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-MD04</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>-</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-017</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-MD05</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed. Interop does not limit signature verification to the metadata root element.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-MD05</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Extended. Key management for metadata signature verification.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-019</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed. Path-based certificate validation for metadata signatures.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-MD06</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Added: Processing requirements in the validUntil attribute in metadata root elements.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-MD07</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Added: Key rollover for singing keys.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-MD08</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Added: Key rollover for singing keys.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-MD09</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Added: Algorithm support in metadata.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-MD10</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Clarified. &lt;md:KeyDescriptor&gt; without use=".." is valid as both a signing and encryption key.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-MD11</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Clarified: only public key is relevant in a certificate.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-IDP01 IIP-SP01</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Added: SHOULD support SAML-MDQ.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-IDP02 IIP-SP02</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Added: SHOULD limit use of algorithms for XMLSig and XMLEnc to those declared in the peer&#8217;s metadata.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-SP03</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Clarification: Do not overload semantics of persistent Name Identifiers.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-IDP04</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Added: MUST include specific SAML attributes or values in a response based on the the entityID of the SP.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-IDP05</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Added: MUST include specific SAML attributes or values in a response based on &lt;mdattr:EntityAttributes&gt; elements.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-IDP06</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Added: MUST include specific SAML attributes or values in a response based on &lt;md:RequestedAttribute&gt; elements.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-021</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-G01</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>-</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-022</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-G01</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>-</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-G02</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Added: Handling of clock skew.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-G03</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Added: Minimal value range of type xs.string.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-030</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-IDP03 IIP-SP04</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Extended. Arbitrary xs.string value in the Name attribute and any arbitrary xs.anyURI value in the NameFormat attribute.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-031</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-IDP03 IIP-SP05</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Extended. Service Providers MUST NOT require the presence of the xsi.type XML attribute.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-SP06</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Clarified. SPs MUST NOT fail or reject responses due to the presence of unrecognized &lt;saml2:Attribute&gt; elements.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-SP07</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Clarified. SPs MUST NOT treat the FriendlyName attribute normatively or make comparisons based on its value.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-SP08</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Added: &lt;saml2p:AuthnRequest&gt; without &lt;saml2p:NameIDPolicy&gt;, and with &lt;saml2p:NameIDPolicy&gt; but no Format attribute.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-032</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-SSO01</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Clarified: regard Errata</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-SSO05</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Added: consumption of peer configuration values from SAML metadata.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-EXT01</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Added: MUST successfully consume any and all well-formed extensions.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-033</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-SP09</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>-</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-SP10</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Added: Process responses from any number of issuing IdPs for any given resource URL.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-040</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-SSO02</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Added: HTTP-POST bindings for authentication requests.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-041</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-SP08 IIP-SP11</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed. Interop does not mandate the support of following child elements of &lt;saml2p:AuthnRequest&gt;:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>AssertionConsumerServiceURL</p>
+</li>
+<li>
+<p>ProtocolBinding</p>
+</li>
+<li>
+<p>ForceAuthn</p>
+</li>
+<li>
+<p>IsPassive</p>
+</li>
+<li>
+<p>AttributeConsumingServiceIndex</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>(Support for &lt;saml2p:RequestedAuthnContext&gt; and &lt;saml2p:NameIDPolicy&gt; is still mandatory as in eGov.)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-042</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-IDP08, IIP-IDP09, IIP-IDP10</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Extended. MUST support ForceAuthn, IsPassive and RequestedAuthnContext.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-043</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-IDP10</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>-</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-044</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-IDP08, IIP-IDP09, IIP-IDP10</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed. no support is mandated except ForceAuthn, IsPassive and RequestedAuthnContext.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-045</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed. Interop has not explicit rule for the verification of requested AssertionConsumerServiceURL locations via comparison to metadata; however, it can be derived from [SAMLProf] 4.1.4.1 ("identity provider MUST ensure that any &lt;AssertionConsumerServiceURL&gt; or &lt;AssertionConsumerServiceIndex&gt; elements in the request are verified") and IIP-MD03.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-050</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-SSO03</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Restricted. Interop requires support for HTTP-POST, but not for HTTP-Artifact binding for &lt;saml2p:Response&gt; messages.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-052</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed requirement to support unsolicited &lt;saml2p:Response&gt; messages.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-053</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-IDP07</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>-</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-054</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-SSO04</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Extended. MUST support the signing of assertions and responses, both together and independently.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-055</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-IDP11, IIP-SP12</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>-</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-061</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed requirement to support to set the limit of Assertion, AuthnStatement and AttributeStatement elements per Response to 1 each.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-063</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed requirement to support the Consent attribute in &lt;saml2p:Response&gt; messages.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-064</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed requirement to support the inclusion of a SessionIndex attribute in &lt;saml2:AuthnStatement&gt; elements.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-065</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed requirement to support the SessionNotOnOrAfter attribute.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-066</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed requirement to support acceptance/rejection of assertions based on the content of the &lt;saml2:AuthnContext&gt; element.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-067</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed with eGov-066.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-068</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed with eGov-066.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-070 - 073</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed requirement to support  artifact binding.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-074</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed requirement to support HoK SSO.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-081 - 085</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed requirement to support SAML 2.0 Proxying.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-SP13</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Added: Support for deep linking and direct addressability with WebSSO.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-IDP13</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Added: Support for the ECP profile.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-IDP14</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Added: Support for HTTP Basic Authentication.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-IDP15</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Added: Support for the generation and inclusion of a random key.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-IDP16</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Added: Support for  the consumption of peer configuration values from SAML metadata for ECP.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-090</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-IDP17</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Extended. include Errata and Asynchronous SLO.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-091</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed requirement to support SOAP binding for SLO.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-092</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-IDP18</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Restricted. HTTP-Redirect binding is mandatory, but SOAP binding for SLO is optional in Interop.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-093</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed. SOAP binding for SLO is optional in Interop.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-094</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed requirement to support  signatures and TLS server authentication to authenticate &lt;saml2p:LogoutRequest&gt; messages.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-095</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-IDP19</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Extended. Support multiple keys to allow rollover.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-096</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed requirement to support  both local logout and SLO.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-097</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed requirement to support  UI for scope of logout when using front-channel binding.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-098</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed requirement to support UI for status information (e.g. partial logout indication).</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-099</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed requirement to support  both local logout and SLO.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-100</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed requirement to support administrative initiation of SLO.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-101</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-IDP18</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Restricted. HTTP-Redirect binding is mandatory, but SOAP binding for SLO is optional in Interop.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-102</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed. SOAP binding for SLO is optional in Interop.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-103</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed requirement to support signatures and TLS server authentication to authenticate &lt;saml2p:LogoutRequest&gt; messages.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-IDP20</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Added: Support for  the consumption of peer configuration values from SAML metadata for SLO.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-110</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-ALG02</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Extended: Added support for rsa-sha1.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-111</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-ALG01</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Extended: Added support for sha1.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-112</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-ALG03</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>-</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-113</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed tripledes-cbc.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-114</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-ALG04</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Extended: Added Support for aes128-gcm.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-115</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-ALG04</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Extended: Added Support for aes256-gcm.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-116</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed rsa-1_5.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-117</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IIP-ALG05</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Extended. Added  rsa-oep.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-118</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Removed requirement to support ECDH-ES</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-03-16 13:10:39 CET
+Version <br>
+Last updated 2016-03-19 15:44:12 CET
 </div>
 </div>
 </body>

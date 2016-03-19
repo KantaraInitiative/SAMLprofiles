@@ -1,7 +1,7 @@
 = SAML V2.0 Implementation Profile for Federation Interoperability
 :numbered:
 :toc:
-
+:toc!:
 .Abstract
 This document encompasses a set of software conformance requirements intended to facilitate interoperability within the context of full mesh identity federations, such as those found in the research and education sector. It attempts to address a number of common barriers to interoperability and details features that are necessary in order to use SAML metadata as a foundation for scalable trust fabrics.
 

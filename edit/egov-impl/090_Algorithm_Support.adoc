@@ -1,23 +1,23 @@
 
 ==== Signature and Encryption Algorithms
-Implementations MUST support the signature and digest algorithms identified by the following URIs in conjunction with the creation and verification of XML Signatures <<XMLSig>>:
 
-* ```http://www.w3.org/2001/04/xmldsig-more#rsa-sha256``` (defined in <<RFC4051>>)
-* ```http://www.w3.org/2001/04/xmlenc#sha256``` (defined in <<XMLEnc>>)
-Implementations SHOULD support the signature and digest algorithms identified by the following URIs in conjunction with the creation and verification of XML Signatures <<XMLSig>>:
-* ```http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256``` (defined in <<RFC4051>>)
+.Signature and Digest Algorithms for the Creation and Verification of XML Signatures
+[width="100%", cols="3,3,30", options="header"]
+|====================
+| RequID   | Line | Requirement
+| eGov-110 | 426  | MUST support ```http://www.w3.org/2001/04/xmldsig-more#rsa-sha256``` (defined in <<RFC4051>>)
+| eGov-111 | 428  | MUST support ```http://www.w3.org/2001/04/xmlenc#sha256``` (defined in <<XMLEnc>>)
+| eGov-112 | 432  | SHOULD support ```http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256``` (defined in <<RFC4051>>)
+|====================
 
-Implementations MUST support the block encryption algorithms identified by the following URIs in conjunction with the use of XML Encryption <<XMLEnc>>:
-
-* ```http://www.w3.org/2001/04/xmlenc#tripledes-cbc```
-* ```http://www.w3.org/2001/04/xmlenc#aes128-cbc```
-* ```http://www.w3.org/2001/04/xmlenc#aes256-cbc```
-
-Implementations MUST support the key transport algorithms identified by the following URIs in conjunction with the use of XML Encryption <<XMLEnc>>:
-
-* ```http://www.w3.org/2001/04/xmlenc#rsa-1_5```
-* ```http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p```
-
-Implementations SHOULD support the key agreement algorithms identified by the following URIs in conjunction with the use of XML Encryption <<XMLEnc>>:
-
-* ```http://www.w3.org/2009/xmlenc11#ECDH-ES``` (defined in <<XMLEnc11>>)
+.Block Encryption, Key Transport and Key Agreement Algorithms for the Creation and Verification of XML Encryption
+[width="100%", cols="3,3,30", options="header"]
+|====================
+| RequID   | Line | Requirement
+| eGov-113 | 436  | MUST support ```http://www.w3.org/2001/04/xmlenc#tripledes-cbc```
+| eGov-114 | 437  | MUST support ```http://www.w3.org/2001/04/xmlenc#aes128-cbc```
+| eGov-115 | 438  | MUST support ```http://www.w3.org/2001/04/xmlenc#aes256-cbc```
+| eGov-116 | 441  | MUST support ```http://www.w3.org/2001/04/xmlenc#rsa-1_5```
+| eGov-117 | 442  | MUST support ```http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p```
+| eGov-118 | 445  | SHOULD support ```http://www.w3.org/2009/xmlenc11#ECDH-ES``` (defined in <<XMLEnc11>>)
+|====================

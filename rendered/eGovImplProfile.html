@@ -1292,9 +1292,35 @@ The requirements of the profile are imposed on Identity Provider implementations
 </div>
 <div class="sect2">
 <h3 id="_single_logout">2.8. Single Logout</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 8%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
+<col style="width: 5%;">
+<col style="width: 73%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">RequID</th>
+<th class="tableblock halign-left valign-top">IDP</th>
+<th class="tableblock halign-left valign-top">SP</th>
+<th class="tableblock halign-left valign-top">Line</th>
+<th class="tableblock halign-left valign-top">Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-090</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">367</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This section defines an implementation profile of the SAML V2.0 Single Logout Profile <a href="#SAML2Prof">[SAML2Prof]</a>.</p></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
-<p>This section defines an implementation profile of the SAML V2.0 Single Logout Profile <a href="#SAML2Prof">[SAML2Prof]</a>.
-For clarification, the technical requirements for each message type below reflect the intent to normatively require initiation of logout by a Service Provider using either the front- or back-channel, and initiation/propagation of logout by an Identity Provider using the back-channel.</p>
+<p>For clarification, the technical requirements for each message type below reflect the intent to normatively require initiation of logout by a Service Provider using either the front- or back-channel, and initiation/propagation of logout by an Identity Provider using the back-channel.</p>
 </div>
 <div class="sect3">
 <h4 id="_logout_requests">2.8.1. Logout Requests</h4>
@@ -1318,35 +1344,35 @@ For clarification, the technical requirements for each message type below reflec
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-090</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-091</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">375</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Support the SAML SOAP (using HTTP as a transport) binding [SAML2Bind] for the issuance of &lt;saml2p:LogoutRequest&gt; messages.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-091</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-092</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">377</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Support the SAML SOAP (using HTTP as a transport) and HTTP-Redirect bindings [SAML2Bind] for the reception of &lt;saml2p:LogoutRequest&gt; messages.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-092</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-093</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">380</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Support the SAML SOAP (using HTTP as a transport) binding [SAML2Bind] for both issuance and reception of &lt;saml2p:LogoutRequest&gt; messages.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-093</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-094</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">384</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Support the use of SAML message signatures and TLS server authentication to authenticate &lt;saml2p:LogoutRequest&gt; messages.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-094</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-095</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">388</p></td>
@@ -1365,11 +1391,11 @@ For clarification, the technical requirements for each message type below reflec
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">eGOV-095</th>
-<th class="tableblock halign-left valign-top">MUST</th>
-<th class="tableblock halign-left valign-top">MUST</th>
-<th class="tableblock halign-left valign-top">392</th>
-<th class="tableblock halign-left valign-top">Support both user-initiated termination of the local session only and user-initiated Single Logout.</th>
+<th class="tableblock halign-left valign-top">RequID</th>
+<th class="tableblock halign-left valign-top">IDP</th>
+<th class="tableblock halign-left valign-top">SP</th>
+<th class="tableblock halign-left valign-top">Line</th>
+<th class="tableblock halign-left valign-top">Requirement</th>
 </tr>
 </thead>
 <tbody>
@@ -1377,18 +1403,32 @@ For clarification, the technical requirements for each message type below reflec
 <td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-096</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">393</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Upon receipt of a &lt;saml2p:LogoutRequest&gt; message via a front-channel binding, support user intervention governing the choice of propagatin logout to other Service Providers, or limiting the operation to the Identity Provider. Of course, implementations MUST return status information to the requesting entity (e.g. partial logout indication) as appropriate.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">392</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Support both user-initiated termination of the local session only and user-initiated Single Logout.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-097</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">393</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Upon receipt of a &lt;saml2p:LogoutRequest&gt; message via a front-channel binding, support user intervention governing the choice of propagating logout to other Service Providers, or limiting the operation to the Identity Provider.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-098</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">393</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Return status information to the requesting entity (e.g. partial logout indication) as appropriate when using front-channel binding.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-099</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">399</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Support both user-initiated termination of the local session only and user-initiated Single Logout.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-097</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-100</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">399</p></td>
@@ -1419,21 +1459,21 @@ For clarification, the technical requirements for each message type below reflec
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-100</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-101</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">405</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Support the SAML SOAP (using HTTP as a transport) and HTTP-Redirect bindings [SAML2Bind] for the issuance of &lt;saml2p:LogoutResponse&gt; messages.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-101</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-102</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">407</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Support the SAML SOAP (using HTTP as a transport) binding [SAML2Bind] for the reception of &lt;saml2p:LogoutResponse&gt; messages.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-102</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGOV-103</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MUST</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">414</p></td>
@@ -1455,62 +1495,85 @@ For clarification, the technical requirements for each message type below reflec
 </div>
 <div class="sect3">
 <h4 id="_signature_and_encryption_algorithms">3.1.1. Signature and Encryption Algorithms</h4>
-<div class="paragraph">
-<p>Implementations MUST support the signature and digest algorithms identified by the following URIs in conjunction with the creation and verification of XML Signatures <a href="#XMLSig">[XMLSig]</a>:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code><code><a href="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256" class="bare">http://www.w3.org/2001/04/xmldsig-more#rsa-sha256</a></code></code> (defined in <a href="#RFC4051">[RFC4051]</a>)</p>
-</li>
-<li>
-<p><code><code><a href="http://www.w3.org/2001/04/xmlenc#sha256" class="bare">http://www.w3.org/2001/04/xmlenc#sha256</a></code></code> (defined in <a href="#XMLEnc">[XMLEnc]</a>)
-Implementations SHOULD support the signature and digest algorithms identified by the following URIs in conjunction with the creation and verification of XML Signatures <a href="#XMLSig">[XMLSig]</a>:</p>
-</li>
-<li>
-<p><code><code><a href="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256" class="bare">http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256</a></code></code> (defined in <a href="#RFC4051">[RFC4051]</a>)</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Implementations MUST support the block encryption algorithms identified by the following URIs in conjunction with the use of XML Encryption <a href="#XMLEnc">[XMLEnc]</a>:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code><code><a href="http://www.w3.org/2001/04/xmlenc#tripledes-cbc" class="bare">http://www.w3.org/2001/04/xmlenc#tripledes-cbc</a></code></code></p>
-</li>
-<li>
-<p><code><code><a href="http://www.w3.org/2001/04/xmlenc#aes128-cbc" class="bare">http://www.w3.org/2001/04/xmlenc#aes128-cbc</a></code></code></p>
-</li>
-<li>
-<p><code><code><a href="http://www.w3.org/2001/04/xmlenc#aes256-cbc" class="bare">http://www.w3.org/2001/04/xmlenc#aes256-cbc</a></code></code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Implementations MUST support the key transport algorithms identified by the following URIs in conjunction with the use of XML Encryption <a href="#XMLEnc">[XMLEnc]</a>:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code><code><a href="http://www.w3.org/2001/04/xmlenc#rsa-1_5" class="bare">http://www.w3.org/2001/04/xmlenc#rsa-1_5</a></code></code></p>
-</li>
-<li>
-<p><code><code><a href="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p" class="bare">http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p</a></code></code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Implementations SHOULD support the key agreement algorithms identified by the following URIs in conjunction with the use of XML Encryption <a href="#XMLEnc">[XMLEnc]</a>:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code><code><a href="http://www.w3.org/2009/xmlenc11#ECDH-ES" class="bare">http://www.w3.org/2009/xmlenc11#ECDH-ES</a></code></code> (defined in <a href="#XMLEnc11">[XMLEnc11]</a>)</p>
-</li>
-</ul>
-</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 16. Signature and Digest Algorithms for the Creation and Verification of XML Signatures</caption>
+<colgroup>
+<col style="width: 8%;">
+<col style="width: 8%;">
+<col style="width: 83%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">RequID</th>
+<th class="tableblock halign-left valign-top">Line</th>
+<th class="tableblock halign-left valign-top">Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-110</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">426</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support <code><code><a href="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256" class="bare">http://www.w3.org/2001/04/xmldsig-more#rsa-sha256</a></code></code> (defined in <a href="#RFC4051">[RFC4051]</a>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-111</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">428</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support <code><code><a href="http://www.w3.org/2001/04/xmlenc#sha256" class="bare">http://www.w3.org/2001/04/xmlenc#sha256</a></code></code> (defined in <a href="#XMLEnc">[XMLEnc]</a>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-112</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">432</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHOULD support <code><code><a href="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256" class="bare">http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256</a></code></code> (defined in <a href="#RFC4051">[RFC4051]</a>)</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 17. Block Encryption, Key Transport and Key Agreement Algorithms for the Creation and Verification of XML Encryption</caption>
+<colgroup>
+<col style="width: 8%;">
+<col style="width: 8%;">
+<col style="width: 83%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">RequID</th>
+<th class="tableblock halign-left valign-top">Line</th>
+<th class="tableblock halign-left valign-top">Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-113</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">436</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support <code><code><a href="http://www.w3.org/2001/04/xmlenc#tripledes-cbc" class="bare">http://www.w3.org/2001/04/xmlenc#tripledes-cbc</a></code></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-114</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">437</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support <code><code><a href="http://www.w3.org/2001/04/xmlenc#aes128-cbc" class="bare">http://www.w3.org/2001/04/xmlenc#aes128-cbc</a></code></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-115</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">438</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support <code><code><a href="http://www.w3.org/2001/04/xmlenc#aes256-cbc" class="bare">http://www.w3.org/2001/04/xmlenc#aes256-cbc</a></code></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-116</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">441</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support <code><code><a href="http://www.w3.org/2001/04/xmlenc#rsa-1_5" class="bare">http://www.w3.org/2001/04/xmlenc#rsa-1_5</a></code></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-117</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">442</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUST support <code><code><a href="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p" class="bare">http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p</a></code></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eGov-118</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">445</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHOULD support <code><code><a href="http://www.w3.org/2009/xmlenc11#ECDH-ES" class="bare">http://www.w3.org/2009/xmlenc11#ECDH-ES</a></code></code> (defined in <a href="#XMLEnc11">[XMLEnc11]</a>)</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect2">
