@@ -38,7 +38,7 @@ have not been listed.
 | eGov-014 |          | Removed. Support the use of more than one fixed location for the importation of metadata.
 | eGov-015 | IIP-MD02 | -
 | eGov-016 | IIP-MD04 | -
-| eGov-017 | IIP-MD05 | Removed. Interop does not limit signature verification to the metadata root element.
+| eGov-017 | IIP-MD05 | [yellow-background]#Removed. Interop does not limit signature verification to the metadata root element.#
 | eGov-018 | IIP-MD05 | Extended. Key management for metadata signature verification.
 | eGov-019 |          | Removed. Path-based certificate validation for metadata signatures.
 |          | IIP-MD06 | Added: Processing requirements in the validUntil attribute in metadata root elements.
@@ -81,7 +81,7 @@ have not been listed.
 | eGov-042 | IIP-IDP08, IIP-IDP09, IIP-IDP10 | Extended. MUST support ForceAuthn, IsPassive and RequestedAuthnContext.
 | eGov-043 | IIP-IDP10| -
 | eGov-044 | IIP-IDP08, IIP-IDP09, IIP-IDP10 | Removed. no support is mandated except ForceAuthn, IsPassive and RequestedAuthnContext.
-| eGov-045 |          | Removed. Interop has not explicit rule for the verification of requested AssertionConsumerServiceURL locations via comparison to metadata; however, it can be derived from [SAMLProf] 4.1.4.1 ("identity provider MUST ensure that any <AssertionConsumerServiceURL> or <AssertionConsumerServiceIndex> elements in the request are verified") and IIP-MD03.
+| eGov-045 |          | [yellow-background]# Removed explicit rule for the verification of requested AssertionConsumerServiceURL locations via comparison to metadata; however, it can be derived from [SAMLProf] 4.1.4.1 ("identity provider MUST ensure that any <AssertionConsumerServiceURL> or <AssertionConsumerServiceIndex> elements in the request are verified") and IIP-MD03.#
 | eGov-050 | IIP-SSO03| Restricted. Interop requires support for HTTP-POST, but not for HTTP-Artifact binding for <saml2p:Response> messages.
 | eGov-052 |          | Removed requirement to support unsolicited <saml2p:Response> messages.
 | eGov-053 | IIP-IDP07| -
@@ -90,11 +90,11 @@ have not been listed.
 | eGov-061 |          | Removed requirement to support to set the limit of Assertion, AuthnStatement and AttributeStatement elements per Response to 1 each.
 | eGov-063 |          | Removed requirement to support the Consent attribute in <saml2p:Response> messages.
 | eGov-064 |          | Removed requirement to support the inclusion of a SessionIndex attribute in <saml2:AuthnStatement> elements.
-| eGov-065 |          | Removed requirement to support the SessionNotOnOrAfter attribute.
-| eGov-066 |          | Removed requirement to support acceptance/rejection of assertions based on the content of the <saml2:AuthnContext> element.
+| eGov-065 |          | [yellow-background]#Removed requirement to support the SessionNotOnOrAfter attribute.#
+| eGov-066 |          | [yellow-background]#Removed requirement to support acceptance/rejection of assertions based on the content of the <saml2:AuthnContext> element.#
 | eGov-067 |          | Removed with eGov-066.
 | eGov-068 |          | Removed with eGov-066.
-| eGov-070 - 073 |    | Removed requirement to support  artifact binding.
+| eGov-070 - 073 |    | Removed requirement to support artifact binding.
 | eGov-074 |          | Removed requirement to support HoK SSO.
 | eGov-081 - 085 |    | Removed requirement to support SAML 2.0 Proxying.
 |          | IIP-SP13 | Added: Support for deep linking and direct addressability with WebSSO.
@@ -106,20 +106,20 @@ have not been listed.
 | eGov-091 |          | Removed requirement to support SOAP binding for SLO.
 | eGov-092 | IIP-IDP18| Restricted. HTTP-Redirect binding is mandatory, but SOAP binding for SLO is optional in Interop.
 | eGov-093 |          | Removed. SOAP binding for SLO is optional in Interop.
-| eGov-094 |          | Removed requirement to support  signatures and TLS server authentication to authenticate <saml2p:LogoutRequest> messages.
+| eGov-094 |          | [yellow-background]#Removed requirement to support signatures and TLS server authentication to authenticate <saml2p:LogoutRequest> messages.#
 | eGov-095 | IIP-IDP19| Extended. Support multiple keys to allow rollover.
 | eGov-096 |          | Removed requirement to support  both local logout and SLO.
 | eGov-097 |          | Removed requirement to support  UI for scope of logout when using front-channel binding.
-| eGov-098 |          | Removed requirement to support UI for status information (e.g. partial logout indication).
+| eGov-098 |          | [yellow-background]#Removed requirement to support UI for status information (e.g. partial logout indication).#
 | eGov-099 |          | Removed requirement to support  both local logout and SLO.
 | eGov-100 |          | Removed requirement to support administrative initiation of SLO.
 | eGov-101 | IIP-IDP18| Restricted. HTTP-Redirect binding is mandatory, but SOAP binding for SLO is optional in Interop.
 | eGov-102 |          | Removed. SOAP binding for SLO is optional in Interop.
-| eGov-103 |          | Removed requirement to support signatures and TLS server authentication to authenticate <saml2p:LogoutRequest> messages.
+| eGov-103 |          | [yellow-background]#Removed requirement to support signatures and TLS server authentication to authenticate <saml2p:LogoutRequest> messages.#
 |          | IIP-IDP20| Added: Support for  the consumption of peer configuration values from SAML metadata for SLO.
 
-| eGov-110 | IIP-ALG02| Extended: Added support for rsa-sha1.
-| eGov-111 | IIP-ALG01| Extended: Added support for sha1.
+| eGov-110 | IIP-ALG02| [yellow-background]#Extended: Added support for rsa-sha1.#
+| eGov-111 | IIP-ALG01| [yellow-background]#Extended: Added support for sha1.#
 | eGov-112 | IIP-ALG03| -
 | eGov-113 |          | Removed tripledes-cbc.
 | eGov-114 | IIP-ALG04| Extended: Added Support for aes128-gcm.
