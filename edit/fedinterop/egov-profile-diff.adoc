@@ -1,6 +1,6 @@
 == Differences to eGovernment Implementation Profile of SAML V2.0
-The Implementation Profile for Federation Interoperability supercedes the older
-eGovernment Implementation Profile, which was not limited in its application to government agencies.
+The Implementation Profile for Federation Interoperability (this document) supercedes the older
+link:eGovImplProfile.html[eGovernment Implementation Profile]. 
 This section provides an overview of the differences between the two profiles.
 The profiles will be abbreviated "Interop" and "eGov" respectively.
 
