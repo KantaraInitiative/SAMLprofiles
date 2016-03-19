@@ -18,6 +18,7 @@ For clarification, the technical requirements for each message type below reflec
 .User Interface Behavior
 [width="100%", cols="3,2,2,2,25", options="header"]
 |====================
+| RequID   |  IDP  | SP   | Line | Requirement
 | eGOV-095 |  MUST | MUST | 392  | Support both user-initiated termination of the local session only and user-initiated Single Logout.
 | eGOV-096 |  MUST |      | 393  | Upon receipt of a <saml2p:LogoutRequest> message via a front-channel binding, support user intervention governing the choice of propagatin logout to other Service Providers, or limiting the operation to the Identity Provider. Of course, implementations MUST return status information to the requesting entity (e.g. partial logout indication) as appropriate.
 | eGOV-097 |       | MUST | 399  | Support both user-initiated termination of the local session only and user-initiated Single Logout.
