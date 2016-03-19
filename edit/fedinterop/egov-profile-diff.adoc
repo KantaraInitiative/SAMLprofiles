@@ -1,30 +1,30 @@
 == Differences to eGovernment Implementation Profile of SAML V2.0
-The Implementation Profile for Federation Interoperability (this document) supercedes the older
-link:eGovImplProfile.html[eGovernment Implementation Profile]. 
-This section provides an overview of the differences between the two profiles.
+This document supercedes the older link:eGovImplProfile.html[eGovernment Implementation Profile V2.0bis].
+This section summarizes the differences between the two profiles.
+
 The profiles will be abbreviated "Interop" and "eGov" respectively.
 
 === Structure and General Approach
-- The InteropProfile introduces a new layer in its outline for requirements that are
+- The Interop Profile introduces a new layer in its outline for requirements that are
 related to IDPs, SPs or are common.
 - The conformance classes have been dropped in favor of a single set of requirements.
 - Requirements have been selected to be testable and related to the implementation perspective.
 
 === Requirement Mapping
-The June 2010 version of the eGov profile was reformatted in a more formal way
-with a requirement identifiers for better reference as version 2.0bis. The following
-mapping table is using these identifiers.
+The June 2010 version 2.0 of the eGov profile was reformatted in a more formal way
+with requirement identifiers for better reference, and is published as version 2.0bis.
+The following mapping table is using these identifiers.
 Requirements have been reworded in the Interop profile for better precision and to
 reflect lessons learned. This section is not going into the fine details, but tries
-to give a guide to the changes in general. Differences in optional ('MAY') requirements
-have not been listed.
+to give a guide to the changes in general. Only MUST and SHOULD requirements
+have not been included.
 
-.eGov to Interop profile mapping
+.eGov to Interop Profile Mapping
 [width="100%", cols="3,3,30a", options="header"]
 |====================
 | RequID   | RequID   | Change in Interop profile
 | eGov-001 | IIP-MD01 | Extended: MUST support Entity Attributes; Algorithm Support; Login and Discovery User Interface;
-|          | IIP-MD03 | Extended: MUST be capable of "configuration by metadata only".
+|          | IIP-MD03 | Added: MUST be capable of "configuration by metadata only".
 | eGov-002 |          | No change. Implied by <MetaIOP> Section 2.6.1.
 | eGov-003 |          | Extended. Interop requires mandatory support for <ds:KeyValue> elements; eGov was relaxed to require support for <ds:X509Certificate> only (Implied by <MetaIOP>).
 | eGov-004 |          | Removed. Path validation of signatures, TLS, and encryption credentials not mandatory in Interop

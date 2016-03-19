@@ -5,7 +5,6 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3">
-<meta name="author" content=".Abstract">
 <title>SAML V2.0 Implementation Profile for Federation Interoperability</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -421,18 +420,60 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <body class="article">
 <div id="header">
 <h1>SAML V2.0 Implementation Profile for Federation Interoperability</h1>
-<div class="details">
-<span id="author" class="author">.Abstract</span><br>
-<span id="revnumber">version ,</span>
-<span id="revdate">such as those found in the research and education sector. It attempts to address a number of common barriers to interoperability and details features that are necessary in order to use SAML metadata as a foundation for scalable trust fabrics.</span>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_introduction">1. Introduction</a>
+<ul class="sectlevel2">
+<li><a href="#_notation">1.1. Notation</a></li>
+</ul>
+</li>
+<li><a href="#_common_requirements">2. Common Requirements</a>
+<ul class="sectlevel2">
+<li><a href="#_metadata_and_trust_management">2.1. Metadata and Trust Management</a></li>
+<li><a href="#_general">2.2. General</a></li>
+<li><a href="#_web_browser_sso">2.3. Web Browser SSO</a></li>
+<li><a href="#_extensibility">2.4. Extensibility</a></li>
+<li><a href="#_cryptographic_algorithms">2.5. Cryptographic Algorithms</a></li>
+</ul>
+</li>
+<li><a href="#_service_provider_requirements">3. Service Provider Requirements</a>
+<ul class="sectlevel2">
+<li><a href="#_metadata_and_trust_management_2">3.1. Metadata and Trust Management</a></li>
+<li><a href="#_attributes">3.2. Attributes</a></li>
+<li><a href="#_web_browser_sso_2">3.3. Web Browser SSO</a></li>
+</ul>
+</li>
+<li><a href="#_identity_provider_requirements">4. Identity Provider Requirements</a>
+<ul class="sectlevel2">
+<li><a href="#_metadata_and_trust_management_3">4.1. Metadata and Trust Management</a></li>
+<li><a href="#_attributes_2">4.2. Attributes</a></li>
+<li><a href="#_web_browser_sso_3">4.3. Web Browser SSO</a></li>
+<li><a href="#_enhanced_client_or_proxy">4.4. Enhanced Client or Proxy</a></li>
+<li><a href="#_single_logout">4.5. Single Logout</a></li>
+</ul>
+</li>
+<li><a href="#_references">5. References</a></li>
+<li><a href="#_contributors">6. Contributors</a></li>
+<li><a href="#_differences_to_egovernment_implementation_profile_of_saml_v2_0">7. Differences to eGovernment Implementation Profile of SAML V2.0</a>
+<ul class="sectlevel2">
+<li><a href="#_structure_and_general_approach">7.1. Structure and General Approach</a></li>
+<li><a href="#_requirement_mapping">7.2. Requirement Mapping</a></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
+<div class="title">Abstract</div>
+<p>This document encompasses a set of software conformance requirements intended to facilitate interoperability within the context of full mesh identity federations, such as those found in the research and education sector. It attempts to address a number of common barriers to interoperability and details features that are necessary in order to use SAML metadata as a foundation for scalable trust fabrics.</p>
+</div>
+<div class="paragraph">
 <div class="title">Status</div>
-<p>Awaiting Final Approval</p>
+<p>In transition from InCommon FI-WG to Kantara FI-WG</p>
 </div>
 </div>
 </div>
@@ -1209,17 +1250,18 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 <h2 id="_differences_to_egovernment_implementation_profile_of_saml_v2_0">7. Differences to eGovernment Implementation Profile of SAML V2.0</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Implementation Profile for Federation Interoperability (this document) supercedes the older
-<a href="eGovImplProfile.html">eGovernment Implementation Profile</a>.
-This section provides an overview of the differences between the two profiles.
-The profiles will be abbreviated "Interop" and "eGov" respectively.</p>
+<p>This document supercedes the older <a href="eGovImplProfile.html">eGovernment Implementation Profile V2.0bis</a>.
+This section summarizes the differences between the two profiles.</p>
+</div>
+<div class="paragraph">
+<p>The profiles will be abbreviated "Interop" and "eGov" respectively.</p>
 </div>
 <div class="sect2">
 <h3 id="_structure_and_general_approach">7.1. Structure and General Approach</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>The InteropProfile introduces a new layer in its outline for requirements that are
+<p>The Interop Profile introduces a new layer in its outline for requirements that are
 related to IDPs, SPs or are common.</p>
 </li>
 <li>
@@ -1234,16 +1276,16 @@ related to IDPs, SPs or are common.</p>
 <div class="sect2">
 <h3 id="_requirement_mapping">7.2. Requirement Mapping</h3>
 <div class="paragraph">
-<p>The June 2010 version of the eGov profile was reformatted in a more formal way
-with a requirement identifiers for better reference as version 2.0bis. The following
-mapping table is using these identifiers.
+<p>The June 2010 version 2.0 of the eGov profile was reformatted in a more formal way
+with requirement identifiers for better reference, and is published as version 2.0bis.
+The following mapping table is using these identifiers.
 Requirements have been reworded in the Interop profile for better precision and to
 reflect lessons learned. This section is not going into the fine details, but tries
-to give a guide to the changes in general. Differences in optional ('MAY') requirements
-have not been listed.</p>
+to give a guide to the changes in general. Only MUST and SHOULD requirements
+have not been included.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1. eGov to Interop profile mapping</caption>
+<caption class="title">Table 1. eGov to Interop Profile Mapping</caption>
 <colgroup>
 <col style="width: 8%;">
 <col style="width: 8%;">
@@ -1268,7 +1310,7 @@ have not been listed.</p>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">IIP-MD03</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Extended: MUST be capable of "configuration by metadata only".</p>
+<p>Added: MUST be capable of "configuration by metadata only".</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1945,8 +1987,7 @@ have not been listed.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version <br>
-Last updated 2016-03-19 15:44:12 CET
+Last updated 2016-03-19 17:31:25 CET
 </div>
 </div>
 </body>
