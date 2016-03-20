@@ -1,30 +1,30 @@
 === Cryptographic Algorithms
 
-[IIP-ALG01]:: Implementations MUST support the digest algorithms identified by the following URIs in conjunction with the creation and verification of XML Signatures <<XMLSig>>:
+[[IIP-ALG01]] [IIP-ALG01]:: Implementations MUST support the digest algorithms identified by the following URIs in conjunction with the creation and verification of XML Signatures <<XMLSig>>:
 
 * ```http://www.w3.org/2001/04/xmlenc#sha256``` <<XMLEnc>>
 * ```http://www.w3.org/2000/09/xmldsig#sha1``` <<XMLSig>>
 
-[IIP-ALG02]:: Implementations MUST support the signing algorithms identified by the following URIs in conjunction with the creation and verification of XML Signatures <<XMLSig>>:
+[[IIP-ALG02]] [IIP-ALG02]:: Implementations MUST support the signing algorithms identified by the following URIs in conjunction with the creation and verification of XML Signatures <<XMLSig>>:
 
 * ```http://www.w3.org/2001/04/xmldsig-more#rsa-sha256``` <<RFC4051>>
 * ```http://www.w3.org/2000/09/xmldsig#rsa-sha1``` <<XMLSig>>
 
-[IIP-ALG03]:: Implementations SHOULD support the signature algorithms identified by the following URIs in conjunction with the creation and verification of XML Signatures <<XMLSig>>:
+[[IIP-ALG03]] [IIP-ALG03]:: Implementations SHOULD support the signature algorithms identified by the following URIs in conjunction with the creation and verification of XML Signatures <<XMLSig>>:
 
 * ```http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256``` <<RFC4051>>
 
-[IIP-ALG04]:: Implementations MUST support the block encryption algorithms identified by the following URIs in conjunction with the use of XML Encryption <<XMLEnc>>:
+[[IIP-ALG04]] [IIP-ALG04]:: Implementations MUST support the block encryption algorithms identified by the following URIs in conjunction with the use of XML Encryption <<XMLEnc>>:
 
 * ```http://www.w3.org/2001/04/xmlenc#aes128-cbc``` <<XMLEnc>>
 * ```http://www.w3.org/2001/04/xmlenc#aes256-cbc``` <<XMLEnc>>
 * ```http://www.w3.org/2009/xmlenc11#aes128-gcm``` <<XMLEnc11>>
 * ```http://www.w3.org/2009/xmlenc11#aes256-gcm``` <<XMLEnc11>>
 
-[IIP-ALG05]:: Implementations MUST support the key transport algorithms identified by the following URIs in conjunction with the use of XML Encryption <<XMLEnc>>:
+[[IIP-ALG05]] [IIP-ALG05]:: Implementations MUST support the key transport algorithms identified by the following URIs in conjunction with the use of XML Encryption <<XMLEnc>>:
 
 * ```http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p``` <<XMLEnc>>
-* ```http://www.w3.org/2009/xmlenc11#rsa-oaep``` <<XMLEnc11>> + 
+* ```http://www.w3.org/2009/xmlenc11#rsa-oaep``` <<XMLEnc11>> +
  +
 The following DigestMethod algorithms MUST be supported for both of the above key transport algorithms:
 * ```http://www.w3.org/2001/04/xmlenc#sha256```
@@ -33,4 +33,4 @@ The following DigestMethod algorithms MUST be supported for both of the above ke
 The default mask generation function (MGF1 with SHA1) MUST be supported for the KeyTransport algorithm identified by ```http://www.w3.org/2009/xmlenc11#rsa-oaep```.
 
 
-[IIP-ALG06]:: This document is not normative with respect to TLS security. It is, however, RECOMMENDED that implementers consider <<RFC7457>> and current best practice reflected in documents such as <<BetterCrypto>>.
+[[IIP-ALG06]] [IIP-ALG06]:: This document is not normative with respect to TLS security. It is, however, RECOMMENDED that implementers consider <<RFC7457>> and current best practice reflected in documents such as <<BetterCrypto>>.

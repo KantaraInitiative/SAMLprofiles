@@ -1,14 +1,14 @@
 === Web Browser SSO
 
-[IIP-SSO01]:: Implementations MUST support the SAML V2.0 Web Browser SSO Profile as defined in <<SAML2Prof>> and as updated by <<SAML2Errata>>.
+[[IIP-SSO01]] [IIP-SSO01]:: Implementations MUST support the SAML V2.0 Web Browser SSO Profile as defined in <<SAML2Prof>> and as updated by <<SAML2Errata>>.
 
-[IIP-SSO02]:: Implementations MUST support the HTTP-Redirect and HTTP-POST bindings for authentication requests.
+[[IIP-SSO02]] [IIP-SSO02]:: Implementations MUST support the HTTP-Redirect and HTTP-POST bindings for authentication requests.
 
-[IIP-SSO03]:: Implementations MUST support the HTTP-POST binding for authentication and error responses.
+[[IIP-SSO03]] [IIP-SSO03]:: Implementations MUST support the HTTP-POST binding for authentication and error responses.
 
-[IIP-SSO04]:: Implementations MUST support the signing of assertions and responses, both together and independently.
+[[IIP-SSO04]] [IIP-SSO04]:: Implementations MUST support the signing of assertions and responses, both together and independently.
 
-[IIP-SSO05]:: Implementations MUST support the consumption of peer configuration values from SAML metadata, without additional inputs or separate configuration, for any metadata element that: (a) is identified as "MUST" or "MAY" in the "Use of Metadata" section for the Web Browser SSO Profile in <<SAML2Prof>> (section 4.1.6), and (b) corresponds to settings supported by the implementation.
+[[IIP-SSO05]] [IIP-SSO05]:: Implementations MUST support the consumption of peer configuration values from SAML metadata, without additional inputs or separate configuration, for any metadata element that: (a) is identified as "MUST" or "MAY" in the "Use of Metadata" section for the Web Browser SSO Profile in <<SAML2Prof>> (section 4.1.6), and (b) corresponds to settings supported by the implementation.
 
 _Note that the above requires that most metadata elements identified in <<SAML2Prof>> section 4.1.6 must be configurable via SAML metadata. It only applies, however, to functionality that is supported in a given implementation. For example, if an implementation allows a deployer to control AttributeProfile configuration values, that implementation MUST support the configuration of these values via the_ `<md:AttributeProfile>` _element. This requirement by itself does not necessitate attribute profile support._
 

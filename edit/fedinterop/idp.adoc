@@ -2,54 +2,54 @@
 
 === Metadata and Trust Management
 
-[IIP-IDP01]:: Identity Providers MUST support the acquisition of SAML metadata rooted in `<md:EntityDescriptor>` elements via the Metadata Query Protocol, defined in <<SAML-MDQ>> and <<MDQ>>.
+[[IIP-IDP01]] [IIP-IDP01]:: Identity Providers MUST support the acquisition of SAML metadata rooted in `<md:EntityDescriptor>` elements via the Metadata Query Protocol, defined in <<SAML-MDQ>> and <<MDQ>>.
 
-[IIP-IDP02]:: If a SAML peer has declared algorithm support according to <<SAML2MetaAlgSup>> in its EntityDescriptor, Identity Providers MUST limit the use of algorithms for XML Signature and Encryption to these declared algorithms in the messages they produce for that peer.
+[[IIP-IDP02]] [IIP-IDP02]:: If a SAML peer has declared algorithm support according to <<SAML2MetaAlgSup>> in its EntityDescriptor, Identity Providers MUST limit the use of algorithms for XML Signature and Encryption to these declared algorithms in the messages they produce for that peer.
 
 === Attributes
 
-[IIP-IDP03]:: Identity Providers MUST support the generation of `<saml2:Attribute>` elements containing any arbitrary **xs:string** value in the `Name` attribute and any arbitrary **xs:anyURI** value in the `NameFormat` attribute.
+[[IIP-IDP03]] [IIP-IDP03]:: Identity Providers MUST support the generation of `<saml2:Attribute>` elements containing any arbitrary **xs:string** value in the `Name` attribute and any arbitrary **xs:anyURI** value in the `NameFormat` attribute.
 
-[IIP-IDP04]:: Identity Providers MUST be capable of determining whether or not to include specific SAML attributes (or specific values) in a response based on the the entityID of the relying party.
+[[IIP-IDP04]] [IIP-IDP04]:: Identity Providers MUST be capable of determining whether or not to include specific SAML attributes (or specific values) in a response based on the the entityID of the relying party.
 
-[IIP-IDP05]:: Identity Providers MUST be capable of determining whether or not to include specific SAML attributes (or specific values) in a response based on the presence of `<mdattr:EntityAttributes>` extension elements <<MetaAttr>> found in the metadata for a relying party.
+[[IIP-IDP05]] [IIP-IDP05]:: Identity Providers MUST be capable of determining whether or not to include specific SAML attributes (or specific values) in a response based on the presence of `<mdattr:EntityAttributes>` extension elements <<MetaAttr>> found in the metadata for a relying party.
 
-[IIP-IDP06]:: Identity Providers MUST be capable of determining whether or not to include specific SAML attributes (or specific values) in a response based on the presence of `<md:RequestedAttribute>` elements found in the metadata for a relying party, including the value of the enclosed `isRequired` XML attribute.
+[[IIP-IDP06]] [IIP-IDP06]:: Identity Providers MUST be capable of determining whether or not to include specific SAML attributes (or specific values) in a response based on the presence of `<md:RequestedAttribute>` elements found in the metadata for a relying party, including the value of the enclosed `isRequired` XML attribute.
 
 _<md:RequestedAttribute> elements in metadata can be used to help automate attribute release configurations in IdP deployments. An IdP could, for instance, be configured to release attributes requested in metadata, typically in combination with other criteria. Example criteria include the acquisition of user consent and/or the presence of a particular qualifying entity attribute (see IIP-IDP04) for the relying party._
 
 === Web Browser SSO
 
-[IIP-IDP07]:: Identity Providers MUST support the issuance of `<saml2p:Response>` messages (with appropriate status codes) in the event of an error condition, provided that the user agent remains available and an acceptable location to which to deliver the response is known. The criteria for "acceptability" of a response location are not formally specified, but are subject to Identity Provider policy and reflect its responsibility to protect users from being sent to untrusted or possibly malicious parties.
+[[IIP-IDP07]] [IIP-IDP07]:: Identity Providers MUST support the issuance of `<saml2p:Response>` messages (with appropriate status codes) in the event of an error condition, provided that the user agent remains available and an acceptable location to which to deliver the response is known. The criteria for "acceptability" of a response location are not formally specified, but are subject to Identity Provider policy and reflect its responsibility to protect users from being sent to untrusted or possibly malicious parties.
 
-[IIP-IDP08]:: Identity Providers MUST support the `ForceAuthn` attribute in `<saml2p:AuthnRequest>` messages as defined in <<SAML2Core>>. The authentication mechanisms within an implementation MUST have access to the ForceAuthn indicator so that their behavior may be influenced by its value.
+[[IIP-IDP08]] [IIP-IDP08]:: Identity Providers MUST support the `ForceAuthn` attribute in `<saml2p:AuthnRequest>` messages as defined in <<SAML2Core>>. The authentication mechanisms within an implementation MUST have access to the ForceAuthn indicator so that their behavior may be influenced by its value.
 
 _Note that ForceAuthn is most commonly used for privilege escalation or to initiate explicit user approval for an action. When using forms-based username/password authentication, this is typically accomplished by re-prompting the user for credentials. When more sophisticated authentication schemes are employed (certificates, hard tokens, GSS-API), it is less clear what the correct ForceAuthn behavior should be. Thus, in addition to following_ <<SAML2Core>>, _implementations should allow for the authentication process to be modified based on the existence of ForceAuthn in a request. This provides the necessary flexibility for specific needs to be met._
 
-[IIP-IDP09]:: Identity Providers MUST support the `IsPassive` attribute in `<saml2p:AuthnRequest>` messages as defined in <<SAML2Core>>.
+[[IIP-IDP09]] [IIP-IDP09]:: Identity Providers MUST support the `IsPassive` attribute in `<saml2p:AuthnRequest>` messages as defined in <<SAML2Core>>.
 
-[IIP-IDP10]:: Identity Providers MUST support the `<saml2:RequestedAuthnContext>` *exact* comparison method in `<saml2p:AuthnRequest>` messages as defined in <<SAML2Core>>.
+[[IIP-IDP10]] [IIP-IDP10]:: Identity Providers MUST support the `<saml2:RequestedAuthnContext>` *exact* comparison method in `<saml2p:AuthnRequest>` messages as defined in <<SAML2Core>>.
 
-[IIP-IDP11]:: Identity Providers MUST support encryption of assertions. Support for encryption of identifiers and attributes is OPTIONAL.
+[[IIP-IDP11]] [IIP-IDP11]:: Identity Providers MUST support encryption of assertions. Support for encryption of identifiers and attributes is OPTIONAL.
 
-[IIP-IDP12]:: Identity Providers MUST be capable of generating `<saml2:Assertion>` elements without a `<saml2:NameID>` element in the `<saml2:Subject>` element.
+[[IIP-IDP12]] [IIP-IDP12]:: Identity Providers MUST be capable of generating `<saml2:Assertion>` elements without a `<saml2:NameID>` element in the `<saml2:Subject>` element.
 
 === Enhanced Client or Proxy
 
-[IIP-IDP13]:: Identity Providers MUST support the SAML V2.0 Enhanced Client or Proxy Profile Version 2.0 <<SAML2ECP>>. Full conformance is OPTIONAL, but implementations MUST support "Bearer" subject confirmation and verification of channel bindings.  All applicable Web Browser SSO requirements in this profile apply, excepting IIP-SSO02 and IIP-SSO03 since those bindings do not apply to the use of ECP.
+[[IIP-IDP13]] [IIP-IDP13]:: Identity Providers MUST support the SAML V2.0 Enhanced Client or Proxy Profile Version 2.0 <<SAML2ECP>>. Full conformance is OPTIONAL, but implementations MUST support "Bearer" subject confirmation and verification of channel bindings.  All applicable Web Browser SSO requirements in this profile apply, excepting IIP-SSO02 and IIP-SSO03 since those bindings do not apply to the use of ECP.
 
-[IIP-IDP14]:: Identity Providers MUST support the use of HTTP Basic Authentication [RFC2617] to authenticate the user agent. Other forms of authentication MAY be supported.
+[[IIP-IDP14]] [IIP-IDP14]:: Identity Providers MUST support the use of HTTP Basic Authentication [RFC2617] to authenticate the user agent. Other forms of authentication MAY be supported.
 
-[IIP-IDP15]:: Identity Providers MUST support the generation and inclusion of a random key in accordance with [SAML-EC], Section 5.3.1.
+[[IIP-IDP15]] [IIP-IDP15]:: Identity Providers MUST support the generation and inclusion of a random key in accordance with [SAML-EC], Section 5.3.1.
 
-[IIP-IDP16]:: Identity Providers MUST support the consumption of peer configuration values from SAML metadata, without additional inputs or separate configuration, for any element listed in the "Use of Metadata" section in <<SAML2ECP>> (section 2.3.10).
+[[IIP-IDP16]] [IIP-IDP16]:: Identity Providers MUST support the consumption of peer configuration values from SAML metadata, without additional inputs or separate configuration, for any element listed in the "Use of Metadata" section in <<SAML2ECP>> (section 2.3.10).
 
 === Single Logout
 
-[IIP-IDP17]:: Identity Providers MUST support the SAML V2.0 SingleLogout profile <<SAML2Prof>>, as updated by <<SAML2Errata>>, and the SAML V2.0 Asynchronous Single Logout Protocol Extension <<SAML2ASLO>>. It is OPTIONAL to support propagation of logout requests to other session participants.
+[[IIP-IDP17]] [IIP-IDP17]:: Identity Providers MUST support the SAML V2.0 SingleLogout profile <<SAML2Prof>>, as updated by <<SAML2Errata>>, and the SAML V2.0 Asynchronous Single Logout Protocol Extension <<SAML2ASLO>>. It is OPTIONAL to support propagation of logout requests to other session participants.
 
-[IIP-IDP18]:: Identity Providers MUST support the HTTP-Redirect binding for logout requests and responses.
+[[IIP-IDP18]] [IIP-IDP18]:: Identity Providers MUST support the HTTP-Redirect binding for logout requests and responses.
 
-[IIP-IDP19]:: Identity Providers MUST support decryption of `<saml2:EncryptedID>` elements in logout requests. In order to fully support key rollover, Identity Providers MUST be configurable with at least two decryption keys. When decrypting encrypted identifiers, they MUST attempt to use each decryption key (in unspecified order) until the identifier is successfully decrypted or there are no more keys, in which case decryption fails.
+[[IIP-IDP19]] [IIP-IDP19]:: Identity Providers MUST support decryption of `<saml2:EncryptedID>` elements in logout requests. In order to fully support key rollover, Identity Providers MUST be configurable with at least two decryption keys. When decrypting encrypted identifiers, they MUST attempt to use each decryption key (in unspecified order) until the identifier is successfully decrypted or there are no more keys, in which case decryption fails.
 
-[IIP-IDP20]:: Identity Providers MUST support the consumption of peer configuration values from SAML metadata, without additional inputs or separate configuration, for any element listed in the "Use of Metadata" section for the Single Logout Profile in <<SAML2Prof>> (section 4.4.5).
+[[IIP-IDP20]] [IIP-IDP20]:: Identity Providers MUST support the consumption of peer configuration values from SAML metadata, without additional inputs or separate configuration, for any element listed in the "Use of Metadata" section for the Single Logout Profile in <<SAML2Prof>> (section 4.4.5).

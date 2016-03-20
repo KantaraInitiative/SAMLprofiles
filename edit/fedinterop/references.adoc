@@ -17,12 +17,12 @@
 - [[[MetaUi]]] OASIS Committee Specification, SAML V2.0 Metadata Extensions for Login and Discovery User Interface Version 1.0, April 2012. http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-metadata-ui/v1.0/sstc-saml-metadata-ui-v1.0.pdf
 - [[[MetaAttr]]] OASIS Committee Specification, SAML V2.0 Metadata Extension for Entity Attributes Version 1.0, August 2009. http://docs.oasis-open.org/security/saml/Post2.0/sstc-metadata-attr-cd-01.pdf
 - [[[SAML2ASLO]]] OASIS Committee Specification, SAML V2.0 Asynchronous Single Logout Profile Extension Version 1.0, November 2012. http://docs.oasis-open.org/security/saml/Post2.0/saml-async-slo/v1.0/cs01/saml-async-slo-v1.0-cs01.pdf
-- [[[XMLDsig]]] W3C Recommendation, XML Signature Syntax and Processing (Second Edition), June 2008. http://www.w3.org/TR/xmldsig-core/
 - [[[MDQ]]] Internet-Draft, Metadata Query Protocol, December 2013. https://tools.ietf.org/html/draft-young-md-query-01
 - [[[SAML-MDQ]]] Internet-Draft, SAML Profile for the Metadata Query Protocol, October 2014. https://tools.ietf.org/html/draft-young-md-query-saml-02
 - [[[IdPDisco]]] OASIS Committee Specification, Identity Provider Discovery Service Protocol and Profile, March 2008. http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-idp-discovery.pdf
 - [[[SAML2int]]] Kantara Initiative Report, SAML 2.0 Interoperability Deployment Profile Version 0.2.1. http://saml2int.org/profile/0.2.1/
 - [[[RFC4051]]] IETF RFC 4051, Additional XML Security Uniform Resource Identifiers, April 2005. https://www.ietf.org/rfc/rfc4051.txt
+- [[[XMLDsig]]] W3C Recommendation, XML Signature Syntax and Processing (Second Edition), June 2008. http://www.w3.org/TR/xmldsig-core/
 - [[[XMLEnc]]] D. Eastlake et al. XML Encryption Syntax and Processing. World Wide Web Consortium Recommendation, April 2013. https://www.w3.org/TR/xmlenc-core1/
 - [[[XMLEnc11]]] D. Eastlake et al. XML Encryption Syntax and Processing Version 1.1. World Wide Web Consortium Last Call Working Draft. http://www.w3.org/TR/2010/WD-xmlenc-core1-20100513/
 - [[[XMLSig]]] D. Eastlake et al. XML-Signature Syntax and Processing, Second Edition. World Wide Web Consortium Recommendation, June 2008. http://www.w3.org/TR/xmldsig-core/
