@@ -18,7 +18,7 @@ The above list of specifications includes all material relevant to functionality
 
 [[IIP-MD02]] [IIP-MD02]:: Implementations MUST support the consumption of SAML metadata rooted in both `<md:EntityDescriptor>` and `<md:EntitiesDescriptor>` elements. In the latter case, any number of child elements MUST be allowed.
 
-[[IIP-MD03]] [IIP-MD03]:: Implementations MUST support the interpretation and application of metadata as defined by the SAML V2.0 Metadata Interoperability Profile <<SAML2MDIOP>>. Support for other metadata profiles is OPTIONAL. It follows that implementations MUST be capable of interoperating (leading to success or failure as dictated by default configuration) with any number of SAML peers for which metadata is supplied, without additional inputs or separate configuration. In accordance with the SAML V2.0 Metadata Interoperability Profile <<SAML2MDIOP>>, metadata MUST be:
+[[IIP-MD03]] [IIP-MD03]:: Implementations MUST support the interpretation and application of metadata as defined by the SAML V2.0 Metadata Interoperability Profile <<SAML2MDIOP>>. It follows that implementations MUST be capable of interoperating (leading to success or failure as dictated by default configuration) with any number of SAML peers for which metadata is supplied, without additional inputs or separate configuration. In accordance with the SAML V2.0 Metadata Interoperability Profile <<SAML2MDIOP>>, metadata MUST be:
 
 ----
 “usable as a self-contained vehicle for communicating trust such that a user of a conforming implementation can be guaranteed that any and all rules for processing digital signatures, encrypted XML... can be derived from the metadata alone, with no additional trust requirements imposed.”
