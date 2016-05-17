@@ -5,10 +5,14 @@
 * ```http://www.w3.org/2001/04/xmlenc#sha256``` <<XMLEnc>>
 * ```http://www.w3.org/2000/09/xmldsig#sha1``` <<XMLSig>>
 
+ Implementations MUST NOT default to the use of ```http://www.w3.org/2000/09/xmldsig#sha1```.
+ 
 [[IIP-ALG02]] [IIP-ALG02]:: Implementations MUST support the signing algorithms identified by the following URIs in conjunction with the creation and verification of XML Signatures <<XMLSig>>:
 
 * ```http://www.w3.org/2001/04/xmldsig-more#rsa-sha256``` <<RFC4051>>
 * ```http://www.w3.org/2000/09/xmldsig#rsa-sha1``` <<XMLSig>>
+
+Implementations MUST NOT default to the use of ```http://www.w3.org/2000/09/xmldsig#rsa-sha1```.
 
 [[IIP-ALG03]] [IIP-ALG03]:: Implementations SHOULD support the signature algorithms identified by the following URIs in conjunction with the creation and verification of XML Signatures <<XMLSig>>:
 
