@@ -38,7 +38,7 @@ _Note that ForceAuthn is most commonly used for privilege escalation or to initi
 
 [[IIP-IDP13]] [IIP-IDP13]:: Identity Providers MUST support the SAML V2.0 Enhanced Client or Proxy Profile Version 2.0 <<SAML2ECP>>. Full conformance is OPTIONAL, but implementations MUST support "Bearer" subject confirmation and verification of channel bindings.  All applicable Web Browser SSO requirements in this profile apply, excepting IIP-SSO02 and IIP-SSO03 since those bindings do not apply to the use of ECP.
 
-[[IIP-IDP14]] [IIP-IDP14]:: Identity Providers MUST support the use of HTTP Basic Authentication [RFC2617] to authenticate the user agent. Other forms of authentication MAY be supported.
+[[IIP-IDP14]] [IIP-IDP14]:: Identity Providers MUST support the use of HTTP Basic Authentication <<RFC2617>> to authenticate the user agent. Other forms of authentication MAY be supported.
 
 [[IIP-IDP15]] [IIP-IDP15]:: Identity Providers MUST support the generation and inclusion of a random key in accordance with <<SAML-EC>>, Section 5.3.1.
 
