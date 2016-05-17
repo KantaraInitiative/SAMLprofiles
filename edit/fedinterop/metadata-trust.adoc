@@ -32,7 +32,7 @@ _Note that this requirement does not preclude supporting a variety of configurat
 
 [[IIP-MD04]] [IIP-MD04]:: Implementations MUST support the routine consumption of SAML metadata from a remote location via HTTP/1.1 <<RFC2616>> on a scheduled/recurring basis, with the contents automatically applied upon successful validation. HTTP/1.1 redirects (status codes 301, 302, and 307) MUST be honored.
 
-[[IIP-MD05]] [IIP-MD05]:: Implementations MUST be able to validate the authenticity and integrity of SAML metadata by verifying an enveloped XML Signature <<XMLDsig>>. Public keys used for signature verification MUST be configured out of band. These keys MAY be contained in X.509 certificates but it MUST be possible to ignore the other contents of the certificate and verify the XML Signature based solely on the public key. It MUST be possible to limit the use of a trusted key to a single metadata source.
+[[IIP-MD05]] [IIP-MD05]:: Implementations MUST be able to validate the authenticity and integrity of SAML metadata by verifying an enveloped XML Signature <<XMLDsig>> attached to the root element of the metadata. Public keys used for signature verification MUST be configured out of band. These keys MAY be contained in X.509 certificates but it MUST be possible to ignore the other contents of the certificate and verify the XML Signature based solely on the public key. It MUST be possible to limit the use of a trusted key to a single metadata source.
 
 _Note that this requirement applies regardless of the means by which the metadata was obtained (scheduled transfer over HTTP/1.1, Metadata Query Protocol, etc)._
 
