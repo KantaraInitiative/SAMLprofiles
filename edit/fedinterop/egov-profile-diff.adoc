@@ -35,7 +35,6 @@ The profiles will be abbreviated "Interop" and "eGov" respectively.
 | eGov-014 |          | Removed. Support the use of more than one fixed location for the importation of metadata.
 | eGov-015 | IIP-MD02 | -
 | eGov-016 | IIP-MD04 | -
-| eGov-017 | IIP-MD05 | [yellow-background]#Removed. Interop does not limit signature verification to the metadata root element.#
 | eGov-018 | IIP-MD05 | Extended. Key management for metadata signature verification.
 | eGov-019 |          | Removed. Path-based certificate validation for metadata signatures.
 |          | IIP-MD06 | Added: Processing requirements in the validUntil attribute in metadata root elements.
