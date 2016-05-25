@@ -13,10 +13,29 @@ The intention of this effort is to support the update of these profiles, includi
 - SAML V2.0 Implementation Profile for Federation Interoperability [FedIopProfile]
   Updated recommendation  to replace the Kantara eGov Implementation Profile
   https://kantarainitiative.github.io/SAMLprofiles/fedinterop.html[draft document]
+  https://kantarainitiative.github.io/SAMLprofiles/egov-profile-diff.html[differences to eGov profile]
 - Kantara eGov Implementation Profile SAML2.0 (V2.0bis)
   This document is a transformation of the document from 11 June 2011 into the Asciidoc format. With the intention to keep the essential contents, the format was changed to make it comparable to the newer FedIopProfile.
 
 ## View resulting documents
 
 ## Tooling
-Document parts in the repository are written in Asciidoc. Asciidoctor is the preferred toolchain to render the HTML and PDF versions of the document.
+Document parts in the repository are written in Asciidoc. The recommended toolchain is:
+- Create a fork of the system or get access to the upstream repo
+- Clone the master branch of repository to your local system
+- Edit documents with your favourite text editor
+- checkout the gh-pages branch into a second directory, e.g. this way:
+
+  git worktree add ../SAMLprofiles.gh-pages gh-pages
+
+- Use Asciidoctor (the preferred generator) to render the HTML and PDF versions
+  of the document. Store the generated output in the gh-pages branch, like:
+
+  asciidoctor -o ../SAMLprofiles.gh-pages/SAMLeGovImplementaton_2_0.html edit/egov-impl/main.adoc
+
+- commit and push the change to github, e.g.:
+
+  git commit -m 'why/what I changed' && git push
+
+- The output will appear with a delay of a few seconds (up to a few minutes) at the github.io address
+  as described above.
