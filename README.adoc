@@ -30,8 +30,7 @@ Document parts in the repository are written in Asciidoc. The recommended toolch
 
   git worktree add ../SAMLprofiles.gh-pages gh-pages
 
-- Use Asciidoctor (the preferred generator) to render the HTML and PDF versions
-  of the document. Store the generated output in the gh-pages branch, like:
+- Use Asciidoctor to render the HTML and PDF versions of the document. Store the generated output in the gh-pages branch, like:
 
   asciidoctor -o ../SAMLprofiles.gh-pages/SAMLeGovImplementaton_2_0.html edit/egov-impl/main.adoc
 
