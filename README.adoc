@@ -23,6 +23,7 @@ The intention of this effort is to support the update of these profiles, includi
 
 ## Editing & Tooling
 Document parts in the repository are written in Asciidoc. The recommended toolchain is:
+
 - Create a fork of the system or get access to the upstream repo
 - Clone the master branch of repository to your local system
 - Edit documents with your favourite text editor
