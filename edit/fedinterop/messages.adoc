@@ -8,7 +8,12 @@
 
 [IIP-SSO04]:: Implementations MUST support the signing of assertions and responses, both together and independently.
 
-[IIP-SSO05]:: Implementations MUST support the consumption of peer configuration values from SAML metadata, without additional inputs or separate configuration, for any metadata element that: (a) is identified as "MUST" or "MAY" in the "Use of Metadata" section for the Web Browser SSO Profile in <<SAML2Prof>> (section 4.1.6), and (b) corresponds to settings supported by the implementation.
+[IIP-SSO05]:: Implementations  MUST support the following SAML V2.0 name identifier formats, in accordance with the normative obligations associated with them by <<SAML2Core>> sect. 8.3:
+
+ * urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+ * urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+
+[IIP-SSO06]:: Implementations MUST support the consumption of peer configuration values from SAML metadata, without additional inputs or separate configuration, for any metadata element that: (a) is identified as "MUST" or "MAY" in the "Use of Metadata" section for the Web Browser SSO Profile in <<SAML2Prof>> (section 4.1.6), and (b) corresponds to settings supported by the implementation.
 
 _Note that the above requires that most metadata elements identified in <<SAML2Prof>> section 4.1.6 must be configurable via SAML metadata. It only applies, however, to functionality that is supported in a given implementation. For example, if an implementation allows a deployer to control AttributeProfile configuration values, that implementation MUST support the configuration of these values via the_ `<md:AttributeProfile>` _element. This requirement by itself does not necessitate attribute profile support._
 
