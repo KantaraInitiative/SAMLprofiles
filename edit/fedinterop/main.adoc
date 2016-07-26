@@ -37,9 +37,9 @@ include::notation.adoc[]
 
 == Common Requirements
 
-include::metadata-trust.adoc[]
-
 include::general.adoc[]
+
+include::metadata-trust.adoc[]
 
 include::messages.adoc[]
 
