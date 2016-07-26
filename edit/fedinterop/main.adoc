@@ -1,12 +1,34 @@
 = SAML V2.0 Implementation Profile for Federation Interoperability
 :numbered:
 :toc:
+:toc-placement: preamble
+:docinfo:
+:notitle:
+
+// did not manage to CSS-select the top-level title: instead using :notitle: plus following pass-though
+++++
+<h1 style="color: blue; text-align: center; font-size: 150%; margin-bottom: 2em; font-weight: bold;">
+  SAML V2.0 Implementation Profile for Federation Interoperability
+</h1>
+++++
 
 .Abstract
-This document encompasses a set of software conformance requirements intended to facilitate interoperability within the context of full mesh identity federations, such as those found in the research and education sector. It attempts to address a number of common barriers to interoperability and details features that are necessary in order to use SAML metadata as a foundation for scalable trust fabrics.
+This document encompasses a set of software conformance requirements intended to
+facilitate interoperability within the context of full mesh identity federations,
+such as those found in the research and education sector. It attempts to address
+a number of common barriers to interoperability and details features that are
+necessary in order to use SAML metadata as a foundation for scalable trust fabrics.
+It supercedes the link:eGovImplProfile.html[eGovernment Implementation Profile V2.0bis] from June 2011.
 
 .Status
-Approved
+Draft.
+This document have been worked up and approved by the InCommon Fed-Interop WG and then
+transferred to Kantara FI-WG for further alignment with stakeholders outside the
+research & education community.
+
+.Copyright Notice
+SAML V2.0 Implementation Profile for Federation Interoperability © 2016 Internet2, used under license.  All rights reserved.
+
 
 == Introduction
 The material contained herein is intended for use by implementers of SAML software. It does not specify a fixed set of behaviors for all deployments or limit in any way the features that can be provided in a given implementation, but rather serves as a complement to deployment profiles (such as the Kantara SAML2int profile <<SAML2int>>) by identifying a standard set of software capabilities necessary for scalable federation. This profile can form the basis for testing frameworks capable of providing for the validation of conformant software packages.
