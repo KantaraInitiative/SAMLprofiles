@@ -17,3 +17,4 @@ _Guidance is offered with regard to clock skew in E92 of <<SAML2Errata>>. Empiri
 
 _It is acceptable to allow for selective configuration of more restrictive constraints on specific NameID and AttributeValue types._
 
+[IIP-G04]:: Implementations MUST not send and MUST have the ability to reject SAML protocol messages containing a Document Type Declaration.
