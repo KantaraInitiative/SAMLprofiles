@@ -40,9 +40,11 @@ _Note that the requirement for support of <<IdPDisco>> in [IIP-SP09] leads natur
 
 [IIP-SP11]:: Service Providers MUST be capable of generating `<saml2p:AuthnRequest>` messages with a `<saml2p:RequestedAuthnContext>` element containing the *exact* comparison method and any number of `<saml2p:AuthnContextClassRef>` elements.
 
-[IIP-SP12]:: Service Providers MUST support decryption of `<saml2:EncryptedAssertion>` elements. In order to fully support key rollover, Service Providers MUST be configurable with at least two decryption keys. When decrypting assertions, they MUST attempt to use each decryption key (in unspecified order) until the assertion is successfully decrypted or there are no more keys, in which case decryption fails.
+[IIP-SP12]:: Service Providers MUST support the acceptance or rejection of assertions based on the content of the `<saml2:AuthnContext>` element.
 
-[IIP-SP13]:: Service Providers MUST support deep linking and maintain the direct addressability of protected resources in the presence of Web Browser SSO. That is, it MUST be possible to request an arbitrary protected resource and (authorization permitting) have it supplied as the result of a successful SAML SSO profile exchange. In addition, it is RECOMMENDED that Service Providers support the preservation of POST bodies across a successful SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.
+[IIP-SP13]:: Service Providers MUST support decryption of `<saml2:EncryptedAssertion>` elements. In order to fully support key rollover, Service Providers MUST be configurable with at least two decryption keys. When decrypting assertions, they MUST attempt to use each decryption key (in unspecified order) until the assertion is successfully decrypted or there are no more keys, in which case decryption fails.
+
+[IIP-SP14]:: Service Providers MUST support deep linking and maintain the direct addressability of protected resources in the presence of Web Browser SSO. That is, it MUST be possible to request an arbitrary protected resource and (authorization permitting) have it supplied as the result of a successful SAML SSO profile exchange. In addition, it is RECOMMENDED that Service Providers support the preservation of POST bodies across a successful SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.
 
 _The SAML binding-specific RelayState feature is typically used to maintain state required to satisfy both of these requirements, the exact detail of which is left to implementations._
 
