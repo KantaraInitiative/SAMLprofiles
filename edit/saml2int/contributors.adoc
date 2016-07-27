@@ -1,0 +1,10 @@
+== Authors' addresses
+
+* Andreas Åkre Solberg, UNINETT, andreas.solberg@uninett.no
+* Scott Cantor, Ohio State University, cantor.2@osu.edu
+* Eve Maler, Sun Microsystems, eve.maler@sun.com
+* Leif Johansson, Stockholm University, leifj@sunet.se
+* Jeff Hodges, Neustar, Jeff.Hodges@neustar.biz
+* Ian Young, ian@iay.org.uk
+* Nate Klingenstein, ndk@internet2.edu
+* Bob Morgan, rlmorgan@washington.edu 

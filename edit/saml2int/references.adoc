@@ -1,0 +1,21 @@
+== Normative References
+
+[bibliography]
+
+- [[[RFC2119]]] IETF RFC 2119, Key words for use in RFCs to Indicate Requirement Levels, March 1997. http://www.ietf.org/rfc/rfc2119.txt
+- [[[SAML2Core]]] OASIS Standard, Assertions and Protocols for the OASIS Security Assertion Markup Language (SAML) V2.0, March 2005. http://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf
+- [[[SAML2Bind]]] OASIS Standard, Bindings for the OASIS Security Assertion Markup Language (SAML) V2.0, March 2005. http://docs.oasis-open.org/security/saml/v2.0/saml-bindings-2.0-os.pdf
+- [[[SAML2Prof]]] OASIS Standard, Profiles for the OASIS Security Assertion Markup Language (SAML) V2.0, March 2005. http://docs.oasis-open.org/security/saml/v2.0/saml-profiles-2.0-os.pdf
+- [[[SAML2Meta]]] OASIS Standard, Metadata for the OASIS Security Assertion Markup Language (SAML) V2.0, March 2005. http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+- [[[X500SAMLattr]]] OASIS Committee Draft, SAML V2.0 X.500/LDAP Attribute Profile, December 2006. http://docs.oasis-open.org/security/saml/SpecDrafts-Post2.0/sstc-saml-attribute-x500-cd-01.pdf
+- [[[MetaIOP]]] OASIS Committee Specification, SAML V2.0 Metadata Interoperability Profile Version 1.0, August 2009. http://docs.oasis-open.org/security/saml/Post2.0/sstc-metadata-iop.html
+- [[[IdPDisco]]] OASIS Committee Specification, Identity Provider Discovery Service Protocol and Profile, March 2008. http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-idp-discovery.pdf
+- [[[SAML2Err]]] OASIS Approved Errata, SAML Version 2.0 Errata 05, May 2012. http://docs.oasis-open.org/security/saml/v2.0/sstc-saml-approved-errata-2.0.pdf
+
+== Non-Normative References
+
+[bibliography]
+
+- [[[eduPerson]]] eduPerson Object Class Specification. https://www.internet2.edu/products-services/trust-identity/eduperson-eduorg/
+- [[[eduOrg]]] EduOrg Object Class Specification. https://www.internet2.edu/products-services/trust-identity/eduperson-eduorg/
+- [[[IMI]]] OASIS Standard, Identity Metasystem Interoperability Version 1.0, July 2009. http://docs.oasis-open.org/imi/identity/v1.0/identity.html
