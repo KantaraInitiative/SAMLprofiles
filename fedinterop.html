@@ -462,12 +462,19 @@ div.sect3 > h4 {
 </h1>
 <div class="paragraph">
 <div class="title">Abstract</div>
-<p>This document encompasses a set of software conformance requirements intended to facilitate interoperability within the context of full mesh identity federations, such as those found in the research and education sector. It attempts to address a number of common barriers to interoperability and details features that are necessary in order to use SAML metadata as a foundation for scalable trust fabrics.  It supercedes the <a href="eGovImplProfile.html">eGovernment Implementation Profile V2.0bis</a> from June 2011.</p>
+<p>This document encompasses a set of software conformance requirements intended to
+facilitate interoperability within the context of full mesh identity federations,
+such as those found in the research and education sector. It attempts to address
+a number of common barriers to interoperability and details features that are
+necessary in order to use SAML metadata as a foundation for scalable trust fabrics.
+It supercedes the <a href="eGovImplProfile.html">eGovernment Implementation Profile V2.0bis</a> from June 2011.</p>
 </div>
 <div class="paragraph">
 <div class="title">Status</div>
 <p>Draft.
-This document has been approved by the InCommon Fed-Interop WG and InCommon Technical Advistory Committee. After public review, it was transferred to the Kantara FI-WG for further alignment with stakeholders outside the research &amp; education community.</p>
+This document have been worked up and approved by the InCommon Fed-Interop WG and then
+transferred to Kantara FI-WG for further alignment with stakeholders outside the
+research &amp; education community.</p>
 </div>
 <div class="paragraph">
 <div class="title">Copyright Notice</div>
@@ -484,22 +491,31 @@ This document has been approved by the InCommon Fed-Interop WG and InCommon Tech
 </li>
 <li><a href="#_common_requirements">2. Common Requirements</a>
 <ul class="sectlevel2">
-<li><a href="#_general">2.1. General</a></li>
-<li><a href="#_metadata_and_trust_management">2.2. Metadata and Trust Management</a></li>
+<li><a href="#_metadata_and_trust_management">2.1. Metadata and Trust Management</a></li>
+<li><a href="#_general">2.2. General</a></li>
 <li><a href="#_web_browser_sso">2.3. Web Browser SSO</a></li>
+<li><a href="#_extensibility">2.4. Extensibility</a></li>
+<li><a href="#_cryptographic_algorithms">2.5. Cryptographic Algorithms</a></li>
 </ul>
 </li>
-<li><a href="#_identity_provider_requirements">3. Identity Provider Requirements</a>
+<li><a href="#_service_provider_requirements">3. Service Provider Requirements</a>
 <ul class="sectlevel2">
 <li><a href="#_metadata_and_trust_management_2">3.1. Metadata and Trust Management</a></li>
 <li><a href="#_attributes">3.2. Attributes</a></li>
 <li><a href="#_web_browser_sso_2">3.3. Web Browser SSO</a></li>
-<li><a href="#_enhanced_client_or_proxy">3.4. Enhanced Client or Proxy</a></li>
-<li><a href="#_single_logout">3.5. Single Logout</a></li>
 </ul>
 </li>
-<li><a href="#_references">4. References</a></li>
-<li><a href="#_contributors">5. Contributors</a></li>
+<li><a href="#_identity_provider_requirements">4. Identity Provider Requirements</a>
+<ul class="sectlevel2">
+<li><a href="#_metadata_and_trust_management_3">4.1. Metadata and Trust Management</a></li>
+<li><a href="#_attributes_2">4.2. Attributes</a></li>
+<li><a href="#_web_browser_sso_3">4.3. Web Browser SSO</a></li>
+<li><a href="#_enhanced_client_or_proxy">4.4. Enhanced Client or Proxy</a></li>
+<li><a href="#_single_logout">4.5. Single Logout</a></li>
+</ul>
+</li>
+<li><a href="#_references">5. References</a></li>
+<li><a href="#_contributors">6. Contributors</a></li>
 </ul>
 </div>
 </div>
@@ -543,81 +559,7 @@ This document has been approved by the InCommon Fed-Interop WG and InCommon Tech
 <h2 id="_common_requirements">2. Common Requirements</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_general">2.1. General</h3>
-<div class="paragraph">
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-<a id="IIP-G01"></a>[IIP-G01]:: Implementations  MUST support the following SAML V2.0 name identifier formats, in accordance with the normative obligations associated with them by <a href="#SAML2Core">[SAML2Core]</a> sect. 8.3:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</p>
-</li>
-<li>
-<p>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</p>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><a id="IIP-G02"></a>[IIP-G02]</dt>
-<dd>
-<p>Implementations MUST allow for reasonable clock skew between systems when interpreting <strong>xsd:dateTime</strong> values and enforcing security policies based thereupon.</p>
-</dd>
-</dl>
-</div>
-</li>
-</ul>
-</div>
-<div class="exampleblock">
-<div class="content">
-<div class="dlist">
-<dl>
-<dt class="hdlist1">[IIP-G01]</dt>
-<dd>
-<p>Implementations MUST allow for reasonable clock skew between systems when interpreting <strong>xsd:dateTime</strong> values and enforcing security policies based thereupon.
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; faab0ca27281205012c7580a2fb554c7561748bf</p>
-</dd>
-</dl>
-</div>
-<div class="paragraph">
-<p><em>The following is a non-exhaustive list of items to which this directive applies: <code>NotBefore</code>, <code>NotOnOrAfter</code>, and <code>validUntil</code> XML attributes found on <code>Conditions</code>, <code>SubjectConfirmationData</code>, <code>LogoutRequest</code>, <code>EntityDescriptor</code>, <code>EntitiesDescriptor</code>, <code>RoleDescriptor</code>, and <code>AffiliationDescriptor</code> elements.</em></p>
-</div>
-<div class="paragraph">
-<p><em>Tolerances of 3–5 minutes are a reasonable default, but allowing for configurability is a suggested practice.</em></p>
-</div>
-<div class="paragraph">
-<p><em>Guidance is offered with regard to clock skew in E92 of <a href="#SAML2Errata">[SAML2Errata]</a>. Empirical evidence has shown that allowance for clock skew is critical to robust SAML deployments. It has thus been made a mandatory feature in this profile.</em></p>
-</div>
-<div class="paragraph">
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-<a id="IIP-G03"></a>[IIP-G03]:: When specific constraints are absent in the SAML standards or profile documents, implementations MUST be able to accept, without error or truncation, element and attribute values of type <strong>xs:string</strong> that are comprised of any combination of valid XML characters and contain up to 256 characters. This requirement applies both to types defined within the SAML standards (such as transient and persistent NameIDs) and to user-defined types.</p>
-</div>
-<div class="paragraph">
-<p><em>It is acceptable to allow for selective configuration of more restrictive constraints on specific NameID and AttributeValue types.</em></p>
-</div>
-</div>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">[IIP-G02]</dt>
-<dd>
-<p>When specific constraints are absent in the SAML standards or profile documents, implementations MUST be able to accept, without error or truncation, element and attribute values of type <strong>xs:string</strong> that are comprised of any combination of valid XML characters and contain up to 256 characters. This requirement applies both to types defined within the SAML standards (such as transient and persistent NameIDs) and to user-defined types.</p>
-</dd>
-</dl>
-</div>
-<div class="paragraph">
-<p><em>It is acceptable to allow for selective configuration of more restrictive constraints on specific NameID and AttributeValue types.</em></p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">[IIP-G03]</dt>
-<dd>
-<p>Implementations MUST not send and MUST have the ability to reject SAML protocol messages containing a Document Type Declaration.
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; faab0ca27281205012c7580a2fb554c7561748bf</p>
-</dd>
-</dl>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_metadata_and_trust_management">2.2. Metadata and Trust Management</h3>
+<h3 id="_metadata_and_trust_management">2.1. Metadata and Trust Management</h3>
 <div class="paragraph">
 <p>This section identifies a basic set of features required for the interoperable use of SAML metadata. Although metadata support was optional in the original SAML V2.0 specification, it is now recognized as a critical component of all modern SAML software. Implementations must carefully adhere to the following procedures related to the exchange and validation of metadata in order to support a scalable federation model.</p>
 </div>
@@ -625,7 +567,7 @@ This document has been approved by the InCommon Fed-Interop WG and InCommon Tech
 <p>The underlying intent of these requirements is to facilitate a configuration and provisioning model that is, to the greatest extent practical, based on metadata alone.</p>
 </div>
 <div class="sect3">
-<h4 id="_metadata_capabilities">2.2.1. Metadata Capabilities</h4>
+<h4 id="_metadata_capabilities">2.1.1. Metadata Capabilities</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1"><a id="IIP-MD01"></a>[IIP-MD01]</dt>
@@ -657,7 +599,7 @@ This document has been approved by the InCommon Fed-Interop WG and InCommon Tech
 </dl>
 </div>
 <div class="paragraph">
-<p>The above list of specifications includes all material relevant to functionality required by this profile, but is not intended to be exhaustive. In accordance with the <a href="#Extensibility">[Extensibility]</a> section, other metadata extension content may be present and MUST NOT prevent consumption and use of the metadata.</p>
+<p>The above list of specifications includes all material relevant to functionality required by this profile, but is not intended to be exhaustive. In accordance with the <a href="#_extensibility">Extensibility</a> section, other metadata extension content may be present and MUST NOT prevent consumption and use of the metadata.</p>
 </div>
 <div class="dlist">
 <dl>
@@ -684,7 +626,7 @@ This document has been approved by the InCommon Fed-Interop WG and InCommon Tech
 </div>
 </div>
 <div class="sect3">
-<h4 id="_metadata_exchange">2.2.2. Metadata Exchange</h4>
+<h4 id="_metadata_exchange">2.1.2. Metadata Exchange</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1"><a id="IIP-MD04"></a>[IIP-MD04]</dt>
@@ -726,7 +668,7 @@ This document has been approved by the InCommon Fed-Interop WG and InCommon Tech
 </div>
 </div>
 <div class="sect3">
-<h4 id="_key_rollover">2.2.3. Key Rollover</h4>
+<h4 id="_key_rollover">2.1.3. Key Rollover</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1"><a id="IIP-MD07"></a>[IIP-MD07]</dt>
@@ -741,7 +683,7 @@ This document has been approved by the InCommon Fed-Interop WG and InCommon Tech
 </div>
 </div>
 <div class="sect3">
-<h4 id="_algorithm_support">2.2.4. Algorithm Support</h4>
+<h4 id="_algorithm_support">2.1.4. Algorithm Support</h4>
 <div class="paragraph">
 <p>The migration from suspicious and broken algorithms deployed in production systems requiring a coordinated update at a single point in time is not feasible in large federations. An alternative strategy is the support of both good and bad algorithms at the endpoints for some time to relax the schedule for system updates. Negotiating better algorithms automatically provides immediate benefit to communications within the group of updated entities. Thus the network as a whole is not completely stuck because of entity operators unable/unwilling to update. Algorithm support for TLS endpoints is out of scope for SAML metadata.</p>
 </div>
@@ -755,7 +697,7 @@ This document has been approved by the InCommon Fed-Interop WG and InCommon Tech
 </div>
 </div>
 <div class="sect3">
-<h4 id="_avoiding_common_errors">2.2.5. Avoiding Common Errors</h4>
+<h4 id="_avoiding_common_errors">2.1.5. Avoiding Common Errors</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1"><a id="IIP-MD10"></a>[IIP-MD10]</dt>
@@ -785,6 +727,51 @@ This document has been approved by the InCommon Fed-Interop WG and InCommon Tech
 </div>
 </div>
 <div class="sect2">
+<h3 id="_general">2.2. General</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a id="IIP-G01"></a>[IIP-G01]</dt>
+<dd>
+<p>Implementations  MUST support the following SAML V2.0 name identifier formats, in accordance with the normative obligations associated with them by <a href="#SAML2Core">[SAML2Core]</a> sect. 8.3:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</p>
+</li>
+<li>
+<p>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1"><a id="IIP-G02"></a>[IIP-G02]</dt>
+<dd>
+<p>Implementations MUST allow for reasonable clock skew between systems when interpreting <strong>xsd:dateTime</strong> values and enforcing security policies based thereupon.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><em>The following is a non-exhaustive list of items to which this directive applies: <code>NotBefore</code>, <code>NotOnOrAfter</code>, and <code>validUntil</code> XML attributes found on <code>Conditions</code>, <code>SubjectConfirmationData</code>, <code>LogoutRequest</code>, <code>EntityDescriptor</code>, <code>EntitiesDescriptor</code>, <code>RoleDescriptor</code>, and <code>AffiliationDescriptor</code> elements.</em></p>
+</div>
+<div class="paragraph">
+<p><em>Tolerances of 3–5 minutes are a reasonable default, but allowing for configurability is a suggested practice.</em></p>
+</div>
+<div class="paragraph">
+<p><em>Guidance is offered with regard to clock skew in E92 of <a href="#SAML2Errata">[SAML2Errata]</a>. Empirical evidence has shown that allowance for clock skew is critical to robust SAML deployments. It has thus been made a mandatory feature in this profile.</em></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a id="IIP-G03"></a>[IIP-G03]</dt>
+<dd>
+<p>When specific constraints are absent in the SAML standards or profile documents, implementations MUST be able to accept, without error or truncation, element and attribute values of type <strong>xs:string</strong> that are comprised of any combination of valid XML characters and contain up to 256 characters. This requirement applies both to types defined within the SAML standards (such as transient and persistent NameIDs) and to user-defined types.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><em>It is acceptable to allow for selective configuration of more restrictive constraints on specific NameID and AttributeValue types.</em></p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_web_browser_sso">2.3. Web Browser SSO</h3>
 <div class="dlist">
 <dl>
@@ -804,34 +791,9 @@ This document has been approved by the InCommon Fed-Interop WG and InCommon Tech
 <dd>
 <p>Implementations MUST support the signing of assertions and responses, both together and independently.</p>
 </dd>
-</dl>
-</div>
-<div class="paragraph">
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-<a id="IIP-SSO05"></a>[IIP-SSO05]:: Implementations MUST support the consumption of peer configuration values from SAML metadata, without additional inputs or separate configuration, for any metadata element that: (a) is identified as "MUST" or "MAY" in the "Use of Metadata" section for the Web Browser SSO Profile in <a href="#SAML2Prof">[SAML2Prof]</a> (section 4.1.6), and (b) corresponds to settings supported by the implementation.</p>
-</div>
-<div class="exampleblock">
-<div class="content">
-<div class="dlist">
-<dl>
-<dt class="hdlist1">[IIP-SSO05]</dt>
+<dt class="hdlist1"><a id="IIP-SSO05"></a>[IIP-SSO05]</dt>
 <dd>
-<p>Implementations  MUST support the following SAML V2.0 name identifier formats, in accordance with the normative obligations associated with them by <a href="#SAML2Core">[SAML2Core]</a> sect. 8.3:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</p>
-</li>
-<li>
-<p>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</p>
-</li>
-</ul>
-</div>
-</dd>
-<dt class="hdlist1">[IIP-SSO06]</dt>
-<dd>
-<p>Implementations MUST support the consumption of peer configuration values from SAML metadata, without additional inputs or separate configuration, for any metadata element that: (a) is identified as "MUST" or "MAY" in the "Use of Metadata" section for the Web Browser SSO Profile in <a href="#SAML2Prof">[SAML2Prof]</a> (section 4.1.6), and (b) corresponds to settings supported by the implementation.
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; faab0ca27281205012c7580a2fb554c7561748bf</p>
+<p>Implementations MUST support the consumption of peer configuration values from SAML metadata, without additional inputs or separate configuration, for any metadata element that: (a) is identified as "MUST" or "MAY" in the "Use of Metadata" section for the Web Browser SSO Profile in <a href="#SAML2Prof">[SAML2Prof]</a> (section 4.1.6), and (b) corresponds to settings supported by the implementation.</p>
 </dd>
 </dl>
 </div>
@@ -841,9 +803,9 @@ This document has been approved by the InCommon Fed-Interop WG and InCommon Tech
 <div class="paragraph">
 <p><em>This requirement does not prevent implementations from offering additional mechanisms for deployers to set or modify SAML peer configuration values. For example, it is acceptable to allow deployers a choice between manual peer configuration and metadata-based configuration, to provide them with the ability to override values found in metadata, or to add options in the peer configuration that cannot be expressed via SAML metadata.</em></p>
 </div>
-<div class="paragraph">
-<p>=== Extensibility</p>
 </div>
+<div class="sect2">
+<h3 id="_extensibility">2.4. Extensibility</h3>
 <div class="paragraph">
 <p>Support for SAML extensibility is of paramount importance since it allows deployments to evolve and meet future needs. The SAML standard has explicit support for extensibility in metadata, protocol messages, and assertions. Most extension points in SAML have optional semantics, which means that ignoring extension content is a valid and acceptable practice.</p>
 </div>
@@ -855,9 +817,9 @@ This document has been approved by the InCommon Fed-Interop WG and InCommon Tech
 </dd>
 </dl>
 </div>
-<div class="paragraph">
-<p>=== Cryptographic Algorithms</p>
 </div>
+<div class="sect2">
+<h3 id="_cryptographic_algorithms">2.5. Cryptographic Algorithms</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1"><a id="IIP-ALG01"></a>[IIP-ALG01]</dt>
@@ -955,12 +917,14 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </dd>
 </dl>
 </div>
-<div class="paragraph">
-<p>== Service Provider Requirements</p>
 </div>
-<div class="paragraph">
-<p>=== Metadata and Trust Management</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_service_provider_requirements">3. Service Provider Requirements</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_metadata_and_trust_management_2">3.1. Metadata and Trust Management</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1"><a id="IIP-SP01"></a>[IIP-SP01]</dt>
@@ -973,9 +937,8 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </dd>
 </dl>
 </div>
-<div class="paragraph">
-<p>==== Avoiding Common Errors</p>
-</div>
+<div class="sect3">
+<h4 id="_avoiding_common_errors_2">3.1.1. Avoiding Common Errors</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1"><a id="IIP-SP03"></a>[IIP-SP03]</dt>
@@ -987,9 +950,10 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 <div class="paragraph">
 <p><em>Note that if the name identifier format identifiers defined in</em> <a href="#SAML2Core">[SAML2Core]</a> <em>are inapplicable to a given use case, it should be possible for new ones to be established. Implementations not specific to a single deployment should support the use of arbitrary formats.</em></p>
 </div>
-<div class="paragraph">
-<p>=== Attributes</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_attributes">3.2. Attributes</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1"><a id="IIP-SP04"></a>[IIP-SP04]</dt>
@@ -1002,9 +966,8 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </dd>
 </dl>
 </div>
-<div class="paragraph">
-<p>==== Avoiding Common Errors</p>
-</div>
+<div class="sect3">
+<h4 id="_avoiding_common_errors_3">3.2.1. Avoiding Common Errors</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1"><a id="IIP-SP06"></a>[IIP-SP06]</dt>
@@ -1017,9 +980,10 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </dd>
 </dl>
 </div>
-<div class="paragraph">
-<p>=== Web Browser SSO</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_web_browser_sso_2">3.3. Web Browser SSO</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1"><a id="IIP-SP08"></a>[IIP-SP08]</dt>
@@ -1055,36 +1019,13 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 <dd>
 <p>Service Providers MUST be capable of generating <code>&lt;saml2p:AuthnRequest&gt;</code> messages with a <code>&lt;saml2p:RequestedAuthnContext&gt;</code> element containing the <strong>exact</strong> comparison method and any number of <code>&lt;saml2p:AuthnContextClassRef&gt;</code> elements.</p>
 </dd>
-</dl>
-</div>
-<div class="paragraph">
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-<a id="IIP-SP12"></a>[IIP-SP12]:: Service Providers MUST support decryption of <code>&lt;saml2:EncryptedAssertion&gt;</code> elements. In order to fully support key rollover, Service Providers MUST be configurable with at least two decryption keys. When decrypting assertions, they MUST attempt to use each decryption key (in unspecified order) until the assertion is successfully decrypted or there are no more keys, in which case decryption fails.</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><a id="IIP-SP13"></a>[IIP-SP13]</dt>
-<dd>
-<p>Service Providers MUST support deep linking and maintain the direct addressability of protected resources in the presence of Web Browser SSO. That is, it MUST be possible to request an arbitrary protected resource and (authorization permitting) have it supplied as the result of a successful SAML SSO profile exchange. In addition, it is RECOMMENDED that Service Providers support the preservation of POST bodies across a successful SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.</p>
-</dd>
-</dl>
-</div>
-</div>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">[IIP-SP12]</dt>
-<dd>
-<p>Service Providers MUST support the acceptance or rejection of assertions based on the content of the <code>&lt;saml2:AuthnContext&gt;</code> element.</p>
-</dd>
-<dt class="hdlist1">[IIP-SP13]</dt>
+<dt class="hdlist1"><a id="IIP-SP12"></a>[IIP-SP12]</dt>
 <dd>
 <p>Service Providers MUST support decryption of <code>&lt;saml2:EncryptedAssertion&gt;</code> elements. In order to fully support key rollover, Service Providers MUST be configurable with at least two decryption keys. When decrypting assertions, they MUST attempt to use each decryption key (in unspecified order) until the assertion is successfully decrypted or there are no more keys, in which case decryption fails.</p>
 </dd>
-<dt class="hdlist1">[IIP-SP14]</dt>
+<dt class="hdlist1"><a id="IIP-SP13"></a>[IIP-SP13]</dt>
 <dd>
-<p>Service Providers MUST support deep linking and maintain the direct addressability of protected resources in the presence of Web Browser SSO. That is, it MUST be possible to request an arbitrary protected resource and (authorization permitting) have it supplied as the result of a successful SAML SSO profile exchange. In addition, it is RECOMMENDED that Service Providers support the preservation of POST bodies across a successful SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; faab0ca27281205012c7580a2fb554c7561748bf</p>
+<p>Service Providers MUST support deep linking and maintain the direct addressability of protected resources in the presence of Web Browser SSO. That is, it MUST be possible to request an arbitrary protected resource and (authorization permitting) have it supplied as the result of a successful SAML SSO profile exchange. In addition, it is RECOMMENDED that Service Providers support the preservation of POST bodies across a successful SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.</p>
 </dd>
 </dl>
 </div>
@@ -1098,10 +1039,10 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_identity_provider_requirements">3. Identity Provider Requirements</h2>
+<h2 id="_identity_provider_requirements">4. Identity Provider Requirements</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_metadata_and_trust_management_2">3.1. Metadata and Trust Management</h3>
+<h3 id="_metadata_and_trust_management_3">4.1. Metadata and Trust Management</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1"><a id="IIP-IDP01"></a>[IIP-IDP01]</dt>
@@ -1116,7 +1057,7 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_attributes">3.2. Attributes</h3>
+<h3 id="_attributes_2">4.2. Attributes</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1"><a id="IIP-IDP03"></a>[IIP-IDP03]</dt>
@@ -1142,7 +1083,7 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_web_browser_sso_2">3.3. Web Browser SSO</h3>
+<h3 id="_web_browser_sso_3">4.3. Web Browser SSO</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1"><a id="IIP-IDP07"></a>[IIP-IDP07]</dt>
@@ -1180,7 +1121,7 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_enhanced_client_or_proxy">3.4. Enhanced Client or Proxy</h3>
+<h3 id="_enhanced_client_or_proxy">4.4. Enhanced Client or Proxy</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1"><a id="IIP-IDP13"></a>[IIP-IDP13]</dt>
@@ -1203,7 +1144,7 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_single_logout">3.5. Single Logout</h3>
+<h3 id="_single_logout">4.5. Single Logout</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1"><a id="IIP-IDP17"></a>[IIP-IDP17]</dt>
@@ -1228,7 +1169,7 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_references">4. References</h2>
+<h2 id="_references">5. References</h2>
 <div class="sectionbody">
 <div class="ulist bibliography">
 <ul class="bibliography">
@@ -1318,7 +1259,7 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_contributors">5. Contributors</h2>
+<h2 id="_contributors">6. Contributors</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -1359,7 +1300,7 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-08-07 20:15:40 CEST
+Last updated 2016-05-29 14:26:25 CEST
 </div>
 </div>
 </body>
