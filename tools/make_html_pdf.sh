@@ -14,3 +14,8 @@ REPONAME='SAMLprofiles'
 asciidoctor -o ../$REPONAME.gh-pages/fedinterop.html edit/fedinterop/main.adoc
 
 #asciidoctor-pdf -o ../$REPONAME.gh-pages/fedinterop.pdf edit/fedinterop/main.adoc
+
+cd ../$REPONAME.gh-pages/
+git add fedinterop.html
+git commit -m 'generated updated version'
+git push
