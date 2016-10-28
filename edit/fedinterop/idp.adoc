@@ -6,7 +6,7 @@
 
 [IIP-IDP02]:: If a SAML peer has declared algorithm support according to <<SAML2MetaAlgSup>> in its EntityDescriptor, Identity Providers MUST limit the use of algorithms for XML Signature and Encryption to these declared algorithms in the messages they produce for that peer.
 
-=== Attributes
+=== Web Browser SSO
 
 [IIP-IDP03]:: Identity Providers MUST support the generation of `<saml2:Attribute>` elements containing any arbitrary **xs:string** value in the `Name` attribute and any arbitrary **xs:anyURI** value in the `NameFormat` attribute.
 
@@ -17,8 +17,6 @@
 [IIP-IDP06]:: Identity Providers MUST be capable of determining whether or not to include specific SAML attributes (or specific values) in a response based on the presence of `<md:AttributeConsumingService>` elements (containing `<md:RequestedAttribute>` elements) found in the metadata for a relying party, including the value of the enclosed `isRequired` XML attribute.
 
 _<md:RequestedAttribute> elements in metadata can be used to help automate attribute release configurations in IdP deployments. An IdP could, for instance, be configured to release attributes requested in metadata, typically in combination with other criteria. Example criteria include the acquisition of user consent and/or the presence of a particular qualifying entity attribute (see IIP-IDP04) for the relying party._
-
-=== Web Browser SSO
 
 [IIP-IDP07]:: Identity Providers MUST support the issuance of `<saml2p:Response>` messages (with appropriate status codes) in the event of an error condition, provided that the user agent remains available and an acceptable location to which to deliver the response is known. The criteria for "acceptability" of a response location are not formally specified, but are subject to Identity Provider policy and reflect its responsibility to protect users from being sent to untrusted or possibly malicious parties.
 
