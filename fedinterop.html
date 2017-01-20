@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.3">
+<meta name="generator" content="Asciidoctor 1.5.2">
 <title>SAML V2.0 Implementation Profile for Federation Interoperability</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
-/* Remove comment around @import statement below when using as a custom stylesheet */
-/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
+/* Remove the comments around the @import statement below when using this as a custom stylesheet */
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400";*/
 article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
 audio,canvas,video{display:inline-block}
 audio:not([controls]){display:none;height:0}
@@ -57,6 +57,7 @@ a:hover{cursor:pointer}
 img,object,embed{max-width:100%;height:auto}
 object,embed{height:100%}
 img{-ms-interpolation-mode:bicubic}
+#map_canvas img,#map_canvas embed,#map_canvas object,.map_canvas img,.map_canvas embed,.map_canvas object{max-width:none!important}
 .left{float:left!important}
 .right{float:right!important}
 .text-left{text-align:left!important}
@@ -64,12 +65,10 @@ img{-ms-interpolation-mode:bicubic}
 .text-center{text-align:center!important}
 .text-justify{text-align:justify!important}
 .hide{display:none}
-body{-webkit-font-smoothing:antialiased}
-img,object,svg{display:inline-block;vertical-align:middle}
+.antialiased,body{-webkit-font-smoothing:antialiased}
+img{display:inline-block;vertical-align:middle}
 textarea{height:auto;min-height:50px}
 select{width:100%}
-.center{margin-left:auto;margin-right:auto}
-.spread{width:100%}
 p.lead,.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{font-size:1.21875em;line-height:1.6}
 .subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
 div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
@@ -112,14 +111,12 @@ blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
 h1{font-size:2.75em}
 h2{font-size:2.3125em}
 h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
-h4{font-size:1.4375em}}
-table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+h4{font-size:1.4375em}}table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
 table thead,table tfoot{background:#f7f8f7;font-weight:bold}
 table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
 table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
 table tr.even,table tr.alt,table tr:nth-of-type(even){background:#f8f8f7}
 table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
-body{tab-size:4}
 h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
 h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
 .clearfix:before,.clearfix:after,.float-group:before,.float-group:after{content:" ";display:table}
@@ -127,7 +124,7 @@ h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title str
 *:not(pre)>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background-color:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
 pre,pre>code{line-height:1.45;color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;text-rendering:optimizeSpeed}
 .keyseq{color:rgba(51,51,51,.8)}
-kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background-color:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+kbd{display:inline-block;color:rgba(0,0,0,.8);font-size:.75em;line-height:1.4;background-color:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:-.15em .15em 0 .15em;padding:.2em .6em .2em .5em;vertical-align:middle;white-space:nowrap}
 .keyseq kbd:first-child{margin-left:0}
 .keyseq kbd:last-child{margin-right:0}
 .menuseq,.menu{color:rgba(0,0,0,.8)}
@@ -158,33 +155,29 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #toc ul.sectlevel0>li>a{font-style:italic}
 #toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
 #toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
-#toc li{line-height:1.3334;margin-top:.3334em}
 #toc a{text-decoration:none}
 #toc a:active{text-decoration:underline}
 #toctitle{color:#7a2518;font-size:1.2em}
 @media only screen and (min-width:768px){#toctitle{font-size:1.375em}
 body.toc2{padding-left:15em;padding-right:0}
 #toc.toc2{margin-top:0!important;background-color:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #efefed;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
-#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2 #toctitle{margin-top:0;font-size:1.2em}
 #toc.toc2>ul{font-size:.9em;margin-bottom:0}
 #toc.toc2 ul ul{margin-left:0;padding-left:1em}
 #toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
 body.toc2.toc-right{padding-left:0;padding-right:15em}
-body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #efefed;left:auto;right:0}}
-@media only screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #efefed;left:auto;right:0}}@media only screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
 #toc.toc2{width:20em}
 #toc.toc2 #toctitle{font-size:1.375em}
 #toc.toc2>ul{font-size:.95em}
 #toc.toc2 ul ul{padding-left:1.25em}
-body.toc2.toc-right{padding-left:0;padding-right:20em}}
-#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
 #content #toc>:first-child{margin-top:0}
 #content #toc>:last-child{margin-bottom:0}
 #footer{max-width:100%;background-color:rgba(0,0,0,.8);padding:1.25em}
 #footer-text{color:rgba(255,255,255,.8);line-height:1.44}
 .sect1{padding-bottom:.625em}
-@media only screen and (min-width:768px){.sect1{padding-bottom:1.25em}}
-.sect1+.sect1{border-top:1px solid #efefed}
+@media only screen and (min-width:768px){.sect1{padding-bottom:1.25em}}.sect1+.sect1{border-top:1px solid #efefed}
 #content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
 #content h1>a.anchor:before,h2>a.anchor:before,h3>a.anchor:before,#toctitle>a.anchor:before,.sidebarblock>.content>.title>a.anchor:before,h4>a.anchor:before,h5>a.anchor:before,h6>a.anchor:before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
 #content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
@@ -213,9 +206,7 @@ table.tableblock #preamble>.sectionbody>.paragraph:first-of-type p{font-size:inh
 .sidebarblock .literalblock pre,.sidebarblock .listingblock pre:not(.highlight),.sidebarblock .listingblock pre[class="highlight"],.sidebarblock .listingblock pre[class^="highlight "],.sidebarblock .listingblock pre.CodeRay,.sidebarblock .listingblock pre.prettyprint{background:#f2f1f1}
 .literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;padding:1em;font-size:.8125em}
 .literalblock pre.nowrap,.literalblock pre[class].nowrap,.listingblock pre.nowrap,.listingblock pre[class].nowrap{overflow-x:auto;white-space:pre;word-wrap:normal}
-@media only screen and (min-width:768px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:.90625em}}
-@media only screen and (min-width:1280px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:1em}}
-.literalblock.output pre{color:#f7f7f8;background-color:rgba(0,0,0,.9)}
+@media only screen and (min-width:768px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:.90625em}}@media only screen and (min-width:1280px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:1em}}.literalblock.output pre{color:#f7f7f8;background-color:rgba(0,0,0,.9)}
 .listingblock pre.highlightjs{padding:0}
 .listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
 .listingblock pre.prettyprint{border-width:0}
@@ -225,7 +216,7 @@ table.tableblock #preamble>.sectionbody>.paragraph:first-of-type p{font-size:inh
 .listingblock.terminal pre .command:before{content:attr(data-prompt);padding-right:.5em;color:#999}
 .listingblock.terminal pre .command:not([data-prompt]):before{content:"$"}
 table.pyhltable{border-collapse:separate;border:0;margin-bottom:0;background:none}
-table.pyhltable td{vertical-align:top;padding-top:0;padding-bottom:0;line-height:1.45}
+table.pyhltable td{vertical-align:top;padding-top:0;padding-bottom:0}
 table.pyhltable td.code{padding-left:.75em;padding-right:0}
 pre.pygments .lineno,table.pyhltable td:not(.code){color:#999;padding-left:0;padding-right:.5em;border-right:1px solid #ddddd8}
 pre.pygments .lineno{display:inline-block;margin-right:.25em}
@@ -246,12 +237,13 @@ table.pyhltable .linenodiv{background:none!important;padding-right:0!important}
 .verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
 .quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
 .quoteblock .attribution br,.verseblock .attribution br{display:none}
-.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.05em;color:rgba(0,0,0,.6)}
 .quoteblock.abstract{margin:0 0 1.25em 0;display:block}
 .quoteblock.abstract blockquote,.quoteblock.abstract blockquote p{text-align:left;word-spacing:0}
 .quoteblock.abstract blockquote:before,.quoteblock.abstract blockquote p:first-of-type:before{display:none}
 table.tableblock{max-width:100%;border-collapse:separate}
 table.tableblock td>.paragraph:last-child p>p:last-child,table.tableblock th>p:last-child,table.tableblock td>p:last-child{margin-bottom:0}
+table.spread{width:100%}
 table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
 table.grid-all th.tableblock,table.grid-all td.tableblock{border-width:0 1px 1px 0}
 table.grid-all tfoot>tr>th.tableblock,table.grid-all tfoot>tr>td.tableblock{border-width:1px 1px 0 0}
@@ -297,8 +289,8 @@ ol.upperroman{list-style-type:upper-roman}
 ol.lowergreek{list-style-type:lower-greek}
 .hdlist>table,.colist>table{border:0;background:none}
 .hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
-td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
-td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist1{padding-right:.75em;font-weight:bold}
+td.hdlist1,td.hdlist2{vertical-align:top}
 .literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
 .colist>table tr>td:first-of-type{padding:0 .75em;line-height:1}
 .colist>table tr>td:last-of-type{padding:.25em 0}
@@ -311,14 +303,13 @@ td.hdlist1{font-weight:bold;padding-bottom:1.25em}
 .image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
 .image.left{margin-right:.625em}
 .image.right{margin-left:.625em}
-a.image{text-decoration:none;display:inline-block}
-a.image object{pointer-events:none}
-sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
-sup.footnote a,sup.footnoteref a{text-decoration:none}
-sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+a.image{text-decoration:none}
+span.footnote,span.footnoteref{vertical-align:super;font-size:.875em}
+span.footnote a,span.footnoteref a{text-decoration:none}
+span.footnote a:active,span.footnoteref a:active{text-decoration:underline}
 #footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
 #footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em 0;border-width:1px 0 0 0}
-#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;text-indent:-1.05em;margin-bottom:.2em}
+#footnotes .footnote{padding:0 .375em;line-height:1.3;font-size:.875em;margin-left:1.2em;text-indent:-1.2em;margin-bottom:.2em}
 #footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none}
 #footnotes .footnote:last-of-type{margin-bottom:0}
 #content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
@@ -376,10 +367,11 @@ span.icon>.fa{cursor:default}
 pre .conum[data-value]{position:relative;top:-.125em}
 b.conum *{color:inherit!important}
 .conum:not([data-value]):empty{display:none}
-dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
-h1,h2,p,td.content,span.alt{letter-spacing:-.01em}
-p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
-p,blockquote,dt,td.content,span.alt{font-size:1.0625rem}
+h1,h2{letter-spacing:-.01em}
+dt,th.tableblock,td.content{text-rendering:optimizeLegibility}
+p,td.content{letter-spacing:-.01em}
+p strong,td.content strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content{font-size:1.0625rem}
 p{margin-bottom:1.25rem}
 .sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
 .exampleblock>.content{background-color:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
@@ -390,9 +382,9 @@ a{color:inherit!important;text-decoration:underline!important}
 a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
 a[href^="http:"]:not(.bare):after,a[href^="https:"]:not(.bare):after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
 abbr[title]:after{content:" (" attr(title) ")"}
-pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+pre,blockquote,tr,img{page-break-inside:avoid}
 thead{display:table-header-group}
-svg{max-width:100%}
+img{max-width:100%!important}
 p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
 h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
 #toc,.sidebarblock,.exampleblock>.content{background:none!important}
@@ -449,6 +441,9 @@ div.sect3 > h4 {
   font-size: 110%;
   font-weight: bold;
 }
+dl dd {
+  margin-left: 0px;
+}
 </style>
 </head>
 <body class="article">
@@ -462,19 +457,12 @@ div.sect3 > h4 {
 </h1>
 <div class="paragraph">
 <div class="title">Abstract</div>
-<p>This document encompasses a set of software conformance requirements intended to
-facilitate interoperability within the context of full mesh identity federations,
-such as those found in the research and education sector. It attempts to address
-a number of common barriers to interoperability and details features that are
-necessary in order to use SAML metadata as a foundation for scalable trust fabrics.
-It supercedes the <a href="eGovImplProfile.html">eGovernment Implementation Profile V2.0bis</a> from June 2011.</p>
+<p>This document encompasses a set of software conformance requirements intended to facilitate interoperability within the context of full mesh identity federations, such as those found in the research and education sector. It attempts to address a number of common barriers to interoperability and details features that are necessary in order to use SAML metadata as a foundation for scalable trust fabrics.  It supercedes the <a href="eGovImplProfile.html">eGovernment Implementation Profile V2.0bis</a> from June 2011.</p>
 </div>
 <div class="paragraph">
 <div class="title">Status</div>
 <p>Draft.
-This document have been worked up and approved by the InCommon Fed-Interop WG and then
-transferred to Kantara FI-WG for further alignment with stakeholders outside the
-research &amp; education community.</p>
+This document has been approved by the InCommon Fed-Interop WG and InCommon Technical Advistory Committee. After public review, it was transferred to the Kantara FI-WG for further alignment with stakeholders outside the research &amp; education community.</p>
 </div>
 <div class="paragraph">
 <div class="title">Copyright Notice</div>
@@ -491,8 +479,8 @@ research &amp; education community.</p>
 </li>
 <li><a href="#_common_requirements">2. Common Requirements</a>
 <ul class="sectlevel2">
-<li><a href="#_metadata_and_trust_management">2.1. Metadata and Trust Management</a></li>
-<li><a href="#_general">2.2. General</a></li>
+<li><a href="#_general">2.1. General</a></li>
+<li><a href="#_metadata_and_trust_management">2.2. Metadata and Trust Management</a></li>
 <li><a href="#_web_browser_sso">2.3. Web Browser SSO</a></li>
 <li><a href="#_extensibility">2.4. Extensibility</a></li>
 <li><a href="#_cryptographic_algorithms">2.5. Cryptographic Algorithms</a></li>
@@ -501,17 +489,15 @@ research &amp; education community.</p>
 <li><a href="#_service_provider_requirements">3. Service Provider Requirements</a>
 <ul class="sectlevel2">
 <li><a href="#_metadata_and_trust_management_2">3.1. Metadata and Trust Management</a></li>
-<li><a href="#_attributes">3.2. Attributes</a></li>
-<li><a href="#_web_browser_sso_2">3.3. Web Browser SSO</a></li>
+<li><a href="#_web_browser_sso_2">3.2. Web Browser SSO</a></li>
 </ul>
 </li>
 <li><a href="#_identity_provider_requirements">4. Identity Provider Requirements</a>
 <ul class="sectlevel2">
 <li><a href="#_metadata_and_trust_management_3">4.1. Metadata and Trust Management</a></li>
-<li><a href="#_attributes_2">4.2. Attributes</a></li>
-<li><a href="#_web_browser_sso_3">4.3. Web Browser SSO</a></li>
-<li><a href="#_enhanced_client_or_proxy">4.4. Enhanced Client or Proxy</a></li>
-<li><a href="#_single_logout">4.5. Single Logout</a></li>
+<li><a href="#_web_browser_sso_3">4.2. Web Browser SSO</a></li>
+<li><a href="#_enhanced_client_or_proxy">4.3. Enhanced Client or Proxy</a></li>
+<li><a href="#_single_logout">4.4. Single Logout</a></li>
 </ul>
 </li>
 <li><a href="#_references">5. References</a></li>
@@ -559,7 +545,46 @@ research &amp; education community.</p>
 <h2 id="_common_requirements">2. Common Requirements</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_metadata_and_trust_management">2.1. Metadata and Trust Management</h3>
+<h3 id="_general">2.1. General</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[IIP-G01]</dt>
+<dd>
+<p>Implementations MUST allow for reasonable clock skew between systems when interpreting <strong>xsd:dateTime</strong> values and enforcing security policies based thereupon.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><em>The following is a non-exhaustive list of items to which this directive applies: <code>NotBefore</code>, <code>NotOnOrAfter</code>, and <code>validUntil</code> XML attributes found on <code>Conditions</code>, <code>SubjectConfirmationData</code>, <code>LogoutRequest</code>, <code>EntityDescriptor</code>, <code>EntitiesDescriptor</code>, <code>RoleDescriptor</code>, and <code>AffiliationDescriptor</code> elements.</em></p>
+</div>
+<div class="paragraph">
+<p><em>Tolerances of 3–5 minutes are a reasonable default, but allowing for configurability is a suggested practice.</em></p>
+</div>
+<div class="paragraph">
+<p><em>Guidance is offered with regard to clock skew in E92 of <a href="#SAML2Errata">[SAML2Errata]</a>. Empirical evidence has shown that allowance for clock skew is critical to robust SAML deployments. It has thus been made a mandatory feature in this profile.</em></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[IIP-G02]</dt>
+<dd>
+<p>When specific constraints are absent in the SAML standards or profile documents, implementations MUST be able to accept, without error or truncation, element and attribute values of type <strong>xs:string</strong> that are comprised of any combination of valid XML characters and contain up to 256 characters. This requirement applies both to types defined within the SAML standards (such as transient and persistent NameIDs) and to user-defined types.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><em>It is acceptable to allow for selective configuration of more restrictive constraints on specific NameID and AttributeValue types.</em></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[IIP-G03]</dt>
+<dd>
+<p>Implementations MUST not send and MUST have the ability to reject SAML protocol messages containing a Document Type Declaration.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_metadata_and_trust_management">2.2. Metadata and Trust Management</h3>
 <div class="paragraph">
 <p>This section identifies a basic set of features required for the interoperable use of SAML metadata. Although metadata support was optional in the original SAML V2.0 specification, it is now recognized as a critical component of all modern SAML software. Implementations must carefully adhere to the following procedures related to the exchange and validation of metadata in order to support a scalable federation model.</p>
 </div>
@@ -567,10 +592,10 @@ research &amp; education community.</p>
 <p>The underlying intent of these requirements is to facilitate a configuration and provisioning model that is, to the greatest extent practical, based on metadata alone.</p>
 </div>
 <div class="sect3">
-<h4 id="_metadata_capabilities">2.1.1. Metadata Capabilities</h4>
+<h4 id="_metadata_capabilities">2.2.1. Metadata Capabilities</h4>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><a id="IIP-MD01"></a>[IIP-MD01]</dt>
+<dt class="hdlist1">[IIP-MD01]</dt>
 <dd>
 <p>Implementations MUST support SAML Metadata as defined in the following OASIS specifications:</p>
 <div class="ulist">
@@ -603,11 +628,11 @@ research &amp; education community.</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><a id="IIP-MD02"></a>[IIP-MD02]</dt>
+<dt class="hdlist1">[IIP-MD02]</dt>
 <dd>
 <p>Implementations MUST support the consumption of SAML metadata rooted in both <code>&lt;md:EntityDescriptor&gt;</code> and <code>&lt;md:EntitiesDescriptor&gt;</code> elements. In the latter case, any number of child elements MUST be allowed.</p>
 </dd>
-<dt class="hdlist1"><a id="IIP-MD03"></a>[IIP-MD03]</dt>
+<dt class="hdlist1">[IIP-MD03]</dt>
 <dd>
 <p>Implementations MUST support the interpretation and application of metadata as defined by the SAML V2.0 Metadata Interoperability Profile <a href="#SAML2MDIOP">[SAML2MDIOP]</a>. It follows that implementations MUST be capable of interoperating (leading to success or failure as dictated by default configuration) with any number of SAML peers for which metadata is supplied, without additional inputs or separate configuration. In accordance with the SAML V2.0 Metadata Interoperability Profile <a href="#SAML2MDIOP">[SAML2MDIOP]</a>, metadata MUST be:</p>
 </dd>
@@ -626,14 +651,14 @@ research &amp; education community.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_metadata_exchange">2.1.2. Metadata Exchange</h4>
+<h4 id="_metadata_exchange">2.2.2. Metadata Exchange</h4>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><a id="IIP-MD04"></a>[IIP-MD04]</dt>
+<dt class="hdlist1">[IIP-MD04]</dt>
 <dd>
 <p>Implementations MUST support the routine consumption of SAML metadata from a remote location via HTTP/1.1 <a href="#RFC2616">[RFC2616]</a> on a scheduled/recurring basis, with the contents automatically applied upon successful validation. HTTP/1.1 redirects (status codes 301, 302, and 307) MUST be honored.</p>
 </dd>
-<dt class="hdlist1"><a id="IIP-MD05"></a>[IIP-MD05]</dt>
+<dt class="hdlist1">[IIP-MD05]</dt>
 <dd>
 <p>Implementations MUST be able to validate the authenticity and integrity of SAML metadata by verifying an enveloped XML Signature <a href="#XMLDsig">[XMLDsig]</a> attached to the root element of the metadata. Public keys used for signature verification MUST be configured out of band. These keys MAY be contained in X.509 certificates but it MUST be possible to ignore the other contents of the certificate and verify the XML Signature based solely on the public key. It MUST be possible to limit the use of a trusted key to a single metadata source.</p>
 </dd>
@@ -644,7 +669,7 @@ research &amp; education community.</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><a id="IIP-MD06"></a>[IIP-MD06]</dt>
+<dt class="hdlist1">[IIP-MD06]</dt>
 <dd>
 <p>Implementations MUST be capable of rejecting SAML metadata if any one of the following conditions is true:</p>
 <div class="olist arabic">
@@ -668,14 +693,14 @@ research &amp; education community.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_key_rollover">2.1.3. Key Rollover</h4>
+<h4 id="_key_rollover">2.2.3. Key Rollover</h4>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><a id="IIP-MD07"></a>[IIP-MD07]</dt>
+<dt class="hdlist1">[IIP-MD07]</dt>
 <dd>
 <p>Implementations MUST have the ability to consume and make use of any number of signing keys bound to a single role descriptor in metadata. When verifying digital signatures, they MUST attempt to use each signing key (in unspecified order) until the signature is successfully verified or there are no remaining keys, in which case signature verification fails.</p>
 </dd>
-<dt class="hdlist1"><a id="IIP-MD08"></a>[IIP-MD08]</dt>
+<dt class="hdlist1">[IIP-MD08]</dt>
 <dd>
 <p>If an implementation supports outbound encryption, it MUST be able to consume any number of encryption keys bound to a single role descriptor in metadata. If multiple encryption keys are specified, any one of them may be used to encrypt outbound messages.</p>
 </dd>
@@ -683,13 +708,13 @@ research &amp; education community.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_algorithm_support">2.1.4. Algorithm Support</h4>
+<h4 id="_algorithm_support">2.2.4. Algorithm Support</h4>
 <div class="paragraph">
 <p>The migration from suspicious and broken algorithms deployed in production systems requiring a coordinated update at a single point in time is not feasible in large federations. An alternative strategy is the support of both good and bad algorithms at the endpoints for some time to relax the schedule for system updates. Negotiating better algorithms automatically provides immediate benefit to communications within the group of updated entities. Thus the network as a whole is not completely stuck because of entity operators unable/unwilling to update. Algorithm support for TLS endpoints is out of scope for SAML metadata.</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><a id="IIP-MD09"></a>[IIP-MD09]</dt>
+<dt class="hdlist1">[IIP-MD09]</dt>
 <dd>
 <p>Implementations MUST be capable of publishing the cryptographic capabilities of their runtime configurations with regard to XML Signature and Encryption. It is RECOMMENDED that they support dynamic generation and export of this information and provide it in a machine-readable format that can be included in metadata according to <a href="#SAML2MetaAlgSup">[SAML2MetaAlgSup]</a>.</p>
 </dd>
@@ -697,10 +722,10 @@ research &amp; education community.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_avoiding_common_errors">2.1.5. Avoiding Common Errors</h4>
+<h4 id="_avoiding_common_errors">2.2.5. Avoiding Common Errors</h4>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><a id="IIP-MD10"></a>[IIP-MD10]</dt>
+<dt class="hdlist1">[IIP-MD10]</dt>
 <dd>
 <p>An <code>&lt;md:KeyDescriptor&gt;</code> element in metadata that contains no <code>use</code> XML attribute MUST be valid as both a signing and encryption key. This is clarified in E62 of the SAML V2.0 Errata <a href="#SAML2Errata">[SAML2Errata]</a>:</p>
 </dd>
@@ -713,7 +738,7 @@ research &amp; education community.</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><a id="IIP-MD11"></a>[IIP-MD11]</dt>
+<dt class="hdlist1">[IIP-MD11]</dt>
 <dd>
 <p>Support for any number of long-lived, self-signed end entity certificates is REQUIRED as is support for expired certificates, and certificates signed with any digest algorithm.  The SAML V2.0 Metadata Interoperability Profile <a href="#SAML2MDIOP">[SAML2MDIOP]</a> states:</p>
 </dd>
@@ -727,10 +752,26 @@ research &amp; education community.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_general">2.2. General</h3>
+<h3 id="_web_browser_sso">2.3. Web Browser SSO</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><a id="IIP-G01"></a>[IIP-G01]</dt>
+<dt class="hdlist1">[IIP-SSO01]</dt>
+<dd>
+<p>Implementations MUST support the SAML V2.0 Web Browser SSO Profile as defined in <a href="#SAML2Prof">[SAML2Prof]</a> and as updated by <a href="#SAML2Errata">[SAML2Errata]</a>.</p>
+</dd>
+<dt class="hdlist1">[IIP-SSO02]</dt>
+<dd>
+<p>Implementations MUST support the HTTP-Redirect and HTTP-POST bindings for authentication requests.</p>
+</dd>
+<dt class="hdlist1">[IIP-SSO03]</dt>
+<dd>
+<p>Implementations MUST support the HTTP-POST binding for authentication and error responses.</p>
+</dd>
+<dt class="hdlist1">[IIP-SSO04]</dt>
+<dd>
+<p>Implementations MUST support the signing of assertions and responses, both together and independently.</p>
+</dd>
+<dt class="hdlist1">[IIP-SSO05]</dt>
 <dd>
 <p>Implementations  MUST support the following SAML V2.0 name identifier formats, in accordance with the normative obligations associated with them by <a href="#SAML2Core">[SAML2Core]</a> sect. 8.3:</p>
 <div class="ulist">
@@ -744,54 +785,7 @@ research &amp; education community.</p>
 </ul>
 </div>
 </dd>
-<dt class="hdlist1"><a id="IIP-G02"></a>[IIP-G02]</dt>
-<dd>
-<p>Implementations MUST allow for reasonable clock skew between systems when interpreting <strong>xsd:dateTime</strong> values and enforcing security policies based thereupon.</p>
-</dd>
-</dl>
-</div>
-<div class="paragraph">
-<p><em>The following is a non-exhaustive list of items to which this directive applies: <code>NotBefore</code>, <code>NotOnOrAfter</code>, and <code>validUntil</code> XML attributes found on <code>Conditions</code>, <code>SubjectConfirmationData</code>, <code>LogoutRequest</code>, <code>EntityDescriptor</code>, <code>EntitiesDescriptor</code>, <code>RoleDescriptor</code>, and <code>AffiliationDescriptor</code> elements.</em></p>
-</div>
-<div class="paragraph">
-<p><em>Tolerances of 3–5 minutes are a reasonable default, but allowing for configurability is a suggested practice.</em></p>
-</div>
-<div class="paragraph">
-<p><em>Guidance is offered with regard to clock skew in E92 of <a href="#SAML2Errata">[SAML2Errata]</a>. Empirical evidence has shown that allowance for clock skew is critical to robust SAML deployments. It has thus been made a mandatory feature in this profile.</em></p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><a id="IIP-G03"></a>[IIP-G03]</dt>
-<dd>
-<p>When specific constraints are absent in the SAML standards or profile documents, implementations MUST be able to accept, without error or truncation, element and attribute values of type <strong>xs:string</strong> that are comprised of any combination of valid XML characters and contain up to 256 characters. This requirement applies both to types defined within the SAML standards (such as transient and persistent NameIDs) and to user-defined types.</p>
-</dd>
-</dl>
-</div>
-<div class="paragraph">
-<p><em>It is acceptable to allow for selective configuration of more restrictive constraints on specific NameID and AttributeValue types.</em></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_web_browser_sso">2.3. Web Browser SSO</h3>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><a id="IIP-SSO01"></a>[IIP-SSO01]</dt>
-<dd>
-<p>Implementations MUST support the SAML V2.0 Web Browser SSO Profile as defined in <a href="#SAML2Prof">[SAML2Prof]</a> and as updated by <a href="#SAML2Errata">[SAML2Errata]</a>.</p>
-</dd>
-<dt class="hdlist1"><a id="IIP-SSO02"></a>[IIP-SSO02]</dt>
-<dd>
-<p>Implementations MUST support the HTTP-Redirect and HTTP-POST bindings for authentication requests.</p>
-</dd>
-<dt class="hdlist1"><a id="IIP-SSO03"></a>[IIP-SSO03]</dt>
-<dd>
-<p>Implementations MUST support the HTTP-POST binding for authentication and error responses.</p>
-</dd>
-<dt class="hdlist1"><a id="IIP-SSO04"></a>[IIP-SSO04]</dt>
-<dd>
-<p>Implementations MUST support the signing of assertions and responses, both together and independently.</p>
-</dd>
-<dt class="hdlist1"><a id="IIP-SSO05"></a>[IIP-SSO05]</dt>
+<dt class="hdlist1">[IIP-SSO06]</dt>
 <dd>
 <p>Implementations MUST support the consumption of peer configuration values from SAML metadata, without additional inputs or separate configuration, for any metadata element that: (a) is identified as "MUST" or "MAY" in the "Use of Metadata" section for the Web Browser SSO Profile in <a href="#SAML2Prof">[SAML2Prof]</a> (section 4.1.6), and (b) corresponds to settings supported by the implementation.</p>
 </dd>
@@ -803,6 +797,14 @@ research &amp; education community.</p>
 <div class="paragraph">
 <p><em>This requirement does not prevent implementations from offering additional mechanisms for deployers to set or modify SAML peer configuration values. For example, it is acceptable to allow deployers a choice between manual peer configuration and metadata-based configuration, to provide them with the ability to override values found in metadata, or to add options in the peer configuration that cannot be expressed via SAML metadata.</em></p>
 </div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[IIP-SSO07]</dt>
+<dd>
+<p>Unless specifically called out by subsequent requirements in this profile, it is OPTIONAL for implementations to support the inclusion of optional elements and attributes in the protocol messages and assertions issued. It is REQUIRED that implementations successfully process messages and assertions containing any optional content they do not support (i.e., such content MUST either result in errors or be ignored, as directed by the processing rules for the element or attribute in <a href="#SAML2Core">[SAML2Core]</a>).</p>
+</dd>
+</dl>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_extensibility">2.4. Extensibility</h3>
@@ -811,7 +813,7 @@ research &amp; education community.</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><a id="IIP-EXT01"></a>[IIP-EXT01]</dt>
+<dt class="hdlist1">[IIP-EXT01]</dt>
 <dd>
 <p>Implementations MUST successfully consume any and all well-formed extensions. Unless otherwise noted in this profile, the content of <code>&lt;saml2p:Extensions&gt;</code>, <code>&lt;md:Extensions&gt;</code>, and <code>&lt;saml2:Advice&gt;</code> elements MAY be ignored but MUST NOT result in software failures. Additionally, any element established in <a href="#SAML2MD-xsd">[SAML2MD-xsd]</a> or <a href="#SAML2-xsd">[SAML2-xsd]</a> with a type definition containing an <strong>&lt;xsd:anyAttribute&gt;</strong> subelement may include undefined attribute content.  This content MAY likewise be ignored but MUST NOT result in software failures.</p>
 </dd>
@@ -822,7 +824,7 @@ research &amp; education community.</p>
 <h3 id="_cryptographic_algorithms">2.5. Cryptographic Algorithms</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><a id="IIP-ALG01"></a>[IIP-ALG01]</dt>
+<dt class="hdlist1">[IIP-ALG01]</dt>
 <dd>
 <p>Implementations MUST support the digest algorithms identified by the following URIs in conjunction with the creation and verification of XML Signatures <a href="#XMLSig">[XMLSig]</a>:</p>
 <div class="ulist">
@@ -839,7 +841,7 @@ Implementations MUST NOT default to the use of <code><code><a href="http://www.w
 </ul>
 </div>
 </dd>
-<dt class="hdlist1"><a id="IIP-ALG02"></a>[IIP-ALG02]</dt>
+<dt class="hdlist1">[IIP-ALG02]</dt>
 <dd>
 <p>Implementations MUST support the signing algorithms identified by the following URIs in conjunction with the creation and verification of XML Signatures <a href="#XMLSig">[XMLSig]</a>:</p>
 <div class="ulist">
@@ -856,7 +858,7 @@ Implementations MUST NOT default to the use of <code><code><a href="http://www.w
 </ul>
 </div>
 </dd>
-<dt class="hdlist1"><a id="IIP-ALG03"></a>[IIP-ALG03]</dt>
+<dt class="hdlist1">[IIP-ALG03]</dt>
 <dd>
 <p>Implementations SHOULD support the signature algorithms identified by the following URIs in conjunction with the creation and verification of XML Signatures <a href="#XMLSig">[XMLSig]</a>:</p>
 <div class="ulist">
@@ -867,7 +869,7 @@ Implementations MUST NOT default to the use of <code><code><a href="http://www.w
 </ul>
 </div>
 </dd>
-<dt class="hdlist1"><a id="IIP-ALG04"></a>[IIP-ALG04]</dt>
+<dt class="hdlist1">[IIP-ALG04]</dt>
 <dd>
 <p>Implementations MUST support the block encryption algorithms identified by the following URIs in conjunction with the use of XML Encryption <a href="#XMLEnc">[XMLEnc]</a>:</p>
 <div class="ulist">
@@ -887,7 +889,7 @@ Implementations MUST NOT default to the use of <code><code><a href="http://www.w
 </ul>
 </div>
 </dd>
-<dt class="hdlist1"><a id="IIP-ALG05"></a>[IIP-ALG05]</dt>
+<dt class="hdlist1">[IIP-ALG05]</dt>
 <dd>
 <p>Implementations MUST support the key transport algorithms identified by the following URIs in conjunction with the use of XML Encryption <a href="#XMLEnc">[XMLEnc]</a>:</p>
 <div class="ulist">
@@ -911,7 +913,7 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </ul>
 </div>
 </dd>
-<dt class="hdlist1"><a id="IIP-ALG06"></a>[IIP-ALG06]</dt>
+<dt class="hdlist1">[IIP-ALG06]</dt>
 <dd>
 <p>This document is not normative with respect to TLS security. It is, however, RECOMMENDED that implementers consider <a href="#RFC7457">[RFC7457]</a> and current best practice reflected in documents such as <a href="#BetterCrypto">[BetterCrypto]</a>.</p>
 </dd>
@@ -927,70 +929,34 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 <h3 id="_metadata_and_trust_management_2">3.1. Metadata and Trust Management</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><a id="IIP-SP01"></a>[IIP-SP01]</dt>
+<dt class="hdlist1">[IIP-SP01]</dt>
 <dd>
 <p>Service Providers SHOULD support the acquisition of SAML metadata rooted in <code>&lt;md:EntityDescriptor&gt;</code> elements via the Metadata Query Protocol, defined in <a href="#SAML-MDQ">[SAML-MDQ]</a> and <a href="#MDQ">[MDQ]</a>.</p>
 </dd>
-<dt class="hdlist1"><a id="IIP-SP02"></a>[IIP-SP02]</dt>
+<dt class="hdlist1">[IIP-SP02]</dt>
 <dd>
 <p>If a SAML peer has declared algorithm support according to <a href="#SAML2MetaAlgSup">[SAML2MetaAlgSup]</a> in its EntityDescriptor, Service Providers SHOULD limit the use of algorithms for XML Signature and Encryption to these declared algorithms in the messages they produce for that peer.</p>
 </dd>
 </dl>
 </div>
-<div class="sect3">
-<h4 id="_avoiding_common_errors_2">3.1.1. Avoiding Common Errors</h4>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><a id="IIP-SP03"></a>[IIP-SP03]</dt>
-<dd>
-<p>Service Providers MUST NOT require that name identifiers with a format of 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent' be overloaded with semantics or content beyond what is outlined in <a href="#SAML2Core">[SAML2Core]</a> sect. 8.3.7.</p>
-</dd>
-</dl>
-</div>
-<div class="paragraph">
-<p><em>Note that if the name identifier format identifiers defined in</em> <a href="#SAML2Core">[SAML2Core]</a> <em>are inapplicable to a given use case, it should be possible for new ones to be established. Implementations not specific to a single deployment should support the use of arbitrary formats.</em></p>
-</div>
-</div>
 </div>
 <div class="sect2">
-<h3 id="_attributes">3.2. Attributes</h3>
+<h3 id="_web_browser_sso_2">3.2. Web Browser SSO</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><a id="IIP-SP04"></a>[IIP-SP04]</dt>
+<dt class="hdlist1">[IIP-SP03]</dt>
 <dd>
 <p>Service Providers MUST support the consumption of <code>&lt;saml2:Attribute&gt;</code> elements containing any arbitrary <strong>xs:string</strong> value in the <code>Name</code> attribute and any arbitrary <strong>xs:anyURI</strong> value in the <code>NameFormat</code> attribute.</p>
 </dd>
-<dt class="hdlist1"><a id="IIP-SP05"></a>[IIP-SP05]</dt>
+<dt class="hdlist1">[IIP-SP04]</dt>
 <dd>
 <p>Service Providers MUST support the consumption of <code>&lt;saml2:AttributeValue&gt;</code> elements containing any "simple" element content; that is, element content consisting only of text nodes, not mixed/complex content that may contain nested XML elements. It is OPTIONAL to support complex content. Service Providers MUST NOT require the presence of the <code>xsi:type</code> XML attribute.</p>
 </dd>
-</dl>
-</div>
-<div class="sect3">
-<h4 id="_avoiding_common_errors_3">3.2.1. Avoiding Common Errors</h4>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><a id="IIP-SP06"></a>[IIP-SP06]</dt>
-<dd>
-<p>Service Providers MUST NOT fail or reject responses due to the presence of unrecognized <code>&lt;saml2:Attribute&gt;</code> elements.</p>
-</dd>
-<dt class="hdlist1"><a id="IIP-SP07"></a>[IIP-SP07]</dt>
-<dd>
-<p>Service Providers MUST NOT treat the <code>FriendlyName</code> attribute normatively or make comparisons based on its value.</p>
-</dd>
-</dl>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_web_browser_sso_2">3.3. Web Browser SSO</h3>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><a id="IIP-SP08"></a>[IIP-SP08]</dt>
+<dt class="hdlist1">[IIP-SP05]</dt>
 <dd>
 <p>Service Providers MUST be capable of generating <code>&lt;saml2p:AuthnRequest&gt;</code> messages without a <code>&lt;saml2p:NameIDPolicy&gt;</code> element and with a <code>&lt;saml2p:NameIDPolicy&gt;</code> element but no <code>Format</code> attribute.</p>
 </dd>
-<dt class="hdlist1"><a id="IIP-SP09"></a>[IIP-SP09]</dt>
+<dt class="hdlist1">[IIP-SP06]</dt>
 <dd>
 <p>Service Providers MUST support IdP discovery in accordance with <a href="#IdPDisco">[IdPDisco]</a>.</p>
 </dd>
@@ -1004,7 +970,7 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><a id="IIP-SP10"></a>[IIP-SP10]</dt>
+<dt class="hdlist1">[IIP-SP07]</dt>
 <dd>
 <p>Service Providers MUST support the processing of responses from any number of issuing IdPs for any given resource URL. That is, it MUST NOT be a restriction of an implementation that multiple IdPs can only be supported by requiring distinct resource URLs for each IdP.</p>
 </dd>
@@ -1015,15 +981,19 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><a id="IIP-SP11"></a>[IIP-SP11]</dt>
+<dt class="hdlist1">[IIP-SP08]</dt>
 <dd>
 <p>Service Providers MUST be capable of generating <code>&lt;saml2p:AuthnRequest&gt;</code> messages with a <code>&lt;saml2p:RequestedAuthnContext&gt;</code> element containing the <strong>exact</strong> comparison method and any number of <code>&lt;saml2p:AuthnContextClassRef&gt;</code> elements.</p>
 </dd>
-<dt class="hdlist1"><a id="IIP-SP12"></a>[IIP-SP12]</dt>
+<dt class="hdlist1">[IIP-SP09]</dt>
+<dd>
+<p>Service Providers MUST support the acceptance or rejection of assertions based on the content of the <code>&lt;saml2:AuthnContext&gt;</code> element.</p>
+</dd>
+<dt class="hdlist1">[IIP-SP10]</dt>
 <dd>
 <p>Service Providers MUST support decryption of <code>&lt;saml2:EncryptedAssertion&gt;</code> elements. In order to fully support key rollover, Service Providers MUST be configurable with at least two decryption keys. When decrypting assertions, they MUST attempt to use each decryption key (in unspecified order) until the assertion is successfully decrypted or there are no more keys, in which case decryption fails.</p>
 </dd>
-<dt class="hdlist1"><a id="IIP-SP13"></a>[IIP-SP13]</dt>
+<dt class="hdlist1">[IIP-SP11]</dt>
 <dd>
 <p>Service Providers MUST support deep linking and maintain the direct addressability of protected resources in the presence of Web Browser SSO. That is, it MUST be possible to request an arbitrary protected resource and (authorization permitting) have it supplied as the result of a successful SAML SSO profile exchange. In addition, it is RECOMMENDED that Service Providers support the preservation of POST bodies across a successful SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.</p>
 </dd>
@@ -1035,6 +1005,28 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 <div class="paragraph">
 <p><em>Support for unsolicited responses (or so-called IdP-initiated SSO) is not a substitute for this requirement.</em></p>
 </div>
+<div class="sect3">
+<h4 id="_avoiding_common_errors_2">3.2.1. Avoiding Common Errors</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[IIP-SP12]</dt>
+<dd>
+<p>Service Providers MUST NOT fail or reject responses due to the presence of unrecognized <code>&lt;saml2:Attribute&gt;</code> elements.</p>
+</dd>
+<dt class="hdlist1">[IIP-SP13]</dt>
+<dd>
+<p>Service Providers MUST NOT treat the <code>FriendlyName</code> attribute normatively or make comparisons based on its value.</p>
+</dd>
+<dt class="hdlist1">[IIP-SP14]</dt>
+<dd>
+<p>Service Providers MUST NOT require that name identifiers with a format of 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent' be overloaded with semantics or content beyond what is outlined in <a href="#SAML2Core">[SAML2Core]</a> sect. 8.3.7.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><em>Note that if the name identifier format identifiers defined in</em> <a href="#SAML2Core">[SAML2Core]</a> <em>are inapplicable to a given use case, it should be possible for new ones to be established. Implementations not specific to a single deployment should support the use of arbitrary formats.</em></p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1045,11 +1037,11 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 <h3 id="_metadata_and_trust_management_3">4.1. Metadata and Trust Management</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><a id="IIP-IDP01"></a>[IIP-IDP01]</dt>
+<dt class="hdlist1">[IIP-IDP01]</dt>
 <dd>
 <p>Identity Providers MUST support the acquisition of SAML metadata rooted in <code>&lt;md:EntityDescriptor&gt;</code> elements via the Metadata Query Protocol, defined in <a href="#SAML-MDQ">[SAML-MDQ]</a> and <a href="#MDQ">[MDQ]</a>.</p>
 </dd>
-<dt class="hdlist1"><a id="IIP-IDP02"></a>[IIP-IDP02]</dt>
+<dt class="hdlist1">[IIP-IDP02]</dt>
 <dd>
 <p>If a SAML peer has declared algorithm support according to <a href="#SAML2MetaAlgSup">[SAML2MetaAlgSup]</a> in its EntityDescriptor, Identity Providers MUST limit the use of algorithms for XML Signature and Encryption to these declared algorithms in the messages they produce for that peer.</p>
 </dd>
@@ -1057,40 +1049,37 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_attributes_2">4.2. Attributes</h3>
+<h3 id="_web_browser_sso_3">4.2. Web Browser SSO</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><a id="IIP-IDP03"></a>[IIP-IDP03]</dt>
+<dt class="hdlist1">[IIP-IDP03]</dt>
 <dd>
 <p>Identity Providers MUST support the generation of <code>&lt;saml2:Attribute&gt;</code> elements containing any arbitrary <strong>xs:string</strong> value in the <code>Name</code> attribute and any arbitrary <strong>xs:anyURI</strong> value in the <code>NameFormat</code> attribute.</p>
 </dd>
-<dt class="hdlist1"><a id="IIP-IDP04"></a>[IIP-IDP04]</dt>
+<dt class="hdlist1">[IIP-IDP04]</dt>
 <dd>
 <p>Identity Providers MUST be capable of determining whether or not to include specific SAML attributes (or specific values) in a response based on the the entityID of the relying party.</p>
 </dd>
-<dt class="hdlist1"><a id="IIP-IDP05"></a>[IIP-IDP05]</dt>
+<dt class="hdlist1">[IIP-IDP05]</dt>
 <dd>
 <p>Identity Providers MUST be capable of determining whether or not to include specific SAML attributes (or specific values) in a response based on the presence of <code>&lt;mdattr:EntityAttributes&gt;</code> extension elements <a href="#MetaAttr">[MetaAttr]</a> found in the metadata for a relying party.</p>
 </dd>
-<dt class="hdlist1"><a id="IIP-IDP06"></a>[IIP-IDP06]</dt>
+<dt class="hdlist1">[IIP-IDP06]</dt>
 <dd>
-<p>Identity Providers MUST be capable of determining whether or not to include specific SAML attributes (or specific values) in a response based on the presence of <code>&lt;md:RequestedAttribute&gt;</code> elements found in the metadata for a relying party, including the value of the enclosed <code>isRequired</code> XML attribute.</p>
+<p>Identity Providers MUST be capable of determining whether or not to include specific SAML attributes (or specific values) in a response based on the presence of <code>&lt;md:AttributeConsumingService&gt;</code> elements (containing <code>&lt;md:RequestedAttribute&gt;</code> elements) found in the metadata for a relying party, including the value of the enclosed <code>isRequired</code> XML attribute. They MUST also support the <code>AttributeConsumingServiceIndex</code> attribute in <code>&lt;saml2p:AuthnRequest&gt;</code> messages as defined in <a href="#SAML2Core">[SAML2Core]</a>.</p>
 </dd>
 </dl>
 </div>
 <div class="paragraph">
 <p><em>&lt;md:RequestedAttribute&gt; elements in metadata can be used to help automate attribute release configurations in IdP deployments. An IdP could, for instance, be configured to release attributes requested in metadata, typically in combination with other criteria. Example criteria include the acquisition of user consent and/or the presence of a particular qualifying entity attribute (see IIP-IDP04) for the relying party.</em></p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_web_browser_sso_3">4.3. Web Browser SSO</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><a id="IIP-IDP07"></a>[IIP-IDP07]</dt>
+<dt class="hdlist1">[IIP-IDP07]</dt>
 <dd>
 <p>Identity Providers MUST support the issuance of <code>&lt;saml2p:Response&gt;</code> messages (with appropriate status codes) in the event of an error condition, provided that the user agent remains available and an acceptable location to which to deliver the response is known. The criteria for "acceptability" of a response location are not formally specified, but are subject to Identity Provider policy and reflect its responsibility to protect users from being sent to untrusted or possibly malicious parties.</p>
 </dd>
-<dt class="hdlist1"><a id="IIP-IDP08"></a>[IIP-IDP08]</dt>
+<dt class="hdlist1">[IIP-IDP08]</dt>
 <dd>
 <p>Identity Providers MUST support the <code>ForceAuthn</code> attribute in <code>&lt;saml2p:AuthnRequest&gt;</code> messages as defined in <a href="#SAML2Core">[SAML2Core]</a>. The authentication mechanisms within an implementation MUST have access to the ForceAuthn indicator so that their behavior may be influenced by its value.</p>
 </dd>
@@ -1101,42 +1090,50 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><a id="IIP-IDP09"></a>[IIP-IDP09]</dt>
+<dt class="hdlist1">[IIP-IDP09]</dt>
 <dd>
 <p>Identity Providers MUST support the <code>IsPassive</code> attribute in <code>&lt;saml2p:AuthnRequest&gt;</code> messages as defined in <a href="#SAML2Core">[SAML2Core]</a>.</p>
 </dd>
-<dt class="hdlist1"><a id="IIP-IDP10"></a>[IIP-IDP10]</dt>
+<dt class="hdlist1">[IIP-IDP10]</dt>
 <dd>
 <p>Identity Providers MUST support the <code>&lt;saml2:RequestedAuthnContext&gt;</code> <strong>exact</strong> comparison method in <code>&lt;saml2p:AuthnRequest&gt;</code> messages as defined in <a href="#SAML2Core">[SAML2Core]</a>.</p>
 </dd>
-<dt class="hdlist1"><a id="IIP-IDP11"></a>[IIP-IDP11]</dt>
+<dt class="hdlist1">[IIP-IDP11]</dt>
 <dd>
 <p>Identity Providers MUST support encryption of assertions. Support for encryption of identifiers and attributes is OPTIONAL.</p>
 </dd>
-<dt class="hdlist1"><a id="IIP-IDP12"></a>[IIP-IDP12]</dt>
+<dt class="hdlist1">[IIP-IDP12]</dt>
+<dd>
+<p>Identity Providers MUST support the <code>&lt;saml2p:NameIDPolicy&gt;</code> element in <code>&lt;saml2p:AuthnRequest&gt;</code> messages as defined in <a href="#SAML2Core">[SAML2Core]</a>.</p>
+</dd>
+<dt class="hdlist1">[IIP-IDP13]</dt>
 <dd>
 <p>Identity Providers MUST be capable of generating <code>&lt;saml2:Assertion&gt;</code> elements without a <code>&lt;saml2:NameID&gt;</code> element in the <code>&lt;saml2:Subject&gt;</code> element.</p>
+</dd>
+<dt class="hdlist1">[IIP-IDP14]</dt>
+<dd>
+<p>Identity Providers MUST support the <code>AssertionConsumerServiceURL</code>, <code>ProtocolBinding</code>, and <code>AssertionConsumerServiceIndex</code> attributes in <code>&lt;saml2p:AuthnRequest&gt;</code> messages for the identification of the response endpoint and binding, as defined in <a href="#SAML2Core">[SAML2Core]</a>.</p>
 </dd>
 </dl>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_enhanced_client_or_proxy">4.4. Enhanced Client or Proxy</h3>
+<h3 id="_enhanced_client_or_proxy">4.3. Enhanced Client or Proxy</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><a id="IIP-IDP13"></a>[IIP-IDP13]</dt>
+<dt class="hdlist1">[IIP-IDP15]</dt>
 <dd>
 <p>Identity Providers MUST support the SAML V2.0 Enhanced Client or Proxy Profile Version 2.0 <a href="#SAML2ECP">[SAML2ECP]</a>. Full conformance is OPTIONAL, but implementations MUST support "Bearer" subject confirmation and verification of channel bindings.  All applicable Web Browser SSO requirements in this profile apply, excepting IIP-SSO02 and IIP-SSO03 since those bindings do not apply to the use of ECP.</p>
 </dd>
-<dt class="hdlist1"><a id="IIP-IDP14"></a>[IIP-IDP14]</dt>
+<dt class="hdlist1">[IIP-IDP16]</dt>
 <dd>
 <p>Identity Providers MUST support the use of HTTP Basic Authentication [RFC2617] to authenticate the user agent. Other forms of authentication MAY be supported.</p>
 </dd>
-<dt class="hdlist1"><a id="IIP-IDP15"></a>[IIP-IDP15]</dt>
+<dt class="hdlist1">[IIP-IDP17]</dt>
 <dd>
 <p>Identity Providers MUST support the generation and inclusion of a random key in accordance with <a href="#SAML-EC">[SAML-EC]</a>, Section 5.3.1.</p>
 </dd>
-<dt class="hdlist1"><a id="IIP-IDP16"></a>[IIP-IDP16]</dt>
+<dt class="hdlist1">[IIP-IDP18]</dt>
 <dd>
 <p>Identity Providers MUST support the consumption of peer configuration values from SAML metadata, without additional inputs or separate configuration, for any element listed in the "Use of Metadata" section in <a href="#SAML2ECP">[SAML2ECP]</a> (section 2.3.10).</p>
 </dd>
@@ -1144,22 +1141,22 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_single_logout">4.5. Single Logout</h3>
+<h3 id="_single_logout">4.4. Single Logout</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><a id="IIP-IDP17"></a>[IIP-IDP17]</dt>
+<dt class="hdlist1">[IIP-IDP19]</dt>
 <dd>
 <p>Identity Providers MUST support the SAML V2.0 SingleLogout profile <a href="#SAML2Prof">[SAML2Prof]</a>, as updated by <a href="#SAML2Errata">[SAML2Errata]</a>, and the SAML V2.0 Asynchronous Single Logout Protocol Extension <a href="#SAML2ASLO">[SAML2ASLO]</a>. It is OPTIONAL to support propagation of logout requests to other session participants.</p>
 </dd>
-<dt class="hdlist1"><a id="IIP-IDP18"></a>[IIP-IDP18]</dt>
+<dt class="hdlist1">[IIP-IDP20]</dt>
 <dd>
 <p>Identity Providers MUST support the HTTP-Redirect binding for logout requests and responses.</p>
 </dd>
-<dt class="hdlist1"><a id="IIP-IDP19"></a>[IIP-IDP19]</dt>
+<dt class="hdlist1">[IIP-IDP21]</dt>
 <dd>
 <p>Identity Providers MUST support decryption of <code>&lt;saml2:EncryptedID&gt;</code> elements in logout requests. In order to fully support key rollover, Identity Providers MUST be configurable with at least two decryption keys. When decrypting encrypted identifiers, they MUST attempt to use each decryption key (in unspecified order) until the identifier is successfully decrypted or there are no more keys, in which case decryption fails.</p>
 </dd>
-<dt class="hdlist1"><a id="IIP-IDP20"></a>[IIP-IDP20]</dt>
+<dt class="hdlist1">[IIP-IDP22]</dt>
 <dd>
 <p>Identity Providers MUST support the consumption of peer configuration values from SAML metadata, without additional inputs or separate configuration, for any element listed in the "Use of Metadata" section for the Single Logout Profile in <a href="#SAML2Prof">[SAML2Prof]</a> (section 4.4.5).</p>
 </dd>
@@ -1300,7 +1297,7 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-05-29 14:26:25 CEST
+Last updated 2017-01-20 07:17:16 CET
 </div>
 </div>
 </body>
