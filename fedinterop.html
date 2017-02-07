@@ -805,6 +805,9 @@ This document has been approved by the InCommon Fed-Interop WG and InCommon Tech
 </dd>
 </dl>
 </div>
+<div class="paragraph">
+<p><em>For example, the <code>&lt;saml:Subject&gt;</code> and <code>&lt;saml:Conditions&gt;</code> elements are optional elements that may appear in a <code>&lt;samlp:AuthnRequest&gt;</code> message, and it is therefore optional for an SP implementation to support their inclusion in requests. They have differing semantics for the IdP: the former has required semantics and the latter optional semantics. As such, an implementation that receives a <code>&lt;saml:Subject&gt;</code> may ignore it, but must return an error in so doing, whereas an implementation that receives a <code>&lt;saml:Conditions&gt;</code> element may also ignore it, but is under no additional obligation.</em></p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_extensibility">2.4. Extensibility</h3>
