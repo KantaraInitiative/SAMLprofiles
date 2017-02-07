@@ -20,7 +20,7 @@ Draft.
 This document has been approved by the InCommon Fed-Interop WG and InCommon Technical Advistory Committee. After public review, it was transferred to the Kantara FI-WG for further alignment with stakeholders outside the research & education community.
 
 .Copyright Notice
-SAML V2.0 Implementation Profile for Federation Interoperability © 2016 Internet2, used under license.  All rights reserved.
+SAML v2.0 Implementation Profile for Federation Interoperability ©2016 Internet2 and/or the respective contributors, used under license.  All rights reserved.
 
 
 == Introduction
