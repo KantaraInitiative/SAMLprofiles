@@ -45,3 +45,7 @@ _Support for unsolicited responses (or so-called IdP-initiated SSO) is not a sub
 [IIP-SP14]:: Service Providers MUST NOT require that name identifiers with a format of 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent' be overloaded with semantics or content beyond what is outlined in <<SAML2Core>> sect. 8.3.7.
 
 _Note that if the name identifier format identifiers defined in_ <<SAML2Core>> _are inapplicable to a given use case, it should be possible for new ones to be established. Implementations not specific to a single deployment should support the use of arbitrary formats._
+
+[IIP-SP15]:: Service Providers MUST support the ability to reject unsigned `<saml2p:Response>` elements and SHOULD do so by default.
+
+_Note that this requirement is intended to offer some protection against known attacks when XML Encryption is used with AES in CBC mode. While the use of AES-GCM is strongly preferred, requiring signed responses limits the potential range of attack sources to those with verifiable signatures._
