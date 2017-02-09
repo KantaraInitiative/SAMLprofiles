@@ -1029,6 +1029,17 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 <div class="paragraph">
 <p><em>Note that if the name identifier format identifiers defined in</em> <a href="#SAML2Core">[SAML2Core]</a> <em>are inapplicable to a given use case, it should be possible for new ones to be established. Implementations not specific to a single deployment should support the use of arbitrary formats.</em></p>
 </div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[IIP-SP15]</dt>
+<dd>
+<p>Service Providers MUST support the ability to reject unsigned <code>&lt;saml2p:Response&gt;</code> elements and SHOULD do so by default.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><em>Note that this requirement is intended to offer some protection against known attacks when XML Encryption is used with AES in CBC mode. While the use of AES-GCM is strongly preferred, requiring signed responses limits the potential range of attack sources to those with verifiable signatures.</em></p>
+</div>
 </div>
 </div>
 </div>
@@ -1069,7 +1080,7 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </dd>
 <dt class="hdlist1">[IIP-IDP06]</dt>
 <dd>
-<p>Identity Providers MUST be capable of determining whether or not to include specific SAML attributes (or specific values) in a response based on the presence of <code>&lt;md:AttributeConsumingService&gt;</code> elements (containing <code>&lt;md:RequestedAttribute&gt;</code> elements) found in the metadata for a relying party, including the value of the enclosed <code>isRequired</code> XML attribute. They MUST also support the <code>AttributeConsumingServiceIndex</code> attribute in <code>&lt;saml2p:AuthnRequest&gt;</code> messages as defined in <a href="#SAML2Core">[SAML2Core]</a>.</p>
+<p>Identity Providers MUST be capable of determining whether or not to include specific SAML attributes (or specific values) in a response based on the presence of <code>&lt;md:AttributeConsumingService&gt;</code> elements (containing <code>&lt;md:RequestedAttribute&gt;</code> elements) found in the metadata for a relying party, including the value of the enclosed <code>isRequired</code> XML attribute. Accordingly, they MUST support the <code>AttributeConsumingServiceIndex</code> attribute in <code>&lt;saml2p:AuthnRequest&gt;</code> messages as a means of determining the appropriate <code>&lt;md:AttributeConsumingService&gt;</code> element to process.</p>
 </dd>
 </dl>
 </div>
