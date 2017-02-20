@@ -46,7 +46,7 @@ _Note that this requirement is intended to offer some protection against known a
 
 === Single Logout
 
-[IIP-SP14]:: Service Providers SHOULD support the SAML V2.0 SingleLogout profile <<SAML2Prof>>, as updated by <<SAML2Errata>>. Service Providers MUST support the issuance of logout requests. It is OPTIONAL to support consumption of logout requests and responses.
+[IIP-SP14]:: Service Providers SHOULD support the SAML V2.0 SingleLogout profile <<SAML2Prof>>, as updated by <<SAML2Errata>>. Service Providers that claim support for this profile MUST be capable of issuing logout requests. It is OPTIONAL to support consumption of logout requests and responses.
 
 _The intent is to allow for the minimum support possible while still enabling applications to initiate logouts in a federated environment. Thus, implementations must be able to generate a request to the Identity Provider, but may ignore (or not even support) responses, and may also omit support for inbound logout requests entirely._
 
