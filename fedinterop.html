@@ -1040,8 +1040,15 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 <dl>
 <dt class="hdlist1">[IIP-SP14]</dt>
 <dd>
-<p>Service Providers SHOULD (or MAY, open for discussion) support the SAML V2.0 SingleLogout profile <a href="#SAML2Prof">[SAML2Prof]</a>, as updated by <a href="#SAML2Errata">[SAML2Errata]</a>. It is OPTIONAL to actually support successful processing of logout requests, but in supporting the profile, Service Providers MUST at least support the request and response exchange.</p>
+<p>Service Providers SHOULD support the SAML V2.0 SingleLogout profile <a href="#SAML2Prof">[SAML2Prof]</a>, as updated by <a href="#SAML2Errata">[SAML2Errata]</a>. Service Providers MUST support the issuance of logout requests. It is OPTIONAL to support consumption of logout requests and responses.</p>
 </dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><em>The intent is to allow for the minimum support possible while still enabling applications to initiate logouts in a federated environment. Thus, implementations must be able to generate a request to the Identity Provider, but may ignore (or not even support) responses, and may also omit support for inbound logout requests entirely.</em></p>
+</div>
+<div class="dlist">
+<dl>
 <dt class="hdlist1">[IIP-SP15]</dt>
 <dd>
 <p>Service Providers that support the SAML V2.0 SingleLogout profile MUST support the HTTP-Redirect binding for logout requests and responses.</p>
