@@ -1180,7 +1180,14 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 <dd>
 <p>Identity Providers MUST support the consumption of peer configuration values from SAML metadata, without additional inputs or separate configuration, for any element listed in the "Use of Metadata" section for the Single Logout Profile in <a href="#SAML2Prof">[SAML2Prof]</a> (section 4.4.5).</p>
 </dd>
+<dt class="hdlist1">[IIP-IDP21]</dt>
+<dd>
+<p>Identity Providers MUST be able to generate name identifiers with a format of <code>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</code> in a manner that allows deployers to avoid assignment of identifiers that differ only by case to two different subjects.</p>
+</dd>
 </dl>
+</div>
+<div class="paragraph">
+<p><em>The above requirement avoids conficts in the common case that consuming applications do not support case-aware or case-sensitive processing of identifiers. Use of base32 encoding <a href="#RFC4648">[RFC4648]</a> is a common mechanism for meeting this requirement.</em></p>
 </div>
 </div>
 </div>
@@ -1195,6 +1202,9 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </li>
 <li>
 <p><a id="RFC2616"></a>[RFC2616] IETF RFC 2616, Hypertext Transfer Protocol – HTTP/1.1, June 1999. <a href="http://www.ietf.org/rfc/rfc2616.txt" class="bare">http://www.ietf.org/rfc/rfc2616.txt</a></p>
+</li>
+<li>
+<p><a id="RFC4648"></a>[RFC4648] IETF RFC 4648, The Base16, Base32, and Base64 Data Encodings, October 2006. <a href="http://www.ietf.org/rfc/rfc4648.txt" class="bare">http://www.ietf.org/rfc/rfc4648.txt</a></p>
 </li>
 <li>
 <p><a id="SAML2Core"></a>[SAML2Core] OASIS Standard, Assertions and Protocols for the OASIS Security Assertion Markup Language (SAML) V2.0, March 2005. <a href="http://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf" class="bare">http://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf</a></p>
