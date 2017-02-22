@@ -49,3 +49,7 @@ _Note that ForceAuthn is most commonly used for privilege escalation or to initi
 [IIP-IDP19]:: Identity Providers MUST support decryption of `<saml2:EncryptedID>` elements in logout requests. In order to fully support key rollover, Identity Providers MUST be configurable with at least two decryption keys. When decrypting encrypted identifiers, they MUST attempt to use each decryption key (in unspecified order) until the identifier is successfully decrypted or there are no more keys, in which case decryption fails.
 
 [IIP-IDP20]:: Identity Providers MUST support the consumption of peer configuration values from SAML metadata, without additional inputs or separate configuration, for any element listed in the "Use of Metadata" section for the Single Logout Profile in <<SAML2Prof>> (section 4.4.5).
+
+[IIP-IDP21]:: Identity Providers MUST be able to generate name identifiers with a format of `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent` in a manner that allows deployers to avoid assignment of identifiers that differ only by case to two different subjects.
+
+_The above requirement avoids conficts in the common case that consuming applications do not support case-aware or case-sensitive processing of identifiers. Use of base32 encoding <<RFC4648>> is a common mechanism for meeting this requirement._
