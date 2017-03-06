@@ -13,9 +13,10 @@ git pull # prevent merge conflict
 
 cd $REPOMASTER
 git pull # get updated contents
-asciidoctor -o $REPOGHPAGES/SAMLeGovImplementaton_2_0.html edit/egov-impl/main.adoc
+#asciidoctor -o $REPOGHPAGES/SAMLeGovImplementaton_2_0.html edit/egov-impl/main.adoc
 #asciidoctor-pdf -o $REPOGHPAGES/SAMLeGovImplementaton_2_0.pdf edit/egov-impl/main.adoc
 
+asciidoctor -o $REPOGHPAGES/fedinterop.html edit/fedinterop/main.adoc
 asciidoctor -o $REPOGHPAGES/saml2int.html edit/saml2int/main.adoc
 
 cd $REPOGHPAGES
