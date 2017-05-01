@@ -15,10 +15,6 @@
 .Abstract
 This document encompasses a set of software conformance requirements intended to facilitate interoperability within the context of full mesh identity federations, such as those found in the research and education sector. It attempts to address a number of common barriers to interoperability and details features that are necessary in order to use SAML metadata as a foundation for scalable trust fabrics.  It supercedes the link:eGovImplProfile.html[eGovernment Implementation Profile V2.0bis] from June 2011.
 
-.Status
-Draft.
-This document has been approved by the InCommon Fed-Interop WG and InCommon Technical Advistory Committee. After public review, it was transferred to the Kantara FI-WG for further alignment with stakeholders outside the research & education community.
-
 .Copyright Notice
 SAML v2.0 Implementation Profile for Federation Interoperability ©2016 Internet2 and/or the respective contributors, used under license.  All rights reserved.
 
