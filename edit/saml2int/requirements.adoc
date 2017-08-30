@@ -18,7 +18,7 @@ Metadata provided by both Identity Providers and Service Provider SHOULD contain
 
 == Name Identifiers
 
-Identity Providers MUST support the `urn:oasis:names:tc:SAML:2.0:nameid-format:transient` name identifier format <<SAML2Core>>. They SHOULD support `the urn:oasis:names:tc:SAML:2.0:nameid-format:persistent` name identifier format <<SAML2Core>>. Support for other formats is OPTIONAL.
+Identity Providers MUST support the `urn:oasis:names:tc:SAML:2.0:nameid-format:transient` name identifier format <<SAML2Core>>. They SHOULD support the `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent` name identifier format <<SAML2Core>>. Support for other formats is OPTIONAL.
 
 Service Providers, if they rely at all on particular name identifier formats, MUST support one of the following:
 
