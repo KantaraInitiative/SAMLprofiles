@@ -16,32 +16,13 @@ SAML V2.0 Interoperability Deployment Profile
 .Required Information
 Document identifier: `http://saml2int.org/profile`
 
-include::notation.adoc[]
+include::introduction.adoc[]
 
-== Introduction
+include::common_requirements.adoc[]
 
-This profile specifies behavior and options that deployments of the SAML V2.0 Web Browser SSO Profile <<SAML2Prof>> are required or permitted to rely on. The requirements specified are in addition to all normative requirements of the original profile, as modified by the Approved Errata <<SAML2Err>>, and readers should be familiar with all relevant reference documents. Any such requirements are not repeated here except where deemed necessary to highlight a point of discussion or draw attention to an issue addressed in errata, but remain implied.
+include::sp_requirements.adoc[]
 
-This profile addresses the content, exchange, and processing of SAML messages only, and does not address deployment details that go beyond that scope. Furthermore, nothing in the profile should be taken to imply that disclosing personally identifiable information, or indeed any information, is required from an Identity Provider with respect to any particular Service Provider. That remains at the discretion of applicable settings, user consent, or other appropriate means in accordance with regulations and policies.
-
-Note that SAML features that are optional, or lack mandatory processing rules, are assumed to be optional and out of scope of this profile if not otherwise precluded or given specific processing rules.
-
-== References to SAML 2.0 specification
-
-When referring to elements from the SAML 2.0 core specification <<SAML2Core>>, the following syntax is used:
-
-* `<saml2p:Protocolelement>` - for elements from the SAML 2.0 Protocol namespace.
-* `<saml2:Assertionelement>` - for elements from the SAML 2.0 Assertion namespace.
-
-When referring to elements from the SAML 2.0 metadata specification <<SAML2Meta>>, the following syntax is used:
-
-* `<md:Metadataelement>`
-
-When referring to elements from the Identity Provider Discovery Service Protocol and Profile <<IdPDisco>>, the following syntax is used:
-
-* `<idpdisc:DiscoveryResponse>`
-
-include::requirements.adoc[]
+include::idp_requirements.adoc[]
 
 include::references.adoc[]
 

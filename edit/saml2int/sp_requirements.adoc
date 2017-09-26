@@ -1,0 +1,60 @@
+== Service Provider Requirements
+
+=== Identifiers
+
+=== Deep Linking
+
+=== Metadata and Trust Management
+
+If a Service Provider forgoes the use of TLS/SSL for its Assertion Consumer Service endpoints, then its metadata SHOULD include a `<md:KeyDescriptor>` suitable for XML Encryption. Note that use of TLS/SSL is RECOMMENDED.
+
+If a Service Provider plans to utilize a Discovery Service supporting the Identity Provider Discovery Service Protocol Profile <<IdPDisco>>, then its metadata MUST include one or more `<idpdisc:DiscoveryResponse>` elements in the `<md:Extensions>` element of its `<md:SPSSODescriptor>` element.
+
+==== Key and Certificate "Rollover"
+
+=== SP-Initiated SSO
+
+=== SP Endpoints
+
+The endpoint(s) at which a Service Provider receives a `<saml2p:Response>` message SHOULD be protected by TLS/SSL. If this is not the case, then Identity Providers SHOULD utilize XML Encryption and return a `<saml2:EncryptedAssertion>` element in the `<saml2p:Response>` message. The use of the `<saml2:EncryptedID>` and `<saml2:EncryptedAttribute>` elements is NOT RECOMMENDED; when possible, encrypt the entire assertion.
+
+=== Authentication Context Requests
+
+=== Attribute Value Constraints
+
+=== Subject Identifier Support
+
+Service Providers, if they rely at all on particular name identifier formats, MUST support one of the following:
+
+* urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+* urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+
+Reliance on other formats by Service Providers is NOT RECOMMENDED.
+
+Note that these requirements are reflected in additional constraints on message content in subsequent sections.
+
+==== Subject Identifier Signalling
+
+=== Support for Multiple IdPs
+
+=== Authentication Requests
+
+==== Authentication Request Presentation
+
+The `<saml2p:AuthnRequest>` message issued by a Service Provider MUST be communicated to the Identity Provider using the `HTTP-REDIRECT` binding <<SAML2Bind>>.
+
+The `<saml2p:AuthnRequest>` message issued by a Service Provider MUST contain an `AssertionConsumerServiceURL` attribute identifying the desired response location. The `ProtocolBinding` attribute, if present, MUST be set to `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST`.
+
+The `<saml2p:AuthnRequest>` message MUST NOT contain a `<saml2:Subject>` element.
+
+The `<saml2p:AuthnRequest>` message SHOULD contain a `<saml2p:NameIDPolicy>` element with an `AllowCreate` attribute of "true". Its `Format` attribute, if present, SHOULD be set to one of the following values:
+
+* urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+* urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+
+The `<saml2p:AuthnRequest>` message MAY contain a `<saml2p:RequestedAuthnContext>` element, but SHOULD do so only in the presence of an arrangement between the Identity and Service Providers regarding the Authentication Context definitions in use. The `Comparison` attribute SHOULD be omitted or be set to "exact".
+
+Service Providers MUST support unsolicited `<saml2p:Response>` messages (i.e., responses that are not the result of an earlier `<saml2p:AuthnRequest>` message).
+
+==== Testing AuthnInstant In The Context of Forced Re-Authentication
+

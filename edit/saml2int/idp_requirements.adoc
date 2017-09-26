@@ -1,0 +1,44 @@
+== Identity Provider Requirements
+
+=== Identity Provider Endpoints
+
+The endpoints at which an Identity Provider receives a `<saml2p:AuthnRequest>` message, and all subsequent exchanges with the user agent, SHOULD be protected by TLS/SSL.
+
+Identity Providers MAY omit the verification of signatures in conjunction with this binding.
+
+In verifying the Service Provider's Assertion Consumer Service, it is RECOMMENDED that the Identity Provider perform a case-sensitive string comparison between the requested `<saml2p:AssertionConsumerServiceURL>` value and the values found in the Service Provider's metadata. It is OPTIONAL to apply any form of URL canonicalization, which means the Service Provider SHOULD NOT rely on differently canonicalized values in these two locations. As an example, the Service Provider SHOULD NOT use a hostname with port number (such as https://sp.example.no:80/acs) in its request and without (such as https://sp.example.no/acs) in its metadata.
+
+Identity Providers that act as a proxy (per section 3.4.1.5.1 of <<SAML2Core>>) MUST support `<saml2p:AuthnRequest>` messages that do not contain a `<saml2p:Scoping>` element.
+
+=== Identity Provider Error URLs
+
+=== Subject Identifier Support
+
+Identity Providers MUST support the `urn:oasis:names:tc:SAML:2.0:nameid-format:transient` name identifier format <<SAML2Core>>. They SHOULD support the `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent` name identifier format <<SAML2Core>>. Support for other formats is OPTIONAL.
+
+==== Subject Identifier Signalling
+
+The `<saml2:Subject>` element of the assertions issued by an Identity Provider SHOULD contain a `<saml2:NameID>` element. The `<saml2:Subject>` element MUST NOT include a `<saml2:BaseID>` nor a `<saml2:EncryptedID>`. In the absence of a `<saml2p:NameIDPolicy>` Format attribute in the Service Provider's `<saml2p:AuthnRequest>` message, or a `<md:NameIDFormat>` element in the Service Provider's metadata, the Format of the `<saml2:NameID>` SHOULD be set to `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`.
+
+=== Forced Re-Authentication Support
+
+=== Attributes
+
+Any `<saml2:Attribute>` elements exchanged via any SAML 2.0 messages, assertions, or metadata MUST contain a NameFormat of `urn:oasis:names:tc:SAML:2.0:attrname-format:uri`.
+
+The use of LDAP/X.500 attributes and the LDAP/X.500 attribute profile <<X500SAMLattr>> is RECOMMENDED where possible.
+
+It is RECOMMENDED that the content of `<saml2:AttributeValue>` elements exchanged via any SAML 2.0 messages, assertions, or metadata be limited to a single child text node (i.e., a simple string value).
+
+Many identity federation use cases rely on the exchange of a so-called "targeted" or "pair-wise" user identifier that is typically opaque and varies for a given user when accessing different Service Providers. Various approaches to this compatible with SAML exist, including the SAML 2.0 "persistent" Name Identifier format <<SAML2Core>>, the eduPersonTargetedID attribute <<eduPerson>>, and the Private Personal Identifier claim <<IMI>>.
+
+This profile RECOMMENDS the use of the `<saml2:NameID>` element (within the `<saml2:Subject>` element), carried within the `<saml2:Subject>` with a Format of `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent` when an identifier of this nature is required.
+
+If an opaque targeted user identifier is being provided to the Service Provider, it is RECOMMENDED to use a `<saml2:NameID>` construct with a Format of `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent` rather than transporting that identifier as an `<saml2:Attribute>`.
+
+Assuming a successful response, the `<saml2p:Response>` message issued by an Identity Provider MUST contain exactly one assertion (either a `<saml2:Assertion>` or an `<saml2:EncryptedAssertion>` element). The assertion MUST contain exactly one `<saml2:AuthnStatement>` element and MAY contain zero or one `<saml2:AttributeStatement>` elements.
+
+The `<saml2p:Response>` message issued by an Identity Provider MUST be communicated to the Service Provider using the `HTTP-POST` binding <<SAML2Bind>>.
+
+Whether encrypted or not, the `<saml2:Assertion>` element issued by the Identity Provider MUST itself be signed directly using a `<ds:Signature>` element within the `<saml2:Assertion>`.
+
