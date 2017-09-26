@@ -464,26 +464,47 @@ SAML V2.0 Interoperability Deployment Profile
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_introduction">1. Introduction</a></li>
-<li><a href="#_references_to_saml_2_0_specification">2. References to SAML 2.0 specification</a></li>
-<li><a href="#_metadata_and_trust_management">3. Metadata and Trust Management</a></li>
-<li><a href="#_name_identifiers">4. Name Identifiers</a></li>
-<li><a href="#_attributes">5. Attributes</a></li>
-<li><a href="#_authentication_requests">6. Authentication Requests</a>
+<li><a href="#_introduction">1. Introduction</a>
 <ul class="sectlevel2">
-<li><a href="#_binding_and_security_requirements">6.1. Binding and Security Requirements</a></li>
-<li><a href="#_message_content">6.2. Message Content</a></li>
+<li><a href="#_notation">1.1. Notation</a></li>
+<li><a href="#_references_to_saml_2_0_specification">1.2. References to SAML 2.0 specification</a></li>
 </ul>
 </li>
-<li><a href="#_responses">7. Responses</a>
+<li><a href="#_common_requirements_applies_to_both_idp_and_sp">2. Common Requirements (applies to both IdP and SP)</a>
 <ul class="sectlevel2">
-<li><a href="#_binding_and_security_requirements_2">7.1. Binding and Security Requirements</a></li>
-<li><a href="#_message_content_2">7.2. Message Content</a></li>
+<li><a href="#_general">2.1. General</a></li>
+<li><a href="#_metadata_and_trust_management">2.2. Metadata and Trust Management</a></li>
+<li><a href="#_protocol_support">2.3. Protocol Support</a></li>
+<li><a href="#_clock_skew">2.4. Clock Skew</a></li>
+<li><a href="#_xml_encryption">2.5. XML Encryption</a></li>
 </ul>
 </li>
-<li><a href="#_normative_references">8. Normative References</a></li>
-<li><a href="#_non_normative_references">9. Non-Normative References</a></li>
-<li><a href="#_authors_addresses">10. Authors' addresses</a></li>
+<li><a href="#_service_provider_requirements">3. Service Provider Requirements</a>
+<ul class="sectlevel2">
+<li><a href="#_identifiers">3.1. Identifiers</a></li>
+<li><a href="#_deep_linking">3.2. Deep Linking</a></li>
+<li><a href="#_metadata_and_trust_management_2">3.3. Metadata and Trust Management</a></li>
+<li><a href="#_sp_initiated_sso">3.4. SP-Initiated SSO</a></li>
+<li><a href="#_sp_endpoints">3.5. SP Endpoints</a></li>
+<li><a href="#_authentication_context_requests">3.6. Authentication Context Requests</a></li>
+<li><a href="#_attribute_value_constraints">3.7. Attribute Value Constraints</a></li>
+<li><a href="#_subject_identifier_support">3.8. Subject Identifier Support</a></li>
+<li><a href="#_support_for_multiple_idps">3.9. Support for Multiple IdPs</a></li>
+<li><a href="#_authentication_requests">3.10. Authentication Requests</a></li>
+</ul>
+</li>
+<li><a href="#_identity_provider_requirements">4. Identity Provider Requirements</a>
+<ul class="sectlevel2">
+<li><a href="#_identity_provider_endpoints">4.1. Identity Provider Endpoints</a></li>
+<li><a href="#_identity_provider_error_urls">4.2. Identity Provider Error URLs</a></li>
+<li><a href="#_subject_identifier_support_2">4.3. Subject Identifier Support</a></li>
+<li><a href="#_forced_re_authentication_support">4.4. Forced Re-Authentication Support</a></li>
+<li><a href="#_attributes">4.5. Attributes</a></li>
+</ul>
+</li>
+<li><a href="#_normative_references">5. Normative References</a></li>
+<li><a href="#_non_normative_references">6. Non-Normative References</a></li>
+<li><a href="#_authors_addresses">7. Authors' addresses</a></li>
 </ul>
 </div>
 </div>
@@ -499,11 +520,12 @@ SAML V2.0 Interoperability Deployment Profile
 <div class="paragraph">
 <p>Note that SAML features that are optional, or lack mandatory processing rules, are assumed to be optional and out of scope of this profile if not otherwise precluded or given specific processing rules.</p>
 </div>
+<div class="sect2">
+<h3 id="_notation">1.1. Notation</h3>
+
 </div>
-</div>
-<div class="sect1">
-<h2 id="_references_to_saml_2_0_specification">2. References to SAML 2.0 specification</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_references_to_saml_2_0_specification">1.2. References to SAML 2.0 specification</h3>
 <div class="paragraph">
 <p>When referring to elements from the SAML 2.0 core specification <a href="#SAML2Core">[SAML2Core]</a>, the following syntax is used:</p>
 </div>
@@ -539,9 +561,16 @@ SAML V2.0 Interoperability Deployment Profile
 </div>
 </div>
 </div>
+</div>
 <div class="sect1">
-<h2 id="_metadata_and_trust_management">3. Metadata and Trust Management</h2>
+<h2 id="_common_requirements_applies_to_both_idp_and_sp">2. Common Requirements (applies to both IdP and SP)</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_general">2.1. General</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_metadata_and_trust_management">2.2. Metadata and Trust Management</h3>
 <div class="paragraph">
 <p>Identity Providers and Service Providers MUST provide a SAML 2.0 Metadata document representing its entity. How metadata is exchanged is out of scope of this specification. Provided metadata MUST conform to the SAML V2.0 Metadata Interoperability Profile Version 1.0 <a href="#MetaIOP">[MetaIOP]</a>.</p>
 </div>
@@ -554,26 +583,90 @@ SAML V2.0 Interoperability Deployment Profile
 <div class="paragraph">
 <p>Metadata documents provided by a Service Provider MUST include an <code>&lt;md:SPSSODescriptor&gt;</code> element containing all necessary <code>&lt;md:KeyDescriptor&gt;</code> and <code>&lt;md:AssertionConsumerService&gt;</code> elements. The metadata SHOULD also include one or more <code>&lt;md:NameIDFormat&gt;</code> elements indicating which <code>&lt;saml2:NameID&gt;</code> Format values are supported and one or more <code>&lt;md:AttributeConsumingService&gt;</code> elements describing the service(s) offered and their attribute requirements.</p>
 </div>
-<div class="paragraph">
-<p>Metadata provided by Service Provider SHOULD also contain a descriptive name of the service that the Service Provider represents (not the company) in at least English. It is RECOMMENDED to also provide the name in other languages which is much used in the geographic scope of the deployment. The name should be placed in the <code>&lt;md:ServiceName&gt;</code> in the <code>&lt;md:AttributeConsumingService&gt;</code> container.</p>
+<div class="sect3">
+<h4 id="_keys_and_certificates_in_metadata">2.2.1. Keys and Certificates in Metadata</h4>
+
 </div>
+<div class="sect3">
+<h4 id="_mdui_elements">2.2.2. MDUI Elements</h4>
+<div class="paragraph">
+<p>Metadata provided by Service Provider SHOULD contain a descriptive name of the service that the Service Provider represents (not the company) in at least English. It is RECOMMENDED to also provide the name in other languages which is much used in the geographic scope of the deployment. The name should be placed in the <code>&lt;md:ServiceName&gt;</code> in the <code>&lt;md:AttributeConsumingService&gt;</code> container.</p>
+</div>
+<div class="paragraph">
+<p>Metadata provided by both Identity Providers and Service Provider SHOULD contain contact information for support and for a technical contact. The <code>&lt;md:EntityDescriptor&gt;</code> element SHOULD contain both a <code>&lt;md:ContactPerson&gt;</code> element with a <code>contactType</code> of "support" and a <code>&lt;md:ContactPerson&gt;</code> element with a <code>contactType</code> of "technical". The <code>&lt;md:ContactPerson&gt;</code> elements SHOULD contain at least one <code>&lt;md:EmailAddress&gt;</code>. The support address MAY be used for generic support questions about the service, while the technical contact may be contacted regarding technical interoperability problems. The technical contact MUST be responsible for the technical operation of the system(s) reflected in the metadata.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_metadata_refresh">2.2.3. Metadata Refresh</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_metadata_signature_verification">2.2.4. Metadata Signature Verification</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_saml_entityids">2.2.5. SAML entityIDs</h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="_protocol_support">2.3. Protocol Support</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_clock_skew">2.4. Clock Skew</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_xml_encryption">2.5. XML Encryption</h3>
+
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_service_provider_requirements">3. Service Provider Requirements</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_identifiers">3.1. Identifiers</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_deep_linking">3.2. Deep Linking</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_metadata_and_trust_management_2">3.3. Metadata and Trust Management</h3>
 <div class="paragraph">
 <p>If a Service Provider forgoes the use of TLS/SSL for its Assertion Consumer Service endpoints, then its metadata SHOULD include a <code>&lt;md:KeyDescriptor&gt;</code> suitable for XML Encryption. Note that use of TLS/SSL is RECOMMENDED.</p>
 </div>
 <div class="paragraph">
 <p>If a Service Provider plans to utilize a Discovery Service supporting the Identity Provider Discovery Service Protocol Profile <a href="#IdPDisco">[IdPDisco]</a>, then its metadata MUST include one or more <code>&lt;idpdisc:DiscoveryResponse&gt;</code> elements in the <code>&lt;md:Extensions&gt;</code> element of its <code>&lt;md:SPSSODescriptor&gt;</code> element.</p>
 </div>
+<div class="sect3">
+<h4 id="_key_and_certificate_rollover">3.3.1. Key and Certificate "Rollover"</h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sp_initiated_sso">3.4. SP-Initiated SSO</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_sp_endpoints">3.5. SP Endpoints</h3>
 <div class="paragraph">
-<p>Metadata provided by both Identity Providers and Service Provider SHOULD contain contact information for support and for a technical contact. The <code>&lt;md:EntityDescriptor&gt;</code> element SHOULD contain both a <code>&lt;md:ContactPerson&gt;</code> element with a <code>contactType</code> of "support" and a <code>&lt;md:ContactPerson&gt;</code> element with a <code>contactType</code> of "technical". The <code>&lt;md:ContactPerson&gt;</code> elements SHOULD contain at least one <code>&lt;md:EmailAddress&gt;</code>. The support address MAY be used for generic support questions about the service, while the technical contact may be contacted regarding technical interoperability problems. The technical contact MUST be responsible for the technical operation of the system(s) reflected in the metadata.</p>
+<p>The endpoint(s) at which a Service Provider receives a <code>&lt;saml2p:Response&gt;</code> message SHOULD be protected by TLS/SSL. If this is not the case, then Identity Providers SHOULD utilize XML Encryption and return a <code>&lt;saml2:EncryptedAssertion&gt;</code> element in the <code>&lt;saml2p:Response&gt;</code> message. The use of the <code>&lt;saml2:EncryptedID&gt;</code> and <code>&lt;saml2:EncryptedAttribute&gt;</code> elements is NOT RECOMMENDED; when possible, encrypt the entire assertion.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_authentication_context_requests">3.6. Authentication Context Requests</h3>
+
 </div>
-<div class="sect1">
-<h2 id="_name_identifiers">4. Name Identifiers</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Identity Providers MUST support the <code>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</code> name identifier format <a href="#SAML2Core">[SAML2Core]</a>. They SHOULD support the <code>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</code> name identifier format <a href="#SAML2Core">[SAML2Core]</a>. Support for other formats is OPTIONAL.</p>
+<div class="sect2">
+<h3 id="_attribute_value_constraints">3.7. Attribute Value Constraints</h3>
+
 </div>
+<div class="sect2">
+<h3 id="_subject_identifier_support">3.8. Subject Identifier Support</h3>
 <div class="paragraph">
 <p>Service Providers, if they rely at all on particular name identifier formats, MUST support one of the following:</p>
 </div>
@@ -593,11 +686,95 @@ SAML V2.0 Interoperability Deployment Profile
 <div class="paragraph">
 <p>Note that these requirements are reflected in additional constraints on message content in subsequent sections.</p>
 </div>
+<div class="sect3">
+<h4 id="_subject_identifier_signalling">3.8.1. Subject Identifier Signalling</h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="_support_for_multiple_idps">3.9. Support for Multiple IdPs</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_authentication_requests">3.10. Authentication Requests</h3>
+<div class="sect3">
+<h4 id="_authentication_request_presentation">3.10.1. Authentication Request Presentation</h4>
+<div class="paragraph">
+<p>The <code>&lt;saml2p:AuthnRequest&gt;</code> message issued by a Service Provider MUST be communicated to the Identity Provider using the <code>HTTP-REDIRECT</code> binding <a href="#SAML2Bind">[SAML2Bind]</a>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>&lt;saml2p:AuthnRequest&gt;</code> message issued by a Service Provider MUST contain an <code>AssertionConsumerServiceURL</code> attribute identifying the desired response location. The <code>ProtocolBinding</code> attribute, if present, MUST be set to <code>urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>&lt;saml2p:AuthnRequest&gt;</code> message MUST NOT contain a <code>&lt;saml2:Subject&gt;</code> element.</p>
+</div>
+<div class="paragraph">
+<p>The <code>&lt;saml2p:AuthnRequest&gt;</code> message SHOULD contain a <code>&lt;saml2p:NameIDPolicy&gt;</code> element with an <code>AllowCreate</code> attribute of "true". Its <code>Format</code> attribute, if present, SHOULD be set to one of the following values:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</p>
+</li>
+<li>
+<p>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>&lt;saml2p:AuthnRequest&gt;</code> message MAY contain a <code>&lt;saml2p:RequestedAuthnContext&gt;</code> element, but SHOULD do so only in the presence of an arrangement between the Identity and Service Providers regarding the Authentication Context definitions in use. The <code>Comparison</code> attribute SHOULD be omitted or be set to "exact".</p>
+</div>
+<div class="paragraph">
+<p>Service Providers MUST support unsolicited <code>&lt;saml2p:Response&gt;</code> messages (i.e., responses that are not the result of an earlier <code>&lt;saml2p:AuthnRequest&gt;</code> message).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_testing_authninstant_in_the_context_of_forced_re_authentication">3.10.2. Testing AuthnInstant In The Context of Forced Re-Authentication</h4>
+
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_attributes">5. Attributes</h2>
+<h2 id="_identity_provider_requirements">4. Identity Provider Requirements</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_identity_provider_endpoints">4.1. Identity Provider Endpoints</h3>
+<div class="paragraph">
+<p>The endpoints at which an Identity Provider receives a <code>&lt;saml2p:AuthnRequest&gt;</code> message, and all subsequent exchanges with the user agent, SHOULD be protected by TLS/SSL.</p>
+</div>
+<div class="paragraph">
+<p>Identity Providers MAY omit the verification of signatures in conjunction with this binding.</p>
+</div>
+<div class="paragraph">
+<p>In verifying the Service Provider&#8217;s Assertion Consumer Service, it is RECOMMENDED that the Identity Provider perform a case-sensitive string comparison between the requested <code>&lt;saml2p:AssertionConsumerServiceURL&gt;</code> value and the values found in the Service Provider&#8217;s metadata. It is OPTIONAL to apply any form of URL canonicalization, which means the Service Provider SHOULD NOT rely on differently canonicalized values in these two locations. As an example, the Service Provider SHOULD NOT use a hostname with port number (such as <a href="https://sp.example.no:80/acs" class="bare">https://sp.example.no:80/acs</a>) in its request and without (such as <a href="https://sp.example.no/acs" class="bare">https://sp.example.no/acs</a>) in its metadata.</p>
+</div>
+<div class="paragraph">
+<p>Identity Providers that act as a proxy (per section 3.4.1.5.1 of <a href="#SAML2Core">[SAML2Core]</a>) MUST support <code>&lt;saml2p:AuthnRequest&gt;</code> messages that do not contain a <code>&lt;saml2p:Scoping&gt;</code> element.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_identity_provider_error_urls">4.2. Identity Provider Error URLs</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_subject_identifier_support_2">4.3. Subject Identifier Support</h3>
+<div class="paragraph">
+<p>Identity Providers MUST support the <code>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</code> name identifier format <a href="#SAML2Core">[SAML2Core]</a>. They SHOULD support the <code>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</code> name identifier format <a href="#SAML2Core">[SAML2Core]</a>. Support for other formats is OPTIONAL.</p>
+</div>
+<div class="sect3">
+<h4 id="_subject_identifier_signalling_2">4.3.1. Subject Identifier Signalling</h4>
+<div class="paragraph">
+<p>The <code>&lt;saml2:Subject&gt;</code> element of the assertions issued by an Identity Provider SHOULD contain a <code>&lt;saml2:NameID&gt;</code> element. The <code>&lt;saml2:Subject&gt;</code> element MUST NOT include a <code>&lt;saml2:BaseID&gt;</code> nor a <code>&lt;saml2:EncryptedID&gt;</code>. In the absence of a <code>&lt;saml2p:NameIDPolicy&gt;</code> Format attribute in the Service Provider&#8217;s <code>&lt;saml2p:AuthnRequest&gt;</code> message, or a <code>&lt;md:NameIDFormat&gt;</code> element in the Service Provider&#8217;s metadata, the Format of the <code>&lt;saml2:NameID&gt;</code> SHOULD be set to <code>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_forced_re_authentication_support">4.4. Forced Re-Authentication Support</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_attributes">4.5. Attributes</h3>
 <div class="paragraph">
 <p>Any <code>&lt;saml2:Attribute&gt;</code> elements exchanged via any SAML 2.0 messages, assertions, or metadata MUST contain a NameFormat of <code>urn:oasis:names:tc:SAML:2.0:attrname-format:uri</code>.</p>
 </div>
@@ -616,87 +793,20 @@ SAML V2.0 Interoperability Deployment Profile
 <div class="paragraph">
 <p>If an opaque targeted user identifier is being provided to the Service Provider, it is RECOMMENDED to use a <code>&lt;saml2:NameID&gt;</code> construct with a Format of <code>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</code> rather than transporting that identifier as an <code>&lt;saml2:Attribute&gt;</code>.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_authentication_requests">6. Authentication Requests</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_binding_and_security_requirements">6.1. Binding and Security Requirements</h3>
-<div class="paragraph">
-<p>The <code>&lt;saml2p:AuthnRequest&gt;</code> message issued by a Service Provider MUST be communicated to the Identity Provider using the <code>HTTP-REDIRECT</code> binding <a href="#SAML2Bind">[SAML2Bind]</a>.</p>
-</div>
-<div class="paragraph">
-<p>Identity Providers MAY omit the verification of signatures in conjunction with this binding.</p>
-</div>
-<div class="paragraph">
-<p>The endpoints at which an Identity Provider receives a <code>&lt;saml2p:AuthnRequest&gt;</code> message, and all subsequent exchanges with the user agent, SHOULD be protected by TLS/SSL.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_message_content">6.2. Message Content</h3>
-<div class="paragraph">
-<p>The <code>&lt;saml2p:AuthnRequest&gt;</code> message issued by a Service Provider MUST contain an <code>AssertionConsumerServiceURL</code> attribute identifying the desired response location. The <code>ProtocolBinding</code> attribute, if present, MUST be set to <code>urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST</code>.</p>
-</div>
-<div class="paragraph">
-<p>In verifying the Service Provider&#8217;s Assertion Consumer Service, it is RECOMMENDED that the Identity Provider perform a case-sensitive string comparison between the requested <code>&lt;saml2p:AssertionConsumerServiceURL&gt;</code> value and the values found in the Service Provider&#8217;s metadata. It is OPTIONAL to apply any form of URL canonicalization, which means the Service Provider SHOULD NOT rely on differently canonicalized values in these two locations. As an example, the Service Provider SHOULD NOT use a hostname with port number (such as <a href="https://sp.example.no:80/acs" class="bare">https://sp.example.no:80/acs</a>) in its request and without (such as <a href="https://sp.example.no/acs" class="bare">https://sp.example.no/acs</a>) in its metadata.</p>
-</div>
-<div class="paragraph">
-<p>The <code>&lt;saml2p:AuthnRequest&gt;</code> message MUST NOT contain a <code>&lt;saml2:Subject&gt;</code> element.</p>
-</div>
-<div class="paragraph">
-<p>Identity Providers that act as a proxy (per section 3.4.1.5.1 of <a href="#SAML2Core">[SAML2Core]</a>) MUST support <code>&lt;saml2p:AuthnRequest&gt;</code> messages that do not contain a <code>&lt;saml2p:Scoping&gt;</code> element.</p>
-</div>
-<div class="paragraph">
-<p>The <code>&lt;saml2p:AuthnRequest&gt;</code> message SHOULD contain a <code>&lt;saml2p:NameIDPolicy&gt;</code> element with an <code>AllowCreate</code> attribute of "true". Its <code>Format</code> attribute, if present, SHOULD be set to one of the following values:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</p>
-</li>
-<li>
-<p>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The <code>&lt;saml2p:AuthnRequest&gt;</code> message MAY contain a <code>&lt;saml2p:RequestedAuthnContext&gt;</code> element, but SHOULD do so only in the presence of an arrangement between the Identity and Service Providers regarding the Authentication Context definitions in use. The <code>Comparison</code> attribute SHOULD be omitted or be set to "exact".</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_responses">7. Responses</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_binding_and_security_requirements_2">7.1. Binding and Security Requirements</h3>
-<div class="paragraph">
-<p>The <code>&lt;saml2p:Response&gt;</code> message issued by an Identity Provider MUST be communicated to the Service Provider using the <code>HTTP-POST</code> binding <a href="#SAML2Bind">[SAML2Bind]</a>.</p>
-</div>
-<div class="paragraph">
-<p>The endpoint(s) at which a Service Provider receives a <code>&lt;saml2p:Response&gt;</code> message SHOULD be protected by TLS/SSL. If this is not the case, then Identity Providers SHOULD utilize XML Encryption and return a <code>&lt;saml2:EncryptedAssertion&gt;</code> element in the <code>&lt;saml2p:Response&gt;</code> message. The use of the <code>&lt;saml2:EncryptedID&gt;</code> and <code>&lt;saml2:EncryptedAttribute&gt;</code> elements is NOT RECOMMENDED; when possible, encrypt the entire assertion.</p>
-</div>
-<div class="paragraph">
-<p>Whether encrypted or not, the <code>&lt;saml2:Assertion&gt;</code> element issued by the Identity Provider MUST itself be signed directly using a <code>&lt;ds:Signature&gt;</code> element within the <code>&lt;saml2:Assertion&gt;</code>.</p>
-</div>
-<div class="paragraph">
-<p>Service Providers MUST support unsolicited <code>&lt;saml2p:Response&gt;</code> messages (i.e., responses that are not the result of an earlier <code>&lt;saml2p:AuthnRequest&gt;</code> message).</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_message_content_2">7.2. Message Content</h3>
 <div class="paragraph">
 <p>Assuming a successful response, the <code>&lt;saml2p:Response&gt;</code> message issued by an Identity Provider MUST contain exactly one assertion (either a <code>&lt;saml2:Assertion&gt;</code> or an <code>&lt;saml2:EncryptedAssertion&gt;</code> element). The assertion MUST contain exactly one <code>&lt;saml2:AuthnStatement&gt;</code> element and MAY contain zero or one <code>&lt;saml2:AttributeStatement&gt;</code> elements.</p>
 </div>
 <div class="paragraph">
-<p>The <code>&lt;saml2:Subject&gt;</code> element of the assertions issued by an Identity Provider SHOULD contain a <code>&lt;saml2:NameID&gt;</code> element. The <code>&lt;saml2:Subject&gt;</code> element MUST NOT include a <code>&lt;saml2:BaseID&gt;</code> nor a <code>&lt;saml2:EncryptedID&gt;</code>. In the absence of a <code>&lt;saml2p:NameIDPolicy&gt;</code> Format attribute in the Service Provider&#8217;s <code>&lt;saml2p:AuthnRequest&gt;</code> message, or a <code>&lt;md:NameIDFormat&gt;</code> element in the Service Provider&#8217;s metadata, the Format of the <code>&lt;saml2:NameID&gt;</code> SHOULD be set to <code>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</code>.</p>
+<p>The <code>&lt;saml2p:Response&gt;</code> message issued by an Identity Provider MUST be communicated to the Service Provider using the <code>HTTP-POST</code> binding <a href="#SAML2Bind">[SAML2Bind]</a>.</p>
+</div>
+<div class="paragraph">
+<p>Whether encrypted or not, the <code>&lt;saml2:Assertion&gt;</code> element issued by the Identity Provider MUST itself be signed directly using a <code>&lt;ds:Signature&gt;</code> element within the <code>&lt;saml2:Assertion&gt;</code>.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_normative_references">8. Normative References</h2>
+<h2 id="_normative_references">5. Normative References</h2>
 <div class="sectionbody">
 <div class="ulist bibliography">
 <ul class="bibliography">
@@ -732,7 +842,7 @@ SAML V2.0 Interoperability Deployment Profile
 </div>
 </div>
 <div class="sect1">
-<h2 id="_non_normative_references">9. Non-Normative References</h2>
+<h2 id="_non_normative_references">6. Non-Normative References</h2>
 <div class="sectionbody">
 <div class="ulist bibliography">
 <ul class="bibliography">
@@ -750,7 +860,7 @@ SAML V2.0 Interoperability Deployment Profile
 </div>
 </div>
 <div class="sect1">
-<h2 id="_authors_addresses">10. Authors' addresses</h2>
+<h2 id="_authors_addresses">7. Authors' addresses</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -785,7 +895,7 @@ SAML V2.0 Interoperability Deployment Profile
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-01-20 07:17:16 CET
+Last updated 2017-09-26 21:16:08 CEST
 </div>
 </div>
 </body>
