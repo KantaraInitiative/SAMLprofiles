@@ -18,8 +18,6 @@ If a Service Provider plans to utilize a Discovery Service supporting the Identi
 
 The endpoint(s) at which a Service Provider receives a `<saml2p:Response>` message SHOULD be protected by TLS/SSL. If this is not the case, then Identity Providers SHOULD utilize XML Encryption and return a `<saml2:EncryptedAssertion>` element in the `<saml2p:Response>` message. The use of the `<saml2:EncryptedID>` and `<saml2:EncryptedAttribute>` elements is NOT RECOMMENDED; when possible, encrypt the entire assertion.
 
-=== Authentication Context Requests
-
 === Attribute Value Constraints
 
 === Subject Identifier Support
@@ -55,6 +53,8 @@ The `<saml2p:AuthnRequest>` message SHOULD contain a `<saml2p:NameIDPolicy>` ele
 The `<saml2p:AuthnRequest>` message MAY contain a `<saml2p:RequestedAuthnContext>` element, but SHOULD do so only in the presence of an arrangement between the Identity and Service Providers regarding the Authentication Context definitions in use. The `Comparison` attribute SHOULD be omitted or be set to "exact".
 
 Service Providers MUST support unsolicited `<saml2p:Response>` messages (i.e., responses that are not the result of an earlier `<saml2p:AuthnRequest>` message).
+
+==== Authentication Context Requests
 
 ==== Testing AuthnInstant In The Context of Forced Re-Authentication
 
