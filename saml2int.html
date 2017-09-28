@@ -486,11 +486,10 @@ SAML V2.0 Interoperability Deployment Profile
 <li><a href="#_metadata_and_trust_management_2">3.3. Metadata and Trust Management</a></li>
 <li><a href="#_sp_initiated_sso">3.4. SP-Initiated SSO</a></li>
 <li><a href="#_sp_endpoints">3.5. SP Endpoints</a></li>
-<li><a href="#_authentication_context_requests">3.6. Authentication Context Requests</a></li>
-<li><a href="#_attribute_value_constraints">3.7. Attribute Value Constraints</a></li>
-<li><a href="#_subject_identifier_support">3.8. Subject Identifier Support</a></li>
-<li><a href="#_support_for_multiple_idps">3.9. Support for Multiple IdPs</a></li>
-<li><a href="#_authentication_requests">3.10. Authentication Requests</a></li>
+<li><a href="#_attribute_value_constraints">3.6. Attribute Value Constraints</a></li>
+<li><a href="#_subject_identifier_support">3.7. Subject Identifier Support</a></li>
+<li><a href="#_support_for_multiple_idps">3.8. Support for Multiple IdPs</a></li>
+<li><a href="#_authentication_requests">3.9. Authentication Requests</a></li>
 </ul>
 </li>
 <li><a href="#_identity_provider_requirements">4. Identity Provider Requirements</a>
@@ -577,35 +576,38 @@ SAML V2.0 Interoperability Deployment Profile
 <div class="paragraph">
 <p>Entities SHOULD publish its metadata using the Well-Known Location method defined in <a href="#SAML2Meta">[SAML2Meta]</a>.</p>
 </div>
+<div class="sect3">
+<h4 id="_metadata_content">2.2.1. Metadata Content</h4>
 <div class="paragraph">
 <p>Metadata documents provided by an Identity Provider MUST include an <code>&lt;md:IDPSSODescriptor&gt;</code> element containing all necessary <code>&lt;md:KeyDescriptor&gt;</code> and <code>&lt;md:SingleSignOnService&gt;</code> elements. The metadata SHOULD include one or more <code>&lt;md:NameIDFormat&gt;</code> elements indicating which <code>&lt;saml2:NameID&gt;</code> Format values are supported.</p>
 </div>
 <div class="paragraph">
 <p>Metadata documents provided by a Service Provider MUST include an <code>&lt;md:SPSSODescriptor&gt;</code> element containing all necessary <code>&lt;md:KeyDescriptor&gt;</code> and <code>&lt;md:AssertionConsumerService&gt;</code> elements. The metadata SHOULD also include one or more <code>&lt;md:NameIDFormat&gt;</code> elements indicating which <code>&lt;saml2:NameID&gt;</code> Format values are supported and one or more <code>&lt;md:AttributeConsumingService&gt;</code> elements describing the service(s) offered and their attribute requirements.</p>
 </div>
-<div class="sect3">
-<h4 id="_keys_and_certificates_in_metadata">2.2.1. Keys and Certificates in Metadata</h4>
-
-</div>
-<div class="sect3">
-<h4 id="_mdui_elements">2.2.2. MDUI Elements</h4>
-<div class="paragraph">
-<p>Metadata provided by Service Provider SHOULD contain a descriptive name of the service that the Service Provider represents (not the company) in at least English. It is RECOMMENDED to also provide the name in other languages which is much used in the geographic scope of the deployment. The name should be placed in the <code>&lt;md:ServiceName&gt;</code> in the <code>&lt;md:AttributeConsumingService&gt;</code> container.</p>
-</div>
 <div class="paragraph">
 <p>Metadata provided by both Identity Providers and Service Provider SHOULD contain contact information for support and for a technical contact. The <code>&lt;md:EntityDescriptor&gt;</code> element SHOULD contain both a <code>&lt;md:ContactPerson&gt;</code> element with a <code>contactType</code> of "support" and a <code>&lt;md:ContactPerson&gt;</code> element with a <code>contactType</code> of "technical". The <code>&lt;md:ContactPerson&gt;</code> elements SHOULD contain at least one <code>&lt;md:EmailAddress&gt;</code>. The support address MAY be used for generic support questions about the service, while the technical contact may be contacted regarding technical interoperability problems. The technical contact MUST be responsible for the technical operation of the system(s) reflected in the metadata.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_metadata_refresh">2.2.3. Metadata Refresh</h4>
+<h4 id="_keys_and_certificates_in_metadata">2.2.2. Keys and Certificates in Metadata</h4>
 
 </div>
 <div class="sect3">
-<h4 id="_metadata_signature_verification">2.2.4. Metadata Signature Verification</h4>
+<h4 id="_mdui_elements">2.2.3. MDUI Elements</h4>
+<div class="paragraph">
+<p>Metadata provided by Service Provider SHOULD contain a descriptive name of the service that the Service Provider represents (not the company) in at least English. It is RECOMMENDED to also provide the name in other languages which is much used in the geographic scope of the deployment. The name should be placed in the <code>&lt;md:ServiceName&gt;</code> in the <code>&lt;md:AttributeConsumingService&gt;</code> container.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_metadata_refresh">2.2.4. Metadata Refresh</h4>
 
 </div>
 <div class="sect3">
-<h4 id="_saml_entityids">2.2.5. SAML entityIDs</h4>
+<h4 id="_metadata_signature_verification">2.2.5. Metadata Signature Verification</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_saml_entityids">2.2.6. SAML entityIDs</h4>
 
 </div>
 </div>
@@ -658,15 +660,11 @@ SAML V2.0 Interoperability Deployment Profile
 </div>
 </div>
 <div class="sect2">
-<h3 id="_authentication_context_requests">3.6. Authentication Context Requests</h3>
+<h3 id="_attribute_value_constraints">3.6. Attribute Value Constraints</h3>
 
 </div>
 <div class="sect2">
-<h3 id="_attribute_value_constraints">3.7. Attribute Value Constraints</h3>
-
-</div>
-<div class="sect2">
-<h3 id="_subject_identifier_support">3.8. Subject Identifier Support</h3>
+<h3 id="_subject_identifier_support">3.7. Subject Identifier Support</h3>
 <div class="paragraph">
 <p>Service Providers, if they rely at all on particular name identifier formats, MUST support one of the following:</p>
 </div>
@@ -687,18 +685,18 @@ SAML V2.0 Interoperability Deployment Profile
 <p>Note that these requirements are reflected in additional constraints on message content in subsequent sections.</p>
 </div>
 <div class="sect3">
-<h4 id="_subject_identifier_signalling">3.8.1. Subject Identifier Signalling</h4>
+<h4 id="_subject_identifier_signalling">3.7.1. Subject Identifier Signalling</h4>
 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_support_for_multiple_idps">3.9. Support for Multiple IdPs</h3>
+<h3 id="_support_for_multiple_idps">3.8. Support for Multiple IdPs</h3>
 
 </div>
 <div class="sect2">
-<h3 id="_authentication_requests">3.10. Authentication Requests</h3>
+<h3 id="_authentication_requests">3.9. Authentication Requests</h3>
 <div class="sect3">
-<h4 id="_authentication_request_presentation">3.10.1. Authentication Request Presentation</h4>
+<h4 id="_authentication_request_presentation">3.9.1. Authentication Request Presentation</h4>
 <div class="paragraph">
 <p>The <code>&lt;saml2p:AuthnRequest&gt;</code> message issued by a Service Provider MUST be communicated to the Identity Provider using the <code>HTTP-REDIRECT</code> binding <a href="#SAML2Bind">[SAML2Bind]</a>.</p>
 </div>
@@ -729,7 +727,11 @@ SAML V2.0 Interoperability Deployment Profile
 </div>
 </div>
 <div class="sect3">
-<h4 id="_testing_authninstant_in_the_context_of_forced_re_authentication">3.10.2. Testing AuthnInstant In The Context of Forced Re-Authentication</h4>
+<h4 id="_authentication_context_requests">3.9.2. Authentication Context Requests</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_testing_authninstant_in_the_context_of_forced_re_authentication">3.9.3. Testing AuthnInstant In The Context of Forced Re-Authentication</h4>
 
 </div>
 </div>
