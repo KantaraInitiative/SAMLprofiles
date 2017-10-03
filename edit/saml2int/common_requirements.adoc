@@ -44,7 +44,7 @@ Service Providers and Identity Providers MUST regularly verify their SAML peer c
 
 ==== Metadata Signature Verification
 
-_Suggest merging this section with the one above, as it is odd to split the two sentences above. Alternatively, move second sentence from above to here_
+_(Suggest merging this section with the one above, as it is odd to split the two sentences above. Alternatively, move second sentence from above to here)_
 
 ==== SAML entityIDs
 
@@ -66,5 +66,5 @@ _The following is a non-exhaustive list of items to which this directive applies
 
 === XML Encryption
 
-IdPs MUST support encryption of assertions and SPs must support decryption of SAML V2.0 Web SSO Profile assertions using XML Encryption. [[[XMLEnc]]] Deployments MUST support the AES-GCM block encrytpion algorithm as specified in [[[XMLEnc]]] for this encryption.
+IdPs MUST support encryption of assertions and SPs must support decryption of SAML V2.0 Web SSO Profile assertions using XML Encryption. <<XMLEnc>> Deployments MUST support the AES-GCM block encrytpion algorithm as specified in <<XMLEnc>> for this encryption.
 
