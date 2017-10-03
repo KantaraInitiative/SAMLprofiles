@@ -574,7 +574,7 @@ SAML V2.0 Interoperability Deployment Profile
 <p>Identity Providers and Service Providers MUST provide a SAML 2.0 Metadata document representing its entity. How metadata is exchanged is out of scope of this specification. Provided metadata MUST conform to the SAML V2.0 Metadata Interoperability Profile Version 1.0 <a href="#MetaIOP">[MetaIOP]</a>.</p>
 </div>
 <div class="paragraph">
-<p>Entities SHOULD publish its metadata using the Well-Known Location method defined in <a href="#SAML2Meta">[SAML2Meta]</a>.</p>
+<p>A SAML entity SHOULD publish its metadata using the Well-Known Location method defined in <a href="#SAML2Meta">[SAML2Meta]</a>.</p>
 </div>
 <div class="sect3">
 <h4 id="_metadata_content">2.2.1. Metadata Content</h4>
@@ -590,38 +590,81 @@ SAML V2.0 Interoperability Deployment Profile
 </div>
 <div class="sect3">
 <h4 id="_keys_and_certificates_in_metadata">2.2.2. Keys and Certificates in Metadata</h4>
-
+<div class="paragraph">
+<p>Public keys used for encryption and signature verification are bound to certificates in metadata [SAML2Meta].
+<em>(is "bound" the correct verb here?)</em></p>
+</div>
+<div class="paragraph">
+<p>These certificates SHOULD be long-lived and self-signed. To avoid problems with certain non-conforming SAML implementations, certificates in metadata SHOULD NOT be expired.
+<em>(Do we need a similar statement about using modern signature algorithms?)</em></p>
+</div>
+<div class="paragraph">
+<p>IdP metadata MUST include at least one signing certificate.</p>
+</div>
+<div class="paragraph">
+<p>SP metadata SHOULD include at least one encryption certificate. <em>(Eric added this)</em></p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_mdui_elements">2.2.3. MDUI Elements</h4>
 <div class="paragraph">
-<p>Metadata provided by Service Provider SHOULD contain a descriptive name of the service that the Service Provider represents (not the company) in at least English. It is RECOMMENDED to also provide the name in other languages which is much used in the geographic scope of the deployment. The name should be placed in the <code>&lt;md:ServiceName&gt;</code> in the <code>&lt;md:AttributeConsumingService&gt;</code> container.</p>
+<p>Metadata for SAML entities MUST include UI elements for <code>&lt;mdui:DisplayName&gt;</code>, <code>&lt;mdui:Logo&gt;</code>, <code>&lt;mdui:InformationURL&gt;</code>, and <code>&lt;mdui:PrivacyStatementURL&gt;</code>.</p>
+</div>
+<div class="paragraph">
+<p>The content of the <code>&lt;mdui:Logo&gt;</code> element SHOULD be a HTTPS URL and MUST NOT be a HTTP URL.</p>
+</div>
+<div class="paragraph">
+<p>At least one <code>&lt;mdui:Logo&gt;</code> element SHOULD have a <code>height</code> attribute of <code>60</code> and a <code>width</code> attribute of <code>80</code>.</p>
+</div>
+<div class="paragraph">
+<p>An entity MAY include a <code>&lt;mdui:Logo&gt;</code> element with a <code>height</code> attribute of <code>16</code> and a <code>width</code> attribute of <code>16</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_metadata_refresh">2.2.4. Metadata Refresh</h4>
-
+<h4 id="_metadata_refresh_and_signature_verification">2.2.4. Metadata Refresh and Signature Verification</h4>
+<div class="paragraph">
+<p>Service Providers and Identity Providers MUST regularly verify their SAML peer configurations by validating them against those peers' current metadata. Metadata used for this configuration validation MUST itself be signed and validated with a key distributed <em>(verified? validated?)</em> separately from the metadata itself.</p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_metadata_signature_verification">2.2.5. Metadata Signature Verification</h4>
-
+<div class="paragraph">
+<p><em>(Suggest merging this section with the one above, as it is odd to split the two sentences above. Alternatively, move second sentence from above to here)</em></p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_saml_entityids">2.2.6. SAML entityIDs</h4>
-
+<div class="paragraph">
+<p>The EntityID of a SAML entity MUST be scoped to the domain of the organization that is the owner of the application, in the case of an SP; or to the domain of the organization whose users are represented by the IdP, in the case of an IdP.</p>
+</div>
+<div class="paragraph">
+<p><em>Specifically, hosted applications must have entityIDs scoped to the client organization&#8217;s domain, not the hosting organization&#8217;s domain.</em></p>
+</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_protocol_support">2.3. Protocol Support</h3>
-
+<div class="paragraph">
+<p>Deployments MUST support the SAML V2.0 Web Browser SSO Profile and MUST support the SAML V2.0 Single Logout Profile as defined in <a href="#SAML2Prof">[SAML2Prof]</a> and as updated by <a href="#SAML2Errata">[SAML2Errata]</a>. Behavior of deployments MUST be consistent with the requirements of the requirements specified in this deployment profile.</p>
+</div>
+<div class="paragraph">
+<p>A deployment indicates support for the SAML V2.0 Web Browser SSO and for the SAML V2.0 Single Logout Profile by including certain browser-facing SSO endpoints in metadata.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_clock_skew">2.4. Clock Skew</h3>
-
+<div class="paragraph">
+<p>Deployers MUST support a minimum of three (3) and a maximum of five (5) minutes of clock skew&#8201;&#8212;&#8201;in either direction&#8201;&#8212;&#8201;when interpreting <code>xsd:dateTime</code> values in assertions and when enforcing security policies based thereupon.</p>
+</div>
+<div class="paragraph">
+<p><em>The following is a non-exhaustive list of items to which this directive applies:</em> <code>NotBefore</code>, <code>NotOnOrAfter</code>, <em>and</em> <code>validUntil</code> <em>XML attributes found on</em> <code>Conditions</code>, <code>SubjectConfirmationData</code>, <code>LogoutRequest</code>, <code>EntityDescriptor</code>, <code>EntitiesDescriptor</code>, <code>RoleDescriptor</code>, <em>and</em> <code>AffiliationDescriptor</code> <em>elements.</em></p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_xml_encryption">2.5. XML Encryption</h3>
-
+<div class="paragraph">
+<p>IdPs MUST support encryption of assertions and SPs must support decryption of SAML V2.0 Web SSO Profile assertions using XML Encryption. <a href="#XMLEnc">[XMLEnc]</a> Deployments MUST support the AES-GCM block encrytpion algorithm as specified in <a href="#XMLEnc">[XMLEnc]</a> for this encryption.</p>
+</div>
 </div>
 </div>
 </div>
@@ -838,6 +881,9 @@ SAML V2.0 Interoperability Deployment Profile
 </li>
 <li>
 <p><a id="SAML2Err"></a>[SAML2Err] OASIS Approved Errata, SAML Version 2.0 Errata 05, May 2012. <a href="http://docs.oasis-open.org/security/saml/v2.0/sstc-saml-approved-errata-2.0.pdf" class="bare">http://docs.oasis-open.org/security/saml/v2.0/sstc-saml-approved-errata-2.0.pdf</a></p>
+</li>
+<li>
+<p><a id="XMLEnc"></a>[XMLEnc] D. Eastlake et al. XML Encryption Syntax and Processing. World Wide Web Consortium Recommendation, April 2013. <a href="https://www.w3.org/TR/xmlenc-core1/" class="bare">https://www.w3.org/TR/xmlenc-core1/</a></p>
 </li>
 </ul>
 </div>
