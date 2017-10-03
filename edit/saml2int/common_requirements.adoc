@@ -6,7 +6,7 @@
 
 Identity Providers and Service Providers MUST provide a SAML 2.0 Metadata document representing its entity. How metadata is exchanged is out of scope of this specification. Provided metadata MUST conform to the SAML V2.0 Metadata Interoperability Profile Version 1.0 <<MetaIOP>>.
 
-Entities SHOULD publish its metadata using the Well-Known Location method defined in <<SAML2Meta>>.
+A SAML entity SHOULD publish its metadata using the Well-Known Location method defined in <<SAML2Meta>>.
 
 ==== Metadata Content
 
@@ -18,19 +18,53 @@ Metadata provided by both Identity Providers and Service Provider SHOULD contain
 
 ==== Keys and Certificates in Metadata
 
+Public keys used for encryption and signature verification are bound to certificates in metadata [SAML2Meta].
+_(is "bound" the correct verb here?)_
+
+These certificates SHOULD be long-lived and self-signed. To avoid problems with certain non-conforming SAML implementations, certificates in metadata SHOULD NOT be expired. 
+_(Do we need a similar statement about using modern signature algorithms?)_
+
+IdP metadata MUST include at least one signing certificate.
+
+SP metadata SHOULD include at least one encryption certificate. _(Eric added this)_
+
 ==== MDUI Elements
 
-Metadata provided by Service Provider SHOULD contain a descriptive name of the service that the Service Provider represents (not the company) in at least English. It is RECOMMENDED to also provide the name in other languages which is much used in the geographic scope of the deployment. The name should be placed in the `<md:ServiceName>` in the `<md:AttributeConsumingService>` container.
+Metadata for SAML entities MUST include UI elements for `<mdui:DisplayName>`, `<mdui:Logo>`, `<mdui:InformationURL>`, and `<mdui:PrivacyStatementURL>`.
 
-==== Metadata Refresh
+The content of the `<mdui:Logo>` element SHOULD be a HTTPS URL and MUST NOT be a HTTP URL.
+
+At least one `<mdui:Logo>` element SHOULD have a `height` attribute of `60` and a `width` attribute of `80`.
+
+An entity MAY include a `<mdui:Logo>` element with a `height` attribute of `16` and a `width` attribute of `16`.
+
+==== Metadata Refresh and Signature Verification
+
+Service Providers and Identity Providers MUST regularly verify their SAML peer configurations by validating them against those peers' current metadata. Metadata used for this configuration validation MUST itself be signed and validated with a key distributed _(verified? validated?)_ separately from the metadata itself.
 
 ==== Metadata Signature Verification
 
+_Suggest merging this section with the one above, as it is odd to split the two sentences above. Alternatively, move second sentence from above to here_
+
 ==== SAML entityIDs
+
+The EntityID of a SAML entity MUST be scoped to the domain of the organization that is the owner of the application, in the case of an SP; or to the domain of the organization whose users are represented by the IdP, in the case of an IdP.
+
+_Specifically, hosted applications must have entityIDs scoped to the client organization's domain, not the hosting organization's domain._
 
 === Protocol Support
 
+Deployments MUST support the SAML V2.0 Web Browser SSO Profile and MUST support the SAML V2.0 Single Logout Profile as defined in <<SAML2Prof>> and as updated by <<SAML2Errata>>. Behavior of deployments MUST be consistent with the requirements of the requirements specified in this deployment profile. 
+
+A deployment indicates support for the SAML V2.0 Web Browser SSO and for the SAML V2.0 Single Logout Profile by including certain browser-facing SSO endpoints in metadata.
+
 === Clock Skew
 
+Deployers MUST support a minimum of three (3) and a maximum of five (5) minutes of clock skew -- in either direction -- when interpreting `xsd:dateTime` values in assertions and when enforcing security policies based thereupon.
+
+_The following is a non-exhaustive list of items to which this directive applies:_ `NotBefore`, `NotOnOrAfter`, _and_ `validUntil` _XML attributes found on_ `Conditions`, `SubjectConfirmationData`, `LogoutRequest`, `EntityDescriptor`, `EntitiesDescriptor`, `RoleDescriptor`, _and_ `AffiliationDescriptor` _elements._
+
 === XML Encryption
+
+IdPs MUST support encryption of assertions and SPs must support decryption of SAML V2.0 Web SSO Profile assertions using XML Encryption. [[[XMLEnc]]] Deployments MUST support the AES-GCM block encrytpion algorithm as specified in [[[XMLEnc]]] for this encryption.
 
