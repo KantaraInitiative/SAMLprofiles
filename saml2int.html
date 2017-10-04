@@ -786,6 +786,9 @@ SAML V2.0 Interoperability Deployment Profile
 <div class="sect2">
 <h3 id="_identity_provider_endpoints">4.1. Identity Provider Endpoints</h3>
 <div class="paragraph">
+<p>IdP metadata MUST include a <code>&lt;SingleSignOnService&gt;</code> endpoint that supports the SAML2 HTTP-Redirect binding as defined in <a href="#SAML2Bind">[SAML2Bind]</a>. A <code>&lt;SingleSignOnService&gt;</code> endpoint that supports the SAML2 HTTP-POST binding SHOULD also be included in IdP metadata since some SAML SP deployments favor that particular binding. Support for both bindings is strongly RECOMMENDED.</p>
+</div>
+<div class="paragraph">
 <p>The endpoints at which an Identity Provider receives a <code>&lt;saml2p:AuthnRequest&gt;</code> message, and all subsequent exchanges with the user agent, SHOULD be protected by TLS/SSL. Identity Providers MAY omit the verification of signatures in conjunction with this binding.</p>
 </div>
 <div class="paragraph">
@@ -800,35 +803,63 @@ SAML V2.0 Interoperability Deployment Profile
 </div>
 <div class="sect2">
 <h3 id="_identity_provider_error_urls">4.2. Identity Provider Error URLs</h3>
-
+<div class="paragraph">
+<p>IdP deployers MUST include an <code>&lt;errorURL&gt;</code> XML attribute in metadata. This URL must point to a page that presents actions for a user to take at their organization in response to an error (that occurred at the SP).</p>
+</div>
+<div class="paragraph">
+<p><em>(Note, Tom S. questions whether this should be in the errorURL vs. mdui.information elements, due in part to the lack of international language support on the errorURL)</em></p>
+</div>
+<div class="paragraph">
+<p><em>(move?)</em> Relying parties are encouraged to direct clients to this URL – either directly or after presenting a page providing context – when an authentication error occurs that the Relying Party cannot resolve locally.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_subject_identifier_support_2">4.3. Subject Identifier Support</h3>
 <div class="sect3">
 <h4 id="_nameid_formats">4.3.1. NameID formats</h4>
 <div class="paragraph">
-<p><em>(new)</em>
-Identity Providers MUST support the <code>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</code> name identifier format <a href="#SAML2Core">[SAML2Core]</a>. ~~They SHOULD support the <code>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</code> name identifier format <a href="#SAML2Core">[SAML2Core]</a>.~~ Support for other formats is OPTIONAL.</p>
+<p><em>(new)</em></p>
+</div>
+<div class="paragraph">
+<p>Identity Providers MUST support the <code>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</code> name identifier format as defined in <a href="#SAML2Core">[SAML2Core]</a>. ~~They SHOULD support the <code>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</code> name identifier format <a href="#SAML2Core">[SAML2Core]</a>.~~ Support for other formats is OPTIONAL.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_subject_identifier_attributes">4.3.2. Subject Identifier Attributes</h4>
 <div class="paragraph">
-<p><em>(new)</em>
-Identity Providers SHOULD assert either the <code>urn:oasis:names:tc:SAML:attribute:subject-id</code> and <code>urn:oasis:names:tc:SAML:attribute:pairwise-id</code> attributes to uniquely identify authenticated users as defined in <a href="#SAML2SubjId">[SAML2SubjId]</a> consistent with the requirements signalling from the SP, which are also defined in <a href="#SAML2SubjId">[SAML2SubjId]</a>. If an Identity Provider cannot include a required Subject Identifier attribute as signalled by the SP, the IdP MUST return a SAML error per <a href="#SAML2Err">[SAML2Err]</a>.</p>
+<p><em>(new)</em></p>
+</div>
+<div class="paragraph">
+<p>Identity Providers SHOULD assert either the <code>urn:oasis:names:tc:SAML:attribute:subject-id</code> and <code>urn:oasis:names:tc:SAML:attribute:pairwise-id</code> attributes to uniquely identify authenticated users as defined in <a href="#SAML2SubjId">[SAML2SubjId]</a> consistent with the requirements signalling from the SP, which are also defined in <a href="#SAML2SubjId">[SAML2SubjId]</a>. If an Identity Provider cannot include a required Subject Identifier attribute as signalled by the SP, the IdP MUST return a SAML error per <a href="#SAML2Err">[SAML2Err]</a>.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_subject_identifier_signalling_2">4.3.3. Subject Identifier Signalling</h4>
 <div class="paragraph">
-<p><em>(This is now handled in the Subject ID Draft in OASIS. Does it need to be repeated here?)</em>
-~~The <code>&lt;saml2:Subject&gt;</code> element of the assertions issued by an Identity Provider SHOULD contain a <code>&lt;saml2:NameID&gt;</code> element. The <code>&lt;saml2:Subject&gt;</code> element MUST NOT include a <code>&lt;saml2:BaseID&gt;</code> nor a <code>&lt;saml2:EncryptedID&gt;</code>. In the absence of a <code>&lt;saml2p:NameIDPolicy&gt;</code> Format attribute in the Service Provider&#8217;s <code>&lt;saml2p:AuthnRequest&gt;</code> message, or a <code>&lt;md:NameIDFormat&gt;</code> element in the Service Provider&#8217;s metadata, the Format of the <code>&lt;saml2:NameID&gt;</code> SHOULD be set to <code>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</code>.~~</p>
+<p><em>(This is now handled in the Subject ID Draft in OASIS. Does it need to be repeated here?)</em></p>
+</div>
+<div class="paragraph">
+<p>~~The <code>&lt;saml2:Subject&gt;</code> element of the assertions issued by an Identity Provider SHOULD contain a <code>&lt;saml2:NameID&gt;</code> element. The <code>&lt;saml2:Subject&gt;</code> element MUST NOT include a <code>&lt;saml2:BaseID&gt;</code> nor a <code>&lt;saml2:EncryptedID&gt;</code>. In the absence of a <code>&lt;saml2p:NameIDPolicy&gt;</code> Format attribute in the Service Provider&#8217;s <code>&lt;saml2p:AuthnRequest&gt;</code> message, or a <code>&lt;md:NameIDFormat&gt;</code> element in the Service Provider&#8217;s metadata, the Format of the <code>&lt;saml2:NameID&gt;</code> SHOULD be set to <code>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</code>.~~</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_forced_re_authentication_support">4.4. Forced Re-Authentication Support</h3>
-
+<div class="paragraph">
+<p>Identity providers MUST ensure that any response to an <code>&lt;AuthnRequest&gt;</code> that contains the attribute <code>ForceAuthn ="true"</code> (as defined in <a href="#SAML2Prof">[SAML2Prof]</a>) results in an authentication challenge that requires proof that the Subject is present. If this condition is met, the IdP MUST also reflect this success by setting the value of the <code>AuthnInstant</code> value in the assertion it generates.</p>
+</div>
+<div class="paragraph">
+<p>If the IdP cannot prove Subject presence, the IdP MUST NOT generate a successful response and MUST generate a SAML Error.</p>
+</div>
+<div class="paragraph">
+<p><em>(Probably should be moved to the</em> SP requirements <em>section)</em></p>
+</div>
+<div class="paragraph">
+<p>Service Providers that request <code>ForceAuthn="true"</code> as part of <code>&lt;AuthnRequests&gt;</code> SHOULD test the currency of the <code>AuthnInstant</code> value contained in IdP assertion to verify that the currency of the user authentication event.</p>
+</div>
+<div class="paragraph">
+<p><em>This is necessary because clients can generate IdP-initiated authentication requests that do not specify <code>ForceAuthn="true"</code>, potentially bypassing the SP&#8217;s intent to request reauthentication of the user.</em></p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_attributes">4.5. Attributes</h3>
