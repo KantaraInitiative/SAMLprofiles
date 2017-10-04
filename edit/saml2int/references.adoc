@@ -21,4 +21,5 @@
 - [[[eduPerson]]] eduPerson Object Class Specification. https://www.internet2.edu/products-services/trust-identity/eduperson-eduorg/
 - [[[eduOrg]]] EduOrg Object Class Specification. https://www.internet2.edu/products-services/trust-identity/eduperson-eduorg/
 - [[[IMI]]] OASIS Standard, Identity Metasystem Interoperability Version 1.0, July 2009. http://docs.oasis-open.org/imi/identity/v1.0/identity.html
+- [[[SAML2SPRIP]]] OASIS Committee Specification, Service Provider Request Initiation Protocol and Profile Version 1.0, Noveember 2010.
 - [[[MACEAttrProf]]] MACEDir Working Group Specification, MACEDir SAML Attribute Profiles, April 2008. http://macedir.org/docs/internet2-mace-dir-saml-attributes-latest.pdf
