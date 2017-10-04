@@ -4,6 +4,14 @@
 
 === Deep Linking
 
+_(Suggest moving this below "SP-Initiated SSO" or "Authentication Requests", below)_
+
+Applications that support deep linking and direct addressability of protected resources MUST maintain support for such links in the presence of thw Web Browser SSO interaction. That is, it MUST be possible to request an arbitrary protected resource and (authorization permitting) have it supplied as the result of a successful SAML SSO profile exchange. In addition, it is RECOMMENDED that Service Providers support the preservation of POST bodies across a successful SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.
+
+The SAML binding-specific `RelayState` feature <<SAML2Prof>> is typically used to maintain the state information required to satisfy both of these requirements, the exact detail of which is left to implementations.
+
+Requiring IdPs to support unsolicited responses (or so-called IdP-initiated SSO) <<SAML2Prof>> is not a substitute for this requirement.
+
 === Metadata and Trust Management
 
 If a Service Provider forgoes the use of TLS/SSL for its Assertion Consumer Service endpoints, then its metadata SHOULD include a `<md:KeyDescriptor>` suitable for XML Encryption. Note that use of TLS/SSL is RECOMMENDED.
@@ -12,30 +20,88 @@ If a Service Provider plans to utilize a Discovery Service supporting the Identi
 
 ==== Key and Certificate "Rollover"
 
+SP deployments MUST support multiple signing certificates in IdP metadata _(do we want more language? e.g., "and must be able to validate signed IdP assertions using either certificate.)_ This makes it possible for the IdP to seamlessly migrate to a new signing key.
+
+If the SP publishes an encryption certificate in metadata, the SP deployment MUST be configurable with multiple decryption keys _(and must be able to decrypt Assertions encrypted with either of those keys)_. This makes it possible for the SP to seamlessly migrate to a new decryption key.
+
 === SP-Initiated SSO
 
+_(Move below "Authentication Requests" heading, below?)_
+
+Service Providers must support the direct generation of authentication request messages conforming to the SAML Authentication Request Protocol <<SAML2Core>>.
+
+Service Providers that want to bypass user-initiated discovery SHOULD use the SP Request Initiation Profile and Protocol defined in <<SAML2SPRIP>>.
+
+Requiring IdPs to support unsolicited responses (or so-called IdP-initiated SSO) <<SAML2Prof>> is not a substitute for this requirement.
+
 === SP Endpoints
+
+_(This text said "An SP that supports SAML V2.0 Web Browser SSO", but support for SAML V2.0 Web Browser SSO is mandated elsewhere by the profile)_
+
+SPs MUST include at least one AssertionConsumerService endpoint that supports the SAML V2.0 HTTP-POST binding for the SAML V2.0 Web Browser SSO protocol <<SAML2Prof>>. Occasionally an IdP will prefer to respond using the using the SAML V2.0 HTTP-Artifact Binding <<SAML2Bind>>, and therefore an AssertionConsumerService endpoint that supports the SAML V2.0 HTTP-Artifact binding MAY also be included in SP metadata. Note: An SP that supports artifact resolution MUST have at least one signing certificate in metadata.
 
 The endpoint(s) at which a Service Provider receives a `<saml2p:Response>` message SHOULD be protected by TLS/SSL. If this is not the case, then Identity Providers SHOULD utilize XML Encryption and return a `<saml2:EncryptedAssertion>` element in the `<saml2p:Response>` message. The use of the `<saml2:EncryptedID>` and `<saml2:EncryptedAttribute>` elements is NOT RECOMMENDED; when possible, encrypt the entire assertion.
 
 === Attribute Value Constraints
 
+When consuming attributes with standard definitions _(Do we need a scope here? E.g., OASIS standard attributes? Is this only about subject-id/pairwise-id and thus no longer relevant as a separate requirement?)_, Service Providers SHOULD NOT impose constraints that are not part of the definitions of those attributes.
+
+_This may imply supporting extra long attribute values, attributes that contain multiple values, broad character set support, etc._
+
 === Subject Identifier Support
 
-Service Providers, if they rely at all on particular name identifier formats, MUST support one of the following:
+==== NameID Formats
 
-* urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-* urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+Service Providers, if they rely at all on particular name identifier formats, MUST support the format `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`. Reliance on other formats by Service Providers is NOT RECOMMENDED.
 
-Reliance on other formats by Service Providers is NOT RECOMMENDED.
+_Note that these requirements are reflected in additional constraints on message content in subsequent sections._
 
-Note that these requirements are reflected in additional constraints on message content in subsequent sections.
+==== Subject Identifier Attributes
+
+SPs that require reliable identifiers bound to a subject MUST support user identification using one of the following attributes:
+
+* `urn:oasis:names:tc:SAML:attribute:subject-id`
+* `urn:oasis:names:tc:SAML:attribute:pairwise-id` 
+
+as defined in <<SAML2SubjId>>.
 
 ==== Subject Identifier Signalling
 
+An SP MUST indicate its identifier requirements in metadata, consistent with the Requirements Signalling rules defined in <<SAML2SubjId>>. 
+
+==== Subject Identifier Opacity
+
+SPs MUST be able to accept and function reasonably when receiving only opaque subject identifiers. 
+
+If users are required to identify one another, SPs SHOULD additionally accept one or more relatively unique, human-readable "directory" attributes (email, name, title, etc.) for use in user searches, user pick-lists, and other interface elements. 
+
+==== Subject Identifier Uniqueness
+
+SPs MUST be able to prevent inappropriate Subject Identifier value collisions across different IdPs. SPs SHOULD use qualified identifiers to support this requirement, with the SPs validating that IdPs assert appropriate qualifiers.
+
+It is RECOMMENDED that the "Scope" Metadata extension <<MACEAttrProf>> be used to identify acceptable qualifiers from an IdP. 
+
+_(Is the following still relevant?)_
+
+Where IdPs do not assert qualified identifiers for Subject IDs, SPs SHOULD instead internally associate each Subject ID with the asserting IdP's entityID.
+
 === Support for Multiple IdPs
 
+Service Providers MUST allow clients the option to authenticate specific resource URLs against more than one identity provider. _(This language is from the Impl Profile)_
+
+When more than one Identity Provider authenticates the same resource URL, IdP selection SHOULD be supported using the OASIS SSTC SAML v2.0 Identity Provider Discovery Profile <<IdPDisco>>.
+
+_(Note, there's overlap here with "SP-initiated SSO", given the reference to SAML2SPRIP)_
+
 === Authentication Requests
+
+==== Authentication Request User Interface and Browser Frames
+
+Service Providers MUST NOT issue authentication requests inside a frame or via any mechanism that would require the use of third-party cookies by the Identity Provider to establish or recover a session with the user agent.
+
+_(Is there something broader we want to say about how it SHOULD be presented?)_
+
+_(n.b., I'm not clear when exactly a 3rd party cookie creates an actual issue for the authentication event. Is it the hosting site and the IdP, or the hosting site and the SP being authenticated that causes issues?)_
 
 ==== Authentication Request Presentation
 
@@ -45,16 +111,20 @@ The `<saml2p:AuthnRequest>` message issued by a Service Provider MUST contain an
 
 The `<saml2p:AuthnRequest>` message MUST NOT contain a `<saml2:Subject>` element.
 
-The `<saml2p:AuthnRequest>` message SHOULD contain a `<saml2p:NameIDPolicy>` element with an `AllowCreate` attribute of "true". Its `Format` attribute, if present, SHOULD be set to one of the following values:
+The `<saml2p:AuthnRequest>` message SHOULD contain a `<saml2p:NameIDPolicy>` element with an `AllowCreate` attribute of "true". Its `Format` attribute, if present, SHOULD be set to `urn:oasis:names:tc:SAML:2.0:nameid-format:transient` _(Removed persistent)_
 
-* urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-* urn:oasis:names:tc:SAML:2.0:nameid-format:transient
-
-The `<saml2p:AuthnRequest>` message MAY contain a `<saml2p:RequestedAuthnContext>` element, but SHOULD do so only in the presence of an arrangement between the Identity and Service Providers regarding the Authentication Context definitions in use. The `Comparison` attribute SHOULD be omitted or be set to "exact".
-
-Service Providers MUST support unsolicited `<saml2p:Response>` messages (i.e., responses that are not the result of an earlier `<saml2p:AuthnRequest>` message).
+Service Providers MUST support unsolicited `<saml2p:Response>` messages (i.e., responses that are not the result of an earlier `<saml2p:AuthnRequest>` message). _(Add)_
 
 ==== Authentication Context Requests
 
+An SP that does not require specific AuthnContextClassRef value(s) in assertions MUST NOT include any RequestedAuthnContext elements in AuthnRequests it generates.
+
+An SP that only accepts specific AuthnContextClassRef value(s) in assertions MUST specify those allowable values in the `<saml2p:RequestedAuthnContext>` element of the `<saml2p:AuthnRequest>` it generates, with the `Comparison` operator set to "EXACT". An SP SHOULD only include a RequestedAuthnContext request in the presence of an arrangement between the Identity and Service Providers regarding the Authentication Context definitions in use. 
+
+_(Do we want anything about error handling?)_ 
+
 ==== Testing AuthnInstant In The Context of Forced Re-Authentication
 
+Service Providers that request `ForceAuthn="true"` as part of an `<AuthnRequest>` SHOULD test the currency of the `AuthnInstant` element  in IdP assertions to verify the currency of the user authentication event. 
+
+_This is necessary because clients can generate unsolicited SSO responses that do not specify `ForceAuthn="true"`, potentially bypassing the SP's intent to require user reauthentication._
