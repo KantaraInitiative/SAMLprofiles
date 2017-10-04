@@ -786,13 +786,13 @@ SAML V2.0 Interoperability Deployment Profile
 <div class="sect2">
 <h3 id="_identity_provider_endpoints">4.1. Identity Provider Endpoints</h3>
 <div class="paragraph">
-<p>The endpoints at which an Identity Provider receives a <code>&lt;saml2p:AuthnRequest&gt;</code> message, and all subsequent exchanges with the user agent, SHOULD be protected by TLS/SSL.</p>
+<p>The endpoints at which an Identity Provider receives a <code>&lt;saml2p:AuthnRequest&gt;</code> message, and all subsequent exchanges with the user agent, SHOULD be protected by TLS/SSL. Identity Providers MAY omit the verification of signatures in conjunction with this binding.</p>
 </div>
 <div class="paragraph">
-<p>Identity Providers MAY omit the verification of signatures in conjunction with this binding.</p>
+<p>In verifying the Service Provider&#8217;s Assertion Consumer Service, it is RECOMMENDED that the Identity Provider perform a case-sensitive string comparison between the requested <code>&lt;saml2p:AssertionConsumerServiceURL&gt;</code> value and the values found in the Service Provider&#8217;s metadata. It is OPTIONAL to apply any form of URL canonicalization, which means the Service Provider SHOULD NOT rely on differently canonicalized values in these two locations.</p>
 </div>
 <div class="paragraph">
-<p>In verifying the Service Provider&#8217;s Assertion Consumer Service, it is RECOMMENDED that the Identity Provider perform a case-sensitive string comparison between the requested <code>&lt;saml2p:AssertionConsumerServiceURL&gt;</code> value and the values found in the Service Provider&#8217;s metadata. It is OPTIONAL to apply any form of URL canonicalization, which means the Service Provider SHOULD NOT rely on differently canonicalized values in these two locations. As an example, the Service Provider SHOULD NOT use a hostname with port number (such as <a href="https://sp.example.no:80/acs" class="bare">https://sp.example.no:80/acs</a>) in its request and without (such as <a href="https://sp.example.no/acs" class="bare">https://sp.example.no/acs</a>) in its metadata.</p>
+<p><em>As an example, the Service Provider SHOULD NOT use a hostname with port number (such as <a href="https://sp.example.no:80/acs" class="bare">https://sp.example.no:80/acs</a>) in its request and without (such as <a href="https://sp.example.no/acs" class="bare">https://sp.example.no/acs</a>) in its metadata.</em></p>
 </div>
 <div class="paragraph">
 <p>Identity Providers that act as a proxy (per section 3.4.1.5.1 of <a href="#SAML2Core">[SAML2Core]</a>) MUST support <code>&lt;saml2p:AuthnRequest&gt;</code> messages that do not contain a <code>&lt;saml2p:Scoping&gt;</code> element.</p>
@@ -804,13 +804,25 @@ SAML V2.0 Interoperability Deployment Profile
 </div>
 <div class="sect2">
 <h3 id="_subject_identifier_support_2">4.3. Subject Identifier Support</h3>
+<div class="sect3">
+<h4 id="_nameid_formats">4.3.1. NameID formats</h4>
 <div class="paragraph">
-<p>Identity Providers MUST support the <code>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</code> name identifier format <a href="#SAML2Core">[SAML2Core]</a>. They SHOULD support the <code>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</code> name identifier format <a href="#SAML2Core">[SAML2Core]</a>. Support for other formats is OPTIONAL.</p>
+<p><em>(new)</em>
+Identity Providers MUST support the <code>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</code> name identifier format <a href="#SAML2Core">[SAML2Core]</a>. ~~They SHOULD support the <code>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</code> name identifier format <a href="#SAML2Core">[SAML2Core]</a>.~~ Support for other formats is OPTIONAL.</p>
+</div>
 </div>
 <div class="sect3">
-<h4 id="_subject_identifier_signalling_2">4.3.1. Subject Identifier Signalling</h4>
+<h4 id="_subject_identifier_attributes">4.3.2. Subject Identifier Attributes</h4>
 <div class="paragraph">
-<p>The <code>&lt;saml2:Subject&gt;</code> element of the assertions issued by an Identity Provider SHOULD contain a <code>&lt;saml2:NameID&gt;</code> element. The <code>&lt;saml2:Subject&gt;</code> element MUST NOT include a <code>&lt;saml2:BaseID&gt;</code> nor a <code>&lt;saml2:EncryptedID&gt;</code>. In the absence of a <code>&lt;saml2p:NameIDPolicy&gt;</code> Format attribute in the Service Provider&#8217;s <code>&lt;saml2p:AuthnRequest&gt;</code> message, or a <code>&lt;md:NameIDFormat&gt;</code> element in the Service Provider&#8217;s metadata, the Format of the <code>&lt;saml2:NameID&gt;</code> SHOULD be set to <code>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</code>.</p>
+<p><em>(new)</em>
+Identity Providers SHOULD assert either the <code>urn:oasis:names:tc:SAML:attribute:subject-id</code> and <code>urn:oasis:names:tc:SAML:attribute:pairwise-id</code> attributes to uniquely identify authenticated users as defined in <a href="#SAML2SubjId">[SAML2SubjId]</a> consistent with the requirements signalling from the SP, which are also defined in <a href="#SAML2SubjId">[SAML2SubjId]</a>. If an Identity Provider cannot include a required Subject Identifier attribute as signalled by the SP, the IdP MUST return a SAML error per <a href="#SAML2Err">[SAML2Err]</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_subject_identifier_signalling_2">4.3.3. Subject Identifier Signalling</h4>
+<div class="paragraph">
+<p><em>(This is now handled in the Subject ID Draft in OASIS. Does it need to be repeated here?)</em>
+~~The <code>&lt;saml2:Subject&gt;</code> element of the assertions issued by an Identity Provider SHOULD contain a <code>&lt;saml2:NameID&gt;</code> element. The <code>&lt;saml2:Subject&gt;</code> element MUST NOT include a <code>&lt;saml2:BaseID&gt;</code> nor a <code>&lt;saml2:EncryptedID&gt;</code>. In the absence of a <code>&lt;saml2p:NameIDPolicy&gt;</code> Format attribute in the Service Provider&#8217;s <code>&lt;saml2p:AuthnRequest&gt;</code> message, or a <code>&lt;md:NameIDFormat&gt;</code> element in the Service Provider&#8217;s metadata, the Format of the <code>&lt;saml2:NameID&gt;</code> SHOULD be set to <code>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</code>.~~</p>
 </div>
 </div>
 </div>
@@ -884,6 +896,9 @@ SAML V2.0 Interoperability Deployment Profile
 </li>
 <li>
 <p><a id="XMLEnc"></a>[XMLEnc] D. Eastlake et al. XML Encryption Syntax and Processing. World Wide Web Consortium Recommendation, April 2013. <a href="https://www.w3.org/TR/xmlenc-core1/" class="bare">https://www.w3.org/TR/xmlenc-core1/</a></p>
+</li>
+<li>
+<p><a id="SAML2SubjId"></a>[SAML2SubjId] OASIS Committee Draft, SAMLV2.0 Subject Identifier Attributes Profile Version 1.0, September 2017.  <a href="https://www.oasis-open.org/committees/download.php/61575/saml-subject-id-attr-v1.0-wd03.pdf" class="bare">https://www.oasis-open.org/committees/download.php/61575/saml-subject-id-attr-v1.0-wd03.pdf</a></p>
 </li>
 </ul>
 </div>
