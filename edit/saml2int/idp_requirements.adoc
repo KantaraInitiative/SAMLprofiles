@@ -46,9 +46,6 @@ If the IdP cannot prove Subject presence, the IdP MUST NOT generate a successful
 
 _(Probably should be moved to the_ SP requirements _section)_
 
-Service Providers that request `ForceAuthn="true"` as part of `<AuthnRequests>` SHOULD test the currency of the `AuthnInstant` value contained in IdP assertion to verify that the currency of the user authentication event. 
-
-_This is necessary because clients can generate IdP-initiated authentication requests that do not specify `ForceAuthn="true"`, potentially bypassing the SP's intent to request reauthentication of the user._
 
 === Attributes
 
