@@ -12,6 +12,7 @@
 - [[[IdPDisco]]] OASIS Committee Specification, Identity Provider Discovery Service Protocol and Profile, March 2008. http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-idp-discovery.pdf
 - [[[SAML2Err]]] OASIS Approved Errata, SAML Version 2.0 Errata 05, May 2012. http://docs.oasis-open.org/security/saml/v2.0/sstc-saml-approved-errata-2.0.pdf
 - [[[XMLEnc]]] D. Eastlake et al. XML Encryption Syntax and Processing. World Wide Web Consortium Recommendation, April 2013. https://www.w3.org/TR/xmlenc-core1/
+- [[[SAML2SubjId]]] OASIS Committee Draft, SAMLV2.0 Subject Identifier Attributes Profile Version 1.0, September 2017.  https://www.oasis-open.org/committees/download.php/61575/saml-subject-id-attr-v1.0-wd03.pdf
 
 == Non-Normative References
 
