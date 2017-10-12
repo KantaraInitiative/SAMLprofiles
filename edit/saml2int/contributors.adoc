@@ -15,4 +15,5 @@
 * Thomas Lenggenhager, lenggenhager@switch.ch
 * Alex Stuart, alex.stuart@jisc.ac.uk
 * Keith Hazelton, keith.hazelton@wisc.edu
+* Chris Phillips, chris.phillips@canarie.ca
 * Nick Roy, nroy@internet2.edu
