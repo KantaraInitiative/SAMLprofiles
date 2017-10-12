@@ -101,12 +101,6 @@ _(n.b., I'm not clear when exactly a 3rd party cookie creates an actual issue fo
 
 ==== Authentication Request Presentation
 
-The `<saml2p:AuthnRequest>` message issued by a Service Provider MUST be communicated to the Identity Provider using the `HTTP-REDIRECT` binding <<SAML2Bind>>.
-
-The `<saml2p:AuthnRequest>` message issued by a Service Provider MUST contain an `AssertionConsumerServiceURL` attribute identifying the desired response location. The `ProtocolBinding` attribute, if present, MUST be set to `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST`.
-
-The `<saml2p:AuthnRequest>` message MUST NOT contain a `<saml2:Subject>` element.
-
 The `<saml2p:AuthnRequest>` message SHOULD contain a `<saml2p:NameIDPolicy>` element with an `AllowCreate` attribute of "true". Its `Format` attribute, if present, SHOULD be set to `urn:oasis:names:tc:SAML:2.0:nameid-format:transient` _(Removed persistent)_
 
 Service Providers MUST support unsolicited `<saml2p:Response>` messages (i.e., responses that are not the result of an earlier `<saml2p:AuthnRequest>` message). _(Add)_
