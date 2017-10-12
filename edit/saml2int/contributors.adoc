@@ -14,4 +14,5 @@
 * Judith Bush, bushj@oclc.org
 * Thomas Lenggenhager, lenggenhager@switch.ch
 * Alex Stuart, alex.stuart@jisc.ac.uk
+* Keith Hazelton, keith.hazelton@wisc.edu
 * Nick Roy, nroy@internet2.edu
