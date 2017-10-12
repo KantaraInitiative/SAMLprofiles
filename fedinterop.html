@@ -836,28 +836,16 @@ dl dd {
 <li>
 <p><code><code><a href="http://www.w3.org/2001/04/xmlenc#sha256" class="bare">http://www.w3.org/2001/04/xmlenc#sha256</a></code></code> <a href="#XMLEnc">[XMLEnc]</a></p>
 </li>
-<li>
-<p><code><code><a href="http://www.w3.org/2000/09/xmldsig#sha1" class="bare">http://www.w3.org/2000/09/xmldsig#sha1</a></code></code> <a href="#XMLSig">[XMLSig]</a>
-<br>
-<br>
-Implementations MUST NOT default to the use of <code><code><a href="http://www.w3.org/2000/09/xmldsig#sha1" class="bare">http://www.w3.org/2000/09/xmldsig#sha1</a></code></code>.</p>
-</li>
 </ul>
 </div>
 </dd>
 <dt class="hdlist1">[IIP-ALG02]</dt>
 <dd>
-<p>Implementations MUST support the signing algorithms identified by the following URIs in conjunction with the creation and verification of XML Signatures <a href="#XMLSig">[XMLSig]</a>:</p>
+<p>Implementations MUST support the signature algorithms identified by the following URIs in conjunction with the creation and verification of XML Signatures <a href="#XMLSig">[XMLSig]</a>:</p>
 <div class="ulist">
 <ul>
 <li>
 <p><code><code><a href="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256" class="bare">http://www.w3.org/2001/04/xmldsig-more#rsa-sha256</a></code></code> <a href="#RFC4051">[RFC4051]</a></p>
-</li>
-<li>
-<p><code><code><a href="http://www.w3.org/2000/09/xmldsig#rsa-sha1" class="bare">http://www.w3.org/2000/09/xmldsig#rsa-sha1</a></code></code> <a href="#XMLSig">[XMLSig]</a>
-<br>
-<br>
-Implementations MUST NOT default to the use of <code><code><a href="http://www.w3.org/2000/09/xmldsig#rsa-sha1" class="bare">http://www.w3.org/2000/09/xmldsig#rsa-sha1</a></code></code>.</p>
 </li>
 </ul>
 </div>
@@ -879,12 +867,6 @@ Implementations MUST NOT default to the use of <code><code><a href="http://www.w
 <div class="ulist">
 <ul>
 <li>
-<p><code><code><a href="http://www.w3.org/2001/04/xmlenc#aes128-cbc" class="bare">http://www.w3.org/2001/04/xmlenc#aes128-cbc</a></code></code> <a href="#XMLEnc">[XMLEnc]</a></p>
-</li>
-<li>
-<p><code><code><a href="http://www.w3.org/2001/04/xmlenc#aes256-cbc" class="bare">http://www.w3.org/2001/04/xmlenc#aes256-cbc</a></code></code> <a href="#XMLEnc">[XMLEnc]</a></p>
-</li>
-<li>
 <p><code><code><a href="http://www.w3.org/2009/xmlenc11#aes128-gcm" class="bare">http://www.w3.org/2009/xmlenc11#aes128-gcm</a></code></code> <a href="#XMLEnc11">[XMLEnc11]</a></p>
 </li>
 <li>
@@ -894,6 +876,27 @@ Implementations MUST NOT default to the use of <code><code><a href="http://www.w
 </div>
 </dd>
 <dt class="hdlist1">[IIP-ALG05]</dt>
+<dd>
+<p>Implementations MAY support the block encryption algorithms identified by the following URIs in conjunction with the use of XML Encryption <a href="#XMLEnc">[XMLEnc]</a> for backwards compatibility:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code><code><a href="http://www.w3.org/2001/04/xmlenc#aes128-cbc" class="bare">http://www.w3.org/2001/04/xmlenc#aes128-cbc</a></code></code> <a href="#XMLEnc">[XMLEnc]</a></p>
+</li>
+<li>
+<p><code><code><a href="http://www.w3.org/2001/04/xmlenc#aes256-cbc" class="bare">http://www.w3.org/2001/04/xmlenc#aes256-cbc</a></code></code> <a href="#XMLEnc">[XMLEnc]</a></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>The use of these algorithms is widespread at the time of authoring, but is known to be broken <a href="#XMLEncBreak">[XMLEncBreak]</a> and should be avoided in new applications. Implementations supporting them SHOULD warn on use.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[IIP-ALG06]</dt>
 <dd>
 <p>Implementations MUST support the key transport algorithms identified by the following URIs in conjunction with the use of XML Encryption <a href="#XMLEnc">[XMLEnc]</a>:</p>
 <div class="ulist">
@@ -917,7 +920,7 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </ul>
 </div>
 </dd>
-<dt class="hdlist1">[IIP-ALG06]</dt>
+<dt class="hdlist1">[IIP-ALG07]</dt>
 <dd>
 <p>This document is not normative with respect to TLS security. It is, however, RECOMMENDED that implementers consider <a href="#RFC7457">[RFC7457]</a> and current best practice reflected in documents such as <a href="#BetterCrypto">[BetterCrypto]</a>.</p>
 </dd>
@@ -1275,6 +1278,9 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </li>
 <li>
 <p><a id="RFC7457"></a>[RFC7457] IETF RFC 7457, Summarizing Known Attacks on Transport Layer Security (TLS) and Datagram TLS (DTLS), February 2015. <a href="https://www.ietf.org/rfc/rfc7457.txt" class="bare">https://www.ietf.org/rfc/rfc7457.txt</a></p>
+</li>
+<li>
+<p><a id="XMLEncBreak"></a>[XMLEncBreak] Jager and Somorovsky, How to Break XML Encryption, October 2011. <a href="http://www.nds.rub.de/media/nds/veroeffentlichungen/2011/10/22/HowToBreakXMLenc.pdf" class="bare">http://www.nds.rub.de/media/nds/veroeffentlichungen/2011/10/22/HowToBreakXMLenc.pdf</a></p>
 </li>
 </ul>
 </div>
