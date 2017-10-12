@@ -8,6 +8,10 @@ Identity Providers and Service Providers MUST provide a SAML 2.0 Metadata docume
 
 A SAML entity SHOULD publish its metadata using the Well-Known Location method defined in <<SAML2Meta>>.
 
+Identity Providers and Service Providers MUST rely on SAML metadata conforming to [SAML2Meta] and [SAML2MDIOP] for configuration of trust management.
+
+Identity Providers and Service Providers MUST rely on SAML metadata conforming to [SAML2Meta] and [SAML2MDIOP] for endpoint identification and verification.
+
 ==== Metadata Content
 
 Metadata documents provided by an Identity Provider MUST include an `<md:IDPSSODescriptor>` element containing all necessary `<md:KeyDescriptor>` and `<md:SingleSignOnService>` elements. The metadata SHOULD include one or more `<md:NameIDFormat>` elements indicating which `<saml2:NameID>` Format values are supported.
@@ -16,17 +20,20 @@ Metadata documents provided by a Service Provider MUST include an `<md:SPSSODesc
 
 Metadata provided by both Identity Providers and Service Provider SHOULD contain contact information for support and for a technical contact. The `<md:EntityDescriptor>` element SHOULD contain both a `<md:ContactPerson>` element with a `contactType` of "support" and a `<md:ContactPerson>` element with a `contactType` of "technical". The `<md:ContactPerson>` elements SHOULD contain at least one `<md:EmailAddress>`. The support address MAY be used for generic support questions about the service, while the technical contact may be contacted regarding technical interoperability problems. The technical contact MUST be responsible for the technical operation of the system(s) reflected in the metadata.
 
+Metadata MUST NOT contain endpoints that aren't supported.
+
 ==== Keys and Certificates in Metadata
 
 Public keys used for encryption and signature verification are bound to certificates in metadata [SAML2Meta].
 _(is "bound" the correct verb here?)_
 
-These certificates SHOULD be long-lived and self-signed. To avoid problems with certain non-conforming SAML implementations, certificates in metadata SHOULD NOT be expired. 
-_(Do we need a similar statement about using modern signature algorithms?)_
+These certificates SHOULD be long-lived and self-signed. To avoid problems with certain non-conforming SAML implementations, certificates in metadata SHOULD NOT be expired.  Certificates in metadata SHOULD be generated from an RSA key with length >= 2048 bits and SHOULD use sha256 or stronger signing algorithms.
 
 IdP metadata MUST include at least one signing certificate.
 
 SP metadata SHOULD include at least one encryption certificate. _(Eric added this)_
+
+When SAML messages are signed, sha256 or stronger signing algorithms SHOULD be used.
 
 ==== MDUI Elements
 
@@ -63,8 +70,3 @@ A deployment indicates support for the SAML V2.0 Web Browser SSO and for the SAM
 Deployers MUST support a minimum of three (3) and a maximum of five (5) minutes of clock skew -- in either direction -- when interpreting `xsd:dateTime` values in assertions and when enforcing security policies based thereupon.
 
 _The following is a non-exhaustive list of items to which this directive applies:_ `NotBefore`, `NotOnOrAfter`, _and_ `validUntil` _XML attributes found on_ `Conditions`, `SubjectConfirmationData`, `LogoutRequest`, `EntityDescriptor`, `EntitiesDescriptor`, `RoleDescriptor`, _and_ `AffiliationDescriptor` _elements._
-
-=== XML Encryption
-
-IdPs MUST support encryption of assertions and SPs must support decryption of SAML V2.0 Web SSO Profile assertions using XML Encryption. <<XMLEnc>> Deployments MUST support the AES-GCM block encryption algorithm as specified in <<XMLEnc>> for this encryption.
-

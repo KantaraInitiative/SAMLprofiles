@@ -128,3 +128,21 @@ _(Do we want anything about error handling?)_
 Service Providers that request `ForceAuthn="true"` as part of an `<AuthnRequest>` SHOULD test the currency of the `AuthnInstant` element  in IdP assertions to verify the currency of the user authentication event. 
 
 _This is necessary because clients can generate unsolicited SSO responses that do not specify `ForceAuthn="true"`, potentially bypassing the SP's intent to require user reauthentication._
+
+=== XML Encryption
+
+Service Providers MUST support decryption of SAML V2.0 Web SSO Profile assertions using XML Encryption. Service Providers MUST support the AES-GCM block encryption algorithm as specified in <<XMLEnc>> for this encryption.
+
+=== Single LogOut
+
+Service Providers should expect that Identity Providers may do one of the following when receiving a SAML LogOut request:
+
+1. Do nothing.
+2. End the IDP session only.
+3. Complete logout of all SP sessions (Single LogOut).
+4. Partial logout (some SPs may not support LogOut).
+5. Display a confirmation page before proceeding with options 1-4.
+
+Service Providers MUST NOT expect to regain control of the user interface after a logout request is sent.
+
+Service Providers whose endpoints are based on multiple vhosts within a single entity descriptor should usually avoid Single LogOut.
