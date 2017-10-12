@@ -14,10 +14,6 @@ Requiring IdPs to support unsolicited responses (or so-called IdP-initiated SSO)
 
 === Metadata and Trust Management
 
-If a Service Provider forgoes the use of TLS/SSL for its Assertion Consumer Service endpoints, then its metadata SHOULD include a `<md:KeyDescriptor>` suitable for XML Encryption. Note that use of TLS/SSL is RECOMMENDED.
-
-If a Service Provider plans to utilize a Discovery Service supporting the Identity Provider Discovery Service Protocol Profile <<IdPDisco>>, then its metadata MUST include one or more `<idpdisc:DiscoveryResponse>` elements in the `<md:Extensions>` element of its `<md:SPSSODescriptor>` element.
-
 ==== Key and Certificate "Rollover"
 
 SP deployments MUST support multiple signing certificates in IdP metadata _(do we want more language? e.g., "and must be able to validate signed IdP assertions using either certificate.)_ This makes it possible for the IdP to seamlessly migrate to a new signing key.

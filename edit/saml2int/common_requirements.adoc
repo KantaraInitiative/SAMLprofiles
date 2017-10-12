@@ -4,21 +4,7 @@
 
 === Metadata and Trust Management
 
-Identity Providers and Service Providers MUST provide a SAML 2.0 Metadata document representing its entity. How metadata is exchanged is out of scope of this specification. Provided metadata MUST conform to the SAML V2.0 Metadata Interoperability Profile Version 1.0 <<MetaIOP>>.
-
-A SAML entity SHOULD publish its metadata using the Well-Known Location method defined in <<SAML2Meta>>.
-
-Identity Providers and Service Providers MUST rely on SAML metadata conforming to [SAML2Meta] and [SAML2MDIOP] for configuration of trust management.
-
-Identity Providers and Service Providers MUST rely on SAML metadata conforming to [SAML2Meta] and [SAML2MDIOP] for endpoint identification and verification.
-
 ==== Metadata Content
-
-Metadata documents provided by an Identity Provider MUST include an `<md:IDPSSODescriptor>` element containing all necessary `<md:KeyDescriptor>` and `<md:SingleSignOnService>` elements. The metadata SHOULD include one or more `<md:NameIDFormat>` elements indicating which `<saml2:NameID>` Format values are supported.
-
-Metadata documents provided by a Service Provider MUST include an `<md:SPSSODescriptor>` element containing all necessary `<md:KeyDescriptor>` and `<md:AssertionConsumerService>` elements. The metadata SHOULD also include one or more `<md:NameIDFormat>` elements indicating which `<saml2:NameID>` Format values are supported and one or more `<md:AttributeConsumingService>` elements describing the service(s) offered and their attribute requirements.
-
-Metadata provided by both Identity Providers and Service Provider SHOULD contain contact information for support and for a technical contact. The `<md:EntityDescriptor>` element SHOULD contain both a `<md:ContactPerson>` element with a `contactType` of "support" and a `<md:ContactPerson>` element with a `contactType` of "technical". The `<md:ContactPerson>` elements SHOULD contain at least one `<md:EmailAddress>`. The support address MAY be used for generic support questions about the service, while the technical contact may be contacted regarding technical interoperability problems. The technical contact MUST be responsible for the technical operation of the system(s) reflected in the metadata.
 
 Metadata MUST NOT contain endpoints that aren't supported.
 
