@@ -61,7 +61,7 @@ _Specifically, hosted applications must have entityIDs scoped to the client orga
 
 === Protocol Support
 
-Deployments MUST support the SAML V2.0 Web Browser SSO Profile and MUST support the SAML V2.0 Single Logout Profile as defined in <<SAML2Prof>> and as updated by <<SAML2Errata>>. Behavior of deployments MUST be consistent with the requirements of the requirements specified in this deployment profile. 
+Deployments MUST support the SAML V2.0 Web Browser SSO Profile and MUST support the SAML V2.0 Single Logout Profile as defined in <<SAML2Prof>> and as updated by <<SAML2Err>>. Behavior of deployments MUST be consistent with the requirements of the requirements specified in this deployment profile. 
 
 A deployment indicates support for the SAML V2.0 Web Browser SSO and for the SAML V2.0 Single Logout Profile by including certain browser-facing SSO endpoints in metadata.
 

@@ -23,3 +23,6 @@ When referring to elements from the Identity Provider Discovery Service Protocol
 
 * `<idpdisc:DiscoveryResponse>`
 
+When referring to elements from the SAML 2.0 Metadata Extensions for Login and Discovery User Interface specification <<SAML-Metadata-UI-V1.0>>, the following syntax is used:
+
+* `<mdui:Metadataelement>`
