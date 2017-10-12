@@ -30,3 +30,4 @@
 - [[[SAML-EC]]] IETF Internet Draft, SAML Enhanced Client SASL and GSS-API Mechanisms. https://datatracker.ietf.org/doc/draft-ietf-kitten-sasl-saml-ec/
 - [[[BetterCrypto]]] BetterCrypto.org, Applied Crypto Hardening. https://bettercrypto.org
 - [[[RFC7457]]] IETF RFC 7457, Summarizing Known Attacks on Transport Layer Security (TLS) and Datagram TLS (DTLS), February 2015. https://www.ietf.org/rfc/rfc7457.txt
+- [[[XMLEncBreak]]] Jager and Somorovsky, How to Break XML Encryption, October 2011. http://www.nds.rub.de/media/nds/veroeffentlichungen/2011/10/22/HowToBreakXMLenc.pdf
