@@ -70,8 +70,3 @@ A deployment indicates support for the SAML V2.0 Web Browser SSO and for the SAM
 Deployers MUST support a minimum of three (3) and a maximum of five (5) minutes of clock skew -- in either direction -- when interpreting `xsd:dateTime` values in assertions and when enforcing security policies based thereupon.
 
 _The following is a non-exhaustive list of items to which this directive applies:_ `NotBefore`, `NotOnOrAfter`, _and_ `validUntil` _XML attributes found on_ `Conditions`, `SubjectConfirmationData`, `LogoutRequest`, `EntityDescriptor`, `EntitiesDescriptor`, `RoleDescriptor`, _and_ `AffiliationDescriptor` _elements._
-
-=== XML Encryption
-
-IdPs MUST support encryption of assertions and SPs must support decryption of SAML V2.0 Web SSO Profile assertions using XML Encryption. <<XMLEnc>> Deployments MUST support the AES-GCM block encryption algorithm as specified in <<XMLEnc>> for this encryption.
-

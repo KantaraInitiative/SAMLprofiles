@@ -67,3 +67,6 @@ The `<saml2p:Response>` message issued by an Identity Provider MUST be communica
 
 Whether encrypted or not, the `<saml2:Assertion>` element issued by the Identity Provider MUST itself be signed directly using a `<ds:Signature>` element within the `<saml2:Assertion>`.
 
+=== XML Encryption
+
+Identity Providers MUST encrypt assertions if the Service Provider provides a suitable key in its metadata. Identity Providers MUST support the AES-GCM block encryption algorithm as specified in <<XMLEnc>> for this encryption.
