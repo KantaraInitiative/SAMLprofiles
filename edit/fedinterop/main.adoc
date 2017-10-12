@@ -20,7 +20,7 @@ SAML v2.0 Implementation Profile for Federation Interoperability ©2016 Internet
 
 
 == Introduction
-The material contained herein is intended for use by implementers of SAML software. It does not specify a fixed set of behaviors for all deployments or limit in any way the features that can be provided in a given implementation, but rather serves as a complement to deployment profiles (such as the Kantara SAML2int profile <<SAML2int>>) by identifying a standard set of software capabilities necessary for scalable federation. Cases such as proxies that provide token translation services may be considered out of scope for the purposes of this profile.  This profile can form the basis for testing frameworks capable of providing for the validation of conformant software packages.
+The material contained herein is intended for use by implementers of SAML software. It does not specify a fixed set of behaviors for all deployments or limit in any way the features that can be provided in a given implementation, but rather serves as a complement to deployment profiles (such as the Kantara SAML2int profile <<SAML2int>>) by identifying a standard set of software capabilities necessary for scalable federation.  This profile can form the basis for testing frameworks capable of providing for the validation of conformant software packages.
 
 include::notation.adoc[]
 
