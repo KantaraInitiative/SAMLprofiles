@@ -2,24 +2,39 @@
 
 === General
 
+==== Clock Skew
+
+Deployments MUST allow for a minimum of three (3) and a maximum of five (5) minutes of clock skew -- in either direction -- when interpreting `xsd:dateTime` values in assertions and when enforcing security policies based thereupon.
+
+_The following is a non-exhaustive list of items to which this directive applies:_ `NotBefore`, `NotOnOrAfter`, _and_ `validUntil` _XML attributes found on_ `Conditions`, `SubjectConfirmationData`, `LogoutRequest`, `EntityDescriptor`, `EntitiesDescriptor`, `RoleDescriptor`, _and_ `AffiliationDescriptor` _elements._
+
+==== Data Size
+
+Unless otherwise specified, deployments MUST limit the size of all element and attribute content to 256 characters. This applies in particular to the values within `<saml:NameID>` and `<saml:AttributeValue>` elements.
+
+==== Document Type Definition
+
+Deployments MUST reject any SAML protocol message that contains a (DTD) Document Type Definition.
+
 === Metadata and Trust Management
 
 ==== Metadata Content
 
 Metadata MUST NOT contain endpoints that aren't supported.
 
-==== Keys and Certificates in Metadata
+==== Keys and Certificates
 
-Public keys used for encryption and signature verification are bound to certificates in metadata [SAML2Meta].
-_(is "bound" the correct verb here?)_
+Public keys used for signing, encryption, and TLS client and server authentication MUST be expressed via X.509 certificates in metadata [SAML2Meta].
 
-These certificates SHOULD be long-lived and self-signed. To avoid problems with certain non-conforming SAML implementations, certificates in metadata SHOULD NOT be expired.  Certificates in metadata SHOULD be generated from an RSA key with length >= 2048 bits and SHOULD use sha256 or stronger signing algorithms.
+These certificates SHOULD be long-lived and self-signed. To avoid problems with certain non-conforming SAML implementations, certificates in metadata SHOULD NOT be expired.
 
-IdP metadata MUST include at least one signing certificate.
+RSA public keys MUST be at least 2048 bits in length.
 
-SP metadata SHOULD include at least one encryption certificate. _(Eric added this)_
+EC public keys MUST be at least TBD bits in length.
 
-When SAML messages are signed, sha256 or stronger signing algorithms SHOULD be used.
+Certificates used MUST NOT be signed with an MD5-based signature algorithm and SHOULD NOT be signed with a SHA1-based signature algorithm.
+
+By virtue of subsequent requirements, an Identity Provider's metadata MUST include at least one signing certificate (that is, an `<md:KeyDescriptor>` with no `use` attribute or one set to "signing"), and a Service Provider's metadata MUST include at least one encryption certificate (that is, an `<md:KeyDescriptor>` with no `use` attribute or one set to "encryption").
 
 ==== MDUI Elements
 
@@ -41,18 +56,37 @@ _(Suggest merging this section with the one above, as it is odd to split the two
 
 ==== SAML entityIDs
 
-The EntityID of a SAML entity MUST be scoped to the domain of the organization that is the owner of the application, in the case of an SP; or to the domain of the organization whose users are represented by the IdP, in the case of an IdP.
+The EntityID of a SAML entity MUST be scoped to the domain of the organization that is the owner of the application/service, in the case of an SP; or to the domain of the organization whose users are represented by the IdP, in the case of an IdP.
 
 _Specifically, hosted applications must have entityIDs scoped to the client organization's domain, not the hosting organization's domain._
 
-=== Protocol Support
+=== Profile Support
 
 Deployments MUST support the SAML V2.0 Web Browser SSO Profile and MUST support the SAML V2.0 Single Logout Profile as defined in <<SAML2Prof>> and as updated by <<SAML2Err>>. Behavior of deployments MUST be consistent with the requirements of the requirements specified in this deployment profile. 
 
 A deployment indicates support for the SAML V2.0 Web Browser SSO and for the SAML V2.0 Single Logout Profile by including certain browser-facing SSO endpoints in metadata.
 
-=== Clock Skew
+=== Cryptographic Algorithms
 
-Deployers MUST support a minimum of three (3) and a maximum of five (5) minutes of clock skew -- in either direction -- when interpreting `xsd:dateTime` values in assertions and when enforcing security policies based thereupon.
+When signing, a deployment MUST use one of the following digest algorithms:
 
-_The following is a non-exhaustive list of items to which this directive applies:_ `NotBefore`, `NotOnOrAfter`, _and_ `validUntil` _XML attributes found on_ `Conditions`, `SubjectConfirmationData`, `LogoutRequest`, `EntityDescriptor`, `EntitiesDescriptor`, `RoleDescriptor`, _and_ `AffiliationDescriptor` _elements._
+* ```http://www.w3.org/2001/04/xmlenc#sha256``` <<XMLEnc>>
+
+When signing, a deployment MUST use one of the following signature algorithms:
+
+* ```http://www.w3.org/2001/04/xmldsig-more#rsa-sha256``` <<RFC4051>>
+* ```http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256``` <<RFC4051>>
+
+When encrypting, a deployment MUST use one of the following block encryption algorithms:
+
+* ```http://www.w3.org/2009/xmlenc11#aes128-gcm``` <<XMLEnc11>>
+* ```http://www.w3.org/2009/xmlenc11#aes256-gcm``` <<XMLEnc11>>
+
+When encrypting, a deployment MUST use one of the following key transport algorithms:
+
+* ```http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p``` <<XMLEnc>>
+* ```http://www.w3.org/2009/xmlenc11#rsa-oaep``` <<XMLEnc11>> + 
+
+One of the following digest algorithms MUST be used in conjunction with the above key transport algorithms (the default mask generation function (MGF1 with SHA1) MUST be used):
+
+* ```http://www.w3.org/2001/04/xmlenc#sha256``` <<XMLEnc>>
