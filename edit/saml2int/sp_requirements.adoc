@@ -36,7 +36,7 @@ _(This text said "An SP that supports SAML V2.0 Web Browser SSO", but support fo
 
 SPs MUST include at least one AssertionConsumerService endpoint that supports the SAML V2.0 HTTP-POST binding for the SAML V2.0 Web Browser SSO protocol <<SAML2Prof>>. Occasionally an IdP will prefer to respond using the using the SAML V2.0 HTTP-Artifact Binding <<SAML2Bind>>, and therefore an AssertionConsumerService endpoint that supports the SAML V2.0 HTTP-Artifact binding MAY also be included in SP metadata. Note: An SP that supports artifact resolution MUST have at least one signing certificate in metadata.
 
-The endpoint(s) at which a Service Provider receives a `<saml2p:Response>` message SHOULD be protected by TLS/SSL. If this is not the case, then Identity Providers SHOULD utilize XML Encryption and return a `<saml2:EncryptedAssertion>` element in the `<saml2p:Response>` message. The use of the `<saml2:EncryptedID>` and `<saml2:EncryptedAttribute>` elements is NOT RECOMMENDED; when possible, encrypt the entire assertion.
+The endpoint(s) at which a Service Provider receives a `<samlp:Response>` message SHOULD be protected by TLS/SSL. If this is not the case, then Identity Providers SHOULD utilize XML Encryption and return a `<saml:EncryptedAssertion>` element in the `<samlp:Response>` message. The use of the `<saml:EncryptedID>` and `<saml:EncryptedAttribute>` elements is NOT RECOMMENDED; when possible, encrypt the entire assertion.
 
 === Attribute Value Constraints
 
@@ -101,15 +101,15 @@ _(n.b., I'm not clear when exactly a 3rd party cookie creates an actual issue fo
 
 ==== Authentication Request Presentation
 
-The `<saml2p:AuthnRequest>` message SHOULD contain a `<saml2p:NameIDPolicy>` element with an `AllowCreate` attribute of "true". Its `Format` attribute, if present, SHOULD be set to `urn:oasis:names:tc:SAML:2.0:nameid-format:transient` _(Removed persistent)_
+The `<samlp:AuthnRequest>` message SHOULD contain a `<samlp:NameIDPolicy>` element with an `AllowCreate` attribute of "true". Its `Format` attribute, if present, SHOULD be set to `urn:oasis:names:tc:SAML:2.0:nameid-format:transient` _(Removed persistent)_
 
-Service Providers MUST support unsolicited `<saml2p:Response>` messages (i.e., responses that are not the result of an earlier `<saml2p:AuthnRequest>` message). _(Add)_
+Service Providers MUST support unsolicited `<samlp:Response>` messages (i.e., responses that are not the result of an earlier `<samlp:AuthnRequest>` message). _(Add)_
 
 ==== Authentication Context Requests
 
 An SP that does not require specific AuthnContextClassRef value(s) in assertions MUST NOT include any RequestedAuthnContext elements in AuthnRequests it generates.
 
-An SP that only accepts specific AuthnContextClassRef value(s) in assertions MUST specify those allowable values in the `<saml2p:RequestedAuthnContext>` element of the `<saml2p:AuthnRequest>` it generates, with the `Comparison` operator set to "EXACT". An SP SHOULD only include a RequestedAuthnContext request in the presence of an arrangement between the Identity and Service Providers regarding the Authentication Context definitions in use. 
+An SP that only accepts specific AuthnContextClassRef value(s) in assertions MUST specify those allowable values in the `<samlp:RequestedAuthnContext>` element of the `<samlp:AuthnRequest>` it generates, with the `Comparison` operator set to "EXACT". An SP SHOULD only include a RequestedAuthnContext request in the presence of an arrangement between the Identity and Service Providers regarding the Authentication Context definitions in use. 
 
 _(Do we want anything about error handling?)_ 
 

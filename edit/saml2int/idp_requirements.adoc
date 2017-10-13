@@ -4,7 +4,7 @@
 
 IdP metadata MUST include a `<SingleSignOnService>` endpoint that supports the SAML2 HTTP-Redirect binding as defined in <<SAML2Bind>>. A `<SingleSignOnService>` endpoint that supports the SAML2 HTTP-POST binding SHOULD also be included in IdP metadata since some SAML SP deployments favor that particular binding. Support for both bindings is strongly RECOMMENDED.
 
-In verifying the Service Provider's Assertion Consumer Service, it is RECOMMENDED that the Identity Provider perform a case-sensitive string comparison between the requested `<saml2p:AssertionConsumerServiceURL>` value and the values found in the Service Provider's metadata. It is OPTIONAL to apply any form of URL canonicalization, which means the Service Provider SHOULD NOT rely on differently canonicalized values in these two locations. 
+In verifying the Service Provider's Assertion Consumer Service, it is RECOMMENDED that the Identity Provider perform a case-sensitive string comparison between the requested `<samlp:AssertionConsumerServiceURL>` value and the values found in the Service Provider's metadata. It is OPTIONAL to apply any form of URL canonicalization, which means the Service Provider SHOULD NOT rely on differently canonicalized values in these two locations. 
 
 _As an example, the Service Provider SHOULD NOT use a hostname with port number (such as https://sp.example.no:80/acs) in its request and without (such as https://sp.example.no/acs) in its metadata._
 

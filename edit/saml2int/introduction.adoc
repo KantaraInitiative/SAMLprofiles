@@ -12,12 +12,12 @@ Note that SAML features that are optional, or lack mandatory processing rules, a
 
 When referring to elements from the SAML 2.0 core specification <<SAML2Core>>, the following syntax is used:
 
-* `<saml2p:Protocolelement>` - for elements from the SAML 2.0 Protocol namespace.
-* `<saml2:Assertionelement>` - for elements from the SAML 2.0 Assertion namespace.
+* `<samlp:ProtocolElement>` - for elements from the SAML 2.0 Protocol namespace.
+* `<saml:AssertionElement>` - for elements from the SAML 2.0 Assertion namespace.
 
 When referring to elements from the SAML 2.0 metadata specification <<SAML2Meta>>, the following syntax is used:
 
-* `<md:Metadataelement>`
+* `<md:MetadataElement>`
 
 When referring to elements from the Identity Provider Discovery Service Protocol and Profile <<IdPDisco>>, the following syntax is used:
 
@@ -25,4 +25,4 @@ When referring to elements from the Identity Provider Discovery Service Protocol
 
 When referring to elements from the SAML 2.0 Metadata Extensions for Login and Discovery User Interface specification <<SAML-Metadata-UI-V1.0>>, the following syntax is used:
 
-* `<mdui:Metadataelement>`
+* `<mdui:MetadataElement>`
