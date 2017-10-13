@@ -470,34 +470,20 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <ul class="sectlevel2">
 <li><a href="#_general">2.1. General</a></li>
 <li><a href="#_metadata_and_trust_management">2.2. Metadata and Trust Management</a></li>
-<li><a href="#_protocol_support">2.3. Protocol Support</a></li>
-<li><a href="#_clock_skew">2.4. Clock Skew</a></li>
+<li><a href="#_profile_support">2.3. Profile Support</a></li>
+<li><a href="#_cryptographic_algorithms">2.4. Cryptographic Algorithms</a></li>
 </ul>
 </li>
 <li><a href="#_service_provider_requirements">3. Service Provider Requirements</a>
 <ul class="sectlevel2">
-<li><a href="#_identifiers">3.1. Identifiers</a></li>
-<li><a href="#_deep_linking">3.2. Deep Linking</a></li>
-<li><a href="#_metadata_and_trust_management_2">3.3. Metadata and Trust Management</a></li>
-<li><a href="#_sp_initiated_sso">3.4. SP-Initiated SSO</a></li>
-<li><a href="#_sp_endpoints">3.5. SP Endpoints</a></li>
-<li><a href="#_attribute_value_constraints">3.6. Attribute Value Constraints</a></li>
-<li><a href="#_subject_identifier_support">3.7. Subject Identifier Support</a></li>
-<li><a href="#_support_for_multiple_idps">3.8. Support for Multiple IdPs</a></li>
-<li><a href="#_authentication_requests">3.9. Authentication Requests</a></li>
-<li><a href="#_xml_encryption">3.10. XML Encryption</a></li>
-<li><a href="#_single_logout">3.11. Single LogOut</a></li>
+<li><a href="#_web_browser_sso">3.1. Web Browser SSO</a></li>
+<li><a href="#_single_logout">3.2. Single Logout</a></li>
 </ul>
 </li>
 <li><a href="#_identity_provider_requirements">4. Identity Provider Requirements</a>
 <ul class="sectlevel2">
-<li><a href="#_identity_provider_endpoints">4.1. Identity Provider Endpoints</a></li>
-<li><a href="#_identity_provider_error_urls">4.2. Identity Provider Error URLs</a></li>
-<li><a href="#_subject_identifier_support_2">4.3. Subject Identifier Support</a></li>
-<li><a href="#_forced_re_authentication_support">4.4. Forced Re-Authentication Support</a></li>
-<li><a href="#_attributes">4.5. Attributes</a></li>
-<li><a href="#_xml_encryption_2">4.6. XML Encryption</a></li>
-<li><a href="#_single_logout_2">4.7. Single LogOut</a></li>
+<li><a href="#_web_browser_sso_2">4.1. Web Browser SSO</a></li>
+<li><a href="#_single_logout_2">4.2. Single Logout</a></li>
 </ul>
 </li>
 <li><a href="#_normative_references">5. Normative References</a></li>
@@ -575,7 +561,27 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_general">2.1. General</h3>
-
+<div class="sect3">
+<h4 id="_clock_skew">2.1.1. Clock Skew</h4>
+<div class="paragraph">
+<p>Deployments MUST allow for a minimum of three (3) and a maximum of five (5) minutes of clock skew&#8201;&#8212;&#8201;in either direction&#8201;&#8212;&#8201;when interpreting <code>xsd:dateTime</code> values in assertions and when enforcing security policies based thereupon.</p>
+</div>
+<div class="paragraph">
+<p><em>The following is a non-exhaustive list of items to which this directive applies:</em> <code>NotBefore</code>, <code>NotOnOrAfter</code>, <em>and</em> <code>validUntil</code> <em>XML attributes found on</em> <code>Conditions</code>, <code>SubjectConfirmationData</code>, <code>LogoutRequest</code>, <code>EntityDescriptor</code>, <code>EntitiesDescriptor</code>, <code>RoleDescriptor</code>, <em>and</em> <code>AffiliationDescriptor</code> <em>elements.</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_data_size">2.1.2. Data Size</h4>
+<div class="paragraph">
+<p>Unless otherwise specified, deployments MUST limit the size of all element and attribute content to 256 characters. This applies in particular to the values within <code>&lt;saml:NameID&gt;</code> and <code>&lt;saml:AttributeValue&gt;</code> elements.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_document_type_definition">2.1.3. Document Type Definition</h4>
+<div class="paragraph">
+<p>Deployments MUST reject any SAML protocol message that contains a (DTD) Document Type Definition.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_metadata_and_trust_management">2.2. Metadata and Trust Management</h3>
@@ -586,22 +592,24 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 </div>
 <div class="sect3">
-<h4 id="_keys_and_certificates_in_metadata">2.2.2. Keys and Certificates in Metadata</h4>
+<h4 id="_keys_and_certificates">2.2.2. Keys and Certificates</h4>
 <div class="paragraph">
-<p>Public keys used for encryption and signature verification are bound to certificates in metadata [SAML2Meta].
-<em>(is "bound" the correct verb here?)</em></p>
+<p>Public keys used for signing, encryption, and TLS client and server authentication MUST be expressed via X.509 certificates in metadata [SAML2Meta].</p>
 </div>
 <div class="paragraph">
-<p>These certificates SHOULD be long-lived and self-signed. To avoid problems with certain non-conforming SAML implementations, certificates in metadata SHOULD NOT be expired.  Certificates in metadata SHOULD be generated from an RSA key with length &gt;= 2048 bits and SHOULD use sha256 or stronger signing algorithms.</p>
+<p>These certificates SHOULD be long-lived and self-signed. To avoid problems with certain non-conforming SAML implementations, certificates in metadata SHOULD NOT be expired.</p>
 </div>
 <div class="paragraph">
-<p>IdP metadata MUST include at least one signing certificate.</p>
+<p>RSA public keys MUST be at least 2048 bits in length.</p>
 </div>
 <div class="paragraph">
-<p>SP metadata SHOULD include at least one encryption certificate. <em>(Eric added this)</em></p>
+<p>EC public keys MUST be at least TBD bits in length.</p>
 </div>
 <div class="paragraph">
-<p>When SAML messages are signed, sha256 or stronger signing algorithms SHOULD be used.</p>
+<p>Certificates used MUST NOT be signed with an MD5-based signature algorithm and SHOULD NOT be signed with a SHA1-based signature algorithm.</p>
+</div>
+<div class="paragraph">
+<p>By virtue of subsequent requirements, an Identity Provider&#8217;s metadata MUST include at least one signing certificate (that is, an <code>&lt;md:KeyDescriptor&gt;</code> with no <code>use</code> attribute or one set to "signing"), and a Service Provider&#8217;s metadata MUST include at least one encryption certificate (that is, an <code>&lt;md:KeyDescriptor&gt;</code> with no <code>use</code> attribute or one set to "encryption").</p>
 </div>
 </div>
 <div class="sect3">
@@ -634,7 +642,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sect3">
 <h4 id="_saml_entityids">2.2.6. SAML entityIDs</h4>
 <div class="paragraph">
-<p>The EntityID of a SAML entity MUST be scoped to the domain of the organization that is the owner of the application, in the case of an SP; or to the domain of the organization whose users are represented by the IdP, in the case of an IdP.</p>
+<p>The EntityID of a SAML entity MUST be scoped to the domain of the organization that is the owner of the application/service, in the case of an SP; or to the domain of the organization whose users are represented by the IdP, in the case of an IdP.</p>
 </div>
 <div class="paragraph">
 <p><em>Specifically, hosted applications must have entityIDs scoped to the client organization&#8217;s domain, not the hosting organization&#8217;s domain.</em></p>
@@ -642,7 +650,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 </div>
 <div class="sect2">
-<h3 id="_protocol_support">2.3. Protocol Support</h3>
+<h3 id="_profile_support">2.3. Profile Support</h3>
 <div class="paragraph">
 <p>Deployments MUST support the SAML V2.0 Web Browser SSO Profile and MUST support the SAML V2.0 Single Logout Profile as defined in <a href="#SAML2Prof">[SAML2Prof]</a> and as updated by <a href="#SAML2Err">[SAML2Err]</a>. Behavior of deployments MUST be consistent with the requirements of the requirements specified in this deployment profile.</p>
 </div>
@@ -651,12 +659,65 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 </div>
 <div class="sect2">
-<h3 id="_clock_skew">2.4. Clock Skew</h3>
+<h3 id="_cryptographic_algorithms">2.4. Cryptographic Algorithms</h3>
 <div class="paragraph">
-<p>Deployers MUST support a minimum of three (3) and a maximum of five (5) minutes of clock skew&#8201;&#8212;&#8201;in either direction&#8201;&#8212;&#8201;when interpreting <code>xsd:dateTime</code> values in assertions and when enforcing security policies based thereupon.</p>
+<p>When signing, a deployment MUST use one of the following digest algorithms:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><code><a href="http://www.w3.org/2001/04/xmlenc#sha256" class="bare">http://www.w3.org/2001/04/xmlenc#sha256</a></code></code> <a href="#XMLEnc">[XMLEnc]</a></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p><em>The following is a non-exhaustive list of items to which this directive applies:</em> <code>NotBefore</code>, <code>NotOnOrAfter</code>, <em>and</em> <code>validUntil</code> <em>XML attributes found on</em> <code>Conditions</code>, <code>SubjectConfirmationData</code>, <code>LogoutRequest</code>, <code>EntityDescriptor</code>, <code>EntitiesDescriptor</code>, <code>RoleDescriptor</code>, <em>and</em> <code>AffiliationDescriptor</code> <em>elements.</em></p>
+<p>When signing, a deployment MUST use one of the following signature algorithms:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><code><a href="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256" class="bare">http://www.w3.org/2001/04/xmldsig-more#rsa-sha256</a></code></code> <a href="#RFC4051">[RFC4051]</a></p>
+</li>
+<li>
+<p><code><code><a href="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256" class="bare">http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256</a></code></code> <a href="#RFC4051">[RFC4051]</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When encrypting, a deployment MUST use one of the following block encryption algorithms:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><code><a href="http://www.w3.org/2009/xmlenc11#aes128-gcm" class="bare">http://www.w3.org/2009/xmlenc11#aes128-gcm</a></code></code> <a href="#XMLEnc11">[XMLEnc11]</a></p>
+</li>
+<li>
+<p><code><code><a href="http://www.w3.org/2009/xmlenc11#aes256-gcm" class="bare">http://www.w3.org/2009/xmlenc11#aes256-gcm</a></code></code> <a href="#XMLEnc11">[XMLEnc11]</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When encrypting, a deployment MUST use one of the following key transport algorithms:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><code><a href="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p" class="bare">http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p</a></code></code> <a href="#XMLEnc">[XMLEnc]</a></p>
+</li>
+<li>
+<p><code><code><a href="http://www.w3.org/2009/xmlenc11#rsa-oaep" class="bare">http://www.w3.org/2009/xmlenc11#rsa-oaep</a></code></code> <a href="#XMLEnc11">[XMLEnc11]</a><br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>One of the following digest algorithms MUST be used in conjunction with the above key transport algorithms (the default mask generation function (MGF1 with SHA1) MUST be used):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><code><a href="http://www.w3.org/2001/04/xmlenc#sha256" class="bare">http://www.w3.org/2001/04/xmlenc#sha256</a></code></code> <a href="#XMLEnc">[XMLEnc]</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -665,11 +726,13 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <h2 id="_service_provider_requirements">3. Service Provider Requirements</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_identifiers">3.1. Identifiers</h3>
+<h3 id="_web_browser_sso">3.1. Web Browser SSO</h3>
+<div class="sect3">
+<h4 id="_identifiers">3.1.1. Identifiers</h4>
 
 </div>
-<div class="sect2">
-<h3 id="_deep_linking">3.2. Deep Linking</h3>
+<div class="sect3">
+<h4 id="_deep_linking">3.1.2. Deep Linking</h4>
 <div class="paragraph">
 <p><em>(Suggest moving this below "SP-Initiated SSO" or "Authentication Requests", below)</em></p>
 </div>
@@ -683,10 +746,10 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>Requiring IdPs to support unsolicited responses (or so-called IdP-initiated SSO) <a href="#SAML2Prof">[SAML2Prof]</a> is not a substitute for this requirement.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_metadata_and_trust_management_2">3.3. Metadata and Trust Management</h3>
 <div class="sect3">
-<h4 id="_key_and_certificate_rollover">3.3.1. Key and Certificate "Rollover"</h4>
+<h4 id="_metadata_and_trust_management_2">3.1.3. Metadata and Trust Management</h4>
+<div class="sect4">
+<h5 id="_key_and_certificate_rollover">Key and Certificate "Rollover"</h5>
 <div class="paragraph">
 <p>SP deployments MUST support multiple signing certificates in IdP metadata <em>(do we want more language? e.g., "and must be able to validate signed IdP assertions using either certificate.)</em> This makes it possible for the IdP to seamlessly migrate to a new signing key.</p>
 </div>
@@ -695,8 +758,8 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_sp_initiated_sso">3.4. SP-Initiated SSO</h3>
+<div class="sect3">
+<h4 id="_sp_initiated_sso">3.1.4. SP-Initiated SSO</h4>
 <div class="paragraph">
 <p><em>(Move below "Authentication Requests" heading, below?)</em></p>
 </div>
@@ -710,8 +773,8 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>Requiring IdPs to support unsolicited responses (or so-called IdP-initiated SSO) <a href="#SAML2Prof">[SAML2Prof]</a> is not a substitute for this requirement.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_sp_endpoints">3.5. SP Endpoints</h3>
+<div class="sect3">
+<h4 id="_sp_endpoints">3.1.5. SP Endpoints</h4>
 <div class="paragraph">
 <p><em>(This text said "An SP that supports SAML V2.0 Web Browser SSO", but support for SAML V2.0 Web Browser SSO is mandated elsewhere by the profile)</em></p>
 </div>
@@ -722,8 +785,8 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>The endpoint(s) at which a Service Provider receives a <code>&lt;samlp:Response&gt;</code> message SHOULD be protected by TLS/SSL. If this is not the case, then Identity Providers SHOULD utilize XML Encryption and return a <code>&lt;saml:EncryptedAssertion&gt;</code> element in the <code>&lt;samlp:Response&gt;</code> message. The use of the <code>&lt;saml:EncryptedID&gt;</code> and <code>&lt;saml:EncryptedAttribute&gt;</code> elements is NOT RECOMMENDED; when possible, encrypt the entire assertion.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_attribute_value_constraints">3.6. Attribute Value Constraints</h3>
+<div class="sect3">
+<h4 id="_attribute_value_constraints">3.1.6. Attribute Value Constraints</h4>
 <div class="paragraph">
 <p>When consuming attributes with standard definitions <em>(Do we need a scope here? E.g., OASIS standard attributes? Is this only about subject-id/pairwise-id and thus no longer relevant as a separate requirement?)</em>, Service Providers SHOULD NOT impose constraints that are not part of the definitions of those attributes.</p>
 </div>
@@ -731,10 +794,10 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p><em>This may imply supporting extra long attribute values, attributes that contain multiple values, broad character set support, etc.</em></p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_subject_identifier_support">3.7. Subject Identifier Support</h3>
 <div class="sect3">
-<h4 id="_nameid_formats">3.7.1. NameID Formats</h4>
+<h4 id="_subject_identifier_support">3.1.7. Subject Identifier Support</h4>
+<div class="sect4">
+<h5 id="_nameid_formats">NameID Formats</h5>
 <div class="paragraph">
 <p>Service Providers, if they rely at all on particular name identifier formats, MUST support the format <code>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</code>. Reliance on other formats by Service Providers is NOT RECOMMENDED.</p>
 </div>
@@ -742,8 +805,8 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p><em>Note that these requirements are reflected in additional constraints on message content in subsequent sections.</em></p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_subject_identifier_attributes">3.7.2. Subject Identifier Attributes</h4>
+<div class="sect4">
+<h5 id="_subject_identifier_attributes">Subject Identifier Attributes</h5>
 <div class="paragraph">
 <p>SPs that require reliable identifiers bound to a subject MUST support user identification using one of the following attributes:</p>
 </div>
@@ -761,14 +824,14 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>as defined in <a href="#SAML2SubjId">[SAML2SubjId]</a>.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_subject_identifier_signalling">3.7.3. Subject Identifier Signalling</h4>
+<div class="sect4">
+<h5 id="_subject_identifier_signalling">Subject Identifier Signalling</h5>
 <div class="paragraph">
 <p>An SP MUST indicate its identifier requirements in metadata, consistent with the Requirements Signalling rules defined in <a href="#SAML2SubjId">[SAML2SubjId]</a>.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_subject_identifier_opacity">3.7.4. Subject Identifier Opacity</h4>
+<div class="sect4">
+<h5 id="_subject_identifier_opacity">Subject Identifier Opacity</h5>
 <div class="paragraph">
 <p>SPs MUST be able to accept and function reasonably when receiving only opaque subject identifiers.</p>
 </div>
@@ -776,8 +839,8 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>If users are required to identify one another, SPs SHOULD additionally accept one or more relatively unique, human-readable "directory" attributes (email, name, title, etc.) for use in user searches, user pick-lists, and other interface elements.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_subject_identifier_uniqueness">3.7.5. Subject Identifier Uniqueness</h4>
+<div class="sect4">
+<h5 id="_subject_identifier_uniqueness">Subject Identifier Uniqueness</h5>
 <div class="paragraph">
 <p>SPs MUST be able to prevent inappropriate Subject Identifier value collisions across different IdPs. SPs SHOULD use qualified identifiers to support this requirement, with the SPs validating that IdPs assert appropriate qualifiers.</p>
 </div>
@@ -792,8 +855,8 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_support_for_multiple_idps">3.8. Support for Multiple IdPs</h3>
+<div class="sect3">
+<h4 id="_support_for_multiple_idps">3.1.8. Support for Multiple IdPs</h4>
 <div class="paragraph">
 <p>Service Providers MUST allow clients the option to authenticate specific resource URLs against more than one identity provider. <em>(This language is from the Impl Profile)</em></p>
 </div>
@@ -804,10 +867,10 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p><em>(Note, there&#8217;s overlap here with "SP-initiated SSO", given the reference to SAML2SPRIP)</em></p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_authentication_requests">3.9. Authentication Requests</h3>
 <div class="sect3">
-<h4 id="_authentication_request_user_interface_and_browser_frames">3.9.1. Authentication Request User Interface and Browser Frames</h4>
+<h4 id="_authentication_requests">3.1.9. Authentication Requests</h4>
+<div class="sect4">
+<h5 id="_authentication_request_user_interface_and_browser_frames">Authentication Request User Interface and Browser Frames</h5>
 <div class="paragraph">
 <p>Service Providers MUST NOT issue authentication requests inside a frame or via any mechanism that would require the use of third-party cookies by the Identity Provider to establish or recover a session with the user agent.</p>
 </div>
@@ -818,8 +881,8 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p><em>(n.b., I&#8217;m not clear when exactly a 3rd party cookie creates an actual issue for the authentication event. Is it the hosting site and the IdP, or the hosting site and the SP being authenticated that causes issues?)</em></p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_authentication_request_presentation">3.9.2. Authentication Request Presentation</h4>
+<div class="sect4">
+<h5 id="_authentication_request_presentation">Authentication Request Presentation</h5>
 <div class="paragraph">
 <p>The <code>&lt;samlp:AuthnRequest&gt;</code> message SHOULD contain a <code>&lt;samlp:NameIDPolicy&gt;</code> element with an <code>AllowCreate</code> attribute of "true". Its <code>Format</code> attribute, if present, SHOULD be set to <code>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</code> <em>(Removed persistent)</em></p>
 </div>
@@ -827,8 +890,8 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>Service Providers MUST support unsolicited <code>&lt;samlp:Response&gt;</code> messages (i.e., responses that are not the result of an earlier <code>&lt;samlp:AuthnRequest&gt;</code> message). <em>(Add)</em></p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_authentication_context_requests">3.9.3. Authentication Context Requests</h4>
+<div class="sect4">
+<h5 id="_authentication_context_requests">Authentication Context Requests</h5>
 <div class="paragraph">
 <p>An SP that does not require specific AuthnContextClassRef value(s) in assertions MUST NOT include any RequestedAuthnContext elements in AuthnRequests it generates.</p>
 </div>
@@ -839,8 +902,8 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p><em>(Do we want anything about error handling?)</em></p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_testing_authninstant_in_the_context_of_forced_re_authentication">3.9.4. Testing AuthnInstant In The Context of Forced Re-Authentication</h4>
+<div class="sect4">
+<h5 id="_testing_authninstant_in_the_context_of_forced_re_authentication">Testing AuthnInstant In The Context of Forced Re-Authentication</h5>
 <div class="paragraph">
 <p>Service Providers that request <code>ForceAuthn="true"</code> as part of an <code>&lt;AuthnRequest&gt;</code> SHOULD test the currency of the <code>AuthnInstant</code> element  in IdP assertions to verify the currency of the user authentication event.</p>
 </div>
@@ -849,16 +912,20 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_xml_encryption">3.10. XML Encryption</h3>
+<div class="sect3">
+<h4 id="_xml_encryption">3.1.10. XML Encryption</h4>
 <div class="paragraph">
 <p>Service Providers MUST support decryption of SAML V2.0 Web SSO Profile assertions using XML Encryption. Service Providers MUST support the AES-GCM block encryption algorithm as specified in <a href="#XMLEnc">[XMLEnc]</a> for this encryption.</p>
 </div>
 </div>
+</div>
 <div class="sect2">
-<h3 id="_single_logout">3.11. Single LogOut</h3>
+<h3 id="_single_logout">3.2. Single Logout</h3>
 <div class="paragraph">
-<p>Service Providers should expect that Identity Providers may do one of the following when receiving a SAML LogOut request:</p>
+<p><em>This is preliminary material moved, reworking into technical requirements is TBD.</em></p>
+</div>
+<div class="paragraph">
+<p>Service Providers should expect that Identity Providers may do one of the following when receiving a <code>&lt;samlp:LogoutRequest&gt;</code>:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -869,10 +936,10 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>End the IDP session only.</p>
 </li>
 <li>
-<p>Complete logout of all SP sessions (Single LogOut).</p>
+<p>Complete logout of all SP sessions (Single Logout).</p>
 </li>
 <li>
-<p>Partial logout (some SPs may not support LogOut).</p>
+<p>Partial logout (some SPs may not support Logout).</p>
 </li>
 <li>
 <p>Display a confirmation page before proceeding with options 1-4.</p>
@@ -883,7 +950,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>Service Providers MUST NOT expect to regain control of the user interface after a logout request is sent.</p>
 </div>
 <div class="paragraph">
-<p>Service Providers whose endpoints are based on multiple vhosts within a single entity descriptor should usually avoid Single LogOut.</p>
+<p>Service Providers whose endpoints are based on multiple virtual hosts within a single entity descriptor should usually avoid Single Logout.</p>
 </div>
 </div>
 </div>
@@ -892,7 +959,9 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <h2 id="_identity_provider_requirements">4. Identity Provider Requirements</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_identity_provider_endpoints">4.1. Identity Provider Endpoints</h3>
+<h3 id="_web_browser_sso_2">4.1. Web Browser SSO</h3>
+<div class="sect3">
+<h4 id="_identity_provider_endpoints">4.1.1. Identity Provider Endpoints</h4>
 <div class="paragraph">
 <p>IdP metadata MUST include a <code>&lt;SingleSignOnService&gt;</code> endpoint that supports the SAML2 HTTP-Redirect binding as defined in <a href="#SAML2Bind">[SAML2Bind]</a>. A <code>&lt;SingleSignOnService&gt;</code> endpoint that supports the SAML2 HTTP-POST binding SHOULD also be included in IdP metadata since some SAML SP deployments favor that particular binding. Support for both bindings is strongly RECOMMENDED.</p>
 </div>
@@ -903,8 +972,8 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p><em>As an example, the Service Provider SHOULD NOT use a hostname with port number (such as <a href="https://sp.example.no:80/acs" class="bare">https://sp.example.no:80/acs</a>) in its request and without (such as <a href="https://sp.example.no/acs" class="bare">https://sp.example.no/acs</a>) in its metadata.</em></p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_identity_provider_error_urls">4.2. Identity Provider Error URLs</h3>
+<div class="sect3">
+<h4 id="_identity_provider_error_urls">4.1.2. Identity Provider Error URLs</h4>
 <div class="paragraph">
 <p>IdP deployers MUST include an <code>&lt;errorURL&gt;</code> XML attribute in metadata. This URL must point to a page that presents actions for a user to take at their organization in response to an error (that occurred at the SP).</p>
 </div>
@@ -915,10 +984,10 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p><em>(move?)</em> Relying parties are encouraged to direct clients to this URL – either directly or after presenting a page providing context – when an authentication error occurs that the Relying Party cannot resolve locally.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_subject_identifier_support_2">4.3. Subject Identifier Support</h3>
 <div class="sect3">
-<h4 id="_nameid_formats_2">4.3.1. NameID formats</h4>
+<h4 id="_subject_identifier_support_2">4.1.3. Subject Identifier Support</h4>
+<div class="sect4">
+<h5 id="_nameid_formats_2">NameID formats</h5>
 <div class="paragraph">
 <p><em>(new)</em></p>
 </div>
@@ -926,8 +995,8 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>Identity Providers MUST support the <code>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</code> name identifier format as defined in <a href="#SAML2Core">[SAML2Core]</a>. ~~They SHOULD support the <code>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</code> name identifier format <a href="#SAML2Core">[SAML2Core]</a>.~~ Support for other formats is OPTIONAL.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_subject_identifier_attributes_2">4.3.2. Subject Identifier Attributes</h4>
+<div class="sect4">
+<h5 id="_subject_identifier_attributes_2">Subject Identifier Attributes</h5>
 <div class="paragraph">
 <p><em>(new)</em></p>
 </div>
@@ -935,15 +1004,15 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>Identity Providers SHOULD assert either the <code>urn:oasis:names:tc:SAML:attribute:subject-id</code> and <code>urn:oasis:names:tc:SAML:attribute:pairwise-id</code> attributes to uniquely identify authenticated users as defined in <a href="#SAML2SubjId">[SAML2SubjId]</a> consistent with the requirements signalling from the SP, which are also defined in <a href="#SAML2SubjId">[SAML2SubjId]</a>. If an Identity Provider cannot include a required Subject Identifier attribute as signalled by the SP, the IdP MUST return a SAML error per <a href="#SAML2Err">[SAML2Err]</a>.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_subject_identifier_signalling_2">4.3.3. Subject Identifier Signalling</h4>
+<div class="sect4">
+<h5 id="_subject_identifier_signalling_2">Subject Identifier Signalling</h5>
 <div class="paragraph">
 <p><em>(This is now handled in the Subject ID Draft in OASIS. Does it need to be repeated here?)</em></p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_forced_re_authentication_support">4.4. Forced Re-Authentication Support</h3>
+<div class="sect3">
+<h4 id="_forced_re_authentication_support">4.1.4. Forced Re-Authentication Support</h4>
 <div class="paragraph">
 <p>Identity providers MUST ensure that any response to an <code>&lt;AuthnRequest&gt;</code> that contains the attribute <code>ForceAuthn ="true"</code> (as defined in <a href="#SAML2Prof">[SAML2Prof]</a>) results in an authentication challenge that requires proof that the Subject is present. If this condition is met, the IdP MUST also reflect this success by setting the value of the <code>AuthnInstant</code> value in the assertion it generates.</p>
 </div>
@@ -954,26 +1023,30 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p><em>(Probably should be moved to the</em> SP requirements <em>section)</em></p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_attributes">4.5. Attributes</h3>
+<div class="sect3">
+<h4 id="_attributes">4.1.5. Attributes</h4>
 
 </div>
-<div class="sect2">
-<h3 id="_xml_encryption_2">4.6. XML Encryption</h3>
+<div class="sect3">
+<h4 id="_xml_encryption_2">4.1.6. XML Encryption</h4>
 <div class="paragraph">
 <p>Identity Providers MUST encrypt assertions if the Service Provider provides a suitable key in its metadata. Identity Providers MUST support the AES-GCM block encryption algorithm as specified in <a href="#XMLEnc">[XMLEnc]</a> for this encryption.</p>
 </div>
 </div>
+</div>
 <div class="sect2">
-<h3 id="_single_logout_2">4.7. Single LogOut</h3>
+<h3 id="_single_logout_2">4.2. Single Logout</h3>
 <div class="paragraph">
-<p>Identity Providers that publish a SAML LogOut endpoint in metadata but do not end a user&#8217;s IDP session MUST return an error to the Service Provider.</p>
+<p><em>This is preliminary material moved, reworking into technical requirements is TBD.</em></p>
 </div>
 <div class="paragraph">
-<p>Identity Providers that do nothing when they receive a LogOut request MUST not publish a SAML LogOut endpoint in metadata.</p>
+<p>Identity Providers that publish a SAML Logout endpoint in metadata but do not end a user&#8217;s IDP session MUST return an error to the Service Provider.</p>
 </div>
 <div class="paragraph">
-<p>Identity Providers SHOULD do one of the following when receiving a SAML LogOut request:</p>
+<p>Identity Providers that do nothing when they receive a Logout request MUST not publish a SAML Logout endpoint in metadata.</p>
+</div>
+<div class="paragraph">
+<p>Identity Providers SHOULD do one of the following when receiving a SAML Logout request:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -981,7 +1054,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>End the IDP session only. The user SHOULD be informed that they may still have active sessions with SPs.</p>
 </li>
 <li>
-<p>Complete logout of all SP sessions (Single LogOut). If the IDP can guarantee that the SPs support logout and are available to accept logout requests, the IDP can terminate all known SP sessions. The user should be informed that they have been logged out of everything. If possible, the user should be presented a list of the services from which they have been logged out.</p>
+<p>Complete logout of all SP sessions (Single Logout). If the IDP can guarantee that the SPs support logout and are available to accept logout requests, the IDP can terminate all known SP sessions. The user should be informed that they have been logged out of everything. If possible, the user should be presented a list of the services from which they have been logged out.</p>
 </li>
 <li>
 <p>Partial logout. If some of the SPs support logout, the IDP can logout the user from those SPs.</p>
@@ -1028,6 +1101,12 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </li>
 <li>
 <p><a id="XMLEnc"></a>[XMLEnc] D. Eastlake et al. XML Encryption Syntax and Processing. World Wide Web Consortium Recommendation, April 2013. <a href="https://www.w3.org/TR/xmlenc-core1/" class="bare">https://www.w3.org/TR/xmlenc-core1/</a></p>
+</li>
+<li>
+<p><a id="XMLEnc11"></a>[XMLEnc11] D. Eastlake et al. XML Encryption Syntax and Processing Version 1.1. World Wide Web Consortium Last Call Working Draft. <a href="http://www.w3.org/TR/2010/WD-xmlenc-core1-20100513/" class="bare">http://www.w3.org/TR/2010/WD-xmlenc-core1-20100513/</a></p>
+</li>
+<li>
+<p><a id="XMLSig"></a>[XMLSig] D. Eastlake et al. XML-Signature Syntax and Processing, Second Edition. World Wide Web Consortium Recommendation, June 2008. <a href="http://www.w3.org/TR/xmldsig-core/" class="bare">http://www.w3.org/TR/xmldsig-core/</a></p>
 </li>
 <li>
 <p><a id="SAML2SubjId"></a>[SAML2SubjId] OASIS Committee Draft, SAMLV2.0 Subject Identifier Attributes Profile Version 1.0, September 2017.  <a href="https://www.oasis-open.org/committees/download.php/61575/saml-subject-id-attr-v1.0-wd03.pdf" class="bare">https://www.oasis-open.org/committees/download.php/61575/saml-subject-id-attr-v1.0-wd03.pdf</a></p>
