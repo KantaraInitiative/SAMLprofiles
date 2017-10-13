@@ -1,6 +1,8 @@
 == Identity Provider Requirements
 
-=== Identity Provider Endpoints
+=== Web Browser SSO
+
+==== Identity Provider Endpoints
 
 IdP metadata MUST include a `<SingleSignOnService>` endpoint that supports the SAML2 HTTP-Redirect binding as defined in <<SAML2Bind>>. A `<SingleSignOnService>` endpoint that supports the SAML2 HTTP-POST binding SHOULD also be included in IdP metadata since some SAML SP deployments favor that particular binding. Support for both bindings is strongly RECOMMENDED.
 
@@ -8,7 +10,7 @@ In verifying the Service Provider's Assertion Consumer Service, it is RECOMMENDE
 
 _As an example, the Service Provider SHOULD NOT use a hostname with port number (such as https://sp.example.no:80/acs) in its request and without (such as https://sp.example.no/acs) in its metadata._
 
-=== Identity Provider Error URLs
+==== Identity Provider Error URLs
 
 IdP deployers MUST include an `<errorURL>` XML attribute in metadata. This URL must point to a page that presents actions for a user to take at their organization in response to an error (that occurred at the SP).
 
@@ -16,23 +18,23 @@ _(Note, Tom S. questions whether this should be in the errorURL vs. mdui.informa
 
 _(move?)_ Relying parties are encouraged to direct clients to this URL – either directly or after presenting a page providing context – when an authentication error occurs that the Relying Party cannot resolve locally.
 
-=== Subject Identifier Support
+==== Subject Identifier Support
 
-==== NameID formats
+===== NameID formats
 _(new)_
 
 Identity Providers MUST support the `urn:oasis:names:tc:SAML:2.0:nameid-format:transient` name identifier format as defined in <<SAML2Core>>. ~~They SHOULD support the `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent` name identifier format <<SAML2Core>>.~~ Support for other formats is OPTIONAL.
 
-==== Subject Identifier Attributes
+===== Subject Identifier Attributes
 _(new)_
 
 Identity Providers SHOULD assert either the `urn:oasis:names:tc:SAML:attribute:subject-id` and `urn:oasis:names:tc:SAML:attribute:pairwise-id` attributes to uniquely identify authenticated users as defined in <<SAML2SubjId>> consistent with the requirements signalling from the SP, which are also defined in <<SAML2SubjId>>. If an Identity Provider cannot include a required Subject Identifier attribute as signalled by the SP, the IdP MUST return a SAML error per <<SAML2Err>>.  
 
-==== Subject Identifier Signalling
+===== Subject Identifier Signalling
 
 _(This is now handled in the Subject ID Draft in OASIS. Does it need to be repeated here?)_
 
-=== Forced Re-Authentication Support
+==== Forced Re-Authentication Support
 
 Identity providers MUST ensure that any response to an `<AuthnRequest>` that contains the attribute `ForceAuthn ="true"` (as defined in <<SAML2Prof>>) results in an authentication challenge that requires proof that the Subject is present. If this condition is met, the IdP MUST also reflect this success by setting the value of the `AuthnInstant` value in the assertion it generates.
 
@@ -40,21 +42,23 @@ If the IdP cannot prove Subject presence, the IdP MUST NOT generate a successful
 
 _(Probably should be moved to the_ SP requirements _section)_
 
-=== Attributes
+==== Attributes
 
-=== XML Encryption
+==== XML Encryption
 
 Identity Providers MUST encrypt assertions if the Service Provider provides a suitable key in its metadata. Identity Providers MUST support the AES-GCM block encryption algorithm as specified in <<XMLEnc>> for this encryption.
 
-=== Single LogOut
+=== Single Logout
 
-Identity Providers that publish a SAML LogOut endpoint in metadata but do not end a user's IDP session MUST return an error to the Service Provider.
+_This is preliminary material moved, reworking into technical requirements is TBD._
 
-Identity Providers that do nothing when they receive a LogOut request MUST not publish a SAML LogOut endpoint in metadata.
+Identity Providers that publish a SAML Logout endpoint in metadata but do not end a user's IDP session MUST return an error to the Service Provider.
 
-Identity Providers SHOULD do one of the following when receiving a SAML LogOut request:
+Identity Providers that do nothing when they receive a Logout request MUST not publish a SAML Logout endpoint in metadata.
+
+Identity Providers SHOULD do one of the following when receiving a SAML Logout request:
 
 1. End the IDP session only. The user SHOULD be informed that they may still have active sessions with SPs.
-2. Complete logout of all SP sessions (Single LogOut). If the IDP can guarantee that the SPs support logout and are available to accept logout requests, the IDP can terminate all known SP sessions. The user should be informed that they have been logged out of everything. If possible, the user should be presented a list of the services from which they have been logged out.
+2. Complete logout of all SP sessions (Single Logout). If the IDP can guarantee that the SPs support logout and are available to accept logout requests, the IDP can terminate all known SP sessions. The user should be informed that they have been logged out of everything. If possible, the user should be presented a list of the services from which they have been logged out.
 3. Partial logout. If some of the SPs support logout, the IDP can logout the user from those SPs.
 4. Display a confirmation page before proceeding with options 1-3.

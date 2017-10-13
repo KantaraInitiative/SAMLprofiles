@@ -1,8 +1,10 @@
 == Service Provider Requirements
 
-=== Identifiers
+=== Web Browser SSO
 
-=== Deep Linking
+==== Identifiers
+
+==== Deep Linking
 
 _(Suggest moving this below "SP-Initiated SSO" or "Authentication Requests", below)_
 
@@ -12,15 +14,15 @@ The SAML binding-specific `RelayState` feature <<SAML2Prof>> is typically used t
 
 Requiring IdPs to support unsolicited responses (or so-called IdP-initiated SSO) <<SAML2Prof>> is not a substitute for this requirement.
 
-=== Metadata and Trust Management
+==== Metadata and Trust Management
 
-==== Key and Certificate "Rollover"
+===== Key and Certificate "Rollover"
 
 SP deployments MUST support multiple signing certificates in IdP metadata _(do we want more language? e.g., "and must be able to validate signed IdP assertions using either certificate.)_ This makes it possible for the IdP to seamlessly migrate to a new signing key.
 
 If the SP publishes an encryption certificate in metadata, the SP deployment MUST be configurable with multiple decryption keys _(and must be able to decrypt Assertions encrypted with either of those keys)_. This makes it possible for the SP to seamlessly migrate to a new decryption key.
 
-=== SP-Initiated SSO
+==== SP-Initiated SSO
 
 _(Move below "Authentication Requests" heading, below?)_
 
@@ -30,7 +32,7 @@ Service Providers that want to bypass user-initiated discovery SHOULD use the SP
 
 Requiring IdPs to support unsolicited responses (or so-called IdP-initiated SSO) <<SAML2Prof>> is not a substitute for this requirement.
 
-=== SP Endpoints
+==== SP Endpoints
 
 _(This text said "An SP that supports SAML V2.0 Web Browser SSO", but support for SAML V2.0 Web Browser SSO is mandated elsewhere by the profile)_
 
@@ -38,21 +40,21 @@ SPs MUST include at least one AssertionConsumerService endpoint that supports th
 
 The endpoint(s) at which a Service Provider receives a `<samlp:Response>` message SHOULD be protected by TLS/SSL. If this is not the case, then Identity Providers SHOULD utilize XML Encryption and return a `<saml:EncryptedAssertion>` element in the `<samlp:Response>` message. The use of the `<saml:EncryptedID>` and `<saml:EncryptedAttribute>` elements is NOT RECOMMENDED; when possible, encrypt the entire assertion.
 
-=== Attribute Value Constraints
+==== Attribute Value Constraints
 
 When consuming attributes with standard definitions _(Do we need a scope here? E.g., OASIS standard attributes? Is this only about subject-id/pairwise-id and thus no longer relevant as a separate requirement?)_, Service Providers SHOULD NOT impose constraints that are not part of the definitions of those attributes.
 
 _This may imply supporting extra long attribute values, attributes that contain multiple values, broad character set support, etc._
 
-=== Subject Identifier Support
+==== Subject Identifier Support
 
-==== NameID Formats
+===== NameID Formats
 
 Service Providers, if they rely at all on particular name identifier formats, MUST support the format `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`. Reliance on other formats by Service Providers is NOT RECOMMENDED.
 
 _Note that these requirements are reflected in additional constraints on message content in subsequent sections._
 
-==== Subject Identifier Attributes
+===== Subject Identifier Attributes
 
 SPs that require reliable identifiers bound to a subject MUST support user identification using one of the following attributes:
 
@@ -61,17 +63,17 @@ SPs that require reliable identifiers bound to a subject MUST support user ident
 
 as defined in <<SAML2SubjId>>.
 
-==== Subject Identifier Signalling
+===== Subject Identifier Signalling
 
 An SP MUST indicate its identifier requirements in metadata, consistent with the Requirements Signalling rules defined in <<SAML2SubjId>>. 
 
-==== Subject Identifier Opacity
+===== Subject Identifier Opacity
 
 SPs MUST be able to accept and function reasonably when receiving only opaque subject identifiers. 
 
 If users are required to identify one another, SPs SHOULD additionally accept one or more relatively unique, human-readable "directory" attributes (email, name, title, etc.) for use in user searches, user pick-lists, and other interface elements. 
 
-==== Subject Identifier Uniqueness
+===== Subject Identifier Uniqueness
 
 SPs MUST be able to prevent inappropriate Subject Identifier value collisions across different IdPs. SPs SHOULD use qualified identifiers to support this requirement, with the SPs validating that IdPs assert appropriate qualifiers.
 
@@ -81,7 +83,7 @@ _(Is the following still relevant?)_
 
 Where IdPs do not assert qualified identifiers for Subject IDs, SPs SHOULD instead internally associate each Subject ID with the asserting IdP's entityID.
 
-=== Support for Multiple IdPs
+==== Support for Multiple IdPs
 
 Service Providers MUST allow clients the option to authenticate specific resource URLs against more than one identity provider. _(This language is from the Impl Profile)_
 
@@ -89,9 +91,9 @@ When more than one Identity Provider authenticates the same resource URL, IdP se
 
 _(Note, there's overlap here with "SP-initiated SSO", given the reference to SAML2SPRIP)_
 
-=== Authentication Requests
+==== Authentication Requests
 
-==== Authentication Request User Interface and Browser Frames
+===== Authentication Request User Interface and Browser Frames
 
 Service Providers MUST NOT issue authentication requests inside a frame or via any mechanism that would require the use of third-party cookies by the Identity Provider to establish or recover a session with the user agent.
 
@@ -99,13 +101,13 @@ _(Is there something broader we want to say about how it SHOULD be presented?)_
 
 _(n.b., I'm not clear when exactly a 3rd party cookie creates an actual issue for the authentication event. Is it the hosting site and the IdP, or the hosting site and the SP being authenticated that causes issues?)_
 
-==== Authentication Request Presentation
+===== Authentication Request Presentation
 
 The `<samlp:AuthnRequest>` message SHOULD contain a `<samlp:NameIDPolicy>` element with an `AllowCreate` attribute of "true". Its `Format` attribute, if present, SHOULD be set to `urn:oasis:names:tc:SAML:2.0:nameid-format:transient` _(Removed persistent)_
 
 Service Providers MUST support unsolicited `<samlp:Response>` messages (i.e., responses that are not the result of an earlier `<samlp:AuthnRequest>` message). _(Add)_
 
-==== Authentication Context Requests
+===== Authentication Context Requests
 
 An SP that does not require specific AuthnContextClassRef value(s) in assertions MUST NOT include any RequestedAuthnContext elements in AuthnRequests it generates.
 
@@ -113,26 +115,28 @@ An SP that only accepts specific AuthnContextClassRef value(s) in assertions MUS
 
 _(Do we want anything about error handling?)_ 
 
-==== Testing AuthnInstant In The Context of Forced Re-Authentication
+===== Testing AuthnInstant In The Context of Forced Re-Authentication
 
 Service Providers that request `ForceAuthn="true"` as part of an `<AuthnRequest>` SHOULD test the currency of the `AuthnInstant` element  in IdP assertions to verify the currency of the user authentication event. 
 
 _This is necessary because clients can generate unsolicited SSO responses that do not specify `ForceAuthn="true"`, potentially bypassing the SP's intent to require user reauthentication._
 
-=== XML Encryption
+==== XML Encryption
 
 Service Providers MUST support decryption of SAML V2.0 Web SSO Profile assertions using XML Encryption. Service Providers MUST support the AES-GCM block encryption algorithm as specified in <<XMLEnc>> for this encryption.
 
-=== Single LogOut
+=== Single Logout
 
-Service Providers should expect that Identity Providers may do one of the following when receiving a SAML LogOut request:
+_This is preliminary material moved, reworking into technical requirements is TBD._
+
+Service Providers should expect that Identity Providers may do one of the following when receiving a `<samlp:LogoutRequest>`:
 
 1. Do nothing.
 2. End the IDP session only.
-3. Complete logout of all SP sessions (Single LogOut).
-4. Partial logout (some SPs may not support LogOut).
+3. Complete logout of all SP sessions (Single Logout).
+4. Partial logout (some SPs may not support Logout).
 5. Display a confirmation page before proceeding with options 1-4.
 
 Service Providers MUST NOT expect to regain control of the user interface after a logout request is sent.
 
-Service Providers whose endpoints are based on multiple vhosts within a single entity descriptor should usually avoid Single LogOut.
+Service Providers whose endpoints are based on multiple virtual hosts within a single entity descriptor should usually avoid Single Logout.
