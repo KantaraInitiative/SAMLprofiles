@@ -2,11 +2,11 @@
 
 === Web Browser SSO
 
-[IIP-SP01]:: Service Providers MUST support the consumption of `<saml2:Attribute>` elements containing any arbitrary **xs:string** value in the `Name` attribute and any arbitrary **xs:anyURI** value in the `NameFormat` attribute.
+[IIP-SP01]:: Service Providers MUST support the consumption of `<saml:Attribute>` elements containing any arbitrary **xs:string** value in the `Name` attribute and any arbitrary **xs:anyURI** value in the `NameFormat` attribute.
 
-[IIP-SP02]:: Service Providers MUST support the consumption of `<saml2:AttributeValue>` elements containing any "simple" element content; that is, element content consisting only of text nodes, not mixed/complex content that may contain nested XML elements. It is OPTIONAL to support complex content. Service Providers MUST NOT require the presence of the `xsi:type` XML attribute.
+[IIP-SP02]:: Service Providers MUST support the consumption of `<saml:AttributeValue>` elements containing any "simple" element content; that is, element content consisting only of text nodes, not mixed/complex content that may contain nested XML elements. It is OPTIONAL to support complex content. Service Providers MUST NOT require the presence of the `xsi:type` XML attribute.
 
-[IIP-SP03]:: Service Providers MUST be capable of generating `<saml2p:AuthnRequest>` messages without a `<saml2p:NameIDPolicy>` element and with a `<saml2p:NameIDPolicy>` element but no `Format` attribute.
+[IIP-SP03]:: Service Providers MUST be capable of generating `<samlp:AuthnRequest>` messages without a `<samlp:NameIDPolicy>` element and with a `<samlp:NameIDPolicy>` element but no `Format` attribute.
 
 [IIP-SP04]:: Service Providers MUST support IdP discovery in accordance with <<IdPDisco>>. 
 
@@ -18,11 +18,11 @@ _Also note that discovery mechanisms should use SAML metadata to determine the e
 
 _Note that the requirement for support of <<IdPDisco>> in [IIP-SP09] leads naturally to the ability to satisfy this requirement._
 
-[IIP-SP06]:: Service Providers MUST be capable of generating `<saml2p:AuthnRequest>` messages with a `<saml2p:RequestedAuthnContext>` element containing the *exact* comparison method and any number of `<saml2p:AuthnContextClassRef>` elements.
+[IIP-SP06]:: Service Providers MUST be capable of generating `<samlp:AuthnRequest>` messages with a `<samlp:RequestedAuthnContext>` element containing the *exact* comparison method and any number of `<samlp:AuthnContextClassRef>` elements.
 
-[IIP-SP07]:: Service Providers MUST support the acceptance or rejection of assertions based on the content of the `<saml2:AuthnContext>` element.
+[IIP-SP07]:: Service Providers MUST support the acceptance or rejection of assertions based on the content of the `<saml:AuthnContext>` element.
 
-[IIP-SP08]:: Service Providers MUST support decryption of `<saml2:EncryptedAssertion>` elements. In order to fully support key rollover, Service Providers MUST be configurable with at least two decryption keys. When decrypting assertions, they MUST attempt to use each decryption key (in unspecified order) until the assertion is successfully decrypted or there are no more keys, in which case decryption fails.
+[IIP-SP08]:: Service Providers MUST support decryption of `<saml:EncryptedAssertion>` elements. In order to fully support key rollover, Service Providers MUST be configurable with at least two decryption keys. When decrypting assertions, they MUST attempt to use each decryption key (in unspecified order) until the assertion is successfully decrypted or there are no more keys, in which case decryption fails.
 
 [IIP-SP09]:: Service Providers MUST support deep linking and maintain the direct addressability of protected resources in the presence of Web Browser SSO. That is, it MUST be possible to request an arbitrary protected resource and (authorization permitting) have it supplied as the result of a successful SAML SSO profile exchange. In addition, it is RECOMMENDED that Service Providers support the preservation of POST bodies across a successful SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.
 
@@ -32,7 +32,7 @@ _Support for unsolicited responses (or so-called IdP-initiated SSO) is not a sub
 
 ==== Avoiding Common Errors
 
-[IIP-SP10]:: Service Providers MUST NOT fail or reject responses due to the presence of unrecognized `<saml2:Attribute>` elements.
+[IIP-SP10]:: Service Providers MUST NOT fail or reject responses due to the presence of unrecognized `<saml:Attribute>` elements.
 
 [IIP-SP11]:: Service Providers MUST NOT treat the `FriendlyName` attribute normatively or make comparisons based on its value.
 
@@ -40,7 +40,7 @@ _Support for unsolicited responses (or so-called IdP-initiated SSO) is not a sub
 
 _Note that if the name identifier format identifiers defined in_ <<SAML2Core>> _are inapplicable to a given use case, it should be possible for new ones to be established. Implementations not specific to a single deployment should support the use of arbitrary formats._
 
-[IIP-SP13]:: Service Providers MUST support the ability to reject unsigned `<saml2p:Response>` elements and SHOULD do so by default.
+[IIP-SP13]:: Service Providers MUST support the ability to reject unsigned `<samlp:Response>` elements and SHOULD do so by default.
 
 _Note that this requirement is intended to offer some protection against known attacks when XML Encryption is used with AES in CBC mode. While the use of AES-GCM is strongly preferred, requiring signed responses limits the potential range of attack sources to those with verifiable signatures._
 
@@ -52,6 +52,6 @@ _The intent is to allow for the minimum support possible while still enabling ap
 
 [IIP-SP15]:: Service Providers that support the SAML V2.0 SingleLogout profile MUST support the HTTP-Redirect binding for logout requests and responses.
 
-[IIP-SP16]:: Service Providers that support the SAML V2.0 SingleLogout profile MUST support decryption of <saml2:EncryptedID> elements in logout requests. In order to fully support key rollover, Service Providers MUST be configurable with at least two decryption keys. When decrypting encrypted identifiers, they MUST attempt to use each decryption key (in unspecified order) until the identifier is successfully decrypted or there are no more keys, in which case decryption fails.
+[IIP-SP16]:: Service Providers that support the SAML V2.0 SingleLogout profile MUST support decryption of <saml:EncryptedID> elements in logout requests. In order to fully support key rollover, Service Providers MUST be configurable with at least two decryption keys. When decrypting encrypted identifiers, they MUST attempt to use each decryption key (in unspecified order) until the identifier is successfully decrypted or there are no more keys, in which case decryption fails.
 
 [IIP-SP17]:: Service Providers that support the SAML V2.0 SingleLogout profile MUST support the consumption of peer configuration values from SAML metadata, without additional inputs or separate configuration, for any element listed in the "Use of Metadata" section for the Single Logout Profile in <<SAML2Prof>> (section 4.4.5).

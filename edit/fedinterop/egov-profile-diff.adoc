@@ -55,16 +55,16 @@ The profiles will be abbreviated "Interop" and "eGov" respectively.
 |          | IIP-G03  | Added: Minimal value range of type xs.string.
 | eGov-030 | IIP-IDP03 IIP-SP04 | Extended. Arbitrary xs.string value in the Name attribute and any arbitrary xs.anyURI value in the NameFormat attribute.
 | eGov-031 | IIP-IDP03 IIP-SP05 | Extended. Service Providers MUST NOT require the presence of the xsi.type XML attribute.
-|          | IIP-SP06 | Clarified. SPs MUST NOT fail or reject responses due to the presence of unrecognized <saml2:Attribute> elements.
+|          | IIP-SP06 | Clarified. SPs MUST NOT fail or reject responses due to the presence of unrecognized <saml:Attribute> elements.
 |          | IIP-SP07 | Clarified. SPs MUST NOT treat the FriendlyName attribute normatively or make comparisons based on its value.
-|          | IIP-SP08 | Added: <saml2p:AuthnRequest> without <saml2p:NameIDPolicy>, and with <saml2p:NameIDPolicy> but no Format attribute.
+|          | IIP-SP08 | Added: <samlp:AuthnRequest> without <samlp:NameIDPolicy>, and with <samlp:NameIDPolicy> but no Format attribute.
 | eGov-032 | IIP-SSO01| Clarified: regard Errata
 |          | IIP-SSO05| Added: consumption of peer configuration values from SAML metadata.
 |          | IIP-EXT01| Added: MUST successfully consume any and all well-formed extensions.
 | eGov-033 | IIP-SP09 | -
 |          | IIP-SP10 | Added: Process responses from any number of issuing IdPs for any given resource URL.
 | eGov-040 | IIP-SSO02| Added: HTTP-POST bindings for authentication requests.
-| eGov-041 | IIP-SP08 IIP-SP11 | Removed. Interop does not mandate the support of following child elements of <saml2p:AuthnRequest>:
+| eGov-041 | IIP-SP08 IIP-SP11 | Removed. Interop does not mandate the support of following child elements of <samlp:AuthnRequest>:
 
 * AssertionConsumerServiceURL
 * ProtocolBinding
@@ -72,22 +72,22 @@ The profiles will be abbreviated "Interop" and "eGov" respectively.
 * IsPassive
 * AttributeConsumingServiceIndex
 
-(Support for <saml2p:RequestedAuthnContext> and <saml2p:NameIDPolicy> is still mandatory as in eGov.)
+(Support for <samlp:RequestedAuthnContext> and <samlp:NameIDPolicy> is still mandatory as in eGov.)
 
 | eGov-042 | IIP-IDP08, IIP-IDP09, IIP-IDP10 | Extended. MUST support ForceAuthn, IsPassive and RequestedAuthnContext.
 | eGov-043 | IIP-IDP10| -
 | eGov-044 | IIP-IDP08, IIP-IDP09, IIP-IDP10 | Removed. no support is mandated except ForceAuthn, IsPassive and RequestedAuthnContext.
 | eGov-045 |          | Removed explicit rule for the verification of requested AssertionConsumerServiceURL locations via comparison to metadata; however, it can be derived from [SAMLProf] 4.1.4.1 ("identity provider MUST ensure that any <AssertionConsumerServiceURL> or <AssertionConsumerServiceIndex> elements in the request are verified") and IIP-MD03.
-| eGov-050 | IIP-SSO03| Restricted. Interop requires support for HTTP-POST, but not for HTTP-Artifact binding for <saml2p:Response> messages.
-| eGov-052 |          | Removed requirement to support unsolicited <saml2p:Response> messages.
+| eGov-050 | IIP-SSO03| Restricted. Interop requires support for HTTP-POST, but not for HTTP-Artifact binding for <samlp:Response> messages.
+| eGov-052 |          | Removed requirement to support unsolicited <samlp:Response> messages.
 | eGov-053 | IIP-IDP07| -
 | eGov-054 | IIP-SSO04| Extended. MUST support the signing of assertions and responses, both together and independently.
 | eGov-055 | IIP-IDP11, IIP-SP12 | -
 | eGov-061 |          | Removed requirement to support to set the limit of Assertion, AuthnStatement and AttributeStatement elements per Response to 1 each.
-| eGov-063 |          | Removed requirement to support the Consent attribute in <saml2p:Response> messages.
-| eGov-064 |          | Removed requirement to support the inclusion of a SessionIndex attribute in <saml2:AuthnStatement> elements.
+| eGov-063 |          | Removed requirement to support the Consent attribute in <samlp:Response> messages.
+| eGov-064 |          | Removed requirement to support the inclusion of a SessionIndex attribute in <saml:AuthnStatement> elements.
 | eGov-065 |          | Removed requirement to support the SessionNotOnOrAfter attribute (because it is not generally testable)
-| eGov-066 |          | [yellow-background]#Removed requirement to support acceptance/rejection of assertions based on the content of the <saml2:AuthnContext> element.#
+| eGov-066 |          | [yellow-background]#Removed requirement to support acceptance/rejection of assertions based on the content of the <saml:AuthnContext> element.#
 | eGov-067 |          | Removed with eGov-066.
 | eGov-068 |          | Removed with eGov-066.
 | eGov-070 - 073 |    | Removed requirement to support artifact binding.
@@ -102,7 +102,7 @@ The profiles will be abbreviated "Interop" and "eGov" respectively.
 | eGov-091 |          | Removed requirement to support SOAP binding for SLO.
 | eGov-092 | IIP-IDP18| Restricted. HTTP-Redirect binding is mandatory, but SOAP binding for SLO is optional in Interop.
 | eGov-093 |          | Removed. SOAP binding for SLO is optional in Interop.
-| eGov-094 |          | [yellow-background]#Removed requirement to support signatures and TLS server authentication to authenticate <saml2p:LogoutRequest> messages.#
+| eGov-094 |          | [yellow-background]#Removed requirement to support signatures and TLS server authentication to authenticate <samlp:LogoutRequest> messages.#
 | eGov-095 | IIP-IDP19| Extended. Support multiple keys to allow rollover.
 | eGov-096 |          | Removed requirement to support  both local logout and SLO.
 | eGov-097 |          | Removed requirement to support  UI for scope of logout when using front-channel binding.
@@ -111,7 +111,7 @@ The profiles will be abbreviated "Interop" and "eGov" respectively.
 | eGov-100 |          | Removed requirement to support administrative initiation of SLO.
 | eGov-101 | IIP-IDP18| Restricted. HTTP-Redirect binding is mandatory, but SOAP binding for SLO is optional in Interop.
 | eGov-102 |          | Removed. SOAP binding for SLO is optional in Interop.
-| eGov-103 |          | [yellow-background]#Removed requirement to support signatures and TLS server authentication to authenticate <saml2p:LogoutRequest> messages.#
+| eGov-103 |          | [yellow-background]#Removed requirement to support signatures and TLS server authentication to authenticate <samlp:LogoutRequest> messages.#
 |          | IIP-IDP20| Added: Support for  the consumption of peer configuration values from SAML metadata for SLO.
 
 | eGov-110 | IIP-ALG02| Added limited support for rsa-sha1.
