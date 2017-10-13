@@ -516,10 +516,10 @@ dl dd {
 <div class="ulist">
 <ul>
 <li>
-<p>The prefix saml2: stands for the SAML 2.0 assertion namespace, urn:oasis:names:tc:SAML:2.0:assertion</p>
+<p>The prefix saml: stands for the SAML 2.0 assertion namespace, urn:oasis:names:tc:SAML:2.0:assertion</p>
 </li>
 <li>
-<p>The prefix saml2p: stands for the SAML 2.0 protocol namespace, urn:oasis:names:tc:SAML:2.0:protocol</p>
+<p>The prefix samlp: stands for the SAML 2.0 protocol namespace, urn:oasis:names:tc:SAML:2.0:protocol</p>
 </li>
 <li>
 <p>The prefix md: stands for the SAML 2.0 metadata namespace, urn:oasis:names:tc:SAML:2.0:metadata</p>
@@ -819,7 +819,7 @@ dl dd {
 <dl>
 <dt class="hdlist1">[IIP-EXT01]</dt>
 <dd>
-<p>Implementations MUST successfully consume any and all well-formed extensions. Unless otherwise noted in this profile, the content of <code>&lt;saml2p:Extensions&gt;</code>, <code>&lt;md:Extensions&gt;</code>, and <code>&lt;saml2:Advice&gt;</code> elements MAY be ignored but MUST NOT result in software failures. Additionally, any element established in <a href="#SAML2MD-xsd">[SAML2MD-xsd]</a> or <a href="#SAML2-xsd">[SAML2-xsd]</a> with a type definition containing an <strong>&lt;xsd:anyAttribute&gt;</strong> subelement may include undefined attribute content.  This content MAY likewise be ignored but MUST NOT result in software failures.</p>
+<p>Implementations MUST successfully consume any and all well-formed extensions. Unless otherwise noted in this profile, the content of <code>&lt;samlp:Extensions&gt;</code>, <code>&lt;md:Extensions&gt;</code>, and <code>&lt;saml:Advice&gt;</code> elements MAY be ignored but MUST NOT result in software failures. Additionally, any element established in <a href="#SAML2MD-xsd">[SAML2MD-xsd]</a> or <a href="#SAML2-xsd">[SAML2-xsd]</a> with a type definition containing an <strong>&lt;xsd:anyAttribute&gt;</strong> subelement may include undefined attribute content.  This content MAY likewise be ignored but MUST NOT result in software failures.</p>
 </dd>
 </dl>
 </div>
@@ -938,15 +938,15 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 <dl>
 <dt class="hdlist1">[IIP-SP01]</dt>
 <dd>
-<p>Service Providers MUST support the consumption of <code>&lt;saml2:Attribute&gt;</code> elements containing any arbitrary <strong>xs:string</strong> value in the <code>Name</code> attribute and any arbitrary <strong>xs:anyURI</strong> value in the <code>NameFormat</code> attribute.</p>
+<p>Service Providers MUST support the consumption of <code>&lt;saml:Attribute&gt;</code> elements containing any arbitrary <strong>xs:string</strong> value in the <code>Name</code> attribute and any arbitrary <strong>xs:anyURI</strong> value in the <code>NameFormat</code> attribute.</p>
 </dd>
 <dt class="hdlist1">[IIP-SP02]</dt>
 <dd>
-<p>Service Providers MUST support the consumption of <code>&lt;saml2:AttributeValue&gt;</code> elements containing any "simple" element content; that is, element content consisting only of text nodes, not mixed/complex content that may contain nested XML elements. It is OPTIONAL to support complex content. Service Providers MUST NOT require the presence of the <code>xsi:type</code> XML attribute.</p>
+<p>Service Providers MUST support the consumption of <code>&lt;saml:AttributeValue&gt;</code> elements containing any "simple" element content; that is, element content consisting only of text nodes, not mixed/complex content that may contain nested XML elements. It is OPTIONAL to support complex content. Service Providers MUST NOT require the presence of the <code>xsi:type</code> XML attribute.</p>
 </dd>
 <dt class="hdlist1">[IIP-SP03]</dt>
 <dd>
-<p>Service Providers MUST be capable of generating <code>&lt;saml2p:AuthnRequest&gt;</code> messages without a <code>&lt;saml2p:NameIDPolicy&gt;</code> element and with a <code>&lt;saml2p:NameIDPolicy&gt;</code> element but no <code>Format</code> attribute.</p>
+<p>Service Providers MUST be capable of generating <code>&lt;samlp:AuthnRequest&gt;</code> messages without a <code>&lt;samlp:NameIDPolicy&gt;</code> element and with a <code>&lt;samlp:NameIDPolicy&gt;</code> element but no <code>Format</code> attribute.</p>
 </dd>
 <dt class="hdlist1">[IIP-SP04]</dt>
 <dd>
@@ -975,15 +975,15 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 <dl>
 <dt class="hdlist1">[IIP-SP06]</dt>
 <dd>
-<p>Service Providers MUST be capable of generating <code>&lt;saml2p:AuthnRequest&gt;</code> messages with a <code>&lt;saml2p:RequestedAuthnContext&gt;</code> element containing the <strong>exact</strong> comparison method and any number of <code>&lt;saml2p:AuthnContextClassRef&gt;</code> elements.</p>
+<p>Service Providers MUST be capable of generating <code>&lt;samlp:AuthnRequest&gt;</code> messages with a <code>&lt;samlp:RequestedAuthnContext&gt;</code> element containing the <strong>exact</strong> comparison method and any number of <code>&lt;samlp:AuthnContextClassRef&gt;</code> elements.</p>
 </dd>
 <dt class="hdlist1">[IIP-SP07]</dt>
 <dd>
-<p>Service Providers MUST support the acceptance or rejection of assertions based on the content of the <code>&lt;saml2:AuthnContext&gt;</code> element.</p>
+<p>Service Providers MUST support the acceptance or rejection of assertions based on the content of the <code>&lt;saml:AuthnContext&gt;</code> element.</p>
 </dd>
 <dt class="hdlist1">[IIP-SP08]</dt>
 <dd>
-<p>Service Providers MUST support decryption of <code>&lt;saml2:EncryptedAssertion&gt;</code> elements. In order to fully support key rollover, Service Providers MUST be configurable with at least two decryption keys. When decrypting assertions, they MUST attempt to use each decryption key (in unspecified order) until the assertion is successfully decrypted or there are no more keys, in which case decryption fails.</p>
+<p>Service Providers MUST support decryption of <code>&lt;saml:EncryptedAssertion&gt;</code> elements. In order to fully support key rollover, Service Providers MUST be configurable with at least two decryption keys. When decrypting assertions, they MUST attempt to use each decryption key (in unspecified order) until the assertion is successfully decrypted or there are no more keys, in which case decryption fails.</p>
 </dd>
 <dt class="hdlist1">[IIP-SP09]</dt>
 <dd>
@@ -1003,7 +1003,7 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 <dl>
 <dt class="hdlist1">[IIP-SP10]</dt>
 <dd>
-<p>Service Providers MUST NOT fail or reject responses due to the presence of unrecognized <code>&lt;saml2:Attribute&gt;</code> elements.</p>
+<p>Service Providers MUST NOT fail or reject responses due to the presence of unrecognized <code>&lt;saml:Attribute&gt;</code> elements.</p>
 </dd>
 <dt class="hdlist1">[IIP-SP11]</dt>
 <dd>
@@ -1022,7 +1022,7 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 <dl>
 <dt class="hdlist1">[IIP-SP13]</dt>
 <dd>
-<p>Service Providers MUST support the ability to reject unsigned <code>&lt;saml2p:Response&gt;</code> elements and SHOULD do so by default.</p>
+<p>Service Providers MUST support the ability to reject unsigned <code>&lt;samlp:Response&gt;</code> elements and SHOULD do so by default.</p>
 </dd>
 </dl>
 </div>
@@ -1052,7 +1052,7 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </dd>
 <dt class="hdlist1">[IIP-SP16]</dt>
 <dd>
-<p>Service Providers that support the SAML V2.0 SingleLogout profile MUST support decryption of &lt;saml2:EncryptedID&gt; elements in logout requests. In order to fully support key rollover, Service Providers MUST be configurable with at least two decryption keys. When decrypting encrypted identifiers, they MUST attempt to use each decryption key (in unspecified order) until the identifier is successfully decrypted or there are no more keys, in which case decryption fails.</p>
+<p>Service Providers that support the SAML V2.0 SingleLogout profile MUST support decryption of &lt;saml:EncryptedID&gt; elements in logout requests. In order to fully support key rollover, Service Providers MUST be configurable with at least two decryption keys. When decrypting encrypted identifiers, they MUST attempt to use each decryption key (in unspecified order) until the identifier is successfully decrypted or there are no more keys, in which case decryption fails.</p>
 </dd>
 <dt class="hdlist1">[IIP-SP17]</dt>
 <dd>
@@ -1072,7 +1072,7 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 <dl>
 <dt class="hdlist1">[IIP-IDP01]</dt>
 <dd>
-<p>Identity Providers MUST support the generation of <code>&lt;saml2:Attribute&gt;</code> elements containing any arbitrary <strong>xs:string</strong> value in the <code>Name</code> attribute and any arbitrary <strong>xs:anyURI</strong> value in the <code>NameFormat</code> attribute.</p>
+<p>Identity Providers MUST support the generation of <code>&lt;saml:Attribute&gt;</code> elements containing any arbitrary <strong>xs:string</strong> value in the <code>Name</code> attribute and any arbitrary <strong>xs:anyURI</strong> value in the <code>NameFormat</code> attribute.</p>
 </dd>
 <dt class="hdlist1">[IIP-IDP02]</dt>
 <dd>
@@ -1084,7 +1084,7 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </dd>
 <dt class="hdlist1">[IIP-IDP04]</dt>
 <dd>
-<p>Identity Providers MUST be capable of determining whether or not to include specific SAML attributes (or specific values) in a response based on the presence of <code>&lt;md:AttributeConsumingService&gt;</code> elements (containing <code>&lt;md:RequestedAttribute&gt;</code> elements) found in the metadata for a relying party, including the value of the enclosed <code>isRequired</code> XML attribute. Accordingly, they MUST support the <code>AttributeConsumingServiceIndex</code> attribute in <code>&lt;saml2p:AuthnRequest&gt;</code> messages as a means of determining the appropriate <code>&lt;md:AttributeConsumingService&gt;</code> element to process.</p>
+<p>Identity Providers MUST be capable of determining whether or not to include specific SAML attributes (or specific values) in a response based on the presence of <code>&lt;md:AttributeConsumingService&gt;</code> elements (containing <code>&lt;md:RequestedAttribute&gt;</code> elements) found in the metadata for a relying party, including the value of the enclosed <code>isRequired</code> XML attribute. Accordingly, they MUST support the <code>AttributeConsumingServiceIndex</code> attribute in <code>&lt;samlp:AuthnRequest&gt;</code> messages as a means of determining the appropriate <code>&lt;md:AttributeConsumingService&gt;</code> element to process.</p>
 </dd>
 </dl>
 </div>
@@ -1095,11 +1095,11 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 <dl>
 <dt class="hdlist1">[IIP-IDP05]</dt>
 <dd>
-<p>Identity Providers MUST support the issuance of <code>&lt;saml2p:Response&gt;</code> messages (with appropriate status codes) in the event of an error condition, provided that the user agent remains available and an acceptable location to which to deliver the response is known. The criteria for "acceptability" of a response location are not formally specified, but are subject to Identity Provider policy and reflect its responsibility to protect users from being sent to untrusted or possibly malicious parties.</p>
+<p>Identity Providers MUST support the issuance of <code>&lt;samlp:Response&gt;</code> messages (with appropriate status codes) in the event of an error condition, provided that the user agent remains available and an acceptable location to which to deliver the response is known. The criteria for "acceptability" of a response location are not formally specified, but are subject to Identity Provider policy and reflect its responsibility to protect users from being sent to untrusted or possibly malicious parties.</p>
 </dd>
 <dt class="hdlist1">[IIP-IDP06]</dt>
 <dd>
-<p>Identity Providers MUST support the <code>ForceAuthn</code> attribute in <code>&lt;saml2p:AuthnRequest&gt;</code> messages as defined in <a href="#SAML2Core">[SAML2Core]</a>. The authentication mechanisms within an implementation MUST have access to the ForceAuthn indicator so that their behavior may be influenced by its value.</p>
+<p>Identity Providers MUST support the <code>ForceAuthn</code> attribute in <code>&lt;samlp:AuthnRequest&gt;</code> messages as defined in <a href="#SAML2Core">[SAML2Core]</a>. The authentication mechanisms within an implementation MUST have access to the ForceAuthn indicator so that their behavior may be influenced by its value.</p>
 </dd>
 </dl>
 </div>
@@ -1110,11 +1110,11 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 <dl>
 <dt class="hdlist1">[IIP-IDP07]</dt>
 <dd>
-<p>Identity Providers MUST support the <code>IsPassive</code> attribute in <code>&lt;saml2p:AuthnRequest&gt;</code> messages as defined in <a href="#SAML2Core">[SAML2Core]</a>.</p>
+<p>Identity Providers MUST support the <code>IsPassive</code> attribute in <code>&lt;samlp:AuthnRequest&gt;</code> messages as defined in <a href="#SAML2Core">[SAML2Core]</a>.</p>
 </dd>
 <dt class="hdlist1">[IIP-IDP08]</dt>
 <dd>
-<p>Identity Providers MUST support the <code>&lt;saml2:RequestedAuthnContext&gt;</code> <strong>exact</strong> comparison method in <code>&lt;saml2p:AuthnRequest&gt;</code> messages as defined in <a href="#SAML2Core">[SAML2Core]</a>.</p>
+<p>Identity Providers MUST support the <code>&lt;saml:RequestedAuthnContext&gt;</code> <strong>exact</strong> comparison method in <code>&lt;samlp:AuthnRequest&gt;</code> messages as defined in <a href="#SAML2Core">[SAML2Core]</a>.</p>
 </dd>
 <dt class="hdlist1">[IIP-IDP09]</dt>
 <dd>
@@ -1122,15 +1122,15 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </dd>
 <dt class="hdlist1">[IIP-IDP10]</dt>
 <dd>
-<p>Identity Providers MUST support the <code>&lt;saml2p:NameIDPolicy&gt;</code> element in <code>&lt;saml2p:AuthnRequest&gt;</code> messages as defined in <a href="#SAML2Core">[SAML2Core]</a>.</p>
+<p>Identity Providers MUST support the <code>&lt;samlp:NameIDPolicy&gt;</code> element in <code>&lt;samlp:AuthnRequest&gt;</code> messages as defined in <a href="#SAML2Core">[SAML2Core]</a>.</p>
 </dd>
 <dt class="hdlist1">[IIP-IDP11]</dt>
 <dd>
-<p>Identity Providers MUST be capable of generating <code>&lt;saml2:Assertion&gt;</code> elements without a <code>&lt;saml2:NameID&gt;</code> element in the <code>&lt;saml2:Subject&gt;</code> element.</p>
+<p>Identity Providers MUST be capable of generating <code>&lt;saml:Assertion&gt;</code> elements without a <code>&lt;saml:NameID&gt;</code> element in the <code>&lt;saml:Subject&gt;</code> element.</p>
 </dd>
 <dt class="hdlist1">[IIP-IDP12]</dt>
 <dd>
-<p>Identity Providers MUST support the <code>AssertionConsumerServiceURL</code>, <code>ProtocolBinding</code>, and <code>AssertionConsumerServiceIndex</code> attributes in <code>&lt;saml2p:AuthnRequest&gt;</code> messages for the identification of the response endpoint and binding, as defined in <a href="#SAML2Core">[SAML2Core]</a>.</p>
+<p>Identity Providers MUST support the <code>AssertionConsumerServiceURL</code>, <code>ProtocolBinding</code>, and <code>AssertionConsumerServiceIndex</code> attributes in <code>&lt;samlp:AuthnRequest&gt;</code> messages for the identification of the response endpoint and binding, as defined in <a href="#SAML2Core">[SAML2Core]</a>.</p>
 </dd>
 </dl>
 </div>
@@ -1172,7 +1172,7 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </dd>
 <dt class="hdlist1">[IIP-IDP19]</dt>
 <dd>
-<p>Identity Providers MUST support decryption of <code>&lt;saml2:EncryptedID&gt;</code> elements in logout requests. In order to fully support key rollover, Identity Providers MUST be configurable with at least two decryption keys. When decrypting encrypted identifiers, they MUST attempt to use each decryption key (in unspecified order) until the identifier is successfully decrypted or there are no more keys, in which case decryption fails.</p>
+<p>Identity Providers MUST support decryption of <code>&lt;saml:EncryptedID&gt;</code> elements in logout requests. In order to fully support key rollover, Identity Providers MUST be configurable with at least two decryption keys. When decrypting encrypted identifiers, they MUST attempt to use each decryption key (in unspecified order) until the identifier is successfully decrypted or there are no more keys, in which case decryption fails.</p>
 </dd>
 <dt class="hdlist1">[IIP-IDP20]</dt>
 <dd>
