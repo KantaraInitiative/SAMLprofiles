@@ -728,26 +728,182 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sect2">
 <h3 id="_web_browser_sso">3.1. Web Browser SSO</h3>
 <div class="sect3">
-<h4 id="_identifiers">3.1.1. Identifiers</h4>
-
+<h4 id="_sp_initiated_sso">3.1.1. SP-Initiated SSO</h4>
+<div class="paragraph">
+<p>Service Providers must support the direct generation of authentication request messages conforming to the SAML Authentication Request Protocol <a href="#SAML2Core">[SAML2Core]</a>.</p>
+</div>
+<div class="paragraph">
+<p>Service Providers that want to bypass user-initiated discovery SHOULD support the SP Request Initiation Profile and Protocol defined in <a href="#SAML2SPRIP">[SAML2SPRIP]</a>.</p>
+</div>
+<div class="paragraph">
+<p>Service Providers MUST NOT require Identity Providers to support unsolicited responses (or so-called IdP-initiated SSO) <a href="#SAML2Prof">[SAML2Prof]</a> though they MAY support them as a voluntary means of bypassing discovery.</p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_deep_linking">3.1.2. Deep Linking</h4>
 <div class="paragraph">
-<p><em>(Suggest moving this below "SP-Initiated SSO" or "Authentication Requests", below)</em></p>
+<p>Applications that support deep linking and direct addressability of protected resources (the vast majority) MUST maintain support for such links during a Browser SSO profile interaction. That is, it MUST be possible to request an arbitrary protected resource and (authorization permitting) have it supplied as the result of a successful Browser SSO profile exchange.</p>
 </div>
 <div class="paragraph">
-<p>Applications that support deep linking and direct addressability of protected resources MUST maintain support for such links in the presence of thw Web Browser SSO interaction. That is, it MUST be possible to request an arbitrary protected resource and (authorization permitting) have it supplied as the result of a successful SAML SSO profile exchange. In addition, it is RECOMMENDED that Service Providers support the preservation of POST bodies across a successful SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.</p>
+<p>It is RECOMMENDED that Service Providers support the preservation of POST bodies across a successful SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.</p>
 </div>
 <div class="paragraph">
-<p>The SAML binding-specific <code>RelayState</code> feature <a href="#SAML2Prof">[SAML2Prof]</a> is typically used to maintain the state information required to satisfy both of these requirements, the exact detail of which is left to implementations.</p>
-</div>
-<div class="paragraph">
-<p>Requiring IdPs to support unsolicited responses (or so-called IdP-initiated SSO) <a href="#SAML2Prof">[SAML2Prof]</a> is not a substitute for this requirement.</p>
+<p>The SAML binding-specific <code>RelayState</code> feature <a href="#SAML2Bind">[SAML2Bind]</a> is typically used to maintain the state information required to satisfy both of these requirements, the exact detail of which is left to implementations.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_metadata_and_trust_management_2">3.1.3. Metadata and Trust Management</h4>
+<h4 id="_support_for_multiple_idps">3.1.3. Support for Multiple IdPs</h4>
+<div class="paragraph">
+<p>Service Providers MUST allow clients the option to authenticate specific resource URLs against more than one identity provider. <em>(This language is from the Impl Profile)</em></p>
+</div>
+<div class="paragraph">
+<p>When more than one Identity Provider authenticates the same resource URL, IdP selection SHOULD be supported using the OASIS SSTC SAML v2.0 Identity Provider Discovery Profile <a href="#IdPDisco">[IdPDisco]</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_requests">3.1.4. Requests</h4>
+<div class="sect4">
+<h5 id="_binding">Binding</h5>
+<div class="paragraph">
+<p>Requests MUST be encoded via the HTTP-Redirect binding. <a href="#SAML2Bind">[SAML2Bind]</a></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_avoiding_frames">Avoiding Frames</h5>
+<div class="paragraph">
+<p>Requests MUST NOT be issued inside an HTML frame or via any mechanism that would require the use of third-party cookies by the Identity Provider to establish or recover a session with the user agent. This will typically imply that requests must involve a full-frame redirect, in order that the top level window origin be associated with the Identity Provider.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_request_content">Request Content</h5>
+<div class="paragraph">
+<p>The <code>&lt;samlp:AuthnRequest&gt;</code> message MUST either omit the <code>&lt;samlp:NameIDPolicy&gt;</code> element (RECOMMENDED), or the element MUST contain an <code>AllowCreate</code> attribute of "true" and MUST NOT contain a <code>Format</code> attribute.</p>
+</div>
+<div class="paragraph">
+<p>The message MUST NOT contain an <code>AssertionConsumerServiceIndex</code> attribute (i.e., the desired endpoint MUST be the default, or identified via the <code>AssertionConsumerServiceURL</code> attribute).</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_authentication_contexts">Authentication Contexts</h5>
+<div class="paragraph">
+<p>A Service Provider that does not require a specific <code>&lt;saml:AuthnContextClassRef&gt;</code> value MUST NOT include a <code>&lt;samlp:RequestedAuthnContext&gt;</code> element in its requests.</p>
+</div>
+<div class="paragraph">
+<p>A Service Provider that requires specific <code>&lt;saml:AuthnContextClassRef&gt;</code> values MUST specify the allowable values in a <code>&lt;samlp:RequestedAuthnContext&gt;</code> element in its requests, with the <code>Comparison</code> attribute set to <code>exact</code>.</p>
+</div>
+<div class="paragraph">
+<p><em>(Do we need the text below?)</em></p>
+</div>
+<div class="paragraph">
+<p>An SP SHOULD only request a RequestedAuthnContext request in the presence of an arrangement between the Identity and Service Providers regarding the Authentication Context definitions in use.</p>
+</div>
+<div class="paragraph">
+<p><em>(Do we want anything about error handling?)</em></p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_responses">3.1.5. Responses</h4>
+<div class="sect4">
+<h5 id="_binding_2">Binding</h5>
+<div class="paragraph">
+<p>Service Providers MUST support the HTTP-POST binding for the receipt of <code>&lt;samlp:Response&gt;</code> messages and MAY support the HTTP-Artifact binding. <a href="#SAML2Bind">[SAML2Bind]</a></p>
+</div>
+<div class="paragraph">
+<p>The endpoint(s) at which a Service Provider supports receipt of <code>&lt;samlp:Response&gt;</code> messages MUST be protected by TLS/SSL.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_xml_encryption">XML Encryption</h5>
+<div class="paragraph">
+<p>Service Providers MUST support decryption of <code>&lt;saml:EncryptedAssertion&gt;</code> elements. Support for other encrypted constructs is OPTIONAL.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_forced_re_authentication">Forced Re-Authentication</h5>
+<div class="paragraph">
+<p>Service Providers that include a <code>ForceAuthn</code> attribute of <code>true</code> in their requests SHOULD test the currency of the <code>AuthnInstant</code> element in the received assertions to verify the currency of the authentication event.</p>
+</div>
+<div class="paragraph">
+<p><em>This is necessary because clients can freely generate requests that do not specify this attribute, potentially bypassing the SP&#8217;s intent.</em></p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_subject_identification">3.1.6. Subject Identification</h4>
+<div class="sect4">
+<h5 id="_nameid_formats">NameID Formats</h5>
+<div class="paragraph">
+<p>Service Providers MUST support arbitrary <code>&lt;saml:NameID&gt;</code> elements regardless of <code>Format</code>, for the purposes of Single Logout.</p>
+</div>
+<div class="paragraph">
+<p>Service Providers MUST NOT require the presence of a <code>&lt;saml:NameID&gt;</code> element and MUST NOT rely on the content of this element for long term identification of subjects;  <code>&lt;saml:Attribute&gt;</code> elements MUST be used for this purpose in the manner detailed below.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_subject_identifiers">Subject Identifiers</h5>
+<div class="paragraph">
+<p>If a Service Provider requires persistent tracking/identification of its users (as most do), then it MUST support one or both of the SAML Attributes defined by <a href="#SAML2SubjId">[SAML2SubjId]</a> for this purpose.</p>
+</div>
+<div class="paragraph">
+<p>If a Service Provider requires coordination and/or correlation of user activity between itself and other Service Providers, then the SAML Attribute named <code>urn:oasis:names:tc:SAML:attribute:subject-id</code> is appropriate. Otherwise the SAML Attribute named <code>urn:oasis:names:tc:SAML:attribute:pairwise-id</code> should be used.</p>
+</div>
+<div class="paragraph">
+<p>Service Providers MAY support legacy or historical <code>&lt;saml:NameID&gt;</code> and <code>&lt;saml:Attribute&gt;</code> content for compatibility reasons but MUST NOT require their use.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_subject_identifier_signaling">Subject Identifier Signaling</h5>
+<div class="paragraph">
+<p>A Service Provider MUST represent its identifier requirements in its SAML metadata, consistent with the Requirements Signaling mechanism defined in <a href="#SAML2SubjId">[SAML2SubjId]</a>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_displayable_identifiers">Displayable Identifiers</h5>
+<div class="paragraph">
+<p>The required identifier types above are opaque, unknown to users in most cases, and unsuitable for display.</p>
+</div>
+<div class="paragraph">
+<p>Service Providers requiring the display of identifiers to users, the identification of other users via searching, selection, etc., and similar use cases SHOULD rely on additional suitable SAML Attributes such as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>urn:oid:0.9.2342.19200300.100.1.3</code> (mail)</p>
+</li>
+<li>
+<p><code>urn:oid:2.16.840.1.113730.3.1.241</code> (displayName)</p>
+</li>
+<li>
+<p><code>urn:oid:2.5.4.42</code> (givenName)</p>
+</li>
+<li>
+<p><code>urn:oid:2.5.4.4</code> (sn)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_identifier_scoping">Identifier Scoping</h5>
+<div class="paragraph">
+<p>Service Providers MUST prevent unintended identifier collisions in the values asserted by different Identity Providers, and the required identifier types above are "scoped" to fulfill this requirement.</p>
+</div>
+<div class="paragraph">
+<p>Service Providers MUST associate identifier scopes with Identity Providers such that only authorized Identity Providers may assert identifiers in particular scopes.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_attribute_value_constraints">3.1.7. Attribute Value Constraints</h4>
+<div class="paragraph">
+<p>When consuming SAML Attributes with standardized definitions in external specifications, Service Providers MUST NOT impose constraints beyond the definitions of those attributes.</p>
+</div>
+<div class="paragraph">
+<p><em>This may imply supporting extra long attribute values, attributes that contain multiple values, broad character set support, etc. Maybe this is less critical with the subject ID changes?</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_metadata_and_trust_management_2">3.1.8. Metadata and Trust Management</h4>
 <div class="sect4">
 <h5 id="_key_and_certificate_rollover">Key and Certificate "Rollover"</h5>
 <div class="paragraph">
@@ -756,166 +912,6 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="paragraph">
 <p>If the SP publishes an encryption certificate in metadata, the SP deployment MUST be configurable with multiple decryption keys <em>(and must be able to decrypt Assertions encrypted with either of those keys)</em>. This makes it possible for the SP to seamlessly migrate to a new decryption key.</p>
 </div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_sp_initiated_sso">3.1.4. SP-Initiated SSO</h4>
-<div class="paragraph">
-<p><em>(Move below "Authentication Requests" heading, below?)</em></p>
-</div>
-<div class="paragraph">
-<p>Service Providers must support the direct generation of authentication request messages conforming to the SAML Authentication Request Protocol <a href="#SAML2Core">[SAML2Core]</a>.</p>
-</div>
-<div class="paragraph">
-<p>Service Providers that want to bypass user-initiated discovery SHOULD use the SP Request Initiation Profile and Protocol defined in <a href="#SAML2SPRIP">[SAML2SPRIP]</a>.</p>
-</div>
-<div class="paragraph">
-<p>Requiring IdPs to support unsolicited responses (or so-called IdP-initiated SSO) <a href="#SAML2Prof">[SAML2Prof]</a> is not a substitute for this requirement.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_sp_endpoints">3.1.5. SP Endpoints</h4>
-<div class="paragraph">
-<p><em>(This text said "An SP that supports SAML V2.0 Web Browser SSO", but support for SAML V2.0 Web Browser SSO is mandated elsewhere by the profile)</em></p>
-</div>
-<div class="paragraph">
-<p>SPs MUST include at least one AssertionConsumerService endpoint that supports the SAML V2.0 HTTP-POST binding for the SAML V2.0 Web Browser SSO protocol <a href="#SAML2Prof">[SAML2Prof]</a>. Occasionally an IdP will prefer to respond using the using the SAML V2.0 HTTP-Artifact Binding <a href="#SAML2Bind">[SAML2Bind]</a>, and therefore an AssertionConsumerService endpoint that supports the SAML V2.0 HTTP-Artifact binding MAY also be included in SP metadata. Note: An SP that supports artifact resolution MUST have at least one signing certificate in metadata.</p>
-</div>
-<div class="paragraph">
-<p>The endpoint(s) at which a Service Provider receives a <code>&lt;samlp:Response&gt;</code> message SHOULD be protected by TLS/SSL. If this is not the case, then Identity Providers SHOULD utilize XML Encryption and return a <code>&lt;saml:EncryptedAssertion&gt;</code> element in the <code>&lt;samlp:Response&gt;</code> message. The use of the <code>&lt;saml:EncryptedID&gt;</code> and <code>&lt;saml:EncryptedAttribute&gt;</code> elements is NOT RECOMMENDED; when possible, encrypt the entire assertion.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_attribute_value_constraints">3.1.6. Attribute Value Constraints</h4>
-<div class="paragraph">
-<p>When consuming attributes with standard definitions <em>(Do we need a scope here? E.g., OASIS standard attributes? Is this only about subject-id/pairwise-id and thus no longer relevant as a separate requirement?)</em>, Service Providers SHOULD NOT impose constraints that are not part of the definitions of those attributes.</p>
-</div>
-<div class="paragraph">
-<p><em>This may imply supporting extra long attribute values, attributes that contain multiple values, broad character set support, etc.</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_subject_identifier_support">3.1.7. Subject Identifier Support</h4>
-<div class="sect4">
-<h5 id="_nameid_formats">NameID Formats</h5>
-<div class="paragraph">
-<p>Service Providers, if they rely at all on particular name identifier formats, MUST support the format <code>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</code>. Reliance on other formats by Service Providers is NOT RECOMMENDED.</p>
-</div>
-<div class="paragraph">
-<p><em>Note that these requirements are reflected in additional constraints on message content in subsequent sections.</em></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_subject_identifier_attributes">Subject Identifier Attributes</h5>
-<div class="paragraph">
-<p>SPs that require reliable identifiers bound to a subject MUST support user identification using one of the following attributes:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>urn:oasis:names:tc:SAML:attribute:subject-id</code></p>
-</li>
-<li>
-<p><code>urn:oasis:names:tc:SAML:attribute:pairwise-id</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>as defined in <a href="#SAML2SubjId">[SAML2SubjId]</a>.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_subject_identifier_signalling">Subject Identifier Signalling</h5>
-<div class="paragraph">
-<p>An SP MUST indicate its identifier requirements in metadata, consistent with the Requirements Signalling rules defined in <a href="#SAML2SubjId">[SAML2SubjId]</a>.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_subject_identifier_opacity">Subject Identifier Opacity</h5>
-<div class="paragraph">
-<p>SPs MUST be able to accept and function reasonably when receiving only opaque subject identifiers.</p>
-</div>
-<div class="paragraph">
-<p>If users are required to identify one another, SPs SHOULD additionally accept one or more relatively unique, human-readable "directory" attributes (email, name, title, etc.) for use in user searches, user pick-lists, and other interface elements.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_subject_identifier_uniqueness">Subject Identifier Uniqueness</h5>
-<div class="paragraph">
-<p>SPs MUST be able to prevent inappropriate Subject Identifier value collisions across different IdPs. SPs SHOULD use qualified identifiers to support this requirement, with the SPs validating that IdPs assert appropriate qualifiers.</p>
-</div>
-<div class="paragraph">
-<p>It is RECOMMENDED that the "Scope" Metadata extension <a href="#MACEAttrProf">[MACEAttrProf]</a> be used to identify acceptable qualifiers from an IdP.</p>
-</div>
-<div class="paragraph">
-<p><em>(Is the following still relevant?)</em></p>
-</div>
-<div class="paragraph">
-<p>Where IdPs do not assert qualified identifiers for Subject IDs, SPs SHOULD instead internally associate each Subject ID with the asserting IdP&#8217;s entityID.</p>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_support_for_multiple_idps">3.1.8. Support for Multiple IdPs</h4>
-<div class="paragraph">
-<p>Service Providers MUST allow clients the option to authenticate specific resource URLs against more than one identity provider. <em>(This language is from the Impl Profile)</em></p>
-</div>
-<div class="paragraph">
-<p>When more than one Identity Provider authenticates the same resource URL, IdP selection SHOULD be supported using the OASIS SSTC SAML v2.0 Identity Provider Discovery Profile <a href="#IdPDisco">[IdPDisco]</a>.</p>
-</div>
-<div class="paragraph">
-<p><em>(Note, there&#8217;s overlap here with "SP-initiated SSO", given the reference to SAML2SPRIP)</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_authentication_requests">3.1.9. Authentication Requests</h4>
-<div class="sect4">
-<h5 id="_authentication_request_user_interface_and_browser_frames">Authentication Request User Interface and Browser Frames</h5>
-<div class="paragraph">
-<p>Service Providers MUST NOT issue authentication requests inside a frame or via any mechanism that would require the use of third-party cookies by the Identity Provider to establish or recover a session with the user agent.</p>
-</div>
-<div class="paragraph">
-<p><em>(Is there something broader we want to say about how it SHOULD be presented?)</em></p>
-</div>
-<div class="paragraph">
-<p><em>(n.b., I&#8217;m not clear when exactly a 3rd party cookie creates an actual issue for the authentication event. Is it the hosting site and the IdP, or the hosting site and the SP being authenticated that causes issues?)</em></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_authentication_request_presentation">Authentication Request Presentation</h5>
-<div class="paragraph">
-<p>The <code>&lt;samlp:AuthnRequest&gt;</code> message SHOULD contain a <code>&lt;samlp:NameIDPolicy&gt;</code> element with an <code>AllowCreate</code> attribute of "true". Its <code>Format</code> attribute, if present, SHOULD be set to <code>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</code> <em>(Removed persistent)</em></p>
-</div>
-<div class="paragraph">
-<p>Service Providers MUST support unsolicited <code>&lt;samlp:Response&gt;</code> messages (i.e., responses that are not the result of an earlier <code>&lt;samlp:AuthnRequest&gt;</code> message). <em>(Add)</em></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_authentication_context_requests">Authentication Context Requests</h5>
-<div class="paragraph">
-<p>An SP that does not require specific AuthnContextClassRef value(s) in assertions MUST NOT include any RequestedAuthnContext elements in AuthnRequests it generates.</p>
-</div>
-<div class="paragraph">
-<p>An SP that only accepts specific AuthnContextClassRef value(s) in assertions MUST specify those allowable values in the <code>&lt;samlp:RequestedAuthnContext&gt;</code> element of the <code>&lt;samlp:AuthnRequest&gt;</code> it generates, with the <code>Comparison</code> operator set to "EXACT". An SP SHOULD only include a RequestedAuthnContext request in the presence of an arrangement between the Identity and Service Providers regarding the Authentication Context definitions in use.</p>
-</div>
-<div class="paragraph">
-<p><em>(Do we want anything about error handling?)</em></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_testing_authninstant_in_the_context_of_forced_re_authentication">Testing AuthnInstant In The Context of Forced Re-Authentication</h5>
-<div class="paragraph">
-<p>Service Providers that request <code>ForceAuthn="true"</code> as part of an <code>&lt;AuthnRequest&gt;</code> SHOULD test the currency of the <code>AuthnInstant</code> element  in IdP assertions to verify the currency of the user authentication event.</p>
-</div>
-<div class="paragraph">
-<p><em>This is necessary because clients can generate unsolicited SSO responses that do not specify <code>ForceAuthn="true"</code>, potentially bypassing the SP&#8217;s intent to require user reauthentication.</em></p>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_xml_encryption">3.1.10. XML Encryption</h4>
-<div class="paragraph">
-<p>Service Providers MUST support decryption of SAML V2.0 Web SSO Profile assertions using XML Encryption. Service Providers MUST support the AES-GCM block encryption algorithm as specified in <a href="#XMLEnc">[XMLEnc]</a> for this encryption.</p>
 </div>
 </div>
 </div>
@@ -985,7 +981,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 </div>
 <div class="sect3">
-<h4 id="_subject_identifier_support_2">4.1.3. Subject Identifier Support</h4>
+<h4 id="_subject_identifier_support">4.1.3. Subject Identifier Support</h4>
 <div class="sect4">
 <h5 id="_nameid_formats_2">NameID formats</h5>
 <div class="paragraph">
@@ -996,7 +992,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 </div>
 <div class="sect4">
-<h5 id="_subject_identifier_attributes_2">Subject Identifier Attributes</h5>
+<h5 id="_subject_identifier_attributes">Subject Identifier Attributes</h5>
 <div class="paragraph">
 <p><em>(new)</em></p>
 </div>
@@ -1005,7 +1001,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 </div>
 <div class="sect4">
-<h5 id="_subject_identifier_signalling_2">Subject Identifier Signalling</h5>
+<h5 id="_subject_identifier_signalling">Subject Identifier Signalling</h5>
 <div class="paragraph">
 <p><em>(This is now handled in the Subject ID Draft in OASIS. Does it need to be repeated here?)</em></p>
 </div>
@@ -1074,6 +1070,9 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <ul class="bibliography">
 <li>
 <p><a id="RFC2119"></a>[RFC2119] IETF RFC 2119, Key words for use in RFCs to Indicate Requirement Levels, March 1997. <a href="http://www.ietf.org/rfc/rfc2119.txt" class="bare">http://www.ietf.org/rfc/rfc2119.txt</a></p>
+</li>
+<li>
+<p><a id="RFC4051"></a>[RFC4051] IETF RFC 4051, Additional XML Security Uniform Resource Identifiers, April 2005. <a href="https://www.ietf.org/rfc/rfc4051.txt" class="bare">https://www.ietf.org/rfc/rfc4051.txt</a></p>
 </li>
 <li>
 <p><a id="SAML2Core"></a>[SAML2Core] OASIS Standard, Assertions and Protocols for the OASIS Security Assertion Markup Language (SAML) V2.0, March 2005. <a href="http://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf" class="bare">http://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf</a></p>
