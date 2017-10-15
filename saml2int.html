@@ -765,7 +765,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sect4">
 <h5 id="_binding">Binding</h5>
 <div class="paragraph">
-<p>Requests MUST be encoded via the HTTP-Redirect binding. <a href="#SAML2Bind">[SAML2Bind]</a></p>
+<p>Service Providers MUST support the HTTP-Redirect binding <a href="#SAML2Bind">[SAML2Bind]</a> for the transmission of <code>&lt;samlp:AuthnRequest&gt;</code> messages. Support for other bindings is OPTIONAL.</p>
 </div>
 </div>
 <div class="sect4">
@@ -781,6 +781,12 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 <div class="paragraph">
 <p>The message MUST NOT contain an <code>AssertionConsumerServiceIndex</code> attribute (i.e., the desired endpoint MUST be the default, or identified via the <code>AssertionConsumerServiceURL</code> attribute).</p>
+</div>
+<div class="paragraph">
+<p>The <code>AssertionConsumerServiceURL</code> value MUST match the location expressed in the Service Provider&#8217;s metadata exactly, without requiring URL canonicalization/normalization.</p>
+</div>
+<div class="paragraph">
+<p><em>As an example, the Service Provider MUST NOT use a hostname with port number (such as <a href="https://sp.example.no:80/acs" class="bare">https://sp.example.no:80/acs</a>) in its request and without (such as <a href="https://sp.example.no/acs" class="bare">https://sp.example.no/acs</a>) in its metadata.</em></p>
 </div>
 </div>
 <div class="sect4">
@@ -807,7 +813,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sect4">
 <h5 id="_binding_2">Binding</h5>
 <div class="paragraph">
-<p>Service Providers MUST support the HTTP-POST binding for the receipt of <code>&lt;samlp:Response&gt;</code> messages and MAY support the HTTP-Artifact binding. <a href="#SAML2Bind">[SAML2Bind]</a></p>
+<p>Service Providers MUST support the HTTP-POST binding for the receipt of <code>&lt;samlp:Response&gt;</code> messages. Support for other bindings is OPTIONAL.</p>
 </div>
 <div class="paragraph">
 <p>The endpoint(s) at which a Service Provider supports receipt of <code>&lt;samlp:Response&gt;</code> messages MUST be protected by TLS/SSL.</p>
@@ -853,7 +859,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 </div>
 <div class="sect4">
-<h5 id="_subject_identifier_signaling">Subject Identifier Signaling</h5>
+<h5 id="_subject_identifier_requirements_signaling">Subject Identifier Requirements Signaling</h5>
 <div class="paragraph">
 <p>A Service Provider MUST represent its identifier requirements in its SAML metadata, consistent with the Requirements Signaling mechanism defined in <a href="#SAML2SubjId">[SAML2SubjId]</a>.</p>
 </div>
@@ -957,76 +963,69 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sect2">
 <h3 id="_web_browser_sso_2">4.1. Web Browser SSO</h3>
 <div class="sect3">
-<h4 id="_identity_provider_endpoints">4.1.1. Identity Provider Endpoints</h4>
-<div class="paragraph">
-<p>IdP metadata MUST include a <code>&lt;SingleSignOnService&gt;</code> endpoint that supports the SAML2 HTTP-Redirect binding as defined in <a href="#SAML2Bind">[SAML2Bind]</a>. A <code>&lt;SingleSignOnService&gt;</code> endpoint that supports the SAML2 HTTP-POST binding SHOULD also be included in IdP metadata since some SAML SP deployments favor that particular binding. Support for both bindings is strongly RECOMMENDED.</p>
-</div>
-<div class="paragraph">
-<p>In verifying the Service Provider&#8217;s Assertion Consumer Service, it is RECOMMENDED that the Identity Provider perform a case-sensitive string comparison between the requested <code>&lt;samlp:AssertionConsumerServiceURL&gt;</code> value and the values found in the Service Provider&#8217;s metadata. It is OPTIONAL to apply any form of URL canonicalization, which means the Service Provider SHOULD NOT rely on differently canonicalized values in these two locations.</p>
-</div>
-<div class="paragraph">
-<p><em>As an example, the Service Provider SHOULD NOT use a hostname with port number (such as <a href="https://sp.example.no:80/acs" class="bare">https://sp.example.no:80/acs</a>) in its request and without (such as <a href="https://sp.example.no/acs" class="bare">https://sp.example.no/acs</a>) in its metadata.</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_identity_provider_error_urls">4.1.2. Identity Provider Error URLs</h4>
-<div class="paragraph">
-<p>IdP deployers MUST include an <code>&lt;errorURL&gt;</code> XML attribute in metadata. This URL must point to a page that presents actions for a user to take at their organization in response to an error (that occurred at the SP).</p>
-</div>
-<div class="paragraph">
-<p><em>(Note, Tom S. questions whether this should be in the errorURL vs. mdui.information elements, due in part to the lack of international language support on the errorURL)</em></p>
-</div>
-<div class="paragraph">
-<p><em>(move?)</em> Relying parties are encouraged to direct clients to this URL – either directly or after presenting a page providing context – when an authentication error occurs that the Relying Party cannot resolve locally.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_subject_identifier_support">4.1.3. Subject Identifier Support</h4>
+<h4 id="_requests_2">4.1.1. Requests</h4>
 <div class="sect4">
-<h5 id="_nameid_formats_2">NameID formats</h5>
+<h5 id="_binding_3">Binding</h5>
 <div class="paragraph">
-<p><em>(new)</em></p>
-</div>
-<div class="paragraph">
-<p>Identity Providers MUST support the <code>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</code> name identifier format as defined in <a href="#SAML2Core">[SAML2Core]</a>. ~~They SHOULD support the <code>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</code> name identifier format <a href="#SAML2Core">[SAML2Core]</a>.~~ Support for other formats is OPTIONAL.</p>
+<p>Identity Providers MUST support the HTTP-Redirect binding <a href="#SAML2Bind">[SAML2Bind]</a> for the receipt of <code>&lt;samlp:AuthnRequest&gt;</code> messages. Support for other bindings is OPTIONAL.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_subject_identifier_attributes">Subject Identifier Attributes</h5>
+<h5 id="_endpoint_verification">Endpoint verification.</h5>
 <div class="paragraph">
-<p><em>(new)</em></p>
-</div>
-<div class="paragraph">
-<p>Identity Providers SHOULD assert either the <code>urn:oasis:names:tc:SAML:attribute:subject-id</code> and <code>urn:oasis:names:tc:SAML:attribute:pairwise-id</code> attributes to uniquely identify authenticated users as defined in <a href="#SAML2SubjId">[SAML2SubjId]</a> consistent with the requirements signalling from the SP, which are also defined in <a href="#SAML2SubjId">[SAML2SubjId]</a>. If an Identity Provider cannot include a required Subject Identifier attribute as signalled by the SP, the IdP MUST return a SAML error per <a href="#SAML2Err">[SAML2Err]</a>.</p>
+<p>When verifying the <code>AssertionConsumerServiceURL</code>, it is RECOMMENDED that the Identity Provider perform a case-sensitive string comparison between the requested value and the values found in the Service Provider&#8217;s metadata. It is OPTIONAL to apply any form of URL canonicalization.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_subject_identifier_signalling">Subject Identifier Signalling</h5>
+<h5 id="_forced_re_authentication_support">Forced Re-Authentication Support</h5>
 <div class="paragraph">
-<p><em>(This is now handled in the Subject ID Draft in OASIS. Does it need to be repeated here?)</em></p>
+<p>Identity Providers MUST ensure that any response to a <code>&lt;samlp:AuthnRequest&gt;</code> that contains the attribute <code>ForceAuthn</code> set to <code>true</code> results in an authentication challenge that requires proof that the subject is present. If this condition is met, the IdP MUST also reflect this success by setting the value of the <code>AuthnInstant</code> value in the assertion it generates to a fresh value.</p>
+</div>
+<div class="paragraph">
+<p>If an Identity Provider cannot prove subject presence, then it MUST fail the authentication request and SHOULD respond to the Service Provider with a SAML error status.</p>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_forced_re_authentication_support">4.1.4. Forced Re-Authentication Support</h4>
+<h4 id="_responses_2">4.1.2. Responses</h4>
+<div class="sect4">
+<h5 id="_binding_4">Binding</h5>
 <div class="paragraph">
-<p>Identity providers MUST ensure that any response to an <code>&lt;AuthnRequest&gt;</code> that contains the attribute <code>ForceAuthn ="true"</code> (as defined in <a href="#SAML2Prof">[SAML2Prof]</a>) results in an authentication challenge that requires proof that the Subject is present. If this condition is met, the IdP MUST also reflect this success by setting the value of the <code>AuthnInstant</code> value in the assertion it generates.</p>
+<p>Identity Providers MUST support the HTTP-POST binding <a href="#SAML2Bind">[SAML2Bind]</a> for the transmission of <code>&lt;samlp:Response&gt;</code> messages. Support for other bindings is OPTIONAL.</p>
 </div>
-<div class="paragraph">
-<p>If the IdP cannot prove Subject presence, the IdP MUST NOT generate a successful response and MUST generate a SAML Error.</p>
 </div>
+<div class="sect4">
+<h5 id="_assertions">Assertions</h5>
 <div class="paragraph">
-<p><em>(Probably should be moved to the</em> SP requirements <em>section)</em></p>
+<p>Successful response messages MUST contain one and only one SAML assertion.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_xml_encryption_2">XML Encryption</h5>
+<div class="paragraph">
+<p>In the event the HTTP-POST binding <a href="#SAML2Bind">[SAML2Bind]</a> is used, assertions MUST be encrypted and transmitted via a <code>&lt;saml:EncryptedAssertion&gt;</code> element. Information intended for the consumption of the Service Provider MUST NOT be further encrypted via <code>&lt;saml:EncryptedID&gt;</code> or <code>&lt;saml:EncryptedAttribute&gt;</code> constructs.</p>
+</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_attributes">4.1.5. Attributes</h4>
-
-</div>
-<div class="sect3">
-<h4 id="_xml_encryption_2">4.1.6. XML Encryption</h4>
+<h4 id="_subject_identifiers_2">4.1.3. Subject Identifiers</h4>
 <div class="paragraph">
-<p>Identity Providers MUST encrypt assertions if the Service Provider provides a suitable key in its metadata. Identity Providers MUST support the AES-GCM block encryption algorithm as specified in <a href="#XMLEnc">[XMLEnc]</a> for this encryption.</p>
+<p>Assertions MUST contain a <code>&lt;saml:NameID&gt;</code> element with the <code>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</code> format, as defined in <a href="#SAML2Core">[SAML2Core]</a>, for the purposes of logout.</p>
+</div>
+<div class="paragraph">
+<p>Identity Providers SHOULD support one or both of the SAML Attributes defined by <a href="#SAML2SubjId">[SAML2SubjId]</a> for non-transient identification of subjects. Support for both is RECOMMENDED.</p>
+</div>
+<div class="sect4">
+<h5 id="_subject_identifier_requirements_signaling_2">Subject Identifier Requirements Signaling</h5>
+<div class="paragraph">
+<p>Identity Providers MUST support the metadata-based identifier requirement signaling mechanism defined in <a href="#SAML2SubjId">[SAML2SubjId]</a>.</p>
+</div>
+<div class="paragraph">
+<p>If an Identity Provider cannot or will not satisfy the requirements of a Service Provider in this respect, then it MUST fail the authentication request and SHOULD respond to the Service Provider with a SAML error status.</p>
+</div>
+<div class="paragraph">
+<p>In the absence of any signaling by a Service Provider, an Identity Provider is free to supply either, both, or neither SAML Attribute, or to return an error as it sees fit.</p>
+</div>
 </div>
 </div>
 </div>
