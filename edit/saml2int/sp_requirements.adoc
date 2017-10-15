@@ -28,7 +28,7 @@ When more than one Identity Provider authenticates the same resource URL, IdP se
 
 ===== Binding
 
-Requests MUST be encoded via the HTTP-Redirect binding. <<SAML2Bind>>
+Service Providers MUST support the HTTP-Redirect binding <<SAML2Bind>> for the transmission of `<samlp:AuthnRequest>` messages. Support for other bindings is OPTIONAL.
 
 ===== Avoiding Frames
 
@@ -39,6 +39,11 @@ Requests MUST NOT be issued inside an HTML frame or via any mechanism that would
 The `<samlp:AuthnRequest>` message MUST either omit the `<samlp:NameIDPolicy>` element (RECOMMENDED), or the element MUST contain an `AllowCreate` attribute of "true" and MUST NOT contain a `Format` attribute.
 
 The message MUST NOT contain an `AssertionConsumerServiceIndex` attribute (i.e., the desired endpoint MUST be the default, or identified via the `AssertionConsumerServiceURL` attribute).
+
+The `AssertionConsumerServiceURL` value MUST match the location expressed in the Service Provider's metadata exactly, without requiring URL canonicalization/normalization. 
+
+_As an example, the Service Provider MUST NOT use a hostname with port number (such as https://sp.example.no:80/acs) in its request and without (such as https://sp.example.no/acs) in its metadata._
+
 
 ===== Authentication Contexts
 
@@ -56,7 +61,7 @@ _(Do we want anything about error handling?)_
 
 ===== Binding
 
-Service Providers MUST support the HTTP-POST binding for the receipt of `<samlp:Response>` messages and MAY support the HTTP-Artifact binding. <<SAML2Bind>>
+Service Providers MUST support the HTTP-POST binding for the receipt of `<samlp:Response>` messages. Support for other bindings is OPTIONAL.
 
 The endpoint(s) at which a Service Provider supports receipt of `<samlp:Response>` messages MUST be protected by TLS/SSL.
 
@@ -86,7 +91,7 @@ If a Service Provider requires coordination and/or correlation of user activity 
 
 Service Providers MAY support legacy or historical `<saml:NameID>` and `<saml:Attribute>` content for compatibility reasons but MUST NOT require their use.
 
-===== Subject Identifier Signaling
+===== Subject Identifier Requirements Signaling
 
 A Service Provider MUST represent its identifier requirements in its SAML metadata, consistent with the Requirements Signaling mechanism defined in <<SAML2SubjId>>.
 
