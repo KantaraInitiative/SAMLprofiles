@@ -17,6 +17,8 @@ Document identifier: TBD
 
 include::introduction.adoc[]
 
+include::notation.adoc[]
+
 include::common_requirements.adoc[]
 
 include::sp_requirements.adoc[]

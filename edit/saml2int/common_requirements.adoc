@@ -1,4 +1,6 @@
-== Common Requirements (applies to both IdP and SP)
+== Common Requirements
+
+This section includes material of general significance to both IdPs and SPs. Subsequent sections provide guidance specific to those roles.
 
 === General
 
@@ -10,23 +12,62 @@ _The following is a non-exhaustive list of items to which this directive applies
 
 ==== Data Size
 
-Unless otherwise specified, deployments MUST limit the size of all element and attribute content to 256 characters. This applies in particular to the values within `<saml:NameID>` and `<saml:AttributeValue>` elements.
+Unless otherwise specified, deployments MUST limit the size of all element and attribute content they produce to 256 characters. This applies in particular to the values within `<saml:NameID>` and `<saml:AttributeValue>` elements.
 
-==== Document Type Definition
+==== Document Type Definitions
 
-Deployments MUST reject any SAML protocol message that contains a (DTD) Document Type Definition.
+Deployments MUST NOT produce any SAML protocol message that contains a (DTD) Document Type Definition. Deployments SHOULD reject messages that contain them.
+
+==== SAML entityIDs
+
+The entityID of a SAML entity MUST be scoped to the domain of the organization that is the owner of the application/service, in the case of an SP; or to the domain of the organization whose users are represented by the IdP, in the case of an IdP.
+
+_Specifically, hosted applications must have entityIDs scoped to the client organization's domain, not the hosting organization's domain._
+
+_An entityID should be chosen in a manner that minimizes the likelihood of it changing for political or technical reasons, including for example a change to a different software implementation._
+
+==== Profile Support
+
+Deployments MUST support the SAML V2.0 Web Browser SSO Profile and MUST support the SAML V2.0 Single Logout Profile as defined in <<SAML2Prof>> and as updated by <<SAML2Err>>. Behavior of deployments MUST be consistent with the requirements specified in this deployment profile.
 
 === Metadata and Trust Management
 
-==== Metadata Content
+==== Metadata Consumption and Use
 
-Metadata MUST NOT contain endpoints that aren't supported.
+Deployments MUST provision their behavior in the following areas based solely on the consumption of SAML Metadata <<SAML2Meta>> on an automated, periodic or real-time basis using (where applicable) the processing rules defined by the SAML Metadata Interoperability profile <<MetaIOP>>:
 
-==== Keys and Certificates
+* indications of support for Browser SSO and Single Logout profiles
+* selection, determination, and verification of SAML endpoints and bindings
+* verification of XML signatures and TLS client and server certificates, and determination of trustworthiness of such keys
+* selection of XML Encryption key transport keys
+* determination of subject identifier SAML Attribute(s) to provide (per `<<SAML2SubjId>>`)
+* TBD
 
-Public keys used for signing, encryption, and TLS client and server authentication MUST be expressed via X.509 certificates in metadata [SAML2Meta].
+Consumption of metadata MUST be subject to verification of a signature or TLS server certificate.
 
-These certificates SHOULD be long-lived and self-signed. To avoid problems with certain non-conforming SAML implementations, certificates in metadata SHOULD NOT be expired.
+===== Metadata Validity
+
+Metadata without a `validUntil` attribute on its root element MUST be rejected. Metadata whose root element's `validUntil` attribute extends beyond a deployer- or community-imposed threshold MUST be rejected.
+
+_These are critical (but very simple to implement) requirements for secure application of `<<MetaIOP>>` because it is the method by which keys are revoked and the window of revocation is established._
+
+==== Metadata Production
+
+Deployments MUST have the ability to provide SAML metadata capturing its requirements and characteristics in the areas identified above in a secure fashion, the specifics of which will necessarily vary by context and community. The use of services offering third-party validation, curation, signing, and publishing of metadata is a recommended, though not required, practice.
+
+Deployments MUST NOT require out of band communication or coordination for the management of any behavior by peers that is included within the enumerated areas identified above.
+
+This profile does not mandate any specific automated support for the production of metadata by a deployment. In fact, automatic generation of metadata has a strong tendency to undermine the correct functioning of peer deployments in the face of key rollover or changes to endpoints or other software features because it tends to change too suddenly to accommodate a graceful transition between states.
+
+Metadata MUST NOT contain content that represents profile features that aren't supported or that have not been deliberately and intentionally configured by a deployment.
+
+_As an example, deployments that lack support for, or have not tested and integrated an implementation's support for, the Single Logout profile would necessarily omit `<md:SingleLogoutService>` elements. Similarly, deployments lacking support for the HTTP-Artifact binding <<SAML2Bind>> must omit such endpoints._
+
+===== Keys and Certificates
+
+Public keys used for signing, encryption, and TLS client and server authentication MUST be expressed via X.509 certificates included in metadata via `<md:KeyDescriptor>` elements.
+
+These certificates SHOULD be long-lived and self-signed. To avoid problems with non-conforming SAML implementations, certificates in metadata SHOULD NOT be expired (though deployments complying with this profile MUST accept expired certificates by virtue of <<MetaIOP>>).
 
 RSA public keys MUST be at least 2048 bits in length.
 
@@ -34,59 +75,58 @@ EC public keys MUST be at least TBD bits in length.
 
 Certificates used MUST NOT be signed with an MD5-based signature algorithm and SHOULD NOT be signed with a SHA1-based signature algorithm.
 
-By virtue of subsequent requirements, an Identity Provider's metadata MUST include at least one signing certificate (that is, an `<md:KeyDescriptor>` with no `use` attribute or one set to "signing"), and a Service Provider's metadata MUST include at least one encryption certificate (that is, an `<md:KeyDescriptor>` with no `use` attribute or one set to "encryption").
+By virtue of the profile's overall requirements, an Identity Provider's metadata MUST include at least one signing certificate (that is, an `<md:KeyDescriptor>` with no `use` attribute or one set to `signing`), and a Service Provider's metadata MUST include at least one encryption certificate (that is, an `<md:KeyDescriptor>` with no `use` attribute or one set to `encryption`).
 
-==== MDUI Elements
+===== Discovery and User Interface Elements
 
-Metadata for SAML entities MUST include UI elements for `<mdui:DisplayName>`, `<mdui:Logo>`, `<mdui:InformationURL>`, and `<mdui:PrivacyStatementURL>`.
+Metadata MUST include the `<mdui:DisplayName>`, `<mdui:Logo>`, `<mdui:InformationURL>`, and `<mdui:PrivacyStatementURL>` elements.
 
-The content of the `<mdui:Logo>` element SHOULD be a HTTPS URL and MUST NOT be a HTTP URL.
+The content of the `<mdui:Logo>` element SHOULD be an `https` URL and MUST NOT be a `http` URL.
 
 At least one `<mdui:Logo>` element SHOULD have a `height` attribute of `60` and a `width` attribute of `80`.
 
-An entity MAY include a `<mdui:Logo>` element with a `height` attribute of `16` and a `width` attribute of `16`.
+_The next requirement is odd...is this be a SHOULD? A MAY doesn't need to be mentioned._
 
-==== Metadata Refresh and Signature Verification
-
-Service Providers and Identity Providers MUST regularly verify their SAML peer configurations by validating them against those peers' current metadata. Metadata used for this configuration validation MUST itself be signed and validated with a key distributed _(verified? validated?)_ separately from the metadata itself.
-
-==== Metadata Signature Verification
-
-_(Suggest merging this section with the one above, as it is odd to split the two sentences above. Alternatively, move second sentence from above to here)_
-
-==== SAML entityIDs
-
-The EntityID of a SAML entity MUST be scoped to the domain of the organization that is the owner of the application/service, in the case of an SP; or to the domain of the organization whose users are represented by the IdP, in the case of an IdP.
-
-_Specifically, hosted applications must have entityIDs scoped to the client organization's domain, not the hosting organization's domain._
-
-=== Profile Support
-
-Deployments MUST support the SAML V2.0 Web Browser SSO Profile and MUST support the SAML V2.0 Single Logout Profile as defined in <<SAML2Prof>> and as updated by <<SAML2Err>>. Behavior of deployments MUST be consistent with the requirements of the requirements specified in this deployment profile. 
-
-A deployment indicates support for the SAML V2.0 Web Browser SSO and for the SAML V2.0 Single Logout Profile by including certain browser-facing SSO endpoints in metadata.
+An entity MAY include an `<mdui:Logo>` element with a `height` attribute of `16` and a `width` attribute of `16`.
 
 === Cryptographic Algorithms
 
-When signing, a deployment MUST use one of the following digest algorithms:
+Deployments MUST default to the following algorithms:
 
-* ```http://www.w3.org/2001/04/xmlenc#sha256``` <<XMLEnc>>
+* Digest
+** ```http://www.w3.org/2001/04/xmlenc#sha256``` <<XMLEnc>>
 
-When signing, a deployment MUST use one of the following signature algorithms:
+* Signature
+** ```http://www.w3.org/2001/04/xmldsig-more#rsa-sha256``` <<RFC4051>>
+** ```http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256``` <<RFC4051>>
 
-* ```http://www.w3.org/2001/04/xmldsig-more#rsa-sha256``` <<RFC4051>>
-* ```http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256``` <<RFC4051>>
+* Block Encryption
+** ```http://www.w3.org/2009/xmlenc11#aes128-gcm``` <<XMLEnc11>>
+** ```http://www.w3.org/2009/xmlenc11#aes256-gcm``` <<XMLEnc11>>
 
-When encrypting, a deployment MUST use one of the following block encryption algorithms:
-
-* ```http://www.w3.org/2009/xmlenc11#aes128-gcm``` <<XMLEnc11>>
-* ```http://www.w3.org/2009/xmlenc11#aes256-gcm``` <<XMLEnc11>>
-
-When encrypting, a deployment MUST use one of the following key transport algorithms:
-
-* ```http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p``` <<XMLEnc>>
-* ```http://www.w3.org/2009/xmlenc11#rsa-oaep``` <<XMLEnc11>> + 
+* Key Transport
+** ```http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p``` <<XMLEnc>>
+** ```http://www.w3.org/2009/xmlenc11#rsa-oaep``` <<XMLEnc11>> + 
 
 One of the following digest algorithms MUST be used in conjunction with the above key transport algorithms (the default mask generation function (MGF1 with SHA1) MUST be used):
 
 * ```http://www.w3.org/2001/04/xmlenc#sha256``` <<XMLEnc>>
+
+Deployments SHOULD select digest, signature, and encryption algorithms on the basis of the Metadata Profile for Algorithm Support `<<MetaAlg>>`. The above requirements provide acceptable defaults in the absence of any information (as is common) or in the event that these defaults are supported.
+
+Deployments MUST NOT use any of the following security-compromised algorithms (even in the presence of the metadata extension indicating a peer supports them):
+
+* Digest
+** ```http://www.w3.org/2001/04/xmldsig-more#md5``` <<RFC4051>>
+
+* Signature
+** ```http://www.w3.org/2001/04/xmldsig-more#rsa-md5``` <<RFC4051>>
+
+* Block Encryption
+** ```http://www.w3.org/2001/04/xmlenc#aes128-cbc``` <<XMLEnc>>
+** ```http://www.w3.org/2001/04/xmlenc#aes194-cbc``` <<XMLEnc>>
+** ```http://www.w3.org/2001/04/xmlenc#aes256-cbc``` <<XMLEnc>>
+** ```http://www.w3.org/2001/04/xmlenc#tripledes-cbc``` <<XMLEnc>>
+
+* Key Transport
+** ```http://www.w3.org/2001/04/xmlenc#rsa-1_5``` <<XMLEnc>>

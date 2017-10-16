@@ -7,24 +7,3 @@ The requirements specified are in addition to all normative requirements of the 
 This profile addresses the content, exchange, and processing of SAML messages only, and does not address deployment details that go beyond that scope. Furthermore, nothing in the profile should be taken to imply that disclosing personally identifiable information, or indeed any information, is required from an Identity Provider with respect to any particular Service Provider. That remains at the discretion of applicable settings, user consent, or other appropriate means in accordance with regulations and policies. However, this profile does obligate Identity Providers to honor certain key signals from a Service Provider in the area of subject identification and requires successful responses to include specific SAML Attributes under certain conditions. Failure is always an option.
 
 Note that SAML features that are optional, or lack mandatory processing rules, are assumed to be optional and out of scope of this profile if not otherwise precluded or given specific processing rules.
-
-=== Notation
-
-=== References to SAML 2.0 specification
-
-When referring to elements from the SAML 2.0 core specification <<SAML2Core>>, the following syntax is used:
-
-* `<samlp:ProtocolElement>` - for elements from the SAML 2.0 Protocol namespace.
-* `<saml:AssertionElement>` - for elements from the SAML 2.0 Assertion namespace.
-
-When referring to elements from the SAML 2.0 metadata specification <<SAML2Meta>>, the following syntax is used:
-
-* `<md:MetadataElement>`
-
-When referring to elements from the Identity Provider Discovery Service Protocol and Profile <<IdPDisco>>, the following syntax is used:
-
-* `<idpdisc:DiscoveryResponse>`
-
-When referring to elements from the SAML 2.0 Metadata Extensions for Login and Discovery User Interface specification <<SAML-Metadata-UI-V1.0>>, the following syntax is used:
-
-* `<mdui:MetadataElement>`
