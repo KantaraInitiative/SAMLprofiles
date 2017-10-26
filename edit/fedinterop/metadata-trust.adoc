@@ -1,4 +1,4 @@
-=== Metadata and Trust Management
+﻿=== Metadata and Trust Management
 
 This section identifies a basic set of features required for the interoperable use of SAML metadata. Although metadata support was optional in the original SAML V2.0 specification, it is now recognized as a critical component of all modern SAML software. Implementations must carefully adhere to the following procedures related to the exchange and validation of metadata in order to support a scalable federation model.
 
@@ -14,7 +14,7 @@ The requirements are divided into to general categories: exchange and usage. Unl
 
 _This approach is less flexible than the on-demand model supported by <<MDQ>> and has scalability issues with larger metadata aggregates. It is required, however, for compatibility with federations that have not begun offering newer approaches and addresses common Service Provider needs around the IdP discovery process. This requirement will be reevaluated in a future revision of this profile._
 
-[IIP-MD03]:: Implementations MUST be able to validate the authenticity and integrity of SAML metadata by verifying an enveloped XML Signature <<XMLDsig>> attached to the root element of the metadata. Public keys used for signature verification of the metadata MUST be configured out of band. These keys MAY be contained in X.509 certificates but it MUST be possible to ignore the other contents of the certificate and verify the XML Signature based solely on the public key. It MUST be possible to limit the use of a trusted key to a single metadata source.
+[IIP-MD03]:: Implementations MUST be able to validate the authenticity and integrity of SAML metadata by verifying an enveloped XML Signature <<XMLSig>> attached to the root element of the metadata. Public keys used for signature verification of the metadata MUST be configured out of band. These keys MAY be contained in X.509 certificates but it MUST be possible to ignore the other contents of the certificate and verify the XML Signature based solely on the public key. It MUST be possible to limit the use of a trusted key to a single metadata source.
 
 [IIP-MD04]:: Implementations MUST be capable of rejecting SAML metadata if any one of the following conditions is true:
 
