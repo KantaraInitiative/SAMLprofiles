@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.2">
-<title>SAML V2.0 Implementation Profile for Federation Interoperability</title>
+<title>SAML V2.0 Implementation Profile for Federation Interoperability Version 1.0</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -453,11 +453,11 @@ dl dd {
 <div id="preamble">
 <div class="sectionbody">
 <h1 style="color: blue; text-align: center; font-size: 150%; margin-bottom: 2em; font-weight: bold;">
-  SAML V2.0 Implementation Profile for Federation Interoperability
+  SAML V2.0 Implementation Profile for Federation Interoperability Version 1.0
 </h1>
 <div class="paragraph">
 <div class="title">Abstract</div>
-<p>This document encompasses a set of software conformance requirements intended to facilitate interoperability within the context of full mesh identity federations, such as those found in the research and education sector. It attempts to address a number of common barriers to interoperability and details features that are necessary in order to use SAML metadata as a foundation for scalable trust fabrics.  It supercedes the <a href="eGovImplProfile.html">eGovernment Implementation Profile V2.0bis</a> from June 2011.</p>
+<p>This document encompasses a set of software conformance requirements intended to facilitate interoperability within the context of full mesh identity federations, such as those found in the research and education sector. It attempts to address a number of common barriers to interoperability and details features that are necessary in order to use SAML metadata as a foundation for scalable trust fabrics. It supercedes the <a href="eGovImplProfile.html">eGovernment Implementation Profile V2.0bis</a> from June 2011.</p>
 </div>
 <div class="paragraph">
 <div class="title">Copyright Notice</div>
@@ -503,7 +503,7 @@ dl dd {
 <h2 id="_introduction">1. Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The material contained herein is intended for use by implementers of SAML software. It does not specify a fixed set of behaviors for all deployments or limit in any way the features that can be provided in a given implementation, but rather serves as a complement to deployment profiles (such as the Kantara SAML2int profile <a href="#SAML2int">[SAML2int]</a>) by identifying a standard set of software capabilities necessary for scalable federation.  This profile can form the basis for testing frameworks capable of providing for the validation of conformant software packages.</p>
+<p>The material contained herein is intended for use by implementers of SAML software. It does not specify a fixed set of behaviors for all deployments or limit in any way the features that can be provided in a given implementation, but rather serves as a complement to deployment profiles by identifying a standard set of software capabilities necessary for scalable federation. This profile can form the basis for testing frameworks capable of providing for the validation of conformant software packages.</p>
 </div>
 <div class="sect2">
 <h3 id="_notation">1.1. Notation</h3>
@@ -609,7 +609,7 @@ dl dd {
 <dl>
 <dt class="hdlist1">[IIP-MD03]</dt>
 <dd>
-<p>Implementations MUST be able to validate the authenticity and integrity of SAML metadata by verifying an enveloped XML Signature <a href="#XMLDsig">[XMLDsig]</a> attached to the root element of the metadata. Public keys used for signature verification of the metadata MUST be configured out of band. These keys MAY be contained in X.509 certificates but it MUST be possible to ignore the other contents of the certificate and verify the XML Signature based solely on the public key. It MUST be possible to limit the use of a trusted key to a single metadata source.</p>
+<p>Implementations MUST be able to validate the authenticity and integrity of SAML metadata by verifying an enveloped XML Signature <a href="#XMLSig">[XMLSig]</a> attached to the root element of the metadata. Public keys used for signature verification of the metadata MUST be configured out of band. These keys MAY be contained in X.509 certificates but it MUST be possible to ignore the other contents of the certificate and verify the XML Signature based solely on the public key. It MUST be possible to limit the use of a trusted key to a single metadata source.</p>
 </dd>
 <dt class="hdlist1">[IIP-MD04]</dt>
 <dd>
@@ -1226,7 +1226,7 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 <p><a id="SAML2MD-xsd"></a>[SAML2MD-xsd] XML Schema, Metadata for the OASIS Security Assertion Markup Language (SAML) V2.0, March 2005. <a href="http://docs.oasis-open.org/security/saml/v2.0/saml-schema-metadata-2.0.xsd" class="bare">http://docs.oasis-open.org/security/saml/v2.0/saml-schema-metadata-2.0.xsd</a></p>
 </li>
 <li>
-<p><a id="SAML2MDIOP"></a>[SAML2MDIOP] OASIS Committee Specification, SAML V2.0 Metadata Interoperability Profile Version 1.0, August 2009. <a href="http://docs.oasis-open.org/security/saml/Post2.0/sstc-metadata-iop.html" class="bare">http://docs.oasis-open.org/security/saml/Post2.0/sstc-metadata-iop.html</a></p>
+<p><a id="SAML2MDIOP"></a>[SAML2MDIOP] OASIS Committee Specification, SAML V2.0 Metadata Interoperability Profile Version 1.0, August 2009. <a href="http://docs.oasis-open.org/security/saml/Post2.0/sstc-metadata-iop.pdf" class="bare">http://docs.oasis-open.org/security/saml/Post2.0/sstc-metadata-iop.pdf</a></p>
 </li>
 <li>
 <p><a id="SAML2MetaAlgSup"></a>[SAML2MetaAlgSup] OASIS Committee Specification, SAML V2.0 Metadata Profile for Algorithm Support Version 1.0, February 2011. <a href="http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-metadata-algsupport-v1.0-cs01.pdf" class="bare">http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-metadata-algsupport-v1.0-cs01.pdf</a></p>
@@ -1244,34 +1244,28 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 <p><a id="SAML2ASLO"></a>[SAML2ASLO] OASIS Committee Specification, SAML V2.0 Asynchronous Single Logout Profile Extension Version 1.0, November 2012. <a href="http://docs.oasis-open.org/security/saml/Post2.0/saml-async-slo/v1.0/cs01/saml-async-slo-v1.0-cs01.pdf" class="bare">http://docs.oasis-open.org/security/saml/Post2.0/saml-async-slo/v1.0/cs01/saml-async-slo-v1.0-cs01.pdf</a></p>
 </li>
 <li>
-<p><a id="XMLDsig"></a>[XMLDsig] W3C Recommendation, XML Signature Syntax and Processing (Second Edition), June 2008. <a href="http://www.w3.org/TR/xmldsig-core/" class="bare">http://www.w3.org/TR/xmldsig-core/</a></p>
+<p><a id="MDQ"></a>[MDQ] IETF Internet-Draft, Metadata Query Protocol, July 2017. <a href="https://tools.ietf.org/html/draft-young-md-query-07" class="bare">https://tools.ietf.org/html/draft-young-md-query-07</a></p>
 </li>
 <li>
-<p><a id="MDQ"></a>[MDQ] Internet-Draft, Metadata Query Protocol, July 2017. <a href="https://tools.ietf.org/html/draft-young-md-query-07" class="bare">https://tools.ietf.org/html/draft-young-md-query-07</a></p>
-</li>
-<li>
-<p><a id="SAML-MDQ"></a>[SAML-MDQ] Internet-Draft, SAML Profile for the Metadata Query Protocol, October 2014. <a href="https://tools.ietf.org/html/draft-young-md-query-saml-07" class="bare">https://tools.ietf.org/html/draft-young-md-query-saml-07</a></p>
+<p><a id="SAML-MDQ"></a>[SAML-MDQ] IETF Internet-Draft, SAML Profile for the Metadata Query Protocol, October 2014. <a href="https://tools.ietf.org/html/draft-young-md-query-saml-07" class="bare">https://tools.ietf.org/html/draft-young-md-query-saml-07</a></p>
 </li>
 <li>
 <p><a id="IdPDisco"></a>[IdPDisco] OASIS Committee Specification, Identity Provider Discovery Service Protocol and Profile, March 2008. <a href="http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-idp-discovery.pdf" class="bare">http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-idp-discovery.pdf</a></p>
 </li>
 <li>
-<p><a id="SAML2int"></a>[SAML2int] Kantara Initiative Report, SAML 2.0 Interoperability Deployment Profile Version 0.2.1. <a href="http://saml2int.org/profile/0.2.1/" class="bare">http://saml2int.org/profile/0.2.1/</a></p>
-</li>
-<li>
 <p><a id="RFC4051"></a>[RFC4051] IETF RFC 4051, Additional XML Security Uniform Resource Identifiers, April 2005. <a href="https://www.ietf.org/rfc/rfc4051.txt" class="bare">https://www.ietf.org/rfc/rfc4051.txt</a></p>
 </li>
 <li>
-<p><a id="XMLEnc"></a>[XMLEnc] D. Eastlake et al. XML Encryption Syntax and Processing. World Wide Web Consortium Recommendation, April 2013. <a href="https://www.w3.org/TR/xmlenc-core1/" class="bare">https://www.w3.org/TR/xmlenc-core1/</a></p>
+<p><a id="XMLEnc"></a>[XMLEnc] D. Eastlake et al. XML Encryption Syntax and Processing. World Wide Web Consortium Recommendation, December 2002. <a href="https://www.w3.org/TR/xmlenc-core/" class="bare">https://www.w3.org/TR/xmlenc-core/</a></p>
 </li>
 <li>
-<p><a id="XMLEnc11"></a>[XMLEnc11] D. Eastlake et al. XML Encryption Syntax and Processing Version 1.1. World Wide Web Consortium Last Call Working Draft. <a href="http://www.w3.org/TR/2010/WD-xmlenc-core1-20100513/" class="bare">http://www.w3.org/TR/2010/WD-xmlenc-core1-20100513/</a></p>
+<p><a id="XMLEnc11"></a>[XMLEnc11] D. Eastlake et al. XML Encryption Syntax and Processing Version 1.1. World Wide Web Consortium Recommendation, April 2013. <a href="https://www.w3.org/TR/xmlenc-core1/" class="bare">https://www.w3.org/TR/xmlenc-core1/</a></p>
 </li>
 <li>
 <p><a id="XMLSig"></a>[XMLSig] D. Eastlake et al. XML-Signature Syntax and Processing, Second Edition. World Wide Web Consortium Recommendation, June 2008. <a href="http://www.w3.org/TR/xmldsig-core/" class="bare">http://www.w3.org/TR/xmldsig-core/</a></p>
 </li>
 <li>
-<p><a id="SAML-EC"></a>[SAML-EC] IETF Internet Draft, SAML Enhanced Client SASL and GSS-API Mechanisms. <a href="https://datatracker.ietf.org/doc/draft-ietf-kitten-sasl-saml-ec/" class="bare">https://datatracker.ietf.org/doc/draft-ietf-kitten-sasl-saml-ec/</a></p>
+<p><a id="SAML-EC"></a>[SAML-EC] IETF Internet Draft, SAML Enhanced Client SASL and GSS-API Mechanisms, October 2017. <a href="https://tools.ietf.org/html/draft-ietf-kitten-sasl-saml-ec-16" class="bare">https://tools.ietf.org/html/draft-ietf-kitten-sasl-saml-ec-16</a></p>
 </li>
 <li>
 <p><a id="BetterCrypto"></a>[BetterCrypto] BetterCrypto.org, Applied Crypto Hardening. <a href="https://bettercrypto.org" class="bare">https://bettercrypto.org</a></p>
@@ -1328,7 +1322,7 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-12 21:31:06 CEST
+Last updated 2017-10-26 22:46:10 CEST
 </div>
 </div>
 </body>
