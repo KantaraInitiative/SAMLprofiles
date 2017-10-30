@@ -128,16 +128,24 @@ If the SP publishes an encryption certificate in metadata, the SP deployment MUS
 
 === Single Logout
 
-_This is preliminary material moved, reworking into technical requirements is TBD._
+==== Requests
 
-Service Providers should expect that Identity Providers may do one of the following when receiving a `<samlp:LogoutRequest>`:
+===== Binding
 
-1. Do nothing.
-2. End the IDP session only.
-3. Complete logout of all SP sessions (Single Logout).
-4. Partial logout (some SPs may not support Logout).
-5. Display a confirmation page before proceeding with options 1-4.
+Service Providers SHOULD support the HTTP-Redirect binding <<SAML2Bind>> or the HTTP-POST binding <<SAML2Bind>> for the receipt of `<samlp:LogoutRequest>` or `<samlp:LogoutResponse>` messages. Support for other bindings is OPTIONAL.
 
-Service Providers MUST NOT expect to regain control of the user interface after a logout request is sent.
+==== Responses
 
-Service Providers whose endpoints are based on multiple virtual hosts within a single entity descriptor should usually avoid Single Logout.
+===== Binding
+
+Service Providers SHOULD support the HTTP-Redirect binding <<SAML2Bind>> or the HTTP-POST binding <<SAML2Bind>> for the transmission of `<samlp:LogoutRequest>` or `<samlp:LogoutResponse>` messages. Support for other bindings is OPTIONAL.
+
+==== Behavior
+
+Service Providers MUST NOT expect to regain control of the user interface after a `<samlp:LogoutRequest>` is sent via an Asynchronous Binding (Front-Channel).
+
+==== HTTP Virtual Hosts
+
+When a single Service Provider (entityID) is used for multiple HTTP virtual hosts, the Service Provider SHOULD NOT publish any `<SingleLogoutService>` endpoints in its metadata.
+
+_A single entityID can only have one well-defined `<SingleLogoutService>` endpoint per binding. Cookies are domain-based and most often you can't fully implement a logout on one virtual host if the Single Logout is sent to another virtual host. The `<samlp:LogoutRequest>` message cannot specify a specific endpoint._

@@ -48,15 +48,28 @@ In the absence of any signaling by a Service Provider, an Identity Provider is f
 
 === Single Logout
 
-_This is preliminary material moved, reworking into technical requirements is TBD._
+==== Requests
 
-Identity Providers that publish a SAML Logout endpoint in metadata but do not end a user's IDP session MUST return an error to the Service Provider.
+===== Binding
 
-Identity Providers that do nothing when they receive a Logout request MUST not publish a SAML Logout endpoint in metadata.
+Identity Providers MUST support the HTTP-Redirect binding <<SAML2Bind>> or the HTTP-POST binding <<SAML2Bind>> for the receipt of `<samlp:LogoutRequest>` or `<samlp:LogoutResponse>` messages. Support for other bindings is OPTIONAL.
 
-Identity Providers SHOULD do one of the following when receiving a SAML Logout request:
+==== Responses
 
-1. End the IDP session only. The user SHOULD be informed that they may still have active sessions with SPs.
-2. Complete logout of all SP sessions (Single Logout). If the IDP can guarantee that the SPs support logout and are available to accept logout requests, the IDP can terminate all known SP sessions. The user should be informed that they have been logged out of everything. If possible, the user should be presented a list of the services from which they have been logged out.
-3. Partial logout. If some of the SPs support logout, the IDP can logout the user from those SPs.
-4. Display a confirmation page before proceeding with options 1-3.
+===== Binding
+
+Identity Providers MUST support the HTTP-Redirect binding <<SAML2Bind>> or the HTTP-POST binding <<SAML2Bind>> for the transmission of `<samlp:LogoutRequest>` or `<samlp:LogoutResponse>` messages. Support for other bindings is OPTIONAL.
+
+===== Status
+
+When an Identity Provider cannot terminate the user's Identity Provider session, it MUST respond to the original requester, if any, with a `<samlp:LogoutResponse>` message containing a top-level `<saml:StatusCode>` of `urn:oasis:names:tc:SAML:2.0:status:Responder`.
+
+==== Behavior
+
+Identity Providers MUST do one of the following when receiving a SAML Logout request:
+
+1. Terminate the user's Identity Provider session and all Service Provider sessions for the user (Single Logout). The user should be informed that they have been logged out of everything. If possible, the user should be presented a list of the services from which they have been logged out.
+2. Terminate the user's Identity Provider session and as many Service Provider sessions for the user as possible (Partial Logout). The user should be informed that they have NOT been logged out of everything. If possible, the user should be presented a list of the services from which they have been logged out.
+3. Terminate the user's Identity Provider session only. The user should be informed that they have NOT been logged out of everything.
+
+Identity Providers MAY display a confirmation page to the user before proceeding with logout.
