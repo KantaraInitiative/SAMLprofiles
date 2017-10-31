@@ -126,6 +126,10 @@ SP deployments MUST support multiple signing certificates in IdP metadata _(do w
 
 If the SP publishes an encryption certificate in metadata, the SP deployment MUST be configurable with multiple decryption keys _(and must be able to decrypt Assertions encrypted with either of those keys)_. This makes it possible for the SP to seamlessly migrate to a new decryption key.
 
+===== Single Logout
+
+Service Providers MUST publish a `<SingleLogoutService>` endpoint in their metadata if the they issue Single Logout requests.
+
 === Single Logout
 
 ==== Requests
