@@ -60,6 +60,8 @@ The migration from suspicious and broken algorithms deployed in production syste
 
 [IIP-MD10]:: If a SAML peer has declared algorithm support according to <<SAML2MetaAlgSup>> in its metadata, Identity providers MUST and Service Providers SHOULD limit the use of algorithms for XML Signature and Encryption to these declared algorithms in the messages they produce for that peer.
 
+_As noted by <<SAML2MetaAlgSup>>, the use of metadata to negotiate algorithms requires that the exchange and verification of metadata be subject to appropriate security controls. Implementations must always be prepared to reject the use of algorithms that are deemed insufficiently secure. In all cases, the ultimate decision as to algorithm choice is up to the implementation, as necessarily limited by local configuration. An implementation may be unable to successfully complete a request in the event that a mutually supported and acceptable algorithm does not exist._
+
 ===== Avoiding Common Errors
 
 [IIP-MD11]:: An `<md:KeyDescriptor>` element in metadata that contains no `use` XML attribute MUST be valid as both a signing and encryption key. This is clarified in E62 of the SAML V2.0 Errata <<SAML2Errata>>:

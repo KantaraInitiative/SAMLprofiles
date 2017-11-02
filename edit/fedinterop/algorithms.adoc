@@ -36,3 +36,14 @@ The following DigestMethod algorithms MUST be supported for both of the above ke
 The default mask generation function (MGF1 with SHA1) MUST be supported for the KeyTransport algorithm identified by ```http://www.w3.org/2009/xmlenc11#rsa-oaep```.
 
 [IIP-ALG07]:: This document is not normative with respect to TLS security. It is, however, RECOMMENDED that implementers consider <<RFC7457>> and current best practice reflected in documents such as <<BetterCrypto>>.
+
+[IIP-ALG08]:: Implementations MUST support the ability to prevent the use of particular algorithms such that any attempt to configure or select them will result in failure. The set of such algorithms MUST be configurable and it is RECOMMENDED that the default set include:
+
+* Digest
+** ```http://www.w3.org/2001/04/xmldsig-more#md5``` <<RFC4051>>
+
+* Signature
+** ```http://www.w3.org/2001/04/xmldsig-more#rsa-md5``` <<RFC4051>>
+
+* Key Transport
+** ```http://www.w3.org/2001/04/xmlenc#rsa-1_5``` <<XMLEnc>>
