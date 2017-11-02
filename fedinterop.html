@@ -720,6 +720,9 @@ dl dd {
 </dd>
 </dl>
 </div>
+<div class="paragraph">
+<p><em>As noted by <a href="#SAML2MetaAlgSup">[SAML2MetaAlgSup]</a>, the use of metadata to negotiate algorithms requires that the exchange and verification of metadata be subject to appropriate security controls. Implementations must always be prepared to reject the use of algorithms that are deemed insufficiently secure. In all cases, the ultimate decision as to algorithm choice is up to the implementation, as necessarily limited by local configuration. An implementation may be unable to successfully complete a request in the event that a mutually supported and acceptable algorithm does not exist.</em></p>
+</div>
 </div>
 <div class="sect4">
 <h5 id="_avoiding_common_errors">Avoiding Common Errors</h5>
@@ -923,6 +926,44 @@ The default mask generation function (MGF1 with SHA1) MUST be supported for the 
 <dt class="hdlist1">[IIP-ALG07]</dt>
 <dd>
 <p>This document is not normative with respect to TLS security. It is, however, RECOMMENDED that implementers consider <a href="#RFC7457">[RFC7457]</a> and current best practice reflected in documents such as <a href="#BetterCrypto">[BetterCrypto]</a>.</p>
+</dd>
+<dt class="hdlist1">[IIP-ALG08]</dt>
+<dd>
+<p>Implementations MUST support the ability to prevent the use of particular algorithms such that any attempt to configure or select them will result in failure. The set of such algorithms MUST be configurable and it is RECOMMENDED that the default set include:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Digest</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code><code><a href="http://www.w3.org/2001/04/xmldsig-more#md5" class="bare">http://www.w3.org/2001/04/xmldsig-more#md5</a></code></code> <a href="#RFC4051">[RFC4051]</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Signature</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code><code><a href="http://www.w3.org/2001/04/xmldsig-more#rsa-md5" class="bare">http://www.w3.org/2001/04/xmldsig-more#rsa-md5</a></code></code> <a href="#RFC4051">[RFC4051]</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Key Transport</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code><code><a href="http://www.w3.org/2001/04/xmlenc#rsa-1_5" class="bare">http://www.w3.org/2001/04/xmlenc#rsa-1_5</a></code></code> <a href="#XMLEnc">[XMLEnc]</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 </dd>
 </dl>
 </div>
