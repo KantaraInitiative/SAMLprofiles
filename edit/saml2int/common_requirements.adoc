@@ -81,13 +81,13 @@ By virtue of the profile's overall requirements, an Identity Provider's metadata
 
 Metadata MUST include the `<mdui:DisplayName>`, `<mdui:Logo>`, `<mdui:InformationURL>`, and `<mdui:PrivacyStatementURL>` elements.
 
-The content of the `<mdui:Logo>` element SHOULD be an `https` URL and MUST NOT be a `http` URL.
+The content of the `<mdui:Logo>` element MUST be either an `https` URL or an in-line image embedded an a data URI element.
 
-At least one `<mdui:Logo>` element SHOULD have a `height` attribute of `60` and a `width` attribute of `80`.
-
-_The next requirement is odd...is this be a SHOULD? A MAY doesn't need to be mentioned._
+At least one `<mdui:Logo>` element MUST have a `height` attribute of `60` and a `width` attribute of `80`.
 
 An entity MAY include an `<mdui:Logo>` element with a `height` attribute of `16` and a `width` attribute of `16`.
+
+Any logo referenced by an `<mdui:Logo>` element SHOULD have a transparent or white background and be in PNG format.
 
 === Cryptographic Algorithms
 
