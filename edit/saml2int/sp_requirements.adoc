@@ -128,7 +128,7 @@ If the SP publishes an encryption certificate in metadata, the SP deployment MUS
 
 ===== Single Logout
 
-Service Providers MUST publish a `<SingleLogoutService>` endpoint in their metadata if the they issue Single Logout requests.
+Service Providers MUST publish a `<SingleLogoutService>` endpoint in their metadata if they issue Single Logout requests.
 
 === Single Logout
 
@@ -146,7 +146,11 @@ Service Providers SHOULD support the HTTP-Redirect binding <<SAML2Bind>> or the 
 
 ==== Behavior
 
-Service Providers MUST NOT expect to regain control of the user interface after a `<samlp:LogoutRequest>` is sent via an Asynchronous Binding (Front-Channel).
+Service Providers MUST terminate the user's local session before sending a `<samlp:LogoutRequest>` message to the Identity Provider.
+
+Service Providers MUST NOT send a `<samlp:LogoutRequest>` message as the result of an idle activity timeout in the Service Provider.  _Timeout of a single Service Provider must not trigger Single Logout of all the user's sessions without their consent._
+
+Service Providers MUST NOT expect to regain control of the user interface after a `<samlp:LogoutRequest>` message is sent via an Asynchronous Binding (Front-Channel).
 
 ==== HTTP Virtual Hosts
 
