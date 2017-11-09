@@ -87,7 +87,9 @@ At least one `<mdui:Logo>` element MUST have a `height` attribute of `60` and a 
 
 An entity SHOULD include an `<mdui:Logo>` element with a `height` attribute of `16` and a `width` attribute of `16`.
 
-Any logo referenced by an `<mdui:Logo>` element SHOULD have a transparent or white background and be in PNG format.
+Any logo referenced by an `<mdui:Logo>` element MUST have a transparent background.
+
+Any logo referenced by an `<mdui:Logo>` element MUST be in PNG format.
 
 === Cryptographic Algorithms
 
