@@ -1047,7 +1047,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sect4">
 <h5 id="_single_logout">Single Logout</h5>
 <div class="paragraph">
-<p>Service Providers MUST publish a <code>&lt;SingleLogoutService&gt;</code> endpoint in their metadata if the they issue Single Logout requests.</p>
+<p>Service Providers MUST publish a <code>&lt;SingleLogoutService&gt;</code> endpoint in their metadata if they issue Single Logout requests.</p>
 </div>
 </div>
 </div>
@@ -1075,7 +1075,13 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sect3">
 <h4 id="_behavior">4.2.3. Behavior</h4>
 <div class="paragraph">
-<p>Service Providers MUST NOT expect to regain control of the user interface after a <code>&lt;samlp:LogoutRequest&gt;</code> is sent via an Asynchronous Binding (Front-Channel).</p>
+<p>Service Providers MUST terminate the user&#8217;s local session before sending a <code>&lt;samlp:LogoutRequest&gt;</code> message to the Identity Provider.</p>
+</div>
+<div class="paragraph">
+<p>Service Providers MUST NOT send a <code>&lt;samlp:LogoutRequest&gt;</code> message as the result of an idle activity timeout in the Service Provider.  <em>Timeout of a single Service Provider must not trigger Single Logout of all the user&#8217;s sessions without their consent.</em></p>
+</div>
+<div class="paragraph">
+<p>Service Providers MUST NOT expect to regain control of the user interface after a <code>&lt;samlp:LogoutRequest&gt;</code> message is sent via an Asynchronous Binding (Front-Channel).</p>
 </div>
 </div>
 <div class="sect3">
