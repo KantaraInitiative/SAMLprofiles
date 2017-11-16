@@ -2,6 +2,10 @@
 
 === Web Browser SSO
 
+==== Endpoints in Metadata
+
+To comply with this profile, Service Providers MUST publish a `<SingleSignOnService>` endpoint in their metadata.
+
 ==== SP-Initiated SSO
 
 Service Providers must support the direct generation of authentication request messages conforming to the SAML Authentication Request Protocol <<SAML2Core>>.
@@ -44,7 +48,6 @@ The `AssertionConsumerServiceURL` value MUST match the location expressed in the
 
 _As an example, the Service Provider MUST NOT use a hostname with port number (such as https://sp.example.no:80/acs) in its request and without (such as https://sp.example.no/acs) in its metadata._
 
-
 ===== Authentication Contexts
 
 A Service Provider that does not require a specific `<saml:AuthnContextClassRef>` value MUST NOT include a `<samlp:RequestedAuthnContext>` element in its requests.
@@ -52,8 +55,6 @@ A Service Provider that does not require a specific `<saml:AuthnContextClassRef>
 A Service Provider that requires specific `<saml:AuthnContextClassRef>` values MUST specify the allowable values in a `<samlp:RequestedAuthnContext>` element in its requests, with the `Comparison` attribute set to `exact`.
 
 An SP SHOULD NOT request a RequestedAuthnContext request without the presence of an arrangement between the Identity and Service Providers regarding the Authentication Context definitions in use. 
-
-_(Do we want anything about error handling?)_ 
 
 ==== Responses
 
@@ -72,6 +73,10 @@ Service Providers MUST support decryption of `<saml:EncryptedAssertion>` element
 Service Providers that include a `ForceAuthn` attribute of `true` in their requests SHOULD test the currency of the `AuthnInstant` element in the received assertions to verify the currency of the authentication event.
 
 _This is necessary because clients can freely generate requests that do not specify this attribute, potentially bypassing the SP's intent._
+
+===== Error Handling
+
+Service providers MUST be able to handle autentication responses that indicate authentication was not successful.
 
 ==== Subject Identification
 
@@ -118,17 +123,21 @@ _This may imply supporting extra long attribute values, attributes that contain 
 
 ==== Metadata and Trust Management
 
-===== Key and Certificate "Rollover"
+===== Multiple Keys
 
-SP deployments MUST support multiple signing certificates in IdP metadata _(do we want more language? e.g., "and must be able to validate signed IdP assertions using either certificate.)_ This makes it possible for the IdP to seamlessly migrate to a new signing key.
+SP deployments MUST support multiple signing certificates in IdP metadata and MUST be able to validate signed IdP assertions using either certificate. This makes it possible for the IdP to seamlessly migrate to a new signing key.
 
-If the SP publishes an encryption certificate in metadata, the SP deployment MUST be configurable with multiple decryption keys _(and must be able to decrypt Assertions encrypted with either of those keys)_. This makes it possible for the SP to seamlessly migrate to a new decryption key.
-
-===== Single Logout
-
-Service Providers MUST publish a `<SingleLogoutService>` endpoint in their metadata if they issue Single Logout requests.
+If the SP publishes an encryption certificate in metadata, the SP deployment MUST be configurable with multiple decryption keys and MUST be able to decrypt Assertions encrypted with either of those keys. This makes it possible for the SP to seamlessly migrate to a new decryption key.
 
 === Single Logout
+
+==== Endpoints in Metadata
+
+_(The following requirement contradicts the requirement below for
+multiple HTTP Virtual Hosts hosted under a single EntityID. Further work is
+needed.)_
+
+To comply with this profile, Service Providers MUST publish a `<SingleLogoutService>` endpoint in their metadata.
 
 ==== Requests
 
