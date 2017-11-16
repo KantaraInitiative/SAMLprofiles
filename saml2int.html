@@ -477,13 +477,13 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <li><a href="#_service_provider_requirements">4. Service Provider Requirements</a>
 <ul class="sectlevel2">
 <li><a href="#_web_browser_sso">4.1. Web Browser SSO</a></li>
-<li><a href="#_single_logout_2">4.2. Single Logout</a></li>
+<li><a href="#_single_logout">4.2. Single Logout</a></li>
 </ul>
 </li>
 <li><a href="#_identity_provider_requirements">5. Identity Provider Requirements</a>
 <ul class="sectlevel2">
 <li><a href="#_web_browser_sso_2">5.1. Web Browser SSO</a></li>
-<li><a href="#_single_logout_3">5.2. Single Logout</a></li>
+<li><a href="#_single_logout_2">5.2. Single Logout</a></li>
 </ul>
 </li>
 <li><a href="#_normative_references">6. Normative References</a></li>
@@ -856,7 +856,13 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sect2">
 <h3 id="_web_browser_sso">4.1. Web Browser SSO</h3>
 <div class="sect3">
-<h4 id="_sp_initiated_sso">4.1.1. SP-Initiated SSO</h4>
+<h4 id="_endpoints_in_metadata">4.1.1. Endpoints in Metadata</h4>
+<div class="paragraph">
+<p>To comply with this profile, Service Providers MUST publish a <code>&lt;SingleSignOnService&gt;</code> endpoint in their metadata.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_sp_initiated_sso">4.1.2. SP-Initiated SSO</h4>
 <div class="paragraph">
 <p>Service Providers must support the direct generation of authentication request messages conforming to the SAML Authentication Request Protocol <a href="#SAML2Core">[SAML2Core]</a>.</p>
 </div>
@@ -868,7 +874,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 </div>
 <div class="sect3">
-<h4 id="_deep_linking">4.1.2. Deep Linking</h4>
+<h4 id="_deep_linking">4.1.3. Deep Linking</h4>
 <div class="paragraph">
 <p>Applications that support deep linking and direct addressability of protected resources (the vast majority) MUST maintain support for such links during a Browser SSO profile interaction. That is, it MUST be possible to request an arbitrary protected resource and (authorization permitting) have it supplied as the result of a successful Browser SSO profile exchange.</p>
 </div>
@@ -880,7 +886,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 </div>
 <div class="sect3">
-<h4 id="_support_for_multiple_idps">4.1.3. Support for Multiple IdPs</h4>
+<h4 id="_support_for_multiple_idps">4.1.4. Support for Multiple IdPs</h4>
 <div class="paragraph">
 <p>Service Providers MUST allow clients the option to authenticate specific resource URLs against more than one identity provider. <em>(This language is from the Impl Profile)</em></p>
 </div>
@@ -889,7 +895,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 </div>
 <div class="sect3">
-<h4 id="_requests">4.1.4. Requests</h4>
+<h4 id="_requests">4.1.5. Requests</h4>
 <div class="sect4">
 <h5 id="_binding">Binding</h5>
 <div class="paragraph">
@@ -928,13 +934,10 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="paragraph">
 <p>An SP SHOULD NOT request a RequestedAuthnContext request without the presence of an arrangement between the Identity and Service Providers regarding the Authentication Context definitions in use.</p>
 </div>
-<div class="paragraph">
-<p><em>(Do we want anything about error handling?)</em></p>
-</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_responses">4.1.5. Responses</h4>
+<h4 id="_responses">4.1.6. Responses</h4>
 <div class="sect4">
 <h5 id="_binding_2">Binding</h5>
 <div class="paragraph">
@@ -959,9 +962,15 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p><em>This is necessary because clients can freely generate requests that do not specify this attribute, potentially bypassing the SP&#8217;s intent.</em></p>
 </div>
 </div>
+<div class="sect4">
+<h5 id="_error_handling">Error Handling</h5>
+<div class="paragraph">
+<p>Service providers MUST be able to handle autentication responses that indicate authentication was not successful.</p>
+</div>
+</div>
 </div>
 <div class="sect3">
-<h4 id="_subject_identification">4.1.6. Subject Identification</h4>
+<h4 id="_subject_identification">4.1.7. Subject Identification</h4>
 <div class="sect4">
 <h5 id="_nameid_formats">NameID Formats</h5>
 <div class="paragraph">
@@ -1025,7 +1034,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 </div>
 <div class="sect3">
-<h4 id="_attribute_value_constraints">4.1.7. Attribute Value Constraints</h4>
+<h4 id="_attribute_value_constraints">4.1.8. Attribute Value Constraints</h4>
 <div class="paragraph">
 <p>When consuming SAML Attributes with standardized definitions in external specifications, Service Providers MUST NOT impose constraints beyond the definitions of those attributes.</p>
 </div>
@@ -1034,28 +1043,33 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 </div>
 <div class="sect3">
-<h4 id="_metadata_and_trust_management_2">4.1.8. Metadata and Trust Management</h4>
+<h4 id="_metadata_and_trust_management_2">4.1.9. Metadata and Trust Management</h4>
 <div class="sect4">
-<h5 id="_key_and_certificate_rollover">Key and Certificate "Rollover"</h5>
+<h5 id="_multiple_keys">Multiple Keys</h5>
 <div class="paragraph">
-<p>SP deployments MUST support multiple signing certificates in IdP metadata <em>(do we want more language? e.g., "and must be able to validate signed IdP assertions using either certificate.)</em> This makes it possible for the IdP to seamlessly migrate to a new signing key.</p>
+<p>SP deployments MUST support multiple signing certificates in IdP metadata and MUST be able to validate signed IdP assertions using either certificate. This makes it possible for the IdP to seamlessly migrate to a new signing key.</p>
 </div>
 <div class="paragraph">
-<p>If the SP publishes an encryption certificate in metadata, the SP deployment MUST be configurable with multiple decryption keys <em>(and must be able to decrypt Assertions encrypted with either of those keys)</em>. This makes it possible for the SP to seamlessly migrate to a new decryption key.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_single_logout">Single Logout</h5>
-<div class="paragraph">
-<p>Service Providers MUST publish a <code>&lt;SingleLogoutService&gt;</code> endpoint in their metadata if they issue Single Logout requests.</p>
+<p>If the SP publishes an encryption certificate in metadata, the SP deployment MUST be configurable with multiple decryption keys and MUST be able to decrypt Assertions encrypted with either of those keys. This makes it possible for the SP to seamlessly migrate to a new decryption key.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_single_logout_2">4.2. Single Logout</h3>
+<h3 id="_single_logout">4.2. Single Logout</h3>
 <div class="sect3">
-<h4 id="_requests_2">4.2.1. Requests</h4>
+<h4 id="_endpoints_in_metadata_2">4.2.1. Endpoints in Metadata</h4>
+<div class="paragraph">
+<p><em>(The following requirement contradicts the requirement below for
+multiple HTTP Virtual Hosts hosted under a single EntityID. Further work is
+needed.)</em></p>
+</div>
+<div class="paragraph">
+<p>To comply with this profile, Service Providers MUST publish a <code>&lt;SingleLogoutService&gt;</code> endpoint in their metadata.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_requests_2">4.2.2. Requests</h4>
 <div class="sect4">
 <h5 id="_binding_3">Binding</h5>
 <div class="paragraph">
@@ -1064,7 +1078,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 </div>
 <div class="sect3">
-<h4 id="_responses_2">4.2.2. Responses</h4>
+<h4 id="_responses_2">4.2.3. Responses</h4>
 <div class="sect4">
 <h5 id="_binding_4">Binding</h5>
 <div class="paragraph">
@@ -1073,7 +1087,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 </div>
 <div class="sect3">
-<h4 id="_behavior">4.2.3. Behavior</h4>
+<h4 id="_behavior">4.2.4. Behavior</h4>
 <div class="paragraph">
 <p>Service Providers MUST terminate the user&#8217;s local session before sending a <code>&lt;samlp:LogoutRequest&gt;</code> message to the Identity Provider.</p>
 </div>
@@ -1085,7 +1099,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 </div>
 <div class="sect3">
-<h4 id="_http_virtual_hosts">4.2.4. HTTP Virtual Hosts</h4>
+<h4 id="_http_virtual_hosts">4.2.5. HTTP Virtual Hosts</h4>
 <div class="paragraph">
 <p>When a single Service Provider (entityID) is used for multiple HTTP virtual hosts, the Service Provider SHOULD NOT publish any <code>&lt;SingleLogoutService&gt;</code> endpoints in its metadata.</p>
 </div>
@@ -1169,7 +1183,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 </div>
 <div class="sect2">
-<h3 id="_single_logout_3">5.2. Single Logout</h3>
+<h3 id="_single_logout_2">5.2. Single Logout</h3>
 <div class="sect3">
 <h4 id="_requests_4">5.2.1. Requests</h4>
 <div class="sect4">
