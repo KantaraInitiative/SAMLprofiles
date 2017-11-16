@@ -51,9 +51,7 @@ A Service Provider that does not require a specific `<saml:AuthnContextClassRef>
 
 A Service Provider that requires specific `<saml:AuthnContextClassRef>` values MUST specify the allowable values in a `<samlp:RequestedAuthnContext>` element in its requests, with the `Comparison` attribute set to `exact`.
 
-_(Do we need the text below?)_
-
-An SP SHOULD only request a RequestedAuthnContext request in the presence of an arrangement between the Identity and Service Providers regarding the Authentication Context definitions in use. 
+An SP SHOULD NOT request a RequestedAuthnContext request without the presence of an arrangement between the Identity and Service Providers regarding the Authentication Context definitions in use. 
 
 _(Do we want anything about error handling?)_ 
 
