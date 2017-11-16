@@ -926,10 +926,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>A Service Provider that requires specific <code>&lt;saml:AuthnContextClassRef&gt;</code> values MUST specify the allowable values in a <code>&lt;samlp:RequestedAuthnContext&gt;</code> element in its requests, with the <code>Comparison</code> attribute set to <code>exact</code>.</p>
 </div>
 <div class="paragraph">
-<p><em>(Do we need the text below?)</em></p>
-</div>
-<div class="paragraph">
-<p>An SP SHOULD only request a RequestedAuthnContext request in the presence of an arrangement between the Identity and Service Providers regarding the Authentication Context definitions in use.</p>
+<p>An SP SHOULD NOT request a RequestedAuthnContext request without the presence of an arrangement between the Identity and Service Providers regarding the Authentication Context definitions in use.</p>
 </div>
 <div class="paragraph">
 <p><em>(Do we want anything about error handling?)</em></p>
