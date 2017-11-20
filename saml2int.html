@@ -1204,7 +1204,7 @@ needed.)</em></p>
 <div class="sect4">
 <h5 id="_status">Status</h5>
 <div class="paragraph">
-<p>When an Identity Provider cannot terminate the user&#8217;s Identity Provider session, it MUST respond to the original requester, if any, with a <code>&lt;samlp:LogoutResponse&gt;</code> message containing a top-level <code>&lt;saml:StatusCode&gt;</code> of <code>urn:oasis:names:tc:SAML:2.0:status:Responder</code>.</p>
+<p>When an Identity Provider cannot terminate the user&#8217;s Identity Provider session, it MUST NOT respond to the original requester, if any, with a <code>&lt;samlp:LogoutResponse&gt;</code> message containing a top-level <code>&lt;saml:StatusCode&gt;</code> of <code>urn:oasis:names:tc:SAML:2.0:status:Success</code>.</p>
 </div>
 </div>
 </div>
@@ -1214,7 +1214,7 @@ needed.)</em></p>
 <p>Identity Providers MUST allow the user to terminate the user&#8217;s Identity Provider session in response to receiving a SAML Logout request. Identity Providers MAY allow the user the option to maintain their Identity Provider session rather than unilaterally terminating it.</p>
 </div>
 <div class="paragraph">
-<p>Identity Providers MAY additionally attempt to terminate some or all of the user&#8217;s Service Provider sessoins (Single Logout).</p>
+<p>Identity Providers MAY additionally attempt to terminate some or all of the user&#8217;s Service Provider sessions (Single Logout).</p>
 </div>
 <div class="paragraph">
 <p>After performing all logout functions, the user SHOULD be informed whether or not they have been logged out of all Service Provider sessions. If possible, the user should be presented a list of the services from which they have been logged out.</p>
