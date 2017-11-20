@@ -62,12 +62,13 @@ Identity Providers MUST support the HTTP-Redirect binding <<SAML2Bind>> or the H
 
 ===== Status
 
-When an Identity Provider cannot terminate the user's Identity Provider session, it MUST respond to the original requester, if any, with a `<samlp:LogoutResponse>` message containing a top-level `<saml:StatusCode>` of `urn:oasis:names:tc:SAML:2.0:status:Responder`.
+When an Identity Provider cannot terminate the user's Identity Provider session, it MUST NOT respond to the original requester, if any, with a `<samlp:LogoutResponse>` message containing a top-level `<saml:StatusCode>` of `urn:oasis:names:tc:SAML:2.0:status
+:Success`.
 
 ==== Behavior 
 
 Identity Providers MUST allow the user to terminate the user's Identity Provider session in response to receiving a SAML Logout request. Identity Providers MAY allow the user the option to maintain their Identity Provider session rather than unilaterally terminating it.
 
-Identity Providers MAY additionally attempt to terminate some or all of the user's Service Provider sessoins (Single Logout). 
+Identity Providers MAY additionally attempt to terminate some or all of the user's Service Provider sessions (Single Logout). 
 
 After performing all logout functions, the user SHOULD be informed whether or not they have been logged out of all Service Provider sessions. If possible, the user should be presented a list of the services from which they have been logged out.
