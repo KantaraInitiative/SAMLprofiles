@@ -29,3 +29,4 @@
 - [[[IMI]]] OASIS Standard, Identity Metasystem Interoperability Version 1.0, July 2009. http://docs.oasis-open.org/imi/identity/v1.0/identity.html
 - [[[SAML2SPRIP]]] OASIS Committee Specification, Service Provider Request Initiation Protocol and Profile Version 1.0, November 2010. http://docs.oasis-open.org/security/saml/Post2.0/sstc-request-initiation.pdf
 - [[[MACEAttrProf]]] MACEDir Working Group Specification, MACEDir SAML Attribute Profiles, April 2008. http://macedir.org/docs/internet2-mace-dir-saml-attributes-latest.pdf
+- [[[XMLEncBreak]]] Jager and Somorovsky, How to Break XML Encryption, October 2011. http://www.nds.rub.de/media/nds/veroeffentlichungen/2011/10/22/HowToBreakXMLenc.pdf
