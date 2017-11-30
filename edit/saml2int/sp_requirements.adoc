@@ -2,41 +2,13 @@
 
 === Web Browser SSO
 
-==== Endpoints in Metadata
-
-To comply with this profile, Service Providers MUST publish a `<SingleSignOnService>` endpoint in their metadata.
-
-==== SP-Initiated SSO
-
-Service Providers must support the direct generation of authentication request messages conforming to the SAML Authentication Request Protocol <<SAML2Core>>.
-
-Service Providers that want to bypass user-initiated discovery SHOULD support the SP Request Initiation Profile and Protocol defined in <<SAML2SPRIP>>.
-
-Service Providers MUST NOT require Identity Providers to support unsolicited responses (or so-called IdP-initiated SSO) <<SAML2Prof>> though they MAY support them as a voluntary means of bypassing discovery.
-
-==== Deep Linking
-
-Applications that support deep linking and direct addressability of protected resources (the vast majority) MUST maintain support for such links during a Browser SSO profile interaction. That is, it MUST be possible to request an arbitrary protected resource and (authorization permitting) have it supplied as the result of a successful Browser SSO profile exchange.
-
-It is RECOMMENDED that Service Providers support the preservation of POST bodies across a successful SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.
-
-The SAML binding-specific `RelayState` feature <<SAML2Bind>> is typically used to maintain the state information required to satisfy both of these requirements, the exact detail of which is left to implementations.
-
-==== Support for Multiple IdPs
-
-Service Providers MUST allow clients the option to authenticate specific resource URLs against more than one identity provider. _(This language is from the Impl Profile)_
-
-When more than one Identity Provider authenticates the same resource URL, IdP selection SHOULD be supported using the OASIS SSTC SAML v2.0 Identity Provider Discovery Profile <<IdPDisco>>.
-
 ==== Requests
 
 ===== Binding
 
-Service Providers MUST support the HTTP-Redirect binding <<SAML2Bind>> for the transmission of `<samlp:AuthnRequest>` messages. Support for other bindings is OPTIONAL.
+The HTTP-Redirect binding <<SAML2Bind>> MUST be used for the transmission of `<samlp:AuthnRequest>` messages.
 
-===== Avoiding Frames
-
-Requests MUST NOT be issued inside an HTML frame or via any mechanism that would require the use of third-party cookies by the Identity Provider to establish or recover a session with the user agent. This will typically imply that requests must involve a full-frame redirect, in order that the top level window origin be associated with the Identity Provider.
+Requests MUST NOT be issued inside an HTML frame or via any mechanism that would require the use of third-party cookies by the Identity Provider to establish or recover a session with the User Agent. This will typically imply that requests must involve a full-frame redirect, in order that the top level window origin be associated with the Identity Provider.
 
 ===== Request Content
 
@@ -44,39 +16,41 @@ The `<samlp:AuthnRequest>` message MUST either omit the `<samlp:NameIDPolicy>` e
 
 The message MUST NOT contain an `AssertionConsumerServiceIndex` attribute (i.e., the desired endpoint MUST be the default, or identified via the `AssertionConsumerServiceURL` attribute).
 
-The `AssertionConsumerServiceURL` value MUST match the location expressed in the Service Provider's metadata exactly, without requiring URL canonicalization/normalization. 
+The `AssertionConsumerServiceURL` value MUST match an endpoint location expressed in the Service Provider's metadata exactly, without requiring URL canonicalization/normalization. 
 
 _As an example, the Service Provider MUST NOT use a hostname with port number (such as https://sp.example.no:80/acs) in its request and without (such as https://sp.example.no/acs) in its metadata._
 
 ===== Authentication Contexts
 
-A Service Provider that does not require a specific `<saml:AuthnContextClassRef>` value MUST NOT include a `<samlp:RequestedAuthnContext>` element in its requests.
+An SP that does not require a specific `<saml:AuthnContextClassRef>` value MUST NOT include a `<samlp:RequestedAuthnContext>` element in its requests.
 
-A Service Provider that requires specific `<saml:AuthnContextClassRef>` values MUST specify the allowable values in a `<samlp:RequestedAuthnContext>` element in its requests, with the `Comparison` attribute set to `exact`.
+An SP that requires specific `<saml:AuthnContextClassRef>` values MUST specify the allowable values in a `<samlp:RequestedAuthnContext>` element in its requests, with the `Comparison` attribute set to `exact`.
 
-An SP SHOULD NOT request a RequestedAuthnContext request without the presence of an arrangement between the Identity and Service Providers regarding the Authentication Context definitions in use. 
+An SP SHOULD NOT request a value in the absence of a shared understanding itself and the IdP regarding its definition.
 
 ==== Responses
 
 ===== Binding
 
-Service Providers MUST support the HTTP-POST binding for the receipt of `<samlp:Response>` messages. Support for other bindings is OPTIONAL.
+SPs MUST support the HTTP-POST binding for the receipt of `<samlp:Response>` messages. Support for other bindings is OPTIONAL.
 
 The endpoint(s) at which a Service Provider supports receipt of `<samlp:Response>` messages MUST be protected by TLS/SSL.
 
 ===== XML Encryption
 
-Service Providers MUST support decryption of `<saml:EncryptedAssertion>` elements. Support for other encrypted constructs is OPTIONAL.
-
-===== Forced Re-Authentication
-
-Service Providers that include a `ForceAuthn` attribute of `true` in their requests SHOULD test the currency of the `AuthnInstant` element in the received assertions to verify the currency of the authentication event.
-
-_This is necessary because clients can freely generate requests that do not specify this attribute, potentially bypassing the SP's intent._
+SPs MUST support decryption of `<saml:EncryptedAssertion>` elements. Support for other encrypted constructs is OPTIONAL.
 
 ===== Error Handling
 
-Service providers MUST be able to handle autentication responses that indicate authentication was not successful.
+SPs MUST gracefully handle error responses containing `<samlp:StatusCode>` other than `urn:oasis:names:tc:SAML:2.0:status:Success`.
+
+The response to such errors MUST direct users to appropriate support resources offered by the SP or alternatively to the `errorURL` attribute in an IdP's metadata.
+
+===== Forced Re-Authentication
+
+SPs that include a `ForceAuthn` attribute of `true` in their requests SHOULD test the currency of the `AuthnInstant` element in the received assertions to verify the currency of the authentication event.
+
+_This is necessary because clients can freely generate requests that do not specify this attribute, potentially bypassing the SP's intent._
 
 ==== Subject Identification
 
@@ -111,9 +85,9 @@ Service Providers requiring the display of identifiers to users, the identificat
 
 ===== Identifier Scoping
 
-Service Providers MUST prevent unintended identifier collisions in the values asserted by different Identity Providers, and the required identifier types above are "scoped" to fulfill this requirement.
+SPs MUST prevent unintended identifier collisions in the values asserted by different Identity Providers, and the required identifier types above are "scoped" via a DNS-like syntax to fulfill this requirement.
 
-Service Providers MUST associate identifier scopes with Identity Providers such that only authorized Identity Providers may assert identifiers in particular scopes.
+SPs MUST associate identifier scopes with Identity Providers such that only authorized Identity Providers may assert identifiers with particular scopes.
 
 ==== Attribute Value Constraints
 
@@ -121,46 +95,95 @@ When consuming SAML Attributes with standardized definitions in external specifi
 
 _This may imply supporting extra long attribute values, attributes that contain multiple values, broad character set support, etc. Maybe this is less critical with the subject ID changes?_
 
-==== Metadata and Trust Management
+==== SP-Initiated SSO
 
-===== Multiple Keys
+Service Providers must support the direct generation of authentication request messages conforming to the SAML Authentication Request Protocol <<SAML2Core>>.
 
-SP deployments MUST support multiple signing certificates in IdP metadata and MUST be able to validate signed IdP assertions using either certificate. This makes it possible for the IdP to seamlessly migrate to a new signing key.
+Service Providers that want to bypass user-initiated discovery SHOULD support the SP Request Initiation Profile and Protocol defined in <<SAML2SPRIP>>.
 
-If the SP publishes an encryption certificate in metadata, the SP deployment MUST be configurable with multiple decryption keys and MUST be able to decrypt Assertions encrypted with either of those keys. This makes it possible for the SP to seamlessly migrate to a new decryption key.
+Service Providers MUST NOT require Identity Providers to support unsolicited responses (or so-called IdP-initiated SSO) <<SAML2Prof>> though they MAY support them as a voluntary means of bypassing discovery.
+
+==== Deep Linking
+
+Applications that support deep linking and direct addressability of protected resources (the vast majority) MUST maintain support for such links during a Browser SSO profile interaction. That is, it MUST be possible to request an arbitrary protected resource and (authorization permitting) have it supplied as the result of a successful Browser SSO profile exchange.
+
+It is RECOMMENDED that Service Providers support the preservation of POST bodies across a successful SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.
+
+The SAML binding-specific `RelayState` feature <<SAML2Bind>> is typically used to maintain the state information required to satisfy both of these requirements, the exact detail of which is left to implementations.
+
+==== Support for Multiple IdPs
+
+Service Providers MUST allow clients the option to authenticate specific resource URLs against more than one identity provider. _(This language is from the Impl Profile)_
+
+When more than one Identity Provider authenticates the same resource URL, IdP selection SHOULD be supported using the OASIS SSTC SAML v2.0 Identity Provider Discovery Profile <<IdPDisco>>.
 
 === Single Logout
-
-==== Endpoints in Metadata
-
-_(The following requirement contradicts the requirement below for
-multiple HTTP Virtual Hosts hosted under a single EntityID. Further work is
-needed.)_
-
-To comply with this profile, Service Providers MUST publish a `<SingleLogoutService>` endpoint in their metadata.
 
 ==== Requests
 
 ===== Binding
 
-Service Providers SHOULD support the HTTP-Redirect binding <<SAML2Bind>> or the HTTP-POST binding <<SAML2Bind>> for the receipt of `<samlp:LogoutRequest>` or `<samlp:LogoutResponse>` messages. Support for other bindings is OPTIONAL.
+The HTTP-Redirect binding <<SAML2Bind>> MUST be used for the transmission of `<samlp:LogoutRequest>` messages.
+
+SPs MUST support the HTTP-Redirect <<SAML2Bind>> binding for the receipt of `<samlp:LogoutRequest>` messages.
+
+Requests MUST NOT be issued inside an HTML frame or via any mechanism that would require the use of third-party cookies by the Identity Provider to establish or recover a session with the User Agent. This will typically imply that requests must involve a full-frame redirect, in order that the top level window origin be associated with the Identity Provider.
+
+_The full-frame requirement is also necessary to ensure that full control of the user interface is released to the IdP._
+
+===== Request Content
+
+The `<saml:NameID>` element included in an SPs requests MUST exactly match the corresponding element received from the Identity Provider, including its element content and all XML attributes included therein.
+
+Support for the encryption of the `<saml:NameID>` element is OPTIONAL.
 
 ==== Responses
 
 ===== Binding
 
-Service Providers SHOULD support the HTTP-Redirect binding <<SAML2Bind>> or the HTTP-POST binding <<SAML2Bind>> for the transmission of `<samlp:LogoutRequest>` or `<samlp:LogoutResponse>` messages. Support for other bindings is OPTIONAL.
+The HTTP-Redirect binding <<SAML2Bind>> MUST be used for the transmission of `<samlp:LogoutResponse>` messages.
 
-==== Behavior
+SPs MUST support the HTTP-Redirect <<SAML2Bind>> binding for the receipt of `<samlp:LogoutResponse>` messages, in the event that they do not include the `<aslo:Asynchronous>` extension <<SAML2ASLO>> in all of their requests.
 
-Service Providers MUST terminate the user's local session before sending a `<samlp:LogoutRequest>` message to the Identity Provider.
+==== Behavioral Requirements
 
-Service Providers MUST NOT send a `<samlp:LogoutRequest>` message as the result of an idle activity timeout in the Service Provider.  _Timeout of a single Service Provider must not trigger Single Logout of all the user's sessions without their consent._
+SPs MUST terminate a subject's local session before issuing a `<samlp:LogoutRequest>` message to the Identity Provider.
 
-Service Providers MUST NOT expect to regain control of the user interface after a `<samlp:LogoutRequest>` message is sent via an Asynchronous Binding (Front-Channel).
+_This ensures the safest possible result for subjects in the event that logout fails for some reason, as it often will._
 
-==== HTTP Virtual Hosts
+SPs MUST NOT issue a `<samlp:LogoutRequest>` message as the result of an idle activity timeout.
 
-When a single Service Provider (entityID) is used for multiple HTTP virtual hosts, the Service Provider SHOULD NOT publish any `<SingleLogoutService>` endpoints in its metadata.
+_Timeout of a single application/service must not trigger logout of an SSO session because this imposes a single service's requirements on an entire IdP deployment. Applications with sensitive requirements should consider other mechanisms, such as the `ForceAuthn` attribute, to achieve their goals._
 
-_A single entityID can only have one well-defined `<SingleLogoutService>` endpoint per binding. Cookies are domain-based and most often you can't fully implement a logout on one virtual host if the Single Logout is sent to another virtual host. The `<samlp:LogoutRequest>` message cannot specify a specific endpoint._
+==== Logout and Virtual Hosting
+
+An SP that maintains distinct sessions across multiple virtual hosts SHOULD identify itself by means of a distinct entityID (with associated metadata) for each virtual host.
+
+_A single entity can have only one well-defined `<SingleLogoutService>` endpoint per binding. Cookies are typically host-based and logout cannot typically be implemented easily across virtual hosts. Unlike during SSO, a `<samlp:LogoutRequest>` message cannot specify a particular response endpoint, so this scenario is generally not viable._
+
+=== Metadata and Trust Management
+
+==== Support for Multiple Keys
+
+SP deployments MUST support multiple signing certificates in IdP metadata and MUST support validation of XML signatures using a key from any of them.
+
+SP deployments MUST be able to support multiple decryption keys and MUST be able to decrypt `<saml:EncryptedAssertion>` elements encrypted with any configured key.
+
+_These requirements make seamless key migration possible for both parties._
+
+==== Metadata Content
+
+By virtue of this profile's requirements, an SP's metadata MUST contain:
+
+* an `<md:IDPSSODescriptor>` role element
+** at least one `<md:AssertionConsumerService>` endpoint element
+** at least one `<md:SingleLogoutService>` endpoint element (exception noted below)
+** at least one `<md:KeyDescriptor>` element whose `use` attribute is omitted or set to `signing`
+** at least one `<md:KeyDescriptor>` element whose `use` attribute is omitted or set to `encryption`
+* an `<md:Extensions>` element
+** an `<mdui:UIInfo>` extension element with previously prescribed content
+** an `<mdattr:EntityAttributes>` extension element with previously prescribed content
+
+_Contacts? Organization?_
+
+An `<md:SingleLogoutService>` element MAY be omitted in the event that an SP solely issues `<samlp:LogoutRequest>` messages containing the `<aslo:Asynchronous>` extension <<SAML2ASLO>>.

@@ -15,6 +15,14 @@ When referring to elements from the SAML 2.0 Metadata Extensions for Login and D
 
 * `<mdui:MetadataElement>`
 
+When referring to elements from the SAML 2.0 Metadata Extension for Entity Attributes specification <<MetaAttr>>, the following syntax is used:
+
+* `<mdattr:MetadataElement>`
+
+When referring to elements from the SAML V2.0 Asynchronous Single Logout Protocol Extension specification <<SAML2ASLO>, the following syntax is used:
+
+* `<aslo:Element>`
+
 === Terminology
 
 The abbreviations IdP and SP are used below to refer to Identity Providers and Service Providers in the sense of their usage within the SAML Browser SSO Profile and Single Logout profiles.
