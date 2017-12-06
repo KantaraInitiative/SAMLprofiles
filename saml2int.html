@@ -474,14 +474,14 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <li><a href="#_cryptographic_algorithms">3.3. Cryptographic Algorithms</a></li>
 </ul>
 </li>
-<li><a href="#_service_provider_requirements">4. Service Provider Requirements</a>
+<li><a href="#_sp_requirements">4. SP Requirements</a>
 <ul class="sectlevel2">
 <li><a href="#_web_browser_sso">4.1. Web Browser SSO</a></li>
 <li><a href="#_single_logout">4.2. Single Logout</a></li>
 <li><a href="#_metadata_and_trust_management_2">4.3. Metadata and Trust Management</a></li>
 </ul>
 </li>
-<li><a href="#_identity_provider_requirements">5. Identity Provider Requirements</a>
+<li><a href="#_idp_requirements">5. IdP Requirements</a>
 <ul class="sectlevel2">
 <li><a href="#_web_browser_sso_2">5.1. Web Browser SSO</a></li>
 <li><a href="#_single_logout_2">5.2. Single Logout</a></li>
@@ -497,13 +497,13 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <h2 id="_introduction">1. Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This profile specifies behavior and options that deployments of the SAML V2.0 Web Browser SSO Profile <a href="#SAML2Prof">[SAML2Prof]</a>, and related profiles, are required or permitted to rely on. This revision, the first major rewrite of this material, reflects the input of many experienced implementers and deployers of this technology and best practice developed over 15 years of experience with varied approaches. While it has an emphasis on highly-scaled multi-lateral federation deployments involving thousands of Identity and Service Providers, most of these requirements are applicable to virtually any significant deployment of SAML SSO.</p>
+<p>This profile specifies behavior and options that deployments of the SAML V2.0 Web Browser SSO Profile <a href="#SAML2Prof">[SAML2Prof]</a>, and related profiles, are required or permitted to rely on. This revision, the first major rewrite of this material, reflects the input of many experienced implementers and deployers of this technology and best practice developed over 15 years of experience with varied approaches. While it has an emphasis on highly-scaled multi-lateral federation deployments involving thousands of Identity and SPs, most of these requirements are applicable to virtually any significant deployment of SAML SSO.</p>
 </div>
 <div class="paragraph">
 <p>The requirements specified are in addition to all normative requirements of the original profiles, as modified by the Approved Errata <a href="#SAML2Err">[SAML2Err]</a>, and readers should be familiar with all relevant reference documents. Any such requirements are not repeated here except where deemed necessary to highlight a point of discussion or draw attention to an issue addressed in errata, but remain implied.</p>
 </div>
 <div class="paragraph">
-<p>Nothing in this profile should be taken to imply that disclosing personally identifiable information, or indeed any information, is required from an Identity Provider with respect to any particular Service Provider. That remains at the discretion of applicable settings, user consent, or other appropriate means in accordance with regulations and policies. However, this profile does obligate Identity Providers to honor certain key signals from a Service Provider in the area of subject identification and requires successful responses to include specific SAML Attributes under certain conditions. Failure is always an option.</p>
+<p>Nothing in this profile should be taken to imply that disclosing personally identifiable information, or indeed any information, is required from an IdP with respect to any particular SP. That remains at the discretion of applicable settings, user consent, or other appropriate means in accordance with regulations and policies. However, this profile does obligate IdPs to honor certain key signals from an SP in the area of subject identification and requires successful responses to include specific SAML Attributes under certain conditions. Failure is always an option.</p>
 </div>
 <div class="paragraph">
 <p>Note that SAML features that are optional, or lack mandatory processing rules, are assumed to be optional and out of scope of this profile if not otherwise precluded or given specific processing rules.</p>
@@ -708,7 +708,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>Certificates used MUST NOT be signed with an MD5-based signature algorithm and SHOULD NOT be signed with a SHA1-based signature algorithm.</p>
 </div>
 <div class="paragraph">
-<p>By virtue of the profile&#8217;s overall requirements, an Identity Provider&#8217;s metadata MUST include at least one signing certificate (that is, an <code>&lt;md:KeyDescriptor&gt;</code> with no <code>use</code> attribute or one set to <code>signing</code>), and a Service Provider&#8217;s metadata MUST include at least one encryption certificate (that is, an <code>&lt;md:KeyDescriptor&gt;</code> with no <code>use</code> attribute or one set to <code>encryption</code>).</p>
+<p>By virtue of the profile&#8217;s overall requirements, an IdP&#8217;s metadata MUST include at least one signing certificate (that is, an <code>&lt;md:KeyDescriptor&gt;</code> with no <code>use</code> attribute or one set to <code>signing</code>), and an SP&#8217;s metadata MUST include at least one encryption certificate (that is, an <code>&lt;md:KeyDescriptor&gt;</code> with no <code>use</code> attribute or one set to <code>encryption</code>).</p>
 </div>
 </div>
 <div class="sect4">
@@ -868,7 +868,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 </div>
 <div class="sect1">
-<h2 id="_service_provider_requirements">4. Service Provider Requirements</h2>
+<h2 id="_sp_requirements">4. SP Requirements</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_web_browser_sso">4.1. Web Browser SSO</h3>
@@ -880,7 +880,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>The HTTP-Redirect binding <a href="#SAML2Bind">[SAML2Bind]</a> MUST be used for the transmission of <code>&lt;samlp:AuthnRequest&gt;</code> messages.</p>
 </div>
 <div class="paragraph">
-<p>Requests MUST NOT be issued inside an HTML frame or via any mechanism that would require the use of third-party cookies by the Identity Provider to establish or recover a session with the User Agent. This will typically imply that requests must involve a full-frame redirect, in order that the top level window origin be associated with the Identity Provider.</p>
+<p>Requests MUST NOT be issued inside an HTML frame or via any mechanism that would require the use of third-party cookies by the IdP to establish or recover a session with the User Agent. This will typically imply that requests must involve a full-frame redirect, in order that the top level window origin be associated with the IdP.</p>
 </div>
 </div>
 <div class="sect4">
@@ -892,10 +892,10 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>The message MUST NOT contain an <code>AssertionConsumerServiceIndex</code> attribute (i.e., the desired endpoint MUST be the default, or identified via the <code>AssertionConsumerServiceURL</code> attribute).</p>
 </div>
 <div class="paragraph">
-<p>The <code>AssertionConsumerServiceURL</code> value MUST match an endpoint location expressed in the Service Provider&#8217;s metadata exactly, without requiring URL canonicalization/normalization.</p>
+<p>The <code>AssertionConsumerServiceURL</code> value MUST match an endpoint location expressed in the SP&#8217;s metadata exactly, without requiring URL canonicalization/normalization.</p>
 </div>
 <div class="paragraph">
-<p><em>As an example, the Service Provider MUST NOT use a hostname with port number (such as <a href="https://sp.example.no:80/acs" class="bare">https://sp.example.no:80/acs</a>) in its request and without (such as <a href="https://sp.example.no/acs" class="bare">https://sp.example.no/acs</a>) in its metadata.</em></p>
+<p><em>As an example, the SP MUST NOT use a hostname with port number (such as <a href="https://sp.example.no:80/acs" class="bare">https://sp.example.no:80/acs</a>) in its request and without (such as <a href="https://sp.example.no/acs" class="bare">https://sp.example.no/acs</a>) in its metadata.</em></p>
 </div>
 </div>
 <div class="sect4">
@@ -919,7 +919,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>SPs MUST support the HTTP-POST binding for the receipt of <code>&lt;samlp:Response&gt;</code> messages. Support for other bindings is OPTIONAL.</p>
 </div>
 <div class="paragraph">
-<p>The endpoint(s) at which a Service Provider supports receipt of <code>&lt;samlp:Response&gt;</code> messages MUST be protected by TLS/SSL.</p>
+<p>The endpoint(s) at which an SP supports receipt of <code>&lt;samlp:Response&gt;</code> messages MUST be protected by TLS/SSL.</p>
 </div>
 </div>
 <div class="sect4">
@@ -952,28 +952,28 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sect4">
 <h5 id="_nameid_formats">NameID Formats</h5>
 <div class="paragraph">
-<p>Service Providers MUST support arbitrary <code>&lt;saml:NameID&gt;</code> elements regardless of <code>Format</code>, for the purposes of Single Logout.</p>
+<p>SPs MUST support arbitrary <code>&lt;saml:NameID&gt;</code> elements regardless of <code>Format</code>, for the purposes of Single Logout.</p>
 </div>
 <div class="paragraph">
-<p>Service Providers MUST NOT require the presence of a <code>&lt;saml:NameID&gt;</code> element and MUST NOT rely on the content of this element for long term identification of subjects;  <code>&lt;saml:Attribute&gt;</code> elements MUST be used for this purpose in the manner detailed below.</p>
+<p>SPs MUST NOT require the presence of a <code>&lt;saml:NameID&gt;</code> element and MUST NOT rely on the content of this element for long term identification of subjects;  <code>&lt;saml:Attribute&gt;</code> elements MUST be used for this purpose in the manner detailed below.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_subject_identifiers">Subject Identifiers</h5>
 <div class="paragraph">
-<p>If a Service Provider requires persistent tracking/identification of its users (as most do), then it MUST support one or both of the SAML Attributes defined by <a href="#SAML2SubjId">[SAML2SubjId]</a> for this purpose.</p>
+<p>If an SP requires persistent tracking/identification of its users (as most do), then it MUST support one or both of the SAML Attributes defined by <a href="#SAML2SubjId">[SAML2SubjId]</a> for this purpose.</p>
 </div>
 <div class="paragraph">
-<p>If a Service Provider requires coordination and/or correlation of user activity between itself and other Service Providers, then the SAML Attribute named <code>urn:oasis:names:tc:SAML:attribute:subject-id</code> is appropriate. Otherwise the SAML Attribute named <code>urn:oasis:names:tc:SAML:attribute:pairwise-id</code> should be used.</p>
+<p>If an SP requires coordination and/or correlation of user activity between itself and other SPs, then the SAML Attribute named <code>urn:oasis:names:tc:SAML:attribute:subject-id</code> is appropriate. Otherwise the SAML Attribute named <code>urn:oasis:names:tc:SAML:attribute:pairwise-id</code> should be used.</p>
 </div>
 <div class="paragraph">
-<p>Service Providers MAY support legacy or historical <code>&lt;saml:NameID&gt;</code> and <code>&lt;saml:Attribute&gt;</code> content for compatibility reasons but MUST NOT require their use.</p>
+<p>SPs MAY support legacy or historical <code>&lt;saml:NameID&gt;</code> and <code>&lt;saml:Attribute&gt;</code> content for compatibility reasons but MUST NOT require their use.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_subject_identifier_requirements_signaling">Subject Identifier Requirements Signaling</h5>
 <div class="paragraph">
-<p>A Service Provider MUST represent its identifier requirements in its SAML metadata, consistent with the Requirements Signaling mechanism defined in <a href="#SAML2SubjId">[SAML2SubjId]</a>.</p>
+<p>An SP MUST represent its identifier requirements in its SAML metadata, consistent with the Requirements Signaling mechanism defined in <a href="#SAML2SubjId">[SAML2SubjId]</a>.</p>
 </div>
 </div>
 <div class="sect4">
@@ -982,7 +982,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>The required identifier types above are opaque, unknown to users in most cases, and unsuitable for display.</p>
 </div>
 <div class="paragraph">
-<p>Service Providers requiring the display of identifiers to users, the identification of other users via searching, selection, etc., and similar use cases SHOULD rely on additional suitable SAML Attributes such as:</p>
+<p>SPs requiring the display of identifiers to users, the identification of other users via searching, selection, etc., and similar use cases SHOULD rely on additional suitable SAML Attributes such as:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1004,17 +1004,17 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sect4">
 <h5 id="_identifier_scoping">Identifier Scoping</h5>
 <div class="paragraph">
-<p>SPs MUST prevent unintended identifier collisions in the values asserted by different Identity Providers, and the required identifier types above are "scoped" via a DNS-like syntax to fulfill this requirement.</p>
+<p>SPs MUST prevent unintended identifier collisions in the values asserted by different IdPs, and the required identifier types above are "scoped" via a DNS-like syntax to fulfill this requirement.</p>
 </div>
 <div class="paragraph">
-<p>SPs MUST associate identifier scopes with Identity Providers such that only authorized Identity Providers may assert identifiers with particular scopes.</p>
+<p>SPs MUST associate identifier scopes with IdPs such that only authorized IdPs may assert identifiers with particular scopes.</p>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_attribute_value_constraints">4.1.4. Attribute Value Constraints</h4>
 <div class="paragraph">
-<p>When consuming SAML Attributes with standardized definitions in external specifications, Service Providers MUST NOT impose constraints beyond the definitions of those attributes.</p>
+<p>When consuming SAML Attributes with standardized definitions in external specifications, SPs MUST NOT impose constraints beyond the definitions of those attributes.</p>
 </div>
 <div class="paragraph">
 <p><em>This may imply supporting extra long attribute values, attributes that contain multiple values, broad character set support, etc. Maybe this is less critical with the subject ID changes?</em></p>
@@ -1023,13 +1023,13 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sect3">
 <h4 id="_sp_initiated_sso">4.1.5. SP-Initiated SSO</h4>
 <div class="paragraph">
-<p>Service Providers must support the direct generation of authentication request messages conforming to the SAML Authentication Request Protocol <a href="#SAML2Core">[SAML2Core]</a>.</p>
+<p>SPs must support the direct generation of authentication request messages conforming to the SAML Authentication Request Protocol <a href="#SAML2Core">[SAML2Core]</a>.</p>
 </div>
 <div class="paragraph">
-<p>Service Providers that want to bypass user-initiated discovery SHOULD support the SP Request Initiation Profile and Protocol defined in <a href="#SAML2SPRIP">[SAML2SPRIP]</a>.</p>
+<p>SPs that want to bypass user-initiated discovery SHOULD support the SP Request Initiation Profile and Protocol defined in <a href="#SAML2SPRIP">[SAML2SPRIP]</a>.</p>
 </div>
 <div class="paragraph">
-<p>Service Providers MUST NOT require Identity Providers to support unsolicited responses (or so-called IdP-initiated SSO) <a href="#SAML2Prof">[SAML2Prof]</a> though they MAY support them as a voluntary means of bypassing discovery.</p>
+<p>SPs MUST NOT require IdPs to support unsolicited responses (or so-called IdP-initiated SSO) <a href="#SAML2Prof">[SAML2Prof]</a> though they MAY support them as a voluntary means of bypassing discovery.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1038,7 +1038,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>Applications that support deep linking and direct addressability of protected resources (the vast majority) MUST maintain support for such links during a Browser SSO profile interaction. That is, it MUST be possible to request an arbitrary protected resource and (authorization permitting) have it supplied as the result of a successful Browser SSO profile exchange.</p>
 </div>
 <div class="paragraph">
-<p>It is RECOMMENDED that Service Providers support the preservation of POST bodies across a successful SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.</p>
+<p>It is RECOMMENDED that SPs support the preservation of POST bodies across a successful SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.</p>
 </div>
 <div class="paragraph">
 <p>The SAML binding-specific <code>RelayState</code> feature <a href="#SAML2Bind">[SAML2Bind]</a> is typically used to maintain the state information required to satisfy both of these requirements, the exact detail of which is left to implementations.</p>
@@ -1047,10 +1047,10 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sect3">
 <h4 id="_support_for_multiple_idps">4.1.7. Support for Multiple IdPs</h4>
 <div class="paragraph">
-<p>Service Providers MUST allow clients the option to authenticate specific resource URLs against more than one identity provider. <em>(This language is from the Impl Profile)</em></p>
+<p>SPs MUST allow clients the option to authenticate specific resource URLs against more than one IdP. <em>(This language is from the Impl Profile)</em></p>
 </div>
 <div class="paragraph">
-<p>When more than one Identity Provider authenticates the same resource URL, IdP selection SHOULD be supported using the OASIS SSTC SAML v2.0 Identity Provider Discovery Profile <a href="#IdPDisco">[IdPDisco]</a>.</p>
+<p>When more than one IdP authenticates the same resource URL, IdP selection SHOULD be supported using the OASIS SSTC SAML v2.0 IdP Discovery Profile <a href="#IdPDisco">[IdPDisco]</a>.</p>
 </div>
 </div>
 </div>
@@ -1067,7 +1067,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>SPs MUST support the HTTP-Redirect <a href="#SAML2Bind">[SAML2Bind]</a> binding for the receipt of <code>&lt;samlp:LogoutRequest&gt;</code> messages.</p>
 </div>
 <div class="paragraph">
-<p>Requests MUST NOT be issued inside an HTML frame or via any mechanism that would require the use of third-party cookies by the Identity Provider to establish or recover a session with the User Agent. This will typically imply that requests must involve a full-frame redirect, in order that the top level window origin be associated with the Identity Provider.</p>
+<p>Requests MUST NOT be issued inside an HTML frame or via any mechanism that would require the use of third-party cookies by the IdP to establish or recover a session with the User Agent. This will typically imply that requests must involve a full-frame redirect, in order that the top level window origin be associated with the IdP.</p>
 </div>
 <div class="paragraph">
 <p><em>The full-frame requirement is also necessary to ensure that full control of the user interface is released to the IdP.</em></p>
@@ -1076,7 +1076,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sect4">
 <h5 id="_request_content_2">Request Content</h5>
 <div class="paragraph">
-<p>The <code>&lt;saml:NameID&gt;</code> element included in an SPs requests MUST exactly match the corresponding element received from the Identity Provider, including its element content and all XML attributes included therein.</p>
+<p>The <code>&lt;saml:NameID&gt;</code> element included in an SPs requests MUST exactly match the corresponding element received from the IdP, including its element content and all XML attributes included therein.</p>
 </div>
 <div class="paragraph">
 <p>Support for the encryption of the <code>&lt;saml:NameID&gt;</code> element is OPTIONAL.</p>
@@ -1098,7 +1098,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sect3">
 <h4 id="_behavioral_requirements">4.2.3. Behavioral Requirements</h4>
 <div class="paragraph">
-<p>SPs MUST terminate a subject&#8217;s local session before issuing a <code>&lt;samlp:LogoutRequest&gt;</code> message to the Identity Provider.</p>
+<p>SPs MUST terminate a subject&#8217;s local session before issuing a <code>&lt;samlp:LogoutRequest&gt;</code> message to the IdP.</p>
 </div>
 <div class="paragraph">
 <p><em>This ensures the safest possible result for subjects in the event that logout fails for some reason, as it often will.</em></p>
@@ -1186,7 +1186,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 </div>
 <div class="sect1">
-<h2 id="_identity_provider_requirements">5. Identity Provider Requirements</h2>
+<h2 id="_idp_requirements">5. IdP Requirements</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_web_browser_sso_2">5.1. Web Browser SSO</h3>
@@ -1195,22 +1195,22 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sect4">
 <h5 id="_binding_5">Binding</h5>
 <div class="paragraph">
-<p>Identity Providers MUST support the HTTP-Redirect binding <a href="#SAML2Bind">[SAML2Bind]</a> for the receipt of <code>&lt;samlp:AuthnRequest&gt;</code> messages. Support for other bindings is OPTIONAL.</p>
+<p>IdPs MUST support the HTTP-Redirect binding <a href="#SAML2Bind">[SAML2Bind]</a> for the receipt of <code>&lt;samlp:AuthnRequest&gt;</code> messages. Support for other bindings is OPTIONAL.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_endpoint_verification">Endpoint verification.</h5>
 <div class="paragraph">
-<p>When verifying the <code>AssertionConsumerServiceURL</code>, it is RECOMMENDED that the Identity Provider perform a case-sensitive string comparison between the requested value and the values found in the Service Provider&#8217;s metadata. It is OPTIONAL to apply any form of URL canonicalization.</p>
+<p>When verifying the <code>AssertionConsumerServiceURL</code>, it is RECOMMENDED that the IdP perform a case-sensitive string comparison between the requested value and the values found in the SP&#8217;s metadata. It is OPTIONAL to apply any form of URL canonicalization.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_forced_re_authentication_support">Forced Re-Authentication Support</h5>
 <div class="paragraph">
-<p>Identity Providers MUST ensure that any response to a <code>&lt;samlp:AuthnRequest&gt;</code> that contains the attribute <code>ForceAuthn</code> set to <code>true</code> results in an authentication challenge that requires proof that the subject is present. If this condition is met, the IdP MUST also reflect this success by setting the value of the <code>AuthnInstant</code> value in the assertion it generates to a fresh value.</p>
+<p>IdPs MUST ensure that any response to a <code>&lt;samlp:AuthnRequest&gt;</code> that contains the attribute <code>ForceAuthn</code> set to <code>true</code> results in an authentication challenge that requires proof that the subject is present. If this condition is met, the IdP MUST also reflect this success by setting the value of the <code>AuthnInstant</code> value in the assertion it generates to a fresh value.</p>
 </div>
 <div class="paragraph">
-<p>If an Identity Provider cannot prove subject presence, then it MUST fail the authentication request and SHOULD respond to the Service Provider with a SAML error status.</p>
+<p>If an IdP cannot prove subject presence, then it MUST fail the authentication request and SHOULD respond to the SP with a SAML error status.</p>
 </div>
 </div>
 </div>
@@ -1219,7 +1219,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sect4">
 <h5 id="_binding_6">Binding</h5>
 <div class="paragraph">
-<p>Identity Providers MUST support the HTTP-POST binding <a href="#SAML2Bind">[SAML2Bind]</a> for the transmission of <code>&lt;samlp:Response&gt;</code> messages. Support for other bindings is OPTIONAL.</p>
+<p>IdPs MUST support the HTTP-POST binding <a href="#SAML2Bind">[SAML2Bind]</a> for the transmission of <code>&lt;samlp:Response&gt;</code> messages. Support for other bindings is OPTIONAL.</p>
 </div>
 </div>
 <div class="sect4">
@@ -1231,7 +1231,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sect4">
 <h5 id="_xml_encryption_2">XML Encryption</h5>
 <div class="paragraph">
-<p>In the event the HTTP-POST binding <a href="#SAML2Bind">[SAML2Bind]</a> is used, assertions MUST be encrypted and transmitted via a <code>&lt;saml:EncryptedAssertion&gt;</code> element. Information intended for the consumption of the Service Provider MUST NOT be further encrypted via <code>&lt;saml:EncryptedID&gt;</code> or <code>&lt;saml:EncryptedAttribute&gt;</code> constructs.</p>
+<p>In the event the HTTP-POST binding <a href="#SAML2Bind">[SAML2Bind]</a> is used, assertions MUST be encrypted and transmitted via a <code>&lt;saml:EncryptedAssertion&gt;</code> element. Information intended for the consumption of the SP MUST NOT be further encrypted via <code>&lt;saml:EncryptedID&gt;</code> or <code>&lt;saml:EncryptedAttribute&gt;</code> constructs.</p>
 </div>
 </div>
 </div>
@@ -1241,18 +1241,18 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>Assertions MUST contain a <code>&lt;saml:NameID&gt;</code> element with the <code>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</code> format, as defined in <a href="#SAML2Core">[SAML2Core]</a>, for the purposes of logout.</p>
 </div>
 <div class="paragraph">
-<p>Identity Providers SHOULD support one or both of the SAML Attributes defined by <a href="#SAML2SubjId">[SAML2SubjId]</a> for non-transient identification of subjects. Support for both is RECOMMENDED.</p>
+<p>IdPs SHOULD support one or both of the SAML Attributes defined by <a href="#SAML2SubjId">[SAML2SubjId]</a> for non-transient identification of subjects. Support for both is RECOMMENDED.</p>
 </div>
 <div class="sect4">
 <h5 id="_subject_identifier_requirements_signaling_2">Subject Identifier Requirements Signaling</h5>
 <div class="paragraph">
-<p>Identity Providers MUST support the metadata-based identifier requirement signaling mechanism defined in <a href="#SAML2SubjId">[SAML2SubjId]</a>.</p>
+<p>IdPs MUST support the metadata-based identifier requirement signaling mechanism defined in <a href="#SAML2SubjId">[SAML2SubjId]</a>.</p>
 </div>
 <div class="paragraph">
-<p>If an Identity Provider cannot or will not satisfy the requirements of a Service Provider in this respect, then it MUST fail the authentication request and SHOULD respond to the Service Provider with a SAML error status.</p>
+<p>If an IdP cannot or will not satisfy the requirements of an SP in this respect, then it MUST fail the authentication request and SHOULD respond to the SP with a SAML error status.</p>
 </div>
 <div class="paragraph">
-<p>In the absence of any signaling by a Service Provider, an Identity Provider is free to supply either, both, or neither SAML Attribute, or to return an error as it sees fit.</p>
+<p>In the absence of any signaling by an SP, an IdP is free to supply either, both, or neither SAML Attribute, or to return an error as it sees fit.</p>
 </div>
 </div>
 </div>
@@ -1264,7 +1264,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sect4">
 <h5 id="_binding_7">Binding</h5>
 <div class="paragraph">
-<p>Identity Providers MUST support the HTTP-Redirect binding <a href="#SAML2Bind">[SAML2Bind]</a> or the HTTP-POST binding <a href="#SAML2Bind">[SAML2Bind]</a> for the receipt of <code>&lt;samlp:LogoutRequest&gt;</code> or <code>&lt;samlp:LogoutResponse&gt;</code> messages. Support for other bindings is OPTIONAL.</p>
+<p>IdPs MUST support the HTTP-Redirect binding <a href="#SAML2Bind">[SAML2Bind]</a> or the HTTP-POST binding <a href="#SAML2Bind">[SAML2Bind]</a> for the receipt of <code>&lt;samlp:LogoutRequest&gt;</code> or <code>&lt;samlp:LogoutResponse&gt;</code> messages. Support for other bindings is OPTIONAL.</p>
 </div>
 </div>
 </div>
@@ -1273,26 +1273,26 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sect4">
 <h5 id="_binding_8">Binding</h5>
 <div class="paragraph">
-<p>Identity Providers MUST support the HTTP-Redirect binding <a href="#SAML2Bind">[SAML2Bind]</a> or the HTTP-POST binding <a href="#SAML2Bind">[SAML2Bind]</a> for the transmission of <code>&lt;samlp:LogoutRequest&gt;</code> or <code>&lt;samlp:LogoutResponse&gt;</code> messages. Support for other bindings is OPTIONAL.</p>
+<p>IdPs MUST support the HTTP-Redirect binding <a href="#SAML2Bind">[SAML2Bind]</a> or the HTTP-POST binding <a href="#SAML2Bind">[SAML2Bind]</a> for the transmission of <code>&lt;samlp:LogoutRequest&gt;</code> or <code>&lt;samlp:LogoutResponse&gt;</code> messages. Support for other bindings is OPTIONAL.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_status">Status</h5>
 <div class="paragraph">
-<p>When an Identity Provider cannot terminate the user&#8217;s Identity Provider session, it MUST NOT respond to the original requester, if any, with a <code>&lt;samlp:LogoutResponse&gt;</code> message containing a top-level <code>&lt;saml:StatusCode&gt;</code> of <code>urn:oasis:names:tc:SAML:2.0:status:Success</code>.</p>
+<p>When an IdP cannot terminate the user&#8217;s IdP session, it MUST NOT respond to the original requester, if any, with a <code>&lt;samlp:LogoutResponse&gt;</code> message containing a top-level <code>&lt;saml:StatusCode&gt;</code> of <code>urn:oasis:names:tc:SAML:2.0:status:Success</code>.</p>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_behavior">5.2.3. Behavior</h4>
 <div class="paragraph">
-<p>Identity Providers MUST allow the user to terminate the user&#8217;s Identity Provider session in response to receiving a SAML Logout request. Identity Providers MAY allow the user the option to maintain their Identity Provider session rather than unilaterally terminating it.</p>
+<p>IdPs MUST allow the user to terminate the user&#8217;s IdP session in response to receiving a SAML Logout request. IdPs MAY allow the user the option to maintain their IdP session rather than unilaterally terminating it.</p>
 </div>
 <div class="paragraph">
-<p>Identity Providers MAY additionally attempt to terminate some or all of the user&#8217;s Service Provider sessions (Single Logout).</p>
+<p>IdPs MAY additionally attempt to terminate some or all of the user&#8217;s SP sessions (Single Logout).</p>
 </div>
 <div class="paragraph">
-<p>After performing all logout functions, the user SHOULD be informed whether or not they have been logged out of all Service Provider sessions. If possible, the user should be presented a list of the services from which they have been logged out.</p>
+<p>After performing all logout functions, the user SHOULD be informed whether or not they have been logged out of all SP sessions. If possible, the user should be presented a list of the services from which they have been logged out.</p>
 </div>
 </div>
 </div>
