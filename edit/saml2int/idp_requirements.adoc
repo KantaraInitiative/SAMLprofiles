@@ -1,4 +1,4 @@
-== Identity Provider Requirements
+== IdP Requirements
 
 === Web Browser SSO
 
@@ -6,23 +6,23 @@
 
 ===== Binding
 
-Identity Providers MUST support the HTTP-Redirect binding <<SAML2Bind>> for the receipt of `<samlp:AuthnRequest>` messages. Support for other bindings is OPTIONAL.
+IdPs MUST support the HTTP-Redirect binding <<SAML2Bind>> for the receipt of `<samlp:AuthnRequest>` messages. Support for other bindings is OPTIONAL.
 
 ===== Endpoint verification.
 
-When verifying the `AssertionConsumerServiceURL`, it is RECOMMENDED that the Identity Provider perform a case-sensitive string comparison between the requested value and the values found in the Service Provider's metadata. It is OPTIONAL to apply any form of URL canonicalization.
+When verifying the `AssertionConsumerServiceURL`, it is RECOMMENDED that the IdP perform a case-sensitive string comparison between the requested value and the values found in the SP's metadata. It is OPTIONAL to apply any form of URL canonicalization.
 
 ===== Forced Re-Authentication Support
 
-Identity Providers MUST ensure that any response to a `<samlp:AuthnRequest>` that contains the attribute `ForceAuthn` set to `true` results in an authentication challenge that requires proof that the subject is present. If this condition is met, the IdP MUST also reflect this success by setting the value of the `AuthnInstant` value in the assertion it generates to a fresh value.
+IdPs MUST ensure that any response to a `<samlp:AuthnRequest>` that contains the attribute `ForceAuthn` set to `true` results in an authentication challenge that requires proof that the subject is present. If this condition is met, the IdP MUST also reflect this success by setting the value of the `AuthnInstant` value in the assertion it generates to a fresh value.
 
-If an Identity Provider cannot prove subject presence, then it MUST fail the authentication request and SHOULD respond to the Service Provider with a SAML error status.
+If an IdP cannot prove subject presence, then it MUST fail the authentication request and SHOULD respond to the SP with a SAML error status.
 
 ==== Responses
 
 ===== Binding
 
-Identity Providers MUST support the HTTP-POST binding <<SAML2Bind>> for the transmission of `<samlp:Response>` messages. Support for other bindings is OPTIONAL.
+IdPs MUST support the HTTP-POST binding <<SAML2Bind>> for the transmission of `<samlp:Response>` messages. Support for other bindings is OPTIONAL.
 
 ===== Assertions
 
@@ -30,21 +30,21 @@ Successful response messages MUST contain one and only one SAML assertion.
 
 ===== XML Encryption
 
-In the event the HTTP-POST binding <<SAML2Bind>> is used, assertions MUST be encrypted and transmitted via a `<saml:EncryptedAssertion>` element. Information intended for the consumption of the Service Provider MUST NOT be further encrypted via `<saml:EncryptedID>` or `<saml:EncryptedAttribute>` constructs.
+In the event the HTTP-POST binding <<SAML2Bind>> is used, assertions MUST be encrypted and transmitted via a `<saml:EncryptedAssertion>` element. Information intended for the consumption of the SP MUST NOT be further encrypted via `<saml:EncryptedID>` or `<saml:EncryptedAttribute>` constructs.
 
 ==== Subject Identifiers
 
 Assertions MUST contain a `<saml:NameID>` element with the `urn:oasis:names:tc:SAML:2.0:nameid-format:transient` format, as defined in <<SAML2Core>>, for the purposes of logout.
 
-Identity Providers SHOULD support one or both of the SAML Attributes defined by <<SAML2SubjId>> for non-transient identification of subjects. Support for both is RECOMMENDED.
+IdPs SHOULD support one or both of the SAML Attributes defined by <<SAML2SubjId>> for non-transient identification of subjects. Support for both is RECOMMENDED.
 
 ===== Subject Identifier Requirements Signaling
 
-Identity Providers MUST support the metadata-based identifier requirement signaling mechanism defined in <<SAML2SubjId>>.
+IdPs MUST support the metadata-based identifier requirement signaling mechanism defined in <<SAML2SubjId>>.
 
-If an Identity Provider cannot or will not satisfy the requirements of a Service Provider in this respect, then it MUST fail the authentication request and SHOULD respond to the Service Provider with a SAML error status.
+If an IdP cannot or will not satisfy the requirements of an SP in this respect, then it MUST fail the authentication request and SHOULD respond to the SP with a SAML error status.
 
-In the absence of any signaling by a Service Provider, an Identity Provider is free to supply either, both, or neither SAML Attribute, or to return an error as it sees fit.
+In the absence of any signaling by an SP, an IdP is free to supply either, both, or neither SAML Attribute, or to return an error as it sees fit.
 
 === Single Logout
 
@@ -52,22 +52,22 @@ In the absence of any signaling by a Service Provider, an Identity Provider is f
 
 ===== Binding
 
-Identity Providers MUST support the HTTP-Redirect binding <<SAML2Bind>> or the HTTP-POST binding <<SAML2Bind>> for the receipt of `<samlp:LogoutRequest>` or `<samlp:LogoutResponse>` messages. Support for other bindings is OPTIONAL.
+IdPs MUST support the HTTP-Redirect binding <<SAML2Bind>> or the HTTP-POST binding <<SAML2Bind>> for the receipt of `<samlp:LogoutRequest>` or `<samlp:LogoutResponse>` messages. Support for other bindings is OPTIONAL.
 
 ==== Responses
 
 ===== Binding
 
-Identity Providers MUST support the HTTP-Redirect binding <<SAML2Bind>> or the HTTP-POST binding <<SAML2Bind>> for the transmission of `<samlp:LogoutRequest>` or `<samlp:LogoutResponse>` messages. Support for other bindings is OPTIONAL.
+IdPs MUST support the HTTP-Redirect binding <<SAML2Bind>> or the HTTP-POST binding <<SAML2Bind>> for the transmission of `<samlp:LogoutRequest>` or `<samlp:LogoutResponse>` messages. Support for other bindings is OPTIONAL.
 
 ===== Status
 
-When an Identity Provider cannot terminate the user's Identity Provider session, it MUST NOT respond to the original requester, if any, with a `<samlp:LogoutResponse>` message containing a top-level `<saml:StatusCode>` of `urn:oasis:names:tc:SAML:2.0:status:Success`.
+When an IdP cannot terminate the user's IdP session, it MUST NOT respond to the original requester, if any, with a `<samlp:LogoutResponse>` message containing a top-level `<saml:StatusCode>` of `urn:oasis:names:tc:SAML:2.0:status:Success`.
 
 ==== Behavior 
 
-Identity Providers MUST allow the user to terminate the user's Identity Provider session in response to receiving a SAML Logout request. Identity Providers MAY allow the user the option to maintain their Identity Provider session rather than unilaterally terminating it.
+IdPs MUST allow the user to terminate the user's IdP session in response to receiving a SAML Logout request. IdPs MAY allow the user the option to maintain their IdP session rather than unilaterally terminating it.
 
-Identity Providers MAY additionally attempt to terminate some or all of the user's Service Provider sessions (Single Logout). 
+IdPs MAY additionally attempt to terminate some or all of the user's SP sessions (Single Logout). 
 
-After performing all logout functions, the user SHOULD be informed whether or not they have been logged out of all Service Provider sessions. If possible, the user should be presented a list of the services from which they have been logged out.
+After performing all logout functions, the user SHOULD be informed whether or not they have been logged out of all SP sessions. If possible, the user should be presented a list of the services from which they have been logged out.
