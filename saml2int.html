@@ -1079,7 +1079,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>The <code>&lt;saml:NameID&gt;</code> element included in an SPs requests MUST exactly match the corresponding element received from the IdP, including its element content and all XML attributes included therein.</p>
 </div>
 <div class="paragraph">
-<p>Support for the encryption of the <code>&lt;saml:NameID&gt;</code> element is OPTIONAL.</p>
+<p>Encryption of the <code>&lt;saml:NameID&gt;</code> element is OPTIONAL.</p>
 </div>
 </div>
 </div>
@@ -1142,7 +1142,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="ulist">
 <ul>
 <li>
-<p>an <code>&lt;md:IDPSSODescriptor&gt;</code> role element</p>
+<p>an <code>&lt;md:SPSSODescriptor&gt;</code> role element</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1195,22 +1195,31 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sect4">
 <h5 id="_binding_5">Binding</h5>
 <div class="paragraph">
-<p>IdPs MUST support the HTTP-Redirect binding <a href="#SAML2Bind">[SAML2Bind]</a> for the receipt of <code>&lt;samlp:AuthnRequest&gt;</code> messages. Support for other bindings is OPTIONAL.</p>
+<p>IdPs MUST support the HTTP-Redirect binding <a href="#SAML2Bind">[SAML2Bind]</a> for the receipt of <code>&lt;samlp:AuthnRequest&gt;</code> messages.</p>
+</div>
+<div class="paragraph">
+<p>The endpoint(s) at which an IdP supports receipt of <code>&lt;samlp:AuthnRequest&gt;</code> messages MUST be protected by TLS/SSL.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_endpoint_verification">Endpoint verification.</h5>
+<h5 id="_endpoint_verification">Endpoint Verification</h5>
 <div class="paragraph">
 <p>When verifying the <code>AssertionConsumerServiceURL</code>, it is RECOMMENDED that the IdP perform a case-sensitive string comparison between the requested value and the values found in the SP&#8217;s metadata. It is OPTIONAL to apply any form of URL canonicalization.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_forced_re_authentication_support">Forced Re-Authentication Support</h5>
+<h5 id="_signing">Signing</h5>
 <div class="paragraph">
-<p>IdPs MUST ensure that any response to a <code>&lt;samlp:AuthnRequest&gt;</code> that contains the attribute <code>ForceAuthn</code> set to <code>true</code> results in an authentication challenge that requires proof that the subject is present. If this condition is met, the IdP MUST also reflect this success by setting the value of the <code>AuthnInstant</code> value in the assertion it generates to a fresh value.</p>
+<p>IdPs MUST reject unsigned requests in the event that an SP&#8217;s metadata includes an <code>AuthnRequestsSigned</code> attribute set to <code>true</code> or <code>1</code>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_forced_re_authentication_2">Forced Re-Authentication</h5>
+<div class="paragraph">
+<p>IdPs MUST ensure that any response to a <code>&lt;samlp:AuthnRequest&gt;</code> that contains the attribute <code>ForceAuthn</code> set to <code>true</code> or <code>1</code> results in an authentication challenge that requires proof that the subject is present. If this condition is met, the IdP MUST also reflect this by setting the value of the <code>AuthnInstant</code> value in the assertion it returns to a fresh value.</p>
 </div>
 <div class="paragraph">
-<p>If an IdP cannot prove subject presence, then it MUST fail the authentication request and SHOULD respond to the SP with a SAML error status.</p>
+<p>If an IdP cannot prove subject presence, then it MUST fail the request and SHOULD respond to the SP with a SAML error status.</p>
 </div>
 </div>
 </div>
@@ -1219,17 +1228,14 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sect4">
 <h5 id="_binding_6">Binding</h5>
 <div class="paragraph">
-<p>IdPs MUST support the HTTP-POST binding <a href="#SAML2Bind">[SAML2Bind]</a> for the transmission of <code>&lt;samlp:Response&gt;</code> messages. Support for other bindings is OPTIONAL.</p>
+<p>IdPs MUST support the HTTP-POST binding <a href="#SAML2Bind">[SAML2Bind]</a> for the transmission of <code>&lt;samlp:Response&gt;</code> messages.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_assertions">Assertions</h5>
+<h5 id="_response_content">Response Content</h5>
 <div class="paragraph">
-<p>Successful response messages MUST contain one and only one SAML assertion.</p>
+<p>Successful responses MUST contain one and only one SAML assertion.</p>
 </div>
-</div>
-<div class="sect4">
-<h5 id="_xml_encryption_2">XML Encryption</h5>
 <div class="paragraph">
 <p>In the event the HTTP-POST binding <a href="#SAML2Bind">[SAML2Bind]</a> is used, assertions MUST be encrypted and transmitted via a <code>&lt;saml:EncryptedAssertion&gt;</code> element. Information intended for the consumption of the SP MUST NOT be further encrypted via <code>&lt;saml:EncryptedID&gt;</code> or <code>&lt;saml:EncryptedAttribute&gt;</code> constructs.</p>
 </div>
@@ -1238,10 +1244,10 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sect3">
 <h4 id="_subject_identifiers_2">5.1.3. Subject Identifiers</h4>
 <div class="paragraph">
-<p>Assertions MUST contain a <code>&lt;saml:NameID&gt;</code> element with the <code>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</code> format, as defined in <a href="#SAML2Core">[SAML2Core]</a>, for the purposes of logout.</p>
+<p>Assertions MUST contain a <code>&lt;saml:NameID&gt;</code> element with the <code>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</code> Format, as defined in <a href="#SAML2Core">[SAML2Core]</a>, for the purposes of logout.</p>
 </div>
 <div class="paragraph">
-<p>IdPs SHOULD support one or both of the SAML Attributes defined by <a href="#SAML2SubjId">[SAML2SubjId]</a> for non-transient identification of subjects. Support for both is RECOMMENDED.</p>
+<p>IdPs MUST support one or both of the SAML Attributes defined by <a href="#SAML2SubjId">[SAML2SubjId]</a> for non-transient identification of subjects. Support for both is RECOMMENDED.</p>
 </div>
 <div class="sect4">
 <h5 id="_subject_identifier_requirements_signaling_2">Subject Identifier Requirements Signaling</h5>
@@ -1259,40 +1265,52 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 <div class="sect2">
 <h3 id="_single_logout_2">5.2. Single Logout</h3>
+<div class="paragraph">
+<p>IdPs MUST support the termination of a subject&#8217;s IdP session in response to receiving a <code>&lt;samlp:LogoutRequest&gt;</code> or upon some administrative signal. IdPs MAY allow a subject the option to maintain their IdP session rather than unilaterally terminating it.</p>
+</div>
+<div class="paragraph">
+<p>IdPs MAY support the propagation of logout signaling to SPs.</p>
+</div>
+<div class="paragraph">
+<p><em>Status of text below?</em></p>
+</div>
+<div class="paragraph">
+<p>After performing all logout functions, the user SHOULD be informed whether or not they have been logged out of all SP sessions. If possible, the user should be presented a list of the services from which they have been logged out.</p>
+</div>
 <div class="sect3">
 <h4 id="_requests_4">5.2.1. Requests</h4>
 <div class="sect4">
 <h5 id="_binding_7">Binding</h5>
 <div class="paragraph">
-<p>IdPs MUST support the HTTP-Redirect binding <a href="#SAML2Bind">[SAML2Bind]</a> or the HTTP-POST binding <a href="#SAML2Bind">[SAML2Bind]</a> for the receipt of <code>&lt;samlp:LogoutRequest&gt;</code> or <code>&lt;samlp:LogoutResponse&gt;</code> messages. Support for other bindings is OPTIONAL.</p>
+<p>The HTTP-Redirect binding [SAML2Bind] MUST be used for the transmission of <code>&lt;samlp:LogoutRequest&gt;</code> messages, in the event that propagation is supported.</p>
+</div>
+<div class="paragraph">
+<p>IdPs MUST support the HTTP-Redirect [SAML2Bind] binding for the receipt of <code>&lt;samlp:LogoutRequest&gt;</code> messages.</p>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_responses_4">5.2.2. Responses</h4>
+<h4 id="_request_content_3">5.2.2. Request Content</h4>
+<div class="paragraph">
+<p>Encryption of the &lt;saml:NameID&gt; element is OPTIONAL.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_responses_4">5.2.3. Responses</h4>
 <div class="sect4">
 <h5 id="_binding_8">Binding</h5>
 <div class="paragraph">
-<p>IdPs MUST support the HTTP-Redirect binding <a href="#SAML2Bind">[SAML2Bind]</a> or the HTTP-POST binding <a href="#SAML2Bind">[SAML2Bind]</a> for the transmission of <code>&lt;samlp:LogoutRequest&gt;</code> or <code>&lt;samlp:LogoutResponse&gt;</code> messages. Support for other bindings is OPTIONAL.</p>
+<p>The HTTP-Redirect binding [SAML2Bind] MUST be used for the transmission of <code>&lt;samlp:LogoutResponse&gt;</code> messages.</p>
+</div>
+<div class="paragraph">
+<p>IdPs MUST support the HTTP-Redirect [SAML2Bind] binding for the receipt of <code>&lt;samlp:LogoutResponse&gt;</code> messages.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_status">Status</h5>
+<h5 id="_response_content_2">Response Content</h5>
 <div class="paragraph">
-<p>When an IdP cannot terminate the user&#8217;s IdP session, it MUST NOT respond to the original requester, if any, with a <code>&lt;samlp:LogoutResponse&gt;</code> message containing a top-level <code>&lt;saml:StatusCode&gt;</code> of <code>urn:oasis:names:tc:SAML:2.0:status:Success</code>.</p>
+<p>The <code>&lt;samlp:StatusCode&gt;</code> in the response issued by the IdP MUST reflect whether the overall session with the IdP was successfully terminated.</p>
 </div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_behavior">5.2.3. Behavior</h4>
-<div class="paragraph">
-<p>IdPs MUST allow the user to terminate the user&#8217;s IdP session in response to receiving a SAML Logout request. IdPs MAY allow the user the option to maintain their IdP session rather than unilaterally terminating it.</p>
-</div>
-<div class="paragraph">
-<p>IdPs MAY additionally attempt to terminate some or all of the user&#8217;s SP sessions (Single Logout).</p>
-</div>
-<div class="paragraph">
-<p>After performing all logout functions, the user SHOULD be informed whether or not they have been logged out of all SP sessions. If possible, the user should be presented a list of the services from which they have been logged out.</p>
 </div>
 </div>
 </div>
