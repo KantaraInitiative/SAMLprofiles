@@ -135,7 +135,7 @@ _The full-frame requirement is also necessary to ensure that full control of the
 
 The `<saml:NameID>` element included in an SPs requests MUST exactly match the corresponding element received from the IdP, including its element content and all XML attributes included therein.
 
-Support for the encryption of the `<saml:NameID>` element is OPTIONAL.
+Encryption of the `<saml:NameID>` element is OPTIONAL.
 
 ==== Responses
 

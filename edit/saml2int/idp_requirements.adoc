@@ -6,37 +6,41 @@
 
 ===== Binding
 
-IdPs MUST support the HTTP-Redirect binding <<SAML2Bind>> for the receipt of `<samlp:AuthnRequest>` messages. Support for other bindings is OPTIONAL.
+IdPs MUST support the HTTP-Redirect binding <<SAML2Bind>> for the receipt of `<samlp:AuthnRequest>` messages.
 
-===== Endpoint verification.
+The endpoint(s) at which an IdP supports receipt of `<samlp:AuthnRequest>` messages MUST be protected by TLS/SSL.
+
+===== Endpoint Verification
 
 When verifying the `AssertionConsumerServiceURL`, it is RECOMMENDED that the IdP perform a case-sensitive string comparison between the requested value and the values found in the SP's metadata. It is OPTIONAL to apply any form of URL canonicalization.
 
-===== Forced Re-Authentication Support
+===== Signing
 
-IdPs MUST ensure that any response to a `<samlp:AuthnRequest>` that contains the attribute `ForceAuthn` set to `true` results in an authentication challenge that requires proof that the subject is present. If this condition is met, the IdP MUST also reflect this success by setting the value of the `AuthnInstant` value in the assertion it generates to a fresh value.
+IdPs MUST reject unsigned requests in the event that an SP's metadata includes an `AuthnRequestsSigned` attribute set to `true` or `1`.
 
-If an IdP cannot prove subject presence, then it MUST fail the authentication request and SHOULD respond to the SP with a SAML error status.
+===== Forced Re-Authentication
+
+IdPs MUST ensure that any response to a `<samlp:AuthnRequest>` that contains the attribute `ForceAuthn` set to `true` or `1` results in an authentication challenge that requires proof that the subject is present. If this condition is met, the IdP MUST also reflect this by setting the value of the `AuthnInstant` value in the assertion it returns to a fresh value.
+
+If an IdP cannot prove subject presence, then it MUST fail the request and SHOULD respond to the SP with a SAML error status.
 
 ==== Responses
 
 ===== Binding
 
-IdPs MUST support the HTTP-POST binding <<SAML2Bind>> for the transmission of `<samlp:Response>` messages. Support for other bindings is OPTIONAL.
+IdPs MUST support the HTTP-POST binding <<SAML2Bind>> for the transmission of `<samlp:Response>` messages.
 
-===== Assertions
+===== Response Content
 
-Successful response messages MUST contain one and only one SAML assertion.
-
-===== XML Encryption
+Successful responses MUST contain one and only one SAML assertion.
 
 In the event the HTTP-POST binding <<SAML2Bind>> is used, assertions MUST be encrypted and transmitted via a `<saml:EncryptedAssertion>` element. Information intended for the consumption of the SP MUST NOT be further encrypted via `<saml:EncryptedID>` or `<saml:EncryptedAttribute>` constructs.
 
 ==== Subject Identifiers
 
-Assertions MUST contain a `<saml:NameID>` element with the `urn:oasis:names:tc:SAML:2.0:nameid-format:transient` format, as defined in <<SAML2Core>>, for the purposes of logout.
+Assertions MUST contain a `<saml:NameID>` element with the `urn:oasis:names:tc:SAML:2.0:nameid-format:transient` Format, as defined in <<SAML2Core>>, for the purposes of logout.
 
-IdPs SHOULD support one or both of the SAML Attributes defined by <<SAML2SubjId>> for non-transient identification of subjects. Support for both is RECOMMENDED.
+IdPs MUST support one or both of the SAML Attributes defined by <<SAML2SubjId>> for non-transient identification of subjects. Support for both is RECOMMENDED.
 
 ===== Subject Identifier Requirements Signaling
 
@@ -48,26 +52,34 @@ In the absence of any signaling by an SP, an IdP is free to supply either, both,
 
 === Single Logout
 
+IdPs MUST support the termination of a subject's IdP session in response to receiving a `<samlp:LogoutRequest>` or upon some administrative signal. IdPs MAY allow a subject the option to maintain their IdP session rather than unilaterally terminating it.
+
+IdPs MAY support the propagation of logout signaling to SPs.
+
+_Status of text below?_
+
+After performing all logout functions, the user SHOULD be informed whether or not they have been logged out of all SP sessions. If possible, the user should be presented a list of the services from which they have been logged out.
+
 ==== Requests
 
 ===== Binding
 
-IdPs MUST support the HTTP-Redirect binding <<SAML2Bind>> or the HTTP-POST binding <<SAML2Bind>> for the receipt of `<samlp:LogoutRequest>` or `<samlp:LogoutResponse>` messages. Support for other bindings is OPTIONAL.
+The HTTP-Redirect binding [SAML2Bind] MUST be used for the transmission of `<samlp:LogoutRequest>` messages, in the event that propagation is supported.
+
+IdPs MUST support the HTTP-Redirect [SAML2Bind] binding for the receipt of `<samlp:LogoutRequest>` messages.
+
+==== Request Content
+
+Encryption of the <saml:NameID> element is OPTIONAL.
 
 ==== Responses
 
 ===== Binding
 
-IdPs MUST support the HTTP-Redirect binding <<SAML2Bind>> or the HTTP-POST binding <<SAML2Bind>> for the transmission of `<samlp:LogoutRequest>` or `<samlp:LogoutResponse>` messages. Support for other bindings is OPTIONAL.
+The HTTP-Redirect binding [SAML2Bind] MUST be used for the transmission of `<samlp:LogoutResponse>` messages.
 
-===== Status
+IdPs MUST support the HTTP-Redirect [SAML2Bind] binding for the receipt of `<samlp:LogoutResponse>` messages.
 
-When an IdP cannot terminate the user's IdP session, it MUST NOT respond to the original requester, if any, with a `<samlp:LogoutResponse>` message containing a top-level `<saml:StatusCode>` of `urn:oasis:names:tc:SAML:2.0:status:Success`.
+===== Response Content
 
-==== Behavior 
-
-IdPs MUST allow the user to terminate the user's IdP session in response to receiving a SAML Logout request. IdPs MAY allow the user the option to maintain their IdP session rather than unilaterally terminating it.
-
-IdPs MAY additionally attempt to terminate some or all of the user's SP sessions (Single Logout). 
-
-After performing all logout functions, the user SHOULD be informed whether or not they have been logged out of all SP sessions. If possible, the user should be presented a list of the services from which they have been logged out.
+The `<samlp:StatusCode>` in the response issued by the IdP MUST reflect whether the overall session with the IdP was successfully terminated.
