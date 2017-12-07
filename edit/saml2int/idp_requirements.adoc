@@ -83,3 +83,27 @@ IdPs MUST support the HTTP-Redirect [SAML2Bind] binding for the receipt of `<sam
 ===== Response Content
 
 The `<samlp:StatusCode>` in the response issued by the IdP MUST reflect whether the overall session with the IdP was successfully terminated.
+
+
+=== Metadata and Trust Management
+
+==== Support for Multiple Keys
+
+IdP deployments MUST support multiple signing certificates in SP metadata and MUST support validation of signatures using a key from any of them.
+
+IdP deployments supporting decryption MUST be able to support multiple decryption keys and MUST be able to decrypt `<saml:EncryptedID>` elements encrypted with any configured key.
+
+_These requirements make seamless key migration possible for both parties._
+
+==== Metadata Content
+
+By virtue of this profile's requirements, an IdP's metadata MUST contain:
+
+* an `<md:IDPSSODescriptor>` role element
+** at least one `<md:SingleSignOnService>` endpoint element
+** at least one `<md:SingleLogoutService>` endpoint element
+** at least one `<md:KeyDescriptor>` element whose `use` attribute is omitted or set to `signing`
+* an `<md:Extensions>` element
+** an `<mdui:UIInfo>` extension element with previously prescribed content
+
+_Contacts? Organization?_
