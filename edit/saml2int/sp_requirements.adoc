@@ -175,7 +175,7 @@ _These requirements make seamless key migration possible for both parties._
 
 By virtue of this profile's requirements, an SP's metadata MUST contain:
 
-* an `<md:IDPSSODescriptor>` role element
+* an `<md:SPSSODescriptor>` role element
 ** at least one `<md:AssertionConsumerService>` endpoint element
 ** at least one `<md:SingleLogoutService>` endpoint element (exception noted below)
 ** at least one `<md:KeyDescriptor>` element whose `use` attribute is omitted or set to `signing`
