@@ -2,6 +2,8 @@
 
 === Web Browser SSO
 
+IdPs MUST support the Browser SSO Profile <<SAML2Prof>>.
+
 ==== Requests
 
 ===== Binding
@@ -52,7 +54,9 @@ In the absence of any signaling by an SP, an IdP is free to supply either, both,
 
 === Single Logout
 
-IdPs MUST support the termination of a subject's IdP session in response to receiving a `<samlp:LogoutRequest>` or upon some administrative signal. IdPs MAY allow a subject the option to maintain their IdP session rather than unilaterally terminating it.
+IdPs MUST support the Single Logout Profile <<SAML2Prof>>.
+
+The term "IdP session" is used to refer to the ongoing state between the IdP and its clients allowing for SSO. Support for logout implies supporting termination of a subject's IdP session in response to receiving a `<samlp:LogoutRequest>` or upon some administrative signal. IdPs MAY allow a subject the option to maintain their IdP session rather than unilaterally terminating it.
 
 IdPs MAY support the propagation of logout signaling to SPs.
 
@@ -80,16 +84,13 @@ IdPs MUST support the HTTP-Redirect [SAML2Bind] binding for the receipt of `<sam
 
 ===== Response Content
 
-The `<samlp:StatusCode>` in the response issued by the IdP MUST reflect whether the overall session with the IdP was successfully terminated.
-
+The `<samlp:StatusCode>` in the response issued by the IdP MUST reflect whether the IdP session was successfully terminated.
 
 === Metadata and Trust Management
 
 ==== Support for Multiple Keys
 
 IdP deployments MUST support multiple signing certificates in SP metadata and MUST support validation of signatures using a key from any of them.
-
-IdP deployments supporting decryption MUST be able to support multiple decryption keys and MUST be able to decrypt `<saml:EncryptedID>` elements encrypted with any configured key.
 
 _These requirements make seamless key migration possible for both parties._
 
