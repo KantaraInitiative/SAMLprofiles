@@ -873,6 +873,9 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_web_browser_sso">4.1. Web Browser SSO</h3>
+<div class="paragraph">
+<p>SPs MUST support the Browser SSO Profile <a href="#SAML2Prof">[SAML2Prof]</a>.</p>
+</div>
 <div class="sect3">
 <h4 id="_requests">4.1.1. Requests</h4>
 <div class="sect4">
@@ -1057,6 +1060,9 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 <div class="sect2">
 <h3 id="_single_logout">4.2. Single Logout</h3>
+<div class="paragraph">
+<p>SPs MAY support the Single Logout Profile <a href="#SAML2Prof">[SAML2Prof]</a>. The following requirements apply in the presence of such support.</p>
+</div>
 <div class="sect3">
 <h4 id="_requests_2">4.2.1. Requests</h4>
 <div class="sect4">
@@ -1077,10 +1083,13 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sect4">
 <h5 id="_request_content_2">Request Content</h5>
 <div class="paragraph">
-<p>The <code>&lt;saml:NameID&gt;</code> element included in an SPs requests MUST exactly match the corresponding element received from the IdP, including its element content and all XML attributes included therein.</p>
+<p>The <code>&lt;saml:NameID&gt;</code> element included in <code>&lt;samlp:LogoutRequest&gt;</code> messages MUST exactly match the corresponding element received from the IdP, including its element content and all XML attributes included therein.</p>
 </div>
 <div class="paragraph">
-<p>Encryption of the <code>&lt;saml:NameID&gt;</code> element is OPTIONAL.</p>
+<p>The <code>&lt;saml:NameID&gt;</code> element in <code>&lt;samlp:LogoutRequest&gt;</code> messages MUST NOT be encrypted.</p>
+</div>
+<div class="paragraph">
+<p><em>The normative requirement for the use of transient identifiers is intended to obviate the need for XML Encryption.</em></p>
 </div>
 </div>
 </div>
@@ -1150,9 +1159,6 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>at least one <code>&lt;md:AssertionConsumerService&gt;</code> endpoint element</p>
 </li>
 <li>
-<p>at least one <code>&lt;md:SingleLogoutService&gt;</code> endpoint element (exception noted below)</p>
-</li>
-<li>
 <p>at least one <code>&lt;md:KeyDescriptor&gt;</code> element whose <code>use</code> attribute is omitted or set to <code>signing</code></p>
 </li>
 <li>
@@ -1180,7 +1186,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p><em>Contacts? Organization?</em></p>
 </div>
 <div class="paragraph">
-<p>An <code>&lt;md:SingleLogoutService&gt;</code> element MAY be omitted in the event that an SP solely issues <code>&lt;samlp:LogoutRequest&gt;</code> messages containing the <code>&lt;aslo:Asynchronous&gt;</code> extension <a href="#SAML2ASLO">[SAML2ASLO]</a>.</p>
+<p>An <code>&lt;md:SingleLogoutService&gt;</code> element MAY be omitted in the event that an SP either does not support the Single Logout Profile, or solely issues <code>&lt;samlp:LogoutRequest&gt;</code> messages containing the <code>&lt;aslo:Asynchronous&gt;</code> extension <a href="#SAML2ASLO">[SAML2ASLO]</a>.</p>
 </div>
 </div>
 </div>
@@ -1272,12 +1278,6 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="paragraph">
 <p>IdPs MAY support the propagation of logout signaling to SPs.</p>
 </div>
-<div class="paragraph">
-<p><em>Status of text below?</em></p>
-</div>
-<div class="paragraph">
-<p>After performing all logout functions, the user SHOULD be informed whether or not they have been logged out of all SP sessions. If possible, the user should be presented a list of the services from which they have been logged out.</p>
-</div>
 <div class="sect3">
 <h4 id="_requests_4">5.2.1. Requests</h4>
 <div class="sect4">
@@ -1293,7 +1293,10 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sect3">
 <h4 id="_request_content_3">5.2.2. Request Content</h4>
 <div class="paragraph">
-<p>Encryption of the &lt;saml:NameID&gt; element is OPTIONAL.</p>
+<p>The <code>&lt;saml:NameID&gt;</code> element in <code>&lt;samlp:LogoutRequest&gt;</code> messages MUST NOT be encrypted.</p>
+</div>
+<div class="paragraph">
+<p><em>The normative requirement for the use of transient identifiers is intended to obviate the need for XML Encryption.</em></p>
 </div>
 </div>
 <div class="sect3">
