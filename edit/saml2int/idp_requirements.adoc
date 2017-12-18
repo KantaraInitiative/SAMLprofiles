@@ -56,10 +56,6 @@ IdPs MUST support the termination of a subject's IdP session in response to rece
 
 IdPs MAY support the propagation of logout signaling to SPs.
 
-_Status of text below?_
-
-After performing all logout functions, the user SHOULD be informed whether or not they have been logged out of all SP sessions. If possible, the user should be presented a list of the services from which they have been logged out.
-
 ==== Requests
 
 ===== Binding
@@ -70,7 +66,9 @@ IdPs MUST support the HTTP-Redirect [SAML2Bind] binding for the receipt of `<sam
 
 ==== Request Content
 
-Encryption of the <saml:NameID> element is OPTIONAL.
+The `<saml:NameID>` element in `<samlp:LogoutRequest>` messages MUST NOT be encrypted.
+
+_The normative requirement for the use of transient identifiers is intended to obviate the need for XML Encryption._
 
 ==== Responses
 

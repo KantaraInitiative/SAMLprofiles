@@ -2,6 +2,8 @@
 
 === Web Browser SSO
 
+SPs MUST support the Browser SSO Profile <<SAML2Prof>>.
+
 ==== Requests
 
 ===== Binding
@@ -119,6 +121,8 @@ When more than one IdP authenticates the same resource URL, IdP selection SHOULD
 
 === Single Logout
 
+SPs MAY support the Single Logout Profile <<SAML2Prof>>. The following requirements apply in the presence of such support.
+
 ==== Requests
 
 ===== Binding
@@ -133,9 +137,11 @@ _The full-frame requirement is also necessary to ensure that full control of the
 
 ===== Request Content
 
-The `<saml:NameID>` element included in an SPs requests MUST exactly match the corresponding element received from the IdP, including its element content and all XML attributes included therein.
+The `<saml:NameID>` element included in `<samlp:LogoutRequest>` messages MUST exactly match the corresponding element received from the IdP, including its element content and all XML attributes included therein.
 
-Encryption of the `<saml:NameID>` element is OPTIONAL.
+The `<saml:NameID>` element in `<samlp:LogoutRequest>` messages MUST NOT be encrypted.
+
+_The normative requirement for the use of transient identifiers is intended to obviate the need for XML Encryption._
 
 ==== Responses
 
@@ -177,7 +183,6 @@ By virtue of this profile's requirements, an SP's metadata MUST contain:
 
 * an `<md:SPSSODescriptor>` role element
 ** at least one `<md:AssertionConsumerService>` endpoint element
-** at least one `<md:SingleLogoutService>` endpoint element (exception noted below)
 ** at least one `<md:KeyDescriptor>` element whose `use` attribute is omitted or set to `signing`
 ** at least one `<md:KeyDescriptor>` element whose `use` attribute is omitted or set to `encryption`
 * an `<md:Extensions>` element
@@ -186,4 +191,4 @@ By virtue of this profile's requirements, an SP's metadata MUST contain:
 
 _Contacts? Organization?_
 
-An `<md:SingleLogoutService>` element MAY be omitted in the event that an SP solely issues `<samlp:LogoutRequest>` messages containing the `<aslo:Asynchronous>` extension <<SAML2ASLO>>.
+An `<md:SingleLogoutService>` element MAY be omitted in the event that an SP either does not support the Single Logout Profile, or solely issues `<samlp:LogoutRequest>` messages containing the `<aslo:Asynchronous>` extension <<SAML2ASLO>>.
