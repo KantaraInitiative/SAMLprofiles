@@ -26,7 +26,7 @@ _An entityID should be chosen in a manner that minimizes the likelihood of it ch
 
 ==== Profile Support
 
-Deployments MUST support the SAML V2.0 Web Browser SSO Profile and MUST support the SAML V2.0 Single Logout Profile as defined in <<SAML2Prof>> and as updated by <<SAML2Err>>. The behavior, capabilities, and options MUST be consistent with the additional constraints specified in this document.
+IdP and SP deployments MUST support the SAML V2.0 Web Browser SSO Profile, and IdP deployments MUST support the SAML V2.0 Single Logout Profile, as defined in <<SAML2Prof>> and as updated by <<SAML2Err>>. The behavior, capabilities, and options MUST be consistent with the additional constraints specified in this document.
 
 === Metadata and Trust Management
 
