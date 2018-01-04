@@ -908,21 +908,38 @@ dl dd {
 <p><code><code><a href="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p" class="bare">http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p</a></code></code> <a href="#XMLEnc">[XMLEnc]</a></p>
 </li>
 <li>
-<p><code><code><a href="http://www.w3.org/2009/xmlenc11#rsa-oaep" class="bare">http://www.w3.org/2009/xmlenc11#rsa-oaep</a></code></code> <a href="#XMLEnc11">[XMLEnc11]</a><br>
-<br>
-The following DigestMethod algorithms MUST be supported for both of the above key transport algorithms:</p>
-</li>
-<li>
-<p><code><code><a href="http://www.w3.org/2001/04/xmlenc#sha256" class="bare">http://www.w3.org/2001/04/xmlenc#sha256</a></code></code></p>
-</li>
-<li>
-<p><code><code><a href="http://www.w3.org/2000/09/xmldsig#sha1" class="bare">http://www.w3.org/2000/09/xmldsig#sha1</a></code></code><br>
-<br>
-The default mask generation function (MGF1 with SHA1) MUST be supported for the KeyTransport algorithm identified by <code><code><a href="http://www.w3.org/2009/xmlenc11#rsa-oaep" class="bare">http://www.w3.org/2009/xmlenc11#rsa-oaep</a></code></code>.</p>
+<p><code><code><a href="http://www.w3.org/2009/xmlenc11#rsa-oaep" class="bare">http://www.w3.org/2009/xmlenc11#rsa-oaep</a></code></code> <a href="#XMLEnc11">[XMLEnc11]</a></p>
 </li>
 </ul>
 </div>
 </dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>The following DigestMethod algorithms MUST be supported for both of the above key transport algorithms:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><code><a href="http://www.w3.org/2001/04/xmlenc#sha256" class="bare">http://www.w3.org/2001/04/xmlenc#sha256</a></code></code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following DigestMethod algorithms SHOULD be supported for both of the above key transport algorithms for backward compatibility.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><code><a href="http://www.w3.org/2000/09/xmldsig#sha1" class="bare">http://www.w3.org/2000/09/xmldsig#sha1</a></code></code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The default mask generation function (MGF1 with SHA1) MUST be supported for the KeyTransport algorithm identified by <code><code><a href="http://www.w3.org/2009/xmlenc11#rsa-oaep" class="bare">http://www.w3.org/2009/xmlenc11#rsa-oaep</a></code></code>.</p>
+</div>
+<div class="dlist">
+<dl>
 <dt class="hdlist1">[IIP-ALG07]</dt>
 <dd>
 <p>This document is not normative with respect to TLS security. It is, however, RECOMMENDED that implementers consider <a href="#RFC7457">[RFC7457]</a> and current best practice reflected in documents such as <a href="#BetterCrypto">[BetterCrypto]</a>.</p>
