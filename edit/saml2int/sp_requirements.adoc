@@ -16,6 +16,10 @@ Requests MUST NOT be issued inside an HTML frame or via any mechanism that would
 
 The `<samlp:AuthnRequest>` message MUST either omit the `<samlp:NameIDPolicy>` element (RECOMMENDED), or the element MUST contain an `AllowCreate` attribute of "true" and MUST NOT contain a `Format` attribute.
 
+The `<saml2p:AuthnRequest>` message MUST NOT contain a `<saml2:Subject>` element.
+
+_The normative requirement for the use of transient identifiers makes specifying subjects in an authentication request nonsensical, even for "step up authentication" use cases._ 
+
 The message MUST NOT contain an `AssertionConsumerServiceIndex` attribute (i.e., the desired endpoint MUST be the default, or identified via the `AssertionConsumerServiceURL` attribute).
 
 The `AssertionConsumerServiceURL` value MUST match an endpoint location expressed in the SP's metadata exactly, without requiring URL canonicalization/normalization. 
