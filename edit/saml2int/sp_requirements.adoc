@@ -32,7 +32,7 @@ An SP that does not require a specific `<saml:AuthnContextClassRef>` value MUST 
 
 An SP that requires specific `<saml:AuthnContextClassRef>` values MUST specify the allowable values in a `<samlp:RequestedAuthnContext>` element in its requests, with the `Comparison` attribute set to `exact`.
 
-An SP SHOULD NOT request a value in the absence of a shared understanding itself and the IdP regarding its definition.
+_An SP should not request a `<saml:AuthnContextClassRef>` value in the absence of a shared understanding between itself and the IdP regarding its definition._
 
 ==== Responses
 
