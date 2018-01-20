@@ -909,6 +909,12 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>The <code>&lt;samlp:AuthnRequest&gt;</code> message MUST either omit the <code>&lt;samlp:NameIDPolicy&gt;</code> element (RECOMMENDED), or the element MUST contain an <code>AllowCreate</code> attribute of "true" and MUST NOT contain a <code>Format</code> attribute.</p>
 </div>
 <div class="paragraph">
+<p>The <code>&lt;saml2p:AuthnRequest&gt;</code> message MUST NOT contain a <code>&lt;saml2:Subject&gt;</code> element.</p>
+</div>
+<div class="paragraph">
+<p><em>The normative requirement for the use of transient identifiers makes specifying subjects in an authentication request nonsensical, even for "step up authentication" use cases.</em></p>
+</div>
+<div class="paragraph">
 <p>The message MUST NOT contain an <code>AssertionConsumerServiceIndex</code> attribute (i.e., the desired endpoint MUST be the default, or identified via the <code>AssertionConsumerServiceURL</code> attribute).</p>
 </div>
 <div class="paragraph">
@@ -927,7 +933,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>An SP that requires specific <code>&lt;saml:AuthnContextClassRef&gt;</code> values MUST specify the allowable values in a <code>&lt;samlp:RequestedAuthnContext&gt;</code> element in its requests, with the <code>Comparison</code> attribute set to <code>exact</code>.</p>
 </div>
 <div class="paragraph">
-<p>An SP SHOULD NOT request a value in the absence of a shared understanding itself and the IdP regarding its definition.</p>
+<p><em>An SP should not request a <code>&lt;saml:AuthnContextClassRef&gt;</code> value in the absence of a shared understanding between itself and the IdP regarding its definition.</em></p>
 </div>
 </div>
 </div>
