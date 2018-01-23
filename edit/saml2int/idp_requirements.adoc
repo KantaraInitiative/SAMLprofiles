@@ -98,6 +98,8 @@ _These requirements make seamless key migration possible for both parties._
 
 By virtue of this profile's requirements, an IdP's metadata MUST contain:
 
+* an `errorURL` attribute within its IDPSSODescriptor with a value containing a URL where the user may be redirected if insufficient attributes are received to provide service to the user
+_NOTE: The errorURL is simply the location of a web page which an SP may return a user to if it fails to receive the attributes it needs from the IdP_
 * an `<md:IDPSSODescriptor>` role element
 ** at least one `<md:SingleSignOnService>` endpoint element
 ** at least one `<md:SingleLogoutService>` endpoint element
