@@ -87,6 +87,6 @@ Assuming a successful response, the `<saml2p:Response>` message issued by an Ide
 The `<saml2:Subject>` element of the assertions issued by an Identity Provider SHOULD contain a `<saml2:NameID>` element. The `<saml2:Subject>` element MUST NOT include a `<saml2:BaseID>` nor a `<saml2:EncryptedID>`. In the absence of a `<saml2p:NameIDPolicy>` Format attribute in the Service Provider's `<saml2p:AuthnRequest>` message, or a `<md:NameIDFormat>` element in the Service Provider's metadata, the Format of the `<saml2:NameID>` SHOULD be set to `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`.
 
 === errorURL
-An IdP MUST publish an errorURL as an attribute of its IDPSSODescriptor with a value containing a valid URL which the SP MAY redirect a user to if the IdP does not release sufficient information in the form of attributes to enable the user to access the SP.
+An IdP MUST publish an errorURL as an attribute of its IDPSSODescriptor with a value containing a valid URL to which the SP MAY redirect a user if the IdP does not release sufficient information in the form of attributes to enable the user to access the SP.
 
 _The errorURL is simply the location of a web page which an SP may return a user to if it fails to receive the attributes it needs from the IdP_
