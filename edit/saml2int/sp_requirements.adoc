@@ -141,6 +141,8 @@ _The full-frame requirement is also necessary to ensure that full control of the
 
 ===== Request Content
 
+Requests MUST be signed.
+
 The `<saml:NameID>` element included in `<samlp:LogoutRequest>` messages MUST exactly match the corresponding element received from the IdP, including its element content and all XML attributes included therein.
 
 The `<saml:NameID>` element in `<samlp:LogoutRequest>` messages MUST NOT be encrypted.
@@ -154,6 +156,10 @@ _The normative requirement for the use of transient identifiers is intended to o
 The HTTP-Redirect binding <<SAML2Bind>> MUST be used for the transmission of `<samlp:LogoutResponse>` messages.
 
 SPs MUST support the HTTP-Redirect <<SAML2Bind>> binding for the receipt of `<samlp:LogoutResponse>` messages, in the event that they do not include the `<aslo:Asynchronous>` extension <<SAML2ASLO>> in all of their requests.
+
+===== Response Content
+
+Responses MUST be signed.
 
 ==== Behavioral Requirements
 

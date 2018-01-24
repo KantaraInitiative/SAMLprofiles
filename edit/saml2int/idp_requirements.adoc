@@ -84,6 +84,8 @@ IdPs MUST support the HTTP-Redirect [SAML2Bind] binding for the receipt of `<sam
 
 ==== Request Content
 
+Requests MUST be signed.
+
 The `<saml:NameID>` element in `<samlp:LogoutRequest>` messages MUST NOT be encrypted.
 
 _The normative requirement for the use of transient identifiers is intended to obviate the need for XML Encryption._
@@ -97,6 +99,8 @@ The HTTP-Redirect binding [SAML2Bind] MUST be used for the transmission of `<sam
 IdPs MUST support the HTTP-Redirect [SAML2Bind] binding for the receipt of `<samlp:LogoutResponse>` messages.
 
 ===== Response Content
+
+Responses MUST be signed.
 
 The `<samlp:StatusCode>` in the response issued by the IdP MUST reflect whether the IdP session was successfully terminated.
 
