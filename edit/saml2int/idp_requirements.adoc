@@ -62,6 +62,8 @@ In the absence of any signaling by an SP, an IdP is free to supply either, both,
 
 _This requirement ensures unique, non-conflicting naming of Attributes even in cases involving custom requirements for which no standard Attributes may exist._
 
+It is RECOMMENDED that the content of <saml:AttributeValue> elements be limited to a single child text node (i.e., a simple string value).
+
 === Single Logout
 
 IdPs MUST support the Single Logout Profile <<SAML2Prof>>.
