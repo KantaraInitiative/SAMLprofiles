@@ -18,6 +18,8 @@ When verifying the `AssertionConsumerServiceURL`, it is RECOMMENDED that the IdP
 
 ===== Signing
 
+If a request is signed, IdPs MUST verify the signature or fail the request. An IdP MAY handle a signature verification failure locally rather than via an error response to the SP.
+
 IdPs MUST reject unsigned requests in the event that an SP's metadata includes an `AuthnRequestsSigned` attribute set to `true` or `1`.
 
 ===== Forced Re-Authentication
