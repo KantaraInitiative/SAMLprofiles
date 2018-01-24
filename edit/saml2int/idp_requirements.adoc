@@ -56,6 +56,12 @@ If an IdP cannot or will not satisfy the requirements of an SP in this respect, 
 
 In the absence of any signaling by an SP, an IdP is free to supply either, both, or neither SAML Attribute, or to return an error as it sees fit.
 
+==== Attributes
+
+`<saml:Attribute>` elements MUST contain a NameFormat of `urn:oasis:names:tc:SAML:2.0:attrname-format:uri`.
+
+_This requirement ensures unique, non-conflicting naming of Attributes even in cases involving custom requirements for which no standard Attributes may exist._
+
 === Single Logout
 
 IdPs MUST support the Single Logout Profile <<SAML2Prof>>.
