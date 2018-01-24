@@ -1205,7 +1205,14 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </ul>
 </div>
 <div class="paragraph">
-<p><em>Contacts? Organization?</em></p>
+<p>In addition, an SP&#8217;s metadata MUST contain:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>an <code>&lt;md:ContactPerson&gt;</code> element with a <code>contactType</code> of <code>technical</code> and an <code>&lt;md:EmailAddress&gt;</code> element</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>An <code>&lt;md:SingleLogoutService&gt;</code> element MAY be omitted in the event that an SP either does not support the Single Logout Profile, or solely issues <code>&lt;samlp:LogoutRequest&gt;</code> messages containing the <code>&lt;aslo:Asynchronous&gt;</code> extension <a href="#SAML2ASLO">[SAML2ASLO]</a>.</p>
@@ -1399,7 +1406,14 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </ul>
 </div>
 <div class="paragraph">
-<p><em>Contacts? Organization?</em></p>
+<p>In addition, an IdP&#8217;s metadata MUST contain:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>an <code>&lt;md:ContactPerson&gt;</code> element with a <code>contactType</code> of <code>technical</code> and an <code>&lt;md:EmailAddress&gt;</code> element</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
