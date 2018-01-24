@@ -1307,6 +1307,18 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_attributes">5.1.4. Attributes</h4>
+<div class="paragraph">
+<p><code>&lt;saml:Attribute&gt;</code> elements MUST contain a NameFormat of <code>urn:oasis:names:tc:SAML:2.0:attrname-format:uri</code>.</p>
+</div>
+<div class="paragraph">
+<p><em>This requirement ensures unique, non-conflicting naming of Attributes even in cases involving custom requirements for which no standard Attributes may exist.</em></p>
+</div>
+<div class="paragraph">
+<p>It is RECOMMENDED that the content of &lt;saml:AttributeValue&gt; elements be limited to a single child text node (i.e., a simple string value).</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_single_logout_2">5.2. Single Logout</h3>
