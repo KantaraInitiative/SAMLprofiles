@@ -34,7 +34,11 @@ IdPs MUST support the HTTP-POST binding <<SAML2Bind>> for the transmission of `<
 
 ===== Response Content
 
-Successful responses MUST contain one and only one SAML assertion.
+Successful responses MUST be directly signed using a `<ds:Signature>` element within the `<samlp:Response>` element.
+
+Error responses MAY be signed or unsigned.
+
+Successful responses MUST contain one and only one SAML assertion, and the assertion MUST contain exactly one `<saml:AuthnStatement>` element and MAY contain zero or one `<saml:AttributeStatement>` elements. The assertion MAY be directly signed.
 
 In the event the HTTP-POST binding <<SAML2Bind>> is used, assertions MUST be encrypted and transmitted via a `<saml:EncryptedAssertion>` element. Information intended for the consumption of the SP MUST NOT be further encrypted via `<saml:EncryptedID>` or `<saml:EncryptedAttribute>` constructs.
 
