@@ -95,11 +95,20 @@ SPs MUST prevent unintended identifier collisions in the values asserted by diff
 
 SPs MUST associate identifier scopes with IdPs such that only authorized IdPs may assert identifiers with particular scopes.
 
+==== Subject Account Provisioning and Deprovisioning
+
+SPs that create accounts for authenticated users based on the identifier provided in the response MUST do so only in the presence of a specific signal from the IDP. SPs MUST deprovision those same accounts using a complementary signal.  The SP MUST support the IDP providing such signals with values of a SAML Attribute that has a standardized definition in an external specification.
+
+_SPs should not confuse an authentication by an IDP as authorization for a resource account by the IDP._ 
+
 ==== Attribute Value Constraints
 
 When consuming SAML Attributes with standardized definitions in external specifications, SPs MUST NOT impose constraints beyond the definitions of those attributes.
 
 _This may imply supporting extra long attribute values, attributes that contain multiple values, broad character set support, etc. Maybe this is less critical with the subject ID changes?_
+
+
+
 
 ==== SP-Initiated SSO
 
