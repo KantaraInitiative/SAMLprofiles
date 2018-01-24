@@ -109,4 +109,6 @@ By virtue of this profile's requirements, an IdP's metadata MUST contain:
 * an `<md:Extensions>` element
 ** an `<mdui:UIInfo>` extension element with previously prescribed content
 
-_Contacts? Organization?_
+In addition, an IdP's metadata MUST contain:
+
+* an `<md:ContactPerson>` element with a `contactType` of `technical` and an `<md:EmailAddress>` element

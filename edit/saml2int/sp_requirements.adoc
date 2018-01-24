@@ -193,6 +193,8 @@ By virtue of this profile's requirements, an SP's metadata MUST contain:
 ** an `<mdui:UIInfo>` extension element with previously prescribed content
 ** an `<mdattr:EntityAttributes>` extension element with previously prescribed content
 
-_Contacts? Organization?_
+In addition, an SP's metadata MUST contain:
+
+* an `<md:ContactPerson>` element with a `contactType` of `technical` and an `<md:EmailAddress>` element
 
 An `<md:SingleLogoutService>` element MAY be omitted in the event that an SP either does not support the Single Logout Profile, or solely issues `<samlp:LogoutRequest>` messages containing the `<aslo:Asynchronous>` extension <<SAML2ASLO>>.
