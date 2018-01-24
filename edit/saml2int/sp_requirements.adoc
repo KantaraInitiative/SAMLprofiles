@@ -18,7 +18,7 @@ The `<samlp:AuthnRequest>` message MUST either omit the `<samlp:NameIDPolicy>` e
 
 The `<saml2p:AuthnRequest>` message MUST NOT contain a `<saml2:Subject>` element.
 
-_The normative requirement for the use of transient identifiers makes specifying subjects in an authentication request nonsensical, even for "step up authentication" use cases._ 
+_This is a relatively unused feature that is supported by few IdPs._ 
 
 The message MUST NOT contain an `AssertionConsumerServiceIndex` attribute (i.e., the desired endpoint MUST be the default, or identified via the `AssertionConsumerServiceURL` attribute).
 
