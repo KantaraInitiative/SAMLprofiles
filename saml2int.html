@@ -1266,7 +1266,13 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sect4">
 <h5 id="_response_content">Response Content</h5>
 <div class="paragraph">
-<p>Successful responses MUST contain one and only one SAML assertion.</p>
+<p>Successful responses MUST be directly signed using a <code>&lt;ds:Signature&gt;</code> element within the <code>&lt;samlp:Response&gt;</code> element.</p>
+</div>
+<div class="paragraph">
+<p>Error responses MAY be signed or unsigned.</p>
+</div>
+<div class="paragraph">
+<p>Successful responses MUST contain one and only one SAML assertion, and the assertion MUST contain exactly one <code>&lt;saml:AuthnStatement&gt;</code> element and MAY contain zero or one <code>&lt;saml:AttributeStatement&gt;</code> elements. The assertion MAY be directly signed.</p>
 </div>
 <div class="paragraph">
 <p>In the event the HTTP-POST binding <a href="#SAML2Bind">[SAML2Bind]</a> is used, assertions MUST be encrypted and transmitted via a <code>&lt;saml:EncryptedAssertion&gt;</code> element. Information intended for the consumption of the SP MUST NOT be further encrypted via <code>&lt;saml:EncryptedID&gt;</code> or <code>&lt;saml:EncryptedAttribute&gt;</code> constructs.</p>
