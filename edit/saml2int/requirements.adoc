@@ -1,6 +1,6 @@
 == Metadata and Trust Management
 
-Identity Providers and Service Providers MUST provide a SAML 2.0 Metadata document representing its entity. How metadata is exchanged is out of scope of this specification. Provided metadata MUST conform to the SAML V2.0 Metadata Interoperability Profile Version 1.0 <<MetaIOP>>.
+Identity Providers and Service Providers MUST provide a SAML 2.0 Metadata document representing its entity. How metadata is exchanged is out of scope of this specification. Provided metadata MUST conform to the SAML V2.0 Metadata Interoperability Profile Version 1.0 <<SAML2MDIOP>>.
 
 Entities SHOULD publish its metadata using the Well-Known Location method defined in <<SAML2Meta>>.
 
