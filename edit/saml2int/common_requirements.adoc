@@ -102,12 +102,12 @@ Deployments MUST default to the following algorithms (picking one from each sect
 ** ```http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256``` <<RFC4051>>
 
 * Block Encryption
-** ```http://www.w3.org/2009/xmlenc11#aes128-gcm``` <<XMLEnc11>>
-** ```http://www.w3.org/2009/xmlenc11#aes256-gcm``` <<XMLEnc11>>
+** ```http://www.w3.org/2009/xmlenc11#aes128-gcm``` <<XMLEnc>>
+** ```http://www.w3.org/2009/xmlenc11#aes256-gcm``` <<XMLEnc>>
 
 * Key Transport
 ** ```http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p``` <<XMLEnc>>
-** ```http://www.w3.org/2009/xmlenc11#rsa-oaep``` <<XMLEnc11>> + 
+** ```http://www.w3.org/2009/xmlenc11#rsa-oaep``` <<XMLEnc>> 
 
 The following default digest algorithm MUST be used in conjunction with the above key transport algorithms (the default mask generation function (MGF1 with SHA1) MUST be used):
 
