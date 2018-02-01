@@ -562,7 +562,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </ul>
 </div>
 <div class="paragraph">
-<p>When referring to elements from the SAML 2.0 Metadata Extensions for Login and Discovery User Interface specification <a href="#SAML-Metadata-UI-V1.0">[SAML-Metadata-UI-V1.0]</a>, the following syntax is used:</p>
+<p>When referring to elements from the SAML 2.0 Metadata Extensions for Login and Discovery User Interface specification <a href="#MetaUi">[MetaUi]</a>, the following syntax is used:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -653,7 +653,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sect3">
 <h4 id="_metadata_consumption_and_use">3.2.1. Metadata Consumption and Use</h4>
 <div class="paragraph">
-<p>Deployments MUST provision their behavior in the following areas based solely on the consumption of SAML Metadata <a href="#SAML2Meta">[SAML2Meta]</a> on an automated, periodic or real-time basis using (where applicable) the processing rules defined by the SAML Metadata Interoperability profile <a href="#MetaIOP">[MetaIOP]</a>:</p>
+<p>Deployments MUST provision their behavior in the following areas based solely on the consumption of SAML Metadata <a href="#SAML2Meta">[SAML2Meta]</a> on an automated, periodic or real-time basis using (where applicable) the processing rules defined by the SAML Metadata Interoperability profile <a href="#SAML2MDIOP">[SAML2MDIOP]</a>:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -689,7 +689,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>Metadata without a <code>validUntil</code> attribute on its root element MUST be rejected. Metadata whose root element&#8217;s <code>validUntil</code> attribute extends beyond a deployer- or community-imposed threshold MUST be rejected.</p>
 </div>
 <div class="paragraph">
-<p><em>These are critical (but very simple to implement) requirements for secure application of <code><a href="#MetaIOP">[MetaIOP]</a></code> because it is the method by which keys are revoked and the window of revocation is established.</em></p>
+<p><em>These are critical (but very simple to implement) requirements for secure application of <code><a href="#SAML2MDIOP">[SAML2MDIOP]</a></code> because it is the method by which keys are revoked and the window of revocation is established.</em></p>
 </div>
 </div>
 </div>
@@ -716,7 +716,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>Public keys used for signing, encryption, and TLS client and server authentication MUST be expressed via X.509 certificates included in metadata via <code>&lt;md:KeyDescriptor&gt;</code> elements.</p>
 </div>
 <div class="paragraph">
-<p>These certificates SHOULD be long-lived and self-signed. To avoid problems with non-conforming SAML implementations, certificates in metadata SHOULD NOT be expired (though deployments complying with this profile MUST accept expired certificates by virtue of <a href="#MetaIOP">[MetaIOP]</a>).</p>
+<p>These certificates SHOULD be long-lived and self-signed. To avoid problems with non-conforming SAML implementations, certificates in metadata SHOULD NOT be expired (though deployments complying with this profile MUST accept expired certificates by virtue of <a href="#SAML2MDIOP">[SAML2MDIOP]</a>).</p>
 </div>
 <div class="paragraph">
 <p>RSA public keys MUST be at least 2048 bits in length. At least 3072 bits is RECOMMENDED for new deployments.</p>
@@ -823,7 +823,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </ul>
 </div>
 <div class="paragraph">
-<p>Deployments SHOULD select digest, signature, and encryption algorithms on the basis of the Metadata Profile for Algorithm Support <code><a href="#MetaAlg">[MetaAlg]</a></code>. The above requirements provide acceptable defaults in the absence of any information (as is common) or in the event that these defaults are supported by a peer.</p>
+<p>Deployments SHOULD select digest, signature, and encryption algorithms on the basis of the Metadata Profile for Algorithm Support <code><a href="#SAML2MetaAlgSup">[SAML2MetaAlgSup]</a></code>. The above requirements provide acceptable defaults in the absence of any information (as is common) or in the event that these defaults are supported by a peer.</p>
 </div>
 <div class="paragraph">
 <p>Deployments MUST NOT use any of the following security-compromised algorithms (even in the presence of the metadata extension indicating a peer supports them):</p>
@@ -915,7 +915,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>The <code>&lt;saml2p:AuthnRequest&gt;</code> message MUST NOT contain a <code>&lt;saml2:Subject&gt;</code> element.</p>
 </div>
 <div class="paragraph">
-<p><em>The normative requirement for the use of transient identifiers makes specifying subjects in an authentication request nonsensical, even for "step up authentication" use cases.</em></p>
+<p><em>This is a relatively unused feature that is supported by few IdPs.</em></p>
 </div>
 <div class="paragraph">
 <p>The message MUST NOT contain an <code>AssertionConsumerServiceIndex</code> attribute (i.e., the desired endpoint MUST be the default, or identified via the <code>AssertionConsumerServiceURL</code> attribute).</p>
@@ -1482,10 +1482,10 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p><a id="X500SAMLattr"></a>[X500SAMLattr] OASIS Committee Draft, SAML V2.0 X.500/LDAP Attribute Profile, December 2006. <a href="http://docs.oasis-open.org/security/saml/SpecDrafts-Post2.0/sstc-saml-attribute-x500-cd-01.pdf" class="bare">http://docs.oasis-open.org/security/saml/SpecDrafts-Post2.0/sstc-saml-attribute-x500-cd-01.pdf</a></p>
 </li>
 <li>
-<p><a id="MetaIOP"></a>[MetaIOP] OASIS Committee Specification, SAML V2.0 Metadata Interoperability Profile Version 1.0, August 2009. <a href="http://docs.oasis-open.org/security/saml/Post2.0/sstc-metadata-iop.pdf" class="bare">http://docs.oasis-open.org/security/saml/Post2.0/sstc-metadata-iop.pdf</a></p>
+<p><a id="SAML2MDIOP"></a>[SAML2MDIOP] OASIS Committee Specification, SAML V2.0 Metadata Interoperability Profile Version 1.0, August 2009. <a href="http://docs.oasis-open.org/security/saml/Post2.0/sstc-metadata-iop.pdf" class="bare">http://docs.oasis-open.org/security/saml/Post2.0/sstc-metadata-iop.pdf</a></p>
 </li>
 <li>
-<p><a id="MetaAlg"></a>[MetaAlg] OASIS Committee Specification, SAML V2.0 Metadata Profile for Algorithm Support Version 1.0, February 2011. <a href="http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-metadata-algsupport-v1.0-cs01.pdf" class="bare">http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-metadata-algsupport-v1.0-cs01.pdf</a></p>
+<p><a id="SAML2MetaAlgSup"></a>[SAML2MetaAlgSup] OASIS Committee Specification, SAML V2.0 Metadata Profile for Algorithm Support Version 1.0, February 2011. <a href="http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-metadata-algsupport-v1.0-cs01.pdf" class="bare">http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-metadata-algsupport-v1.0-cs01.pdf</a></p>
 </li>
 <li>
 <p><a id="IdPDisco"></a>[IdPDisco] OASIS Committee Specification, Identity Provider Discovery Service Protocol and Profile, March 2008. <a href="http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-idp-discovery.pdf" class="bare">http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-idp-discovery.pdf</a></p>
@@ -1506,7 +1506,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p><a id="SAML2ASLO"></a>[SAML2ASLO] OASIS Committee Specification, SAML V2.0 Asynchronous Single Logout Profile Extension Version 1.0, November 2012. <a href="http://docs.oasis-open.org/security/saml/Post2.0/saml-async-slo/v1.0/cs01/saml-async-slo-v1.0-cs01.pdf" class="bare">http://docs.oasis-open.org/security/saml/Post2.0/saml-async-slo/v1.0/cs01/saml-async-slo-v1.0-cs01.pdf</a></p>
 </li>
 <li>
-<p><a id="SAML-Metadata-UI-V1.0"></a>[SAML-Metadata-UI-V1.0] OASIS Committee Specification, SAML V2.0 Metadata Extensions for Login and Discovery User Interface Version 1.0, 03 April 2012. <a href="http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-metadata-ui/v1.0/cs01/sstc-saml-metadata-ui-v1.0-cs01.pdf" class="bare">http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-metadata-ui/v1.0/cs01/sstc-saml-metadata-ui-v1.0-cs01.pdf</a></p>
+<p><a id="MetaUi"></a>[MetaUi] OASIS Committee Specification, SAML V2.0 Metadata Extensions for Login and Discovery User Interface Version 1.0, 03 April 2012. <a href="http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-metadata-ui/v1.0/cs01/sstc-saml-metadata-ui-v1.0-cs01.pdf" class="bare">http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-metadata-ui/v1.0/cs01/sstc-saml-metadata-ui-v1.0-cs01.pdf</a></p>
 </li>
 <li>
 <p><a id="MetaAttr"></a>[MetaAttr] OASIS Committee Specification, SAML V2.0 Metadata Extension for Entity Attributes Version 1.0, August 2009. <a href="http://docs.oasis-open.org/security/saml/Post2.0/sstc-metadata-attr-cs-01.pdf" class="bare">http://docs.oasis-open.org/security/saml/Post2.0/sstc-metadata-attr-cs-01.pdf</a></p>
