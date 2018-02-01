@@ -32,7 +32,7 @@ IdP and SP deployments MUST support the SAML V2.0 Web Browser SSO Profile, and I
 
 ==== Metadata Consumption and Use
 
-Deployments MUST provision their behavior in the following areas based solely on the consumption of SAML Metadata <<SAML2Meta>> on an automated, periodic or real-time basis using (where applicable) the processing rules defined by the SAML Metadata Interoperability profile <<MetaIOP>>:
+Deployments MUST provision their behavior in the following areas based solely on the consumption of SAML Metadata <<SAML2Meta>> on an automated, periodic or real-time basis using (where applicable) the processing rules defined by the SAML Metadata Interoperability profile <<SAML2MDIOP>>:
 
 * indications of support for Browser SSO and Single Logout profiles
 * selection, determination, and verification of SAML endpoints and bindings
@@ -48,7 +48,7 @@ Consumption of metadata MUST be contingent on verification of a signature (STRON
 
 Metadata without a `validUntil` attribute on its root element MUST be rejected. Metadata whose root element's `validUntil` attribute extends beyond a deployer- or community-imposed threshold MUST be rejected.
 
-_These are critical (but very simple to implement) requirements for secure application of `<<MetaIOP>>` because it is the method by which keys are revoked and the window of revocation is established._
+_These are critical (but very simple to implement) requirements for secure application of `<<SAML2MDIOP>>` because it is the method by which keys are revoked and the window of revocation is established._
 
 ==== Metadata Production
 
@@ -66,7 +66,7 @@ _As an example, deployments that lack support for, or have not tested and integr
 
 Public keys used for signing, encryption, and TLS client and server authentication MUST be expressed via X.509 certificates included in metadata via `<md:KeyDescriptor>` elements.
 
-These certificates SHOULD be long-lived and self-signed. To avoid problems with non-conforming SAML implementations, certificates in metadata SHOULD NOT be expired (though deployments complying with this profile MUST accept expired certificates by virtue of <<MetaIOP>>).
+These certificates SHOULD be long-lived and self-signed. To avoid problems with non-conforming SAML implementations, certificates in metadata SHOULD NOT be expired (though deployments complying with this profile MUST accept expired certificates by virtue of <<SAML2MDIOP>>).
 
 RSA public keys MUST be at least 2048 bits in length. At least 3072 bits is RECOMMENDED for new deployments.
 
@@ -113,7 +113,7 @@ The following default digest algorithm MUST be used in conjunction with the abov
 
 * ```http://www.w3.org/2001/04/xmlenc#sha256``` <<XMLEnc>>
 
-Deployments SHOULD select digest, signature, and encryption algorithms on the basis of the Metadata Profile for Algorithm Support `<<MetaAlg>>`. The above requirements provide acceptable defaults in the absence of any information (as is common) or in the event that these defaults are supported by a peer.
+Deployments SHOULD select digest, signature, and encryption algorithms on the basis of the Metadata Profile for Algorithm Support `<<SAML2MetaAlgSup>>`. The above requirements provide acceptable defaults in the absence of any information (as is common) or in the event that these defaults are supported by a peer.
 
 Deployments MUST NOT use any of the following security-compromised algorithms (even in the presence of the metadata extension indicating a peer supports them):
 
