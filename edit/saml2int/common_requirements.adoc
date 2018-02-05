@@ -22,7 +22,7 @@ Deployments MUST NOT produce any SAML protocol message that contains a (DTD) Doc
 
 Deployments MUST be named via an absolute URI whose total length MUST NOT exceed 256 characters.
 
-_An entityID should be chosen in a manner that minimizes the likelihood of it changing for political or technical reasons, including for example a change to a different software implementation or hosting provider._
+_An entityID SHOULD be chosen in a manner that minimizes the likelihood of it changing for political or technical reasons, including for example a change to a different software implementation or hosting provider._
 
 ==== Profile Support
 
