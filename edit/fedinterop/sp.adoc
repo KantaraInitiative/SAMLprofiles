@@ -12,7 +12,7 @@
 
 _Note that this requirement only implies support for the simple redirection conventions defined by that profile and does not demand implementation of an actual discovery interface, though that is of course not precluded._
 
-_Also note that discovery mechanisms should use SAML metadata to determine the endpoint(s) to which requests are to be issued._
+_Also note that discovery mechanisms SHOULD use SAML metadata to determine the endpoint(s) to which requests are to be issued._
 
 [IIP-SP05]:: Service Providers MUST support the processing of responses from any number of issuing IdPs for any given resource URL. That is, it MUST NOT be a restriction of an implementation that multiple IdPs can only be supported by requiring distinct resource URLs for each IdP.
 
