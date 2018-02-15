@@ -118,13 +118,16 @@ The following default digest algorithm MUST be used in conjunction with the abov
 
 Deployments SHOULD select digest, signature, and encryption algorithms on the basis of the Metadata Profile for Algorithm Support `<<SAML2MetaAlgSup>>`. The above requirements provide acceptable defaults in the absence of any information (as is common) or in the event that these defaults are supported by a peer.
 
-Deployments MUST NOT use any of the following security-compromised algorithms (even in the presence of the metadata extension indicating a peer supports them):
+Deployments MUST NOT use any of the following security-compromised algorithms when communicating with peers in the context of this profile (even in the presence of the metadata extension indicating a peer supports them):
 
 * Digest
+** ```http://www.w3.org/2000/09/xmldsig#sha1``` <<XMLSig>>
 ** ```http://www.w3.org/2001/04/xmldsig-more#md5``` <<RFC4051>>
 
 * Signature
 ** ```http://www.w3.org/2001/04/xmldsig-more#rsa-md5``` <<RFC4051>>
+** ```http://www.w3.org/2000/09/xmldsig#rsa-sha1``` <XMLSig>>
+** ```http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha1``` <<RFC4051>>
 
 * Block Encryption
 ** ```http://www.w3.org/2001/04/xmlenc#aes128-cbc``` <<XMLEnc>>
@@ -135,4 +138,4 @@ Deployments MUST NOT use any of the following security-compromised algorithms (e
 * Key Transport
 ** ```http://www.w3.org/2001/04/xmlenc#rsa-1_5``` <<XMLEnc>>
 
-_Use of these block encryption algorithms remains widespread at the time of authoring, but they are known to be broken <<XMLEncBreak>>._
+_This profile cannot preclude the use of these algorithms when communicating with peers outside the scope of this profile, but they are of course not recommended for ongoing use. Note that use of these block encryption algorithms remains widespread at the time of authoring, but they are known to be broken <<XMLEncBreak>>._
