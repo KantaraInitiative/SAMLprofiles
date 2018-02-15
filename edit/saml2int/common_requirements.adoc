@@ -43,6 +43,8 @@ Deployments MUST provision their behavior in the following areas based solely on
 * optional enforcement of request signing via the `AuthnRequestsSigned` flag
 * TBD?
 
+Deployments MUST NOT require out of band communication or coordination for the management of any behavior by peers included within the enumerated areas identified above. Deployments MAY of course rely on additional sources of policy in order to make determinations whether to successfully interact with peers or refuse to do so.
+
 Consumption of metadata MUST be contingent on verification of a signature (STRONGLY RECOMMENDED) or TLS server certificate. The key ultimately used to establish trust in metadata MUST NOT itself appear within the same metadata in a `<md:KeyDescriptor>` element.
 
 _In most cases, the previous requirement implies that a key communicated via metadata may not also be used to sign and verify the same metadata, but it is possible to envision scenarios in which this may happen if metadata verification relies on a chain of certificates signed by an ultimately trusted Certificate Authority. However, it must be possible to seamlessly communicate new keys without necessarily changing the key used to establish trust in the metadata, which implies some level of indirection is required._
@@ -56,8 +58,6 @@ _These are critical (but very simple to implement) requirements for secure appli
 ==== Metadata Production
 
 Deployments MUST have the ability to provide SAML metadata capturing their requirements and characteristics in the areas identified above in a secure fashion, the specifics of which will necessarily vary by context and community. The use of services offering third-party validation, curation, signing, and publishing of metadata is a recommended practice.
-
-Deployments MUST NOT require out of band communication or coordination for the management of any behavior by peers included within the enumerated areas identified above.
 
 This profile does not mandate any specific automated support for the production of metadata by a deployment. In fact, automatic generation of metadata has a strong tendency to undermine the correct functioning of peer deployments in the face of key rollover or changes to endpoints or other software features because it tends to change too suddenly to accommodate a graceful transition between states.
 
