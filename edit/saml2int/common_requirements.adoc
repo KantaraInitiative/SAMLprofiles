@@ -40,6 +40,7 @@ Deployments MUST provision their behavior in the following areas based solely on
 * selection of XML Encryption key transport keys
 * determination of subject identifier SAML Attribute(s) to provide (per `<<SAML2SubjId>>`)
 * optional signing of assertions via the `WantAssertionsSigned` flag
+* optional enforcement of request signing via the `AuthnRequestsSigned` flag
 * TBD?
 
 Consumption of metadata MUST be contingent on verification of a signature (STRONGLY RECOMMENDED) or TLS server certificate. The key ultimately used to establish trust in metadata MUST NOT itself appear within the same metadata in a `<md:KeyDescriptor>` element.
