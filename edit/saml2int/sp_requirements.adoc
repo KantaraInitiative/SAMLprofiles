@@ -89,6 +89,8 @@ SPs requiring the display of identifiers to users, the identification of other u
 * `urn:oid:2.5.4.42` (givenName)
 * `urn:oid:2.5.4.4` (sn)
 
+_Note that most such Attributes tend to be defined as multi-valued._
+
 ===== Identifier Scoping
 
 SPs MUST prevent unintended identifier collisions in the values asserted by different IdPs, and the required identifier types above are "scoped" via a DNS-like syntax to fulfill this requirement.
