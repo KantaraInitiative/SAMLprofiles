@@ -4,6 +4,12 @@
 
 SPs MUST support the Browser SSO Profile <<SAML2Prof>>.
 
+==== General Flow
+
+SPs MUST support SP-initiated SSO, i.e., the direct generation of authentication request messages in response to unauthenticated or insufficiently-authenticated access attempts to an application as a whole, or to specific protected content.
+
+SPs MAY support unsolicited responses (so-called IdP-initiated SSO) but MUST NOT require them.
+
 ==== Requests
 
 ===== Binding
@@ -93,9 +99,11 @@ _Note that most such Attributes tend to be defined as multi-valued._
 
 ===== Identifier Scoping
 
-SPs MUST prevent unintended identifier collisions in the values asserted by different IdPs, and the required identifier types above are "scoped" via a DNS-like syntax to fulfill this requirement.
+SPs MUST prevent unintended identifier collisions in the values asserted by different IdPs, and the required identifier types above are "scoped" via a DNS-like syntax to help fulfill this requirement.
 
-SPs MUST associate identifier scopes with IdPs such that only authorized IdPs may assert identifiers with particular scopes.
+SPs MUST associate identifier scopes with IdPs such that only authorized IdPs may assert identifiers with particular scopes for particular purposes.
+
+_For example, if the `example.com` scope is bound to the IdP named `http://idp.example.com/saml`, it should be generally disallowed for any other IdP to assert an identifier in that scope. Note that this is not a 1:1 relationship; it may frequently happen that multiple IdPs may assert a given scope, or an IdP may assert identifiers in multiple scopes, but the rules for this should be explicit and enforced._
 
 ==== Attribute Value Constraints
 
@@ -103,27 +111,33 @@ When consuming SAML Attributes with standardized definitions in external specifi
 
 _For example, the definition of the `mail` attribute (in SAML, `urn:oid:0.9.2342.19200300.100.1.3`) explicitly allows for multiple values, so an SP that consumes it for some purpose must necessarily allow for that possibility._
 
-==== SP-Initiated SSO
-
-SPs must support the direct generation of authentication request messages conforming to the SAML Authentication Request Protocol <<SAML2Core>>.
-
-SPs that want to bypass user-initiated discovery SHOULD support the SP Request Initiation Profile and Protocol defined in <<SAML2SPRIP>>.
-
-SPs MUST NOT require IdPs to support unsolicited responses (or so-called IdP-initiated SSO) <<SAML2Prof>> though they MAY support them as a voluntary means of bypassing discovery.
-
 ==== Deep Linking
 
-Applications that support deep linking and direct addressability of protected resources (the vast majority) MUST maintain support for such links during a Browser SSO profile interaction. That is, it MUST be possible to request an arbitrary protected resource and (authorization permitting) have it supplied as the result of a successful Browser SSO profile exchange.
+Silo-oriented, multi-tenant approaches to cloud application design create an inherent friction with the intended design of the web, user behavior and experience, and the needs of collaboration inherent to many applications. SSO tends to exacerbate these problems and there are important design issues that need to be taken into consideration. These issues, while not strictly speaking a matter of SAML interoperability, have a significant impact on the perception of the system as a whole and on the successful adoption of SSO, regardless of the protocol used.
+
+The web inherently operates on the basis of _addressability_ of resources; that is, users expect to be able to access a piece of information or an application function directly, without regard for their identity, current level of access, or what is convenient for an application developer to support. This leads naturally to the ability to create bookmarks to what matters to them, and users will consistently and understandably route around any attempts to force them through proxies, portals, and other artificial access paths.
+
+At a high level, these issues fall under the term `deep linking`.
+
+_For a wide range of applications in the collaborative space, this notion is not merely convenient, but utterly essential, because such applications presume the sharing of resources with peers between organizations._
+
+For the purposes of the following requirements, we will refer to applications that rely on the exposure of resource URLs that may be shared between users from multiple organizations as "collaborative" applications, even if their purpose may not specifically align with that term.
+
+Applications SHOULD, and collaborative applications MUST, support deep linking. Deep linking implies maintaining support for such links during a Web Browser SSO profile interaction. That is, it SHOULD be possible to request a resource and (authorization permitting) have it supplied as the result of a successful Web Browser SSO profile exchange.
 
 It is RECOMMENDED that SPs support the preservation of POST bodies across a successful SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.
 
-The SAML binding-specific `RelayState` feature <<SAML2Bind>> is typically used to maintain the state information required to satisfy both of these requirements, the exact detail of which is left to implementations.
+Deep linking implies support for some form of IdP "discovery", the process by which an SP establishes which IdP to use on behalf of a subject. Use of IdP-initiated SSO is a common workaround for supporting discovery, but is incompatible with deep linking, in addition to its other drawbacks.
 
-==== Support for Multiple IdPs
+A common means of discovery is the mapping of resource/application URL (typically virtual host, sometimes path) to a specific IdP. This is strongly discouraged, and disallowed for collaborative applications, since it makes sharing URLs between users from multiple organizations impossible.
 
-SPs MUST allow clients the option to authenticate specific resource URLs against more than one IdP. _(This language is from the Impl Profile)_
+SPs SHOULD consider support for the SP Request Initiation Profile and Protocol defined in <<SAML2SPRIP>>, as it provides a general, composable building block, and MAY support other mechanisms and caching solutions (e.g., cookies) as desired, to reduce the frequency of discovery.
 
-When more than one IdP authenticates the same resource URL, IdP selection SHOULD be supported using the OASIS SSTC SAML v2.0 IdP Discovery Profile <<IdPDisco>>.
+===== Support for Multiple IdPs
+
+Related to deep linking, SPs MUST allow for the possibility that any given request requiring authentication may be potentially satisfied by more than one IdP. That is, any scenario in which a piece of content, policy, configuration, or decision on the part of an application is bound to an IdP MUST be constructed in a fashion such that more than one IdP may be so bound.
+
+_This requirement flows from both the inherent requirements of collaborative applications described above, and from the simple reality that enterprises vary in their structure and organization such that any presumed mapping between a contract or set of access policies and a single SAML IdP is inherently constraining. This constraint imposes a need for complex proxying of SSO by many organizations and must be avoided._
 
 === Single Logout
 
