@@ -22,7 +22,7 @@ Requests MUST NOT be issued inside an HTML frame or via any mechanism that would
 
 The `<samlp:AuthnRequest>` message MUST either omit the `<samlp:NameIDPolicy>` element (RECOMMENDED), or the element MUST contain an `AllowCreate` attribute of "true" and MUST NOT contain a `Format` attribute.
 
-The `<saml2p:AuthnRequest>` message MUST NOT contain a `<saml2:Subject>` element.
+The `<samlp:AuthnRequest>` message MUST NOT contain a `<saml:Subject>` element.
 
 _This is a relatively unused feature that is supported by few IdPs._ 
 
