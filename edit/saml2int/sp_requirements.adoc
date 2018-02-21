@@ -149,7 +149,7 @@ SPs MAY support the Single Logout Profile <<SAML2Prof>>. The following requireme
 
 The HTTP-Redirect binding <<SAML2Bind>> MUST be used for the transmission of `<samlp:LogoutRequest>` messages.
 
-SPs MUST support the HTTP-Redirect <<SAML2Bind>> binding for the receipt of `<samlp:LogoutRequest>` messages.
+SPs MUST support the HTTP-Redirect <<SAML2Bind>> binding for the receipt of `<samlp:LogoutRequest>` messages, in the event that inbound `<samlp:LogoutRequest>` messages are supported.
 
 Requests MUST NOT be issued inside an HTML frame or via any mechanism that would require the use of third-party cookies by the IdP to establish or recover a session with the User Agent. This will typically imply that requests must involve a full-frame redirect, in order that the top level window origin be associated with the IdP.
 
