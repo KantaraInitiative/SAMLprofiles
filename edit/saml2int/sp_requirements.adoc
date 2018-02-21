@@ -76,7 +76,7 @@ SPs MUST NOT require the presence of a `<saml:NameID>` element and MUST NOT rely
 
 If an SP requires persistent tracking/identification of its users (as most do), then it MUST support one or both of the SAML Attributes defined by <<SAML2SubjId>> for this purpose.
 
-If an SP requires coordination and/or correlation of user activity between itself and other SPs, then the SAML Attribute named `urn:oasis:names:tc:SAML:attribute:subject-id` is appropriate. Otherwise the SAML Attribute named `urn:oasis:names:tc:SAML:attribute:pairwise-id` should be used.
+If an SP requires coordination and/or correlation of user activity between itself and other SPs, then the SAML Attribute named `urn:oasis:names:tc:SAML:attribute:subject-id` is appropriate. Otherwise the SAML Attribute named `urn:oasis:names:tc:SAML:attribute:pairwise-id` can be used.
 
 SPs MAY support legacy or historical `<saml:NameID>` and `<saml:Attribute>` content for compatibility reasons but MUST NOT require their use.
 
