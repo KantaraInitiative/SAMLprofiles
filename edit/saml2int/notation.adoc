@@ -27,6 +27,10 @@ When referring to elements from the SAML V2.0 Asynchronous Single Logout Protoco
 
 * `<aslo:Element>`
 
+When referring to elements from the XML-Signature Syntax and Processing Version 1.1 WWWC Recommendation <<XMLSig>>, the following syntax is used:
+
+* `<ds:Element>`
+
 === Terminology
 
 The abbreviations IdP and SP are used below to refer to Identity Providers and Service Providers in the sense of their usage within the SAML Browser SSO Profile and Single Logout profiles.
