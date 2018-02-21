@@ -84,6 +84,14 @@ SPs MAY support legacy or historical `<saml:NameID>` and `<saml:Attribute>` cont
 
 An SP MUST represent its identifier requirements in its SAML metadata, consistent with the Requirements Signaling mechanism defined in <<SAML2SubjId>>.
 
+===== Identifier Scoping
+
+SPs MUST prevent unintended identifier collisions in the values asserted by different IdPs, and the required identifier types above are "scoped" via a DNS-like syntax to help fulfill this requirement.
+
+SPs MUST associate identifier scopes with IdPs such that only authorized IdPs may assert identifiers with particular scopes for particular purposes.
+
+_For example, if the `example.com` scope is bound to the IdP named `http://idp.example.com/saml`, it should be generally disallowed for any other IdP to assert an identifier in that scope. Note that this is not a 1:1 relationship; it may frequently happen that multiple IdPs may assert a given scope, or an IdP may assert identifiers in multiple scopes, but the rules for this should be explicit and enforced._
+
 ===== Displayable Identifiers
 
 The required identifier types above are opaque, unknown to users in most cases, and unsuitable for display.
@@ -96,14 +104,6 @@ SPs requiring the display of identifiers to users, the identification of other u
 * `urn:oid:2.5.4.4` (sn)
 
 _Note that most such Attributes tend to be defined as multi-valued._
-
-===== Identifier Scoping
-
-SPs MUST prevent unintended identifier collisions in the values asserted by different IdPs, and the required identifier types above are "scoped" via a DNS-like syntax to help fulfill this requirement.
-
-SPs MUST associate identifier scopes with IdPs such that only authorized IdPs may assert identifiers with particular scopes for particular purposes.
-
-_For example, if the `example.com` scope is bound to the IdP named `http://idp.example.com/saml`, it should be generally disallowed for any other IdP to assert an identifier in that scope. Note that this is not a 1:1 relationship; it may frequently happen that multiple IdPs may assert a given scope, or an IdP may assert identifiers in multiple scopes, but the rules for this should be explicit and enforced._
 
 ==== Attribute Value Constraints
 
