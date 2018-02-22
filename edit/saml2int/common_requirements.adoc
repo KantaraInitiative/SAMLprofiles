@@ -81,7 +81,7 @@ By virtue of the profile's overall requirements, an IdP's metadata MUST include 
 
 ===== Discovery and User Interface Elements
 
-Metadata MUST include an `<mdui:UIInfo>` element as defined in <<MetaUI>> containing at minimum the sub-elements `<mdui:DisplayName>`, `<mdui:Logo>`, `<mdui:InformationURL>`, and `<mdui:PrivacyStatementURL>`.
+Metadata MUST include an `<mdui:UIInfo>` element as defined in <<MetaUI>> containing at least the child elements `<mdui:DisplayName>`, `<mdui:Logo>`, `<mdui:InformationURL>`, and `<mdui:PrivacyStatementURL>`.
 
 The content of the `<mdui:Logo>` element MUST be either an `https` URL or an in-line image embedded in a `data` URI element.
 
