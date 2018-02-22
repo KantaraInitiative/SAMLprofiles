@@ -213,7 +213,7 @@ By virtue of this profile's requirements, an SP's metadata MUST contain:
 ** at least one `<md:KeyDescriptor>` element whose `use` attribute is omitted or set to `encryption`
 * an `<md:Extensions>` element
 ** an `<mdui:UIInfo>` extension element with previously prescribed content
-** an `<mdattr:EntityAttributes>` extension element with previously prescribed content
+** an `<mdattr:EntityAttributes>` extension element for signaling Subject Identifier requirements with previously prescribed content
 
 In addition, an SP's metadata MUST contain:
 
