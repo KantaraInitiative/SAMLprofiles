@@ -117,4 +117,6 @@ The following default digest algorithm MUST be used in conjunction with the abov
 
 * ```http://www.w3.org/2001/04/xmlenc#sha256``` <<XMLEnc>>
 
+This profile will be updated as necessary to reflect changes in government and industry recommendations regarding algorithm usage.
+
 _This profile cannot preclude the use of other algorithms when communicating with peers outside the scope of this profile, but the other algorithms in common use are generally considered to be weakening (e.g., SHA-1) or broken outright (e.g., RSA PKCS#1.5). Note that the use of AES-CBC block encryption algorithms remains widespread at the time of authoring, but are known to be broken <<XMLEncBreak>>._
