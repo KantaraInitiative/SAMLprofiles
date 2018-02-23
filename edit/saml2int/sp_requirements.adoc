@@ -4,12 +4,6 @@
 
 SPs MUST support the Browser SSO Profile <<SAML2Prof>>.
 
-==== General Flow
-
-SPs MUST support SP-initiated SSO, i.e., the direct generation of authentication request messages in response to unauthenticated or insufficiently-authenticated access attempts to an application as a whole, or to specific protected content.
-
-SPs MAY support unsolicited responses (so-called IdP-initiated SSO) but MUST NOT require them.
-
 ==== Requests
 
 ===== Binding
@@ -111,11 +105,11 @@ When consuming SAML Attributes with standardized definitions in external specifi
 
 _For example, the definition of the `mail` attribute (in SAML, `urn:oid:0.9.2342.19200300.100.1.3`) explicitly allows for multiple values, so an SP that consumes it for some purpose must necessarily allow for that possibility._
 
-==== Deep Linking
+==== Usability
 
-Silo-oriented, multi-tenant approaches to cloud application design create an inherent friction with the intended design of the web, user behavior and experience, and the needs of collaboration inherent to many applications. SSO tends to exacerbate these problems and there are important design issues that need to be taken into consideration. These issues, while not strictly speaking a matter of SAML interoperability, have a significant impact on the perception of the system as a whole and on the successful adoption of SSO, regardless of the protocol used.
+Silo-oriented, multi-tenant approaches to federated application deployment create an inherent friction with the intended design of the web, user behavior and experience, and the needs of collaboration inherent in many applications. SSO, when integrated poorly, can negatively impact usability, and the following sections, while not strictly matters of SAML interoperability, have a significant effect on the perception of the system as a whole and on the successful adoption of SSO, regardless of the protocol.
 
-The web inherently operates on the basis of _addressability_ of resources; that is, users expect to be able to access a piece of information or an application function directly, without regard for their identity, current level of access, or what is convenient for an application developer to support. This leads naturally to the ability to create bookmarks to what matters to them, and users will consistently and understandably route around any attempts to force them through proxies, portals, and other artificial access paths.
+The web inherently operates on the basis of _addressability_ of resources; that is, users expect to be able to access a piece of information or an application function directly, without regard for their identity, current level of access, or what is convenient for an application developer to support. This leads naturally to the ability to create bookmarks to what matters to them, and users will consistently route around attempts to force them through proxies, portals, and other artificial access paths.
 
 At a high level, these issues fall under the term `deep linking`.
 
@@ -123,15 +117,21 @@ _For a wide range of applications in the collaborative space, this notion is not
 
 For the purposes of the following requirements, we will refer to applications that rely on the exposure of resource URLs that may be shared between users from multiple organizations as "collaborative" applications, even if their purpose may not specifically align with that term.
 
-Applications SHOULD, and collaborative applications MUST, support deep linking. Deep linking implies maintaining support for such links during a Web Browser SSO profile interaction. That is, it SHOULD be possible to request a resource and (authorization permitting) have it supplied as the result of a successful Web Browser SSO profile exchange.
+===== Deep Linking
+
+Applications SHOULD, and collaborative applications MUST, support deep linking. Deep linking implies maintaining support for such links across the boundary of a Web Browser SSO profile interaction. That is, it SHOULD be possible to request a resource and (authorization permitting) have it supplied as the result of a successful Web Browser SSO profile exchange.
 
 It is RECOMMENDED that SPs support the preservation of POST bodies across a successful SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.
 
-Deep linking implies support for some form of IdP "discovery", the process by which an SP establishes which IdP to use on behalf of a subject. Use of IdP-initiated SSO is a common workaround for supporting discovery, but is incompatible with deep linking, in addition to its other drawbacks.
+Deep linking implies support for SP-initiated SSO, i.e., the direct generation of authentication request messages in response to unauthenticated or insufficiently-authenticated access attempts to an application as a whole, or to specific protected content. Deep linking may co-exist with support for unsolicited responses (so-called IdP-initiated SSO), but precludes its requirement.
 
-A common means of discovery is the mapping of resource/application URL (typically virtual host, sometimes path) to a specific IdP. This is strongly discouraged, and disallowed for collaborative applications, since it makes sharing URLs between users from multiple organizations impossible.
+===== Discovery
 
-SPs SHOULD consider support for the SP Request Initiation Profile and Protocol defined in <<SAML2SPRIP>>, as it provides a general, composable building block, and MAY support other mechanisms and caching solutions (e.g., cookies) as desired, to reduce the frequency of discovery.
+Deep linking also implies support for some form of IdP "discovery", the process by which an SP establishes which IdP to use on behalf of a subject. Use of IdP-initiated SSO is a common workaround for supporting discovery, but as noted above cannot be required if deep linking is supported, in addition to having other drawbacks.
+
+A common means of discovery is the mapping of resource/application URL (typically virtual host, sometimes path) to a specific IdP. This is strongly discouraged, and is disallowed for collaborative applications, since it makes the sharing of URLs between users from multiple organizations impossible (or at best highly inconvenient).
+
+SPs SHOULD consider support for the SP Request Initiation Profile and Protocol defined in <<SAML2SPRIP>>, as it provides a general, composable building block. SPs MAY support other mechanisms and caching solutions (e.g., cookies) as desired, to reduce the frequency of discovery.
 
 ===== Support for Multiple IdPs
 
