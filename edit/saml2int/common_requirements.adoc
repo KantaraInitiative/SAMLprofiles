@@ -43,7 +43,7 @@ Deployments MUST provision their behavior in the following areas based solely on
 * optional enforcement of request signing via the `AuthnRequestsSigned` flag
 * TBD?
 
-Deployments MUST NOT require out of band communication or coordination for the management of any behavior by peers included within the enumerated areas identified above. Deployments MAY of course rely on additional sources of policy in order to make determinations whether to successfully interact with peers or refuse to do so.
+Deployments MUST NOT require out of band communication or coordination for the management of any behavior by peers included within the enumerated areas identified above. Deployments MAY of course rely on additional sources of policy, including other metadata content, in order to make determinations whether to successfully interact with peers or refuse to do so.
 
 Consumption of metadata MUST be contingent on verification of a signature (STRONGLY RECOMMENDED) or TLS server certificate. The key ultimately used to establish trust in metadata MUST NOT itself appear within the same metadata in a `<md:KeyDescriptor>` element.
 
