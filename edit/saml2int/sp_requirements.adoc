@@ -113,7 +113,7 @@ The web inherently operates on the basis of _addressability_ of resources; that 
 
 At a high level, these issues fall under the term `deep linking`.
 
-_For a wide range of applications in the collaborative space, this notion is not merely convenient, but utterly essential, because such applications presume the sharing of resources with peers between organizations._
+For a wide range of applications in the collaborative space, this notion is not merely convenient, but utterly essential, because such applications presume the sharing of resources with peers between organizations.
 
 For the purposes of the following requirements, we will refer to applications that rely on the exposure of resource URLs that may be shared between users from multiple organizations as "collaborative" applications, even if their purpose may not specifically align with that term.
 
@@ -131,7 +131,7 @@ Deep linking also implies support for some form of IdP "discovery", the process 
 
 A common means of discovery is the mapping of resource/application URL (typically virtual host, sometimes path) to a specific IdP. This is strongly discouraged, and is disallowed for collaborative applications, since it makes the sharing of URLs between users from multiple organizations impossible (or at best highly inconvenient).
 
-SPs SHOULD consider support for the SP Request Initiation Profile and Protocol defined in <<SAML2SPRIP>>, as it provides a general, composable building block. SPs MAY support other mechanisms and caching solutions (e.g., cookies) as desired, to reduce the frequency of discovery.
+SPs SHOULD consider support for the SP Request Initiation Profile and Protocol defined in <<IdPDisco>> as it provides a general, composable building block. SPs MAY support other mechanisms and caching solutions (e.g., cookies) as desired, to reduce the frequency of discovery.
 
 ===== Support for Multiple IdPs
 
