@@ -1033,7 +1033,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>At a high level, these issues fall under the term <code>deep linking</code>.</p>
 </div>
 <div class="paragraph">
-<p><em>For a wide range of applications in the collaborative space, this notion is not merely convenient, but utterly essential, because such applications presume the sharing of resources with peers between organizations.</em></p>
+<p>For a wide range of applications in the collaborative space, this notion is not merely convenient, but utterly essential, because such applications presume the sharing of resources with peers between organizations.</p>
 </div>
 <div class="paragraph">
 <p>For the purposes of the following requirements, we will refer to applications that rely on the exposure of resource URLs that may be shared between users from multiple organizations as "collaborative" applications, even if their purpose may not specifically align with that term.</p>
@@ -1059,7 +1059,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p>A common means of discovery is the mapping of resource/application URL (typically virtual host, sometimes path) to a specific IdP. This is strongly discouraged, and is disallowed for collaborative applications, since it makes the sharing of URLs between users from multiple organizations impossible (or at best highly inconvenient).</p>
 </div>
 <div class="paragraph">
-<p>SPs SHOULD consider support for the SP Request Initiation Profile and Protocol defined in <a href="#SAML2SPRIP">[SAML2SPRIP]</a>, as it provides a general, composable building block. SPs MAY support other mechanisms and caching solutions (e.g., cookies) as desired, to reduce the frequency of discovery.</p>
+<p>SPs SHOULD consider support for the SP Request Initiation Profile and Protocol defined in <a href="#IdPDisco">[IdPDisco]</a> as it provides a general, composable building block. SPs MAY support other mechanisms and caching solutions (e.g., cookies) as desired, to reduce the frequency of discovery.</p>
 </div>
 </div>
 <div class="sect4">
@@ -1487,7 +1487,7 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <p><a id="XMLSig"></a>[XMLSig] D. Eastlake et al. XML-Signature Syntax and Processing, Version 1.1. World Wide Web Consortium Recommendation, April 2013. <a href="https://www.w3.org/TR/xmldsig-core1/" class="bare">https://www.w3.org/TR/xmldsig-core1/</a></p>
 </li>
 <li>
-<p><a id="SAML2SubjId"></a>[SAML2SubjId] OASIS Committee Draft, SAMLV2.0 Subject Identifier Attributes Profile Version 1.0, September 2017.  <a href="https://www.oasis-open.org/committees/download.php/61575/saml-subject-id-attr-v1.0-wd03.pdf" class="bare">https://www.oasis-open.org/committees/download.php/61575/saml-subject-id-attr-v1.0-wd03.pdf</a></p>
+<p><a id="SAML2SubjId"></a>[SAML2SubjId] OASIS Working Draft, SAMLV2.0 Subject Identifier Attributes Profile Version 1.0, February 2018.  <a href="https://www.oasis-open.org/committees/download.php/62438/saml-subject-id-attr-v1.0-wd04.pdf" class="bare">https://www.oasis-open.org/committees/download.php/62438/saml-subject-id-attr-v1.0-wd04.pdf</a></p>
 </li>
 <li>
 <p><a id="SAML2ASLO"></a>[SAML2ASLO] OASIS Committee Specification, SAML V2.0 Asynchronous Single Logout Profile Extension Version 1.0, November 2012. <a href="http://docs.oasis-open.org/security/saml/Post2.0/saml-async-slo/v1.0/cs01/saml-async-slo-v1.0-cs01.pdf" class="bare">http://docs.oasis-open.org/security/saml/Post2.0/saml-async-slo/v1.0/cs01/saml-async-slo-v1.0-cs01.pdf</a></p>
@@ -1515,9 +1515,6 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </li>
 <li>
 <p><a id="IMI"></a>[IMI] OASIS Standard, Identity Metasystem Interoperability Version 1.0, July 2009. <a href="http://docs.oasis-open.org/imi/identity/v1.0/identity.html" class="bare">http://docs.oasis-open.org/imi/identity/v1.0/identity.html</a></p>
-</li>
-<li>
-<p><a id="SAML2SPRIP"></a>[SAML2SPRIP] OASIS Committee Specification, Service Provider Request Initiation Protocol and Profile Version 1.0, November 2010. <a href="http://docs.oasis-open.org/security/saml/Post2.0/sstc-request-initiation.pdf" class="bare">http://docs.oasis-open.org/security/saml/Post2.0/sstc-request-initiation.pdf</a></p>
 </li>
 <li>
 <p><a id="MACEAttrProf"></a>[MACEAttrProf] MACEDir Working Group Specification, MACEDir SAML Attribute Profiles, April 2008. <a href="http://macedir.org/docs/internet2-mace-dir-saml-attributes-latest.pdf" class="bare">http://macedir.org/docs/internet2-mace-dir-saml-attributes-latest.pdf</a></p>
