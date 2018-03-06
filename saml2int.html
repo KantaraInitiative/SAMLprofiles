@@ -626,8 +626,13 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <h3 id="_general">3.1. General</h3>
 <div class="sect3">
 <h4 id="_clock_skew">3.1.1. Clock Skew</h4>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-G01]</dt>
+<dd>
 <p>Deployments MUST allow for a minimum of three (3) and a maximum of five (5) minutes of clock skew&#8201;&#8212;&#8201;in either direction&#8201;&#8212;&#8201;when interpreting <code>xsd:dateTime</code> values in assertions and when enforcing security policies based thereupon.</p>
+</dd>
+</dl>
 </div>
 <div class="paragraph">
 <p><em>The following is a non-exhaustive list of items to which this directive applies:</em> <code>NotBefore</code>, <code>NotOnOrAfter</code>, <em>and</em> <code>validUntil</code> <em>XML attributes found on</em> <code>&lt;saml:Conditions&gt;</code>, <code>&lt;saml:SubjectConfirmationData&gt;</code>, <code>&lt;samlp:LogoutRequest&gt;</code>, <code>&lt;md:EntityDescriptor&gt;</code>, <code>&lt;md:EntitiesDescriptor&gt;</code>, <code>&lt;md:RoleDescriptor&gt;</code>, <em>and</em> <code>&lt;md:AffiliationDescriptor&gt;</code> <em>elements.</em></p>
@@ -635,20 +640,35 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 <div class="sect3">
 <h4 id="_data_size">3.1.2. Data Size</h4>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-G02]</dt>
+<dd>
 <p>Unless otherwise specified, deployments MUST limit the size of all element and attribute content they produce to 256 characters. This applies in particular to the values within <code>&lt;saml:NameID&gt;</code> and <code>&lt;saml:AttributeValue&gt;</code> elements.</p>
+</dd>
+</dl>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_document_type_definitions">3.1.3. Document Type Definitions</h4>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-G03]</dt>
+<dd>
 <p>Deployments MUST NOT produce any SAML protocol message that contains a (DTD) Document Type Definition. Deployments SHOULD reject messages that contain them.</p>
+</dd>
+</dl>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_saml_entityids">3.1.4. SAML entityIDs</h4>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-G04]</dt>
+<dd>
 <p>Deployments MUST be named via an absolute URI whose total length MUST NOT exceed 256 characters.</p>
+</dd>
+</dl>
 </div>
 <div class="paragraph">
 <p><em>An entityID SHOULD be chosen in a manner that minimizes the likelihood of it changing for political or technical reasons, including for example a change to a different software implementation or hosting provider.</em></p>
@@ -656,8 +676,13 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 <div class="sect3">
 <h4 id="_profile_support">3.1.5. Profile Support</h4>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-G05]</dt>
+<dd>
 <p>IdP and SP deployments MUST support the SAML V2.0 Web Browser SSO Profile, and IdP deployments MUST support the SAML V2.0 Single Logout Profile, as defined in <a href="#SAML2Prof">[SAML2Prof]</a> and as updated by <a href="#SAML2Err">[SAML2Err]</a>. The behavior, capabilities, and options MUST be consistent with the additional constraints specified in this document.</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -665,9 +690,11 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <h3 id="_metadata_and_trust_management">3.2. Metadata and Trust Management</h3>
 <div class="sect3">
 <h4 id="_metadata_consumption_and_use">3.2.1. Metadata Consumption and Use</h4>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-MD01]</dt>
+<dd>
 <p>Deployments MUST provision their behavior in the following areas based solely on the consumption of SAML Metadata <a href="#SAML2Meta">[SAML2Meta]</a> on an automated, periodic or real-time basis using (where applicable) the processing rules defined by the SAML Metadata Interoperability profile <a href="#SAML2MDIOP">[SAML2MDIOP]</a>:</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
@@ -696,19 +723,32 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </li>
 </ul>
 </div>
+</dd>
+</dl>
+</div>
 <div class="paragraph">
 <p>Deployments MUST NOT require out of band communication or coordination for the management of any behavior by peers included within the enumerated areas identified above. Deployments MAY of course rely on additional sources of policy, including other metadata content, in order to make determinations whether to successfully interact with peers or refuse to do so.</p>
 </div>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-MD02]</dt>
+<dd>
 <p>Consumption of metadata MUST be contingent on verification of a signature (STRONGLY RECOMMENDED) or TLS server certificate. The key ultimately used to establish trust in metadata MUST NOT itself appear within the same metadata in a <code>&lt;md:KeyDescriptor&gt;</code> element.</p>
+</dd>
+</dl>
 </div>
 <div class="paragraph">
 <p><em>In most cases, the previous requirement implies that a key communicated via metadata may not also be used to sign and verify the same metadata, but it is possible to envision scenarios in which this may happen if metadata verification relies on a chain of certificates signed by an ultimately trusted Certificate Authority. However, it must be possible to seamlessly communicate new keys without necessarily changing the key used to establish trust in the metadata, which implies some level of indirection is required.</em></p>
 </div>
 <div class="sect4">
 <h5 id="_metadata_validity">Metadata Validity</h5>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-MD03]</dt>
+<dd>
 <p>Metadata without a <code>validUntil</code> attribute on its root element MUST be rejected. Metadata whose root element&#8217;s <code>validUntil</code> attribute extends beyond a deployer- or community-imposed threshold MUST be rejected.</p>
+</dd>
+</dl>
 </div>
 <div class="paragraph">
 <p><em>These are critical (but very simple to implement) requirements for secure application of <code><a href="#SAML2MDIOP">[SAML2MDIOP]</a></code> because it is the method by which keys are revoked and the window of revocation is established.</em></p>
@@ -717,67 +757,102 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 <div class="sect3">
 <h4 id="_metadata_production">3.2.2. Metadata Production</h4>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-MD04]</dt>
+<dd>
 <p>Deployments MUST have the ability to provide SAML metadata capturing their requirements and characteristics in the areas identified above in a secure fashion, the specifics of which will necessarily vary by context and community. The use of services offering third-party validation, curation, signing, and publishing of metadata is a recommended practice.</p>
+</dd>
+</dl>
 </div>
 <div class="paragraph">
 <p>This profile does not mandate any specific automated support for the production of metadata by a deployment. In fact, automatic generation of metadata has a strong tendency to undermine the correct functioning of peer deployments in the face of key rollover or changes to endpoints or other software features because it tends to change too suddenly to accommodate a graceful transition between states.</p>
 </div>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-MD05]</dt>
+<dd>
 <p>Metadata MAY include content indicating support for profiles or features beyond the bounds of this profile, but metadata MUST NOT contain content that advertises profile support or features that aren&#8217;t supported or that have not been deliberately and intentionally configured by a deployment.</p>
+</dd>
+</dl>
 </div>
 <div class="paragraph">
 <p><em>As an example, deployments that lack support for, or have not tested and integrated an implementation&#8217;s support for the HTTP-Artifact binding <a href="#SAML2Bind">[SAML2Bind]</a> must omit such endpoints.</em></p>
 </div>
 <div class="sect4">
 <h5 id="_keys_and_certificates">Keys and Certificates</h5>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-MD06]</dt>
+<dd>
 <p>Public keys used for signing, encryption, and TLS client and server authentication MUST be expressed via X.509 certificates included in metadata via <code>&lt;md:KeyDescriptor&gt;</code> elements.</p>
+</dd>
+</dl>
 </div>
 <div class="paragraph">
 <p>These certificates SHOULD be long-lived and self-signed. To avoid problems with non-conforming SAML implementations, certificates in metadata SHOULD NOT be expired (though deployments complying with this profile MUST accept expired certificates by virtue of <a href="#SAML2MDIOP">[SAML2MDIOP]</a>).</p>
 </div>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-MD07]</dt>
+<dd>
 <p>RSA public keys MUST be at least 2048 bits in length. At least 3072 bits is RECOMMENDED for new deployments.</p>
-</div>
-<div class="paragraph">
+</dd>
+<dt class="hdlist1">[SDP-MD08]</dt>
+<dd>
 <p>EC public keys MUST be at least 256 bits in length.</p>
-</div>
-<div class="paragraph">
+</dd>
+<dt class="hdlist1">[SDP-MD09]</dt>
+<dd>
 <p>Certificates used MUST NOT be signed with an MD5-based signature algorithm and SHOULD NOT be signed with a SHA1-based signature algorithm.</p>
-</div>
-<div class="paragraph">
+</dd>
+<dt class="hdlist1">[SDP-MD10]</dt>
+<dd>
 <p>By virtue of the profile&#8217;s overall requirements, an IdP&#8217;s metadata MUST include at least one signing certificate (that is, an <code>&lt;md:KeyDescriptor&gt;</code> with no <code>use</code> attribute or one set to <code>signing</code>), and an SP&#8217;s metadata MUST include at least one encryption certificate (that is, an <code>&lt;md:KeyDescriptor&gt;</code> with no <code>use</code> attribute or one set to <code>encryption</code>).</p>
+</dd>
+</dl>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_discovery_and_user_interface_elements">Discovery and User Interface Elements</h5>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-MD11]</dt>
+<dd>
 <p>Metadata MUST include an <code>&lt;mdui:UIInfo&gt;</code> element as defined in <a href="#MetaUI">[MetaUI]</a> containing at least the child elements <code>&lt;mdui:DisplayName&gt;</code>, <code>&lt;mdui:Logo&gt;</code>, <code>&lt;mdui:InformationURL&gt;</code>, and <code>&lt;mdui:PrivacyStatementURL&gt;</code>.</p>
-</div>
-<div class="paragraph">
+</dd>
+<dt class="hdlist1">[SDP-MD12]</dt>
+<dd>
 <p>The content of the <code>&lt;mdui:Logo&gt;</code> element MUST be either an <code>https</code> URL or an in-line image embedded in a <code>data</code> URI element.</p>
-</div>
-<div class="paragraph">
+</dd>
+<dt class="hdlist1">[SDP-MD13]</dt>
+<dd>
 <p>At least one <code>&lt;mdui:Logo&gt;</code> element MUST have a <code>height</code> attribute of <code>60</code> and a <code>width</code> attribute of <code>80</code>.</p>
-</div>
-<div class="paragraph">
+</dd>
+<dt class="hdlist1">[SDP-MD14]</dt>
+<dd>
 <p>An entity SHOULD include an <code>&lt;mdui:Logo&gt;</code> element with a <code>height</code> attribute of <code>16</code> and a <code>width</code> attribute of <code>16</code>.</p>
-</div>
-<div class="paragraph">
+</dd>
+<dt class="hdlist1">[SDP-MD15]</dt>
+<dd>
 <p>Any logo referenced by an <code>&lt;mdui:Logo&gt;</code> element MUST have a transparent background.</p>
-</div>
-<div class="paragraph">
+</dd>
+<dt class="hdlist1">[SDP-MD16]</dt>
+<dd>
 <p>Any logo referenced by an <code>&lt;mdui:Logo&gt;</code> element MUST be in PNG format.</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_cryptographic_algorithms">3.3. Cryptographic Algorithms</h3>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-MD17]</dt>
+<dd>
 <p>Deployments MUST support, and use, the following algorithms when communicating with peers in the context of this profile:</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
@@ -834,15 +909,19 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </li>
 </ul>
 </div>
-<div class="paragraph">
+</dd>
+<dt class="hdlist1">[SDP-MD18]</dt>
+<dd>
 <p>The following default digest algorithm MUST be used in conjunction with the above key transport algorithms (the default mask generation function, MGF1 with SHA1, MUST be used):</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
 <p><code><code><a href="http://www.w3.org/2001/04/xmlenc#sha256" class="bare">http://www.w3.org/2001/04/xmlenc#sha256</a></code></code> <a href="#XMLEnc">[XMLEnc]</a></p>
 </li>
 </ul>
+</div>
+</dd>
+</dl>
 </div>
 <div class="paragraph">
 <p>This profile will be updated as necessary to reflect changes in government and industry recommendations regarding algorithm usage.</p>
