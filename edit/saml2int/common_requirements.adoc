@@ -6,33 +6,33 @@ This section includes material of general significance to both IdPs and SPs. Sub
 
 ==== Clock Skew
 
-Deployments MUST allow for a minimum of three (3) and a maximum of five (5) minutes of clock skew -- in either direction -- when interpreting `xsd:dateTime` values in assertions and when enforcing security policies based thereupon.
+[SDP-G01]:: Deployments MUST allow for a minimum of three (3) and a maximum of five (5) minutes of clock skew -- in either direction -- when interpreting `xsd:dateTime` values in assertions and when enforcing security policies based thereupon.
 
 _The following is a non-exhaustive list of items to which this directive applies:_ `NotBefore`, `NotOnOrAfter`, _and_ `validUntil` _XML attributes found on_ `<saml:Conditions>`, `<saml:SubjectConfirmationData>`, `<samlp:LogoutRequest>`, `<md:EntityDescriptor>`, `<md:EntitiesDescriptor>`, `<md:RoleDescriptor>`, _and_ `<md:AffiliationDescriptor>` _elements._
 
 ==== Data Size
 
-Unless otherwise specified, deployments MUST limit the size of all element and attribute content they produce to 256 characters. This applies in particular to the values within `<saml:NameID>` and `<saml:AttributeValue>` elements.
+[SDP-G02]:: Unless otherwise specified, deployments MUST limit the size of all element and attribute content they produce to 256 characters. This applies in particular to the values within `<saml:NameID>` and `<saml:AttributeValue>` elements.
 
 ==== Document Type Definitions
 
-Deployments MUST NOT produce any SAML protocol message that contains a (DTD) Document Type Definition. Deployments SHOULD reject messages that contain them.
+[SDP-G03]:: Deployments MUST NOT produce any SAML protocol message that contains a (DTD) Document Type Definition. Deployments SHOULD reject messages that contain them.
 
 ==== SAML entityIDs
 
-Deployments MUST be named via an absolute URI whose total length MUST NOT exceed 256 characters.
+[SDP-G04]:: Deployments MUST be named via an absolute URI whose total length MUST NOT exceed 256 characters.
 
 _An entityID SHOULD be chosen in a manner that minimizes the likelihood of it changing for political or technical reasons, including for example a change to a different software implementation or hosting provider._
 
 ==== Profile Support
 
-IdP and SP deployments MUST support the SAML V2.0 Web Browser SSO Profile, and IdP deployments MUST support the SAML V2.0 Single Logout Profile, as defined in <<SAML2Prof>> and as updated by <<SAML2Err>>. The behavior, capabilities, and options MUST be consistent with the additional constraints specified in this document.
+[SDP-G05]:: IdP and SP deployments MUST support the SAML V2.0 Web Browser SSO Profile, and IdP deployments MUST support the SAML V2.0 Single Logout Profile, as defined in <<SAML2Prof>> and as updated by <<SAML2Err>>. The behavior, capabilities, and options MUST be consistent with the additional constraints specified in this document.
 
 === Metadata and Trust Management
 
 ==== Metadata Consumption and Use
 
-Deployments MUST provision their behavior in the following areas based solely on the consumption of SAML Metadata <<SAML2Meta>> on an automated, periodic or real-time basis using (where applicable) the processing rules defined by the SAML Metadata Interoperability profile <<SAML2MDIOP>>:
+[SDP-MD01]:: Deployments MUST provision their behavior in the following areas based solely on the consumption of SAML Metadata <<SAML2Meta>> on an automated, periodic or real-time basis using (where applicable) the processing rules defined by the SAML Metadata Interoperability profile <<SAML2MDIOP>>:
 
 * indications of support for Browser SSO and Single Logout profiles
 * selection, determination, and verification of SAML endpoints and bindings
@@ -45,57 +45,57 @@ Deployments MUST provision their behavior in the following areas based solely on
 
 Deployments MUST NOT require out of band communication or coordination for the management of any behavior by peers included within the enumerated areas identified above. Deployments MAY of course rely on additional sources of policy, including other metadata content, in order to make determinations whether to successfully interact with peers or refuse to do so.
 
-Consumption of metadata MUST be contingent on verification of a signature (STRONGLY RECOMMENDED) or TLS server certificate. The key ultimately used to establish trust in metadata MUST NOT itself appear within the same metadata in a `<md:KeyDescriptor>` element.
+[SDP-MD02]:: Consumption of metadata MUST be contingent on verification of a signature (STRONGLY RECOMMENDED) or TLS server certificate. The key ultimately used to establish trust in metadata MUST NOT itself appear within the same metadata in a `<md:KeyDescriptor>` element.
 
 _In most cases, the previous requirement implies that a key communicated via metadata may not also be used to sign and verify the same metadata, but it is possible to envision scenarios in which this may happen if metadata verification relies on a chain of certificates signed by an ultimately trusted Certificate Authority. However, it must be possible to seamlessly communicate new keys without necessarily changing the key used to establish trust in the metadata, which implies some level of indirection is required._
 
 ===== Metadata Validity
 
-Metadata without a `validUntil` attribute on its root element MUST be rejected. Metadata whose root element's `validUntil` attribute extends beyond a deployer- or community-imposed threshold MUST be rejected.
+[SDP-MD03]:: Metadata without a `validUntil` attribute on its root element MUST be rejected. Metadata whose root element's `validUntil` attribute extends beyond a deployer- or community-imposed threshold MUST be rejected.
 
 _These are critical (but very simple to implement) requirements for secure application of `<<SAML2MDIOP>>` because it is the method by which keys are revoked and the window of revocation is established._
 
 ==== Metadata Production
 
-Deployments MUST have the ability to provide SAML metadata capturing their requirements and characteristics in the areas identified above in a secure fashion, the specifics of which will necessarily vary by context and community. The use of services offering third-party validation, curation, signing, and publishing of metadata is a recommended practice.
+[SDP-MD04]:: Deployments MUST have the ability to provide SAML metadata capturing their requirements and characteristics in the areas identified above in a secure fashion, the specifics of which will necessarily vary by context and community. The use of services offering third-party validation, curation, signing, and publishing of metadata is a recommended practice.
 
 This profile does not mandate any specific automated support for the production of metadata by a deployment. In fact, automatic generation of metadata has a strong tendency to undermine the correct functioning of peer deployments in the face of key rollover or changes to endpoints or other software features because it tends to change too suddenly to accommodate a graceful transition between states.
 
-Metadata MAY include content indicating support for profiles or features beyond the bounds of this profile, but metadata MUST NOT contain content that advertises profile support or features that aren't supported or that have not been deliberately and intentionally configured by a deployment.
+[SDP-MD05]:: Metadata MAY include content indicating support for profiles or features beyond the bounds of this profile, but metadata MUST NOT contain content that advertises profile support or features that aren't supported or that have not been deliberately and intentionally configured by a deployment.
 
 _As an example, deployments that lack support for, or have not tested and integrated an implementation's support for the HTTP-Artifact binding <<SAML2Bind>> must omit such endpoints._
 
 ===== Keys and Certificates
 
-Public keys used for signing, encryption, and TLS client and server authentication MUST be expressed via X.509 certificates included in metadata via `<md:KeyDescriptor>` elements.
+[SDP-MD06]:: Public keys used for signing, encryption, and TLS client and server authentication MUST be expressed via X.509 certificates included in metadata via `<md:KeyDescriptor>` elements.
 
 These certificates SHOULD be long-lived and self-signed. To avoid problems with non-conforming SAML implementations, certificates in metadata SHOULD NOT be expired (though deployments complying with this profile MUST accept expired certificates by virtue of <<SAML2MDIOP>>).
 
-RSA public keys MUST be at least 2048 bits in length. At least 3072 bits is RECOMMENDED for new deployments.
+[SDP-MD07]:: RSA public keys MUST be at least 2048 bits in length. At least 3072 bits is RECOMMENDED for new deployments.
 
-EC public keys MUST be at least 256 bits in length.
+[SDP-MD08]:: EC public keys MUST be at least 256 bits in length.
 
-Certificates used MUST NOT be signed with an MD5-based signature algorithm and SHOULD NOT be signed with a SHA1-based signature algorithm.
+[SDP-MD09]:: Certificates used MUST NOT be signed with an MD5-based signature algorithm and SHOULD NOT be signed with a SHA1-based signature algorithm.
 
-By virtue of the profile's overall requirements, an IdP's metadata MUST include at least one signing certificate (that is, an `<md:KeyDescriptor>` with no `use` attribute or one set to `signing`), and an SP's metadata MUST include at least one encryption certificate (that is, an `<md:KeyDescriptor>` with no `use` attribute or one set to `encryption`).
+[SDP-MD10]:: By virtue of the profile's overall requirements, an IdP's metadata MUST include at least one signing certificate (that is, an `<md:KeyDescriptor>` with no `use` attribute or one set to `signing`), and an SP's metadata MUST include at least one encryption certificate (that is, an `<md:KeyDescriptor>` with no `use` attribute or one set to `encryption`).
 
 ===== Discovery and User Interface Elements
 
-Metadata MUST include an `<mdui:UIInfo>` element as defined in <<MetaUI>> containing at least the child elements `<mdui:DisplayName>`, `<mdui:Logo>`, `<mdui:InformationURL>`, and `<mdui:PrivacyStatementURL>`.
+[SDP-MD11]:: Metadata MUST include an `<mdui:UIInfo>` element as defined in <<MetaUI>> containing at least the child elements `<mdui:DisplayName>`, `<mdui:Logo>`, `<mdui:InformationURL>`, and `<mdui:PrivacyStatementURL>`.
 
-The content of the `<mdui:Logo>` element MUST be either an `https` URL or an in-line image embedded in a `data` URI element.
+[SDP-MD12]:: The content of the `<mdui:Logo>` element MUST be either an `https` URL or an in-line image embedded in a `data` URI element.
 
-At least one `<mdui:Logo>` element MUST have a `height` attribute of `60` and a `width` attribute of `80`.
+[SDP-MD13]:: At least one `<mdui:Logo>` element MUST have a `height` attribute of `60` and a `width` attribute of `80`.
 
-An entity SHOULD include an `<mdui:Logo>` element with a `height` attribute of `16` and a `width` attribute of `16`.
+[SDP-MD14]:: An entity SHOULD include an `<mdui:Logo>` element with a `height` attribute of `16` and a `width` attribute of `16`.
 
-Any logo referenced by an `<mdui:Logo>` element MUST have a transparent background.
+[SDP-MD15]:: Any logo referenced by an `<mdui:Logo>` element MUST have a transparent background.
 
-Any logo referenced by an `<mdui:Logo>` element MUST be in PNG format.
+[SDP-MD16]:: Any logo referenced by an `<mdui:Logo>` element MUST be in PNG format.
 
 === Cryptographic Algorithms
 
-Deployments MUST support, and use, the following algorithms when communicating with peers in the context of this profile:
+[SDP-MD17]:: Deployments MUST support, and use, the following algorithms when communicating with peers in the context of this profile:
 
 * Digest
 ** ```http://www.w3.org/2001/04/xmlenc#sha256``` <<XMLEnc>>
@@ -113,7 +113,7 @@ Deployments MUST support, and use, the following algorithms when communicating w
 ** ```http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p``` <<XMLEnc>>
 ** ```http://www.w3.org/2009/xmlenc11#rsa-oaep``` <<XMLEnc>> 
 
-The following default digest algorithm MUST be used in conjunction with the above key transport algorithms (the default mask generation function, MGF1 with SHA1, MUST be used):
+[SDP-MD18]:: The following default digest algorithm MUST be used in conjunction with the above key transport algorithms (the default mask generation function, MGF1 with SHA1, MUST be used):
 
 * ```http://www.w3.org/2001/04/xmlenc#sha256``` <<XMLEnc>>
 
