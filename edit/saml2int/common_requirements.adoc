@@ -95,7 +95,7 @@ These certificates SHOULD be long-lived and self-signed. To avoid problems with 
 
 === Cryptographic Algorithms
 
-[SDP-MD17]:: Deployments MUST support, and use, the following algorithms when communicating with peers in the context of this profile:
+[SDP-ALG01]:: Deployments MUST support, and use, the following algorithms when communicating with peers in the context of this profile:
 
 * Digest
 ** ```http://www.w3.org/2001/04/xmlenc#sha256``` <<XMLEnc>>
@@ -113,7 +113,7 @@ These certificates SHOULD be long-lived and self-signed. To avoid problems with 
 ** ```http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p``` <<XMLEnc>>
 ** ```http://www.w3.org/2009/xmlenc11#rsa-oaep``` <<XMLEnc>> 
 
-[SDP-MD18]:: The following default digest algorithm MUST be used in conjunction with the above key transport algorithms (the default mask generation function, MGF1 with SHA1, MUST be used):
+[SDP-ALG02]:: The following default digest algorithm MUST be used in conjunction with the above key transport algorithms (the default mask generation function, MGF1 with SHA1, MUST be used):
 
 * ```http://www.w3.org/2001/04/xmlenc#sha256``` <<XMLEnc>>
 
