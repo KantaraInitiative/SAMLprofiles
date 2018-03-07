@@ -1464,39 +1464,66 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_web_browser_sso_2">5.1. Web Browser SSO</h3>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-IDP01]</dt>
+<dd>
 <p>IdPs MUST support the Browser SSO Profile <a href="#SAML2Prof">[SAML2Prof]</a>.</p>
+</dd>
+</dl>
 </div>
 <div class="sect3">
 <h4 id="_requests_3">5.1.1. Requests</h4>
 <div class="sect4">
 <h5 id="_binding_5">Binding</h5>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-IDP02]</dt>
+<dd>
 <p>IdPs MUST support the HTTP-Redirect binding <a href="#SAML2Bind">[SAML2Bind]</a> for the receipt of <code>&lt;samlp:AuthnRequest&gt;</code> messages.</p>
-</div>
-<div class="paragraph">
+</dd>
+<dt class="hdlist1">[SDP-IDP03]</dt>
+<dd>
 <p>The endpoint(s) at which an IdP supports receipt of <code>&lt;samlp:AuthnRequest&gt;</code> messages MUST be protected by TLS/SSL.</p>
+</dd>
+</dl>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_endpoint_verification">Endpoint Verification</h5>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-IDP04]</dt>
+<dd>
 <p>When verifying the <code>AssertionConsumerServiceURL</code>, it is RECOMMENDED that the IdP perform a case-sensitive string comparison between the requested value and the values found in the SP&#8217;s metadata. It is OPTIONAL to apply any form of URL canonicalization.</p>
+</dd>
+</dl>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_signing">Signing</h5>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-IDP05]</dt>
+<dd>
 <p>If a request is signed, IdPs MUST verify the signature or fail the request. An IdP MAY handle a signature verification failure locally rather than via an error response to the SP.</p>
-</div>
-<div class="paragraph">
+</dd>
+<dt class="hdlist1">[SDP-IDP06]</dt>
+<dd>
 <p>IdPs MUST reject unsigned requests in the event that an SP&#8217;s metadata includes an <code>AuthnRequestsSigned</code> attribute set to <code>true</code> or <code>1</code>.</p>
+</dd>
+</dl>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_forced_re_authentication_2">Forced Re-Authentication</h5>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-IDP07]</dt>
+<dd>
 <p>IdPs MUST ensure that any response to a <code>&lt;samlp:AuthnRequest&gt;</code> that contains the attribute <code>ForceAuthn</code> set to <code>true</code> or <code>1</code> results in an authentication challenge that requires proof that the subject is present. If this condition is met, the IdP MUST also reflect this by setting the value of the <code>AuthnInstant</code> value in the assertion it returns to a fresh value.</p>
+</dd>
+</dl>
 </div>
 <div class="paragraph">
 <p>If an IdP cannot prove subject presence, then it MUST fail the request and SHOULD respond to the SP with a SAML error status.</p>
@@ -1507,90 +1534,145 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <h4 id="_responses_3">5.1.2. Responses</h4>
 <div class="sect4">
 <h5 id="_binding_6">Binding</h5>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-IDP08]</dt>
+<dd>
 <p>IdPs MUST support the HTTP-POST binding <a href="#SAML2Bind">[SAML2Bind]</a> for the transmission of <code>&lt;samlp:Response&gt;</code> messages.</p>
+</dd>
+</dl>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_response_content_2">Response Content</h5>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-IDP09]</dt>
+<dd>
 <p>Successful responses MUST be directly signed using a <code>&lt;ds:Signature&gt;</code> element within the <code>&lt;samlp:Response&gt;</code> element.</p>
-</div>
-<div class="paragraph">
+</dd>
+<dt class="hdlist1">[SDP-IDP10]</dt>
+<dd>
 <p>Error responses MAY be signed or unsigned.</p>
-</div>
-<div class="paragraph">
+</dd>
+<dt class="hdlist1">[SDP-IDP11]</dt>
+<dd>
 <p>Successful responses MUST contain one and only one SAML assertion, and the assertion MUST contain exactly one <code>&lt;saml:AuthnStatement&gt;</code> element and MAY contain zero or one <code>&lt;saml:AttributeStatement&gt;</code> elements. The assertion MAY be directly signed.</p>
-</div>
-<div class="paragraph">
+</dd>
+<dt class="hdlist1">[SDP-IDP12]</dt>
+<dd>
 <p>In the event the HTTP-POST binding <a href="#SAML2Bind">[SAML2Bind]</a> is used, assertions MUST be encrypted and transmitted via a <code>&lt;saml:EncryptedAssertion&gt;</code> element. Information intended for the consumption of the SP MUST NOT be further encrypted via <code>&lt;saml:EncryptedID&gt;</code> or <code>&lt;saml:EncryptedAttribute&gt;</code> constructs.</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_subject_identifiers_2">5.1.3. Subject Identifiers</h4>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-IDP13]</dt>
+<dd>
 <p>Assertions MUST contain a <code>&lt;saml:NameID&gt;</code> element with the <code>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</code> Format, as defined in <a href="#SAML2Core">[SAML2Core]</a>, for the purposes of logout.</p>
-</div>
-<div class="paragraph">
+</dd>
+<dt class="hdlist1">[SDP-IDP14]</dt>
+<dd>
 <p>IdPs MUST support one or both of the SAML Attributes defined by <a href="#SAML2SubjId">[SAML2SubjId]</a> for non-transient identification of subjects. Support for both is RECOMMENDED.</p>
+</dd>
+</dl>
 </div>
 <div class="sect4">
 <h5 id="_subject_identifier_requirements_signaling_2">Subject Identifier Requirements Signaling</h5>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-IDP15]</dt>
+<dd>
 <p>IdPs MUST support the metadata-based identifier requirement signaling mechanism defined in <a href="#SAML2SubjId">[SAML2SubjId]</a>.</p>
-</div>
-<div class="paragraph">
+</dd>
+<dt class="hdlist1">[SDP-IDP16]</dt>
+<dd>
 <p>If an IdP cannot or will not satisfy the requirements of an SP in this respect, then it MUST fail the authentication request and SHOULD respond to the SP with a SAML error status.</p>
-</div>
-<div class="paragraph">
+</dd>
+<dt class="hdlist1">[SDP-IDP17]</dt>
+<dd>
 <p>In the absence of any signaling by an SP, an IdP is free to supply either, both, or neither SAML Attribute, or to return an error as it sees fit.</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_attributes">5.1.4. Attributes</h4>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-IDP18]</dt>
+<dd>
 <p><code>&lt;saml:Attribute&gt;</code> elements MUST contain a NameFormat of <code>urn:oasis:names:tc:SAML:2.0:attrname-format:uri</code>.</p>
+</dd>
+</dl>
 </div>
 <div class="paragraph">
 <p><em>This requirement ensures unique, non-conflicting naming of Attributes even in cases involving custom requirements for which no standard Attributes may exist.</em></p>
 </div>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-IDP19]</dt>
+<dd>
 <p>It is RECOMMENDED that the content of <code>&lt;saml:AttributeValue&gt;</code> elements be limited to a single child text node (i.e., a simple string value).</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_single_logout_2">5.2. Single Logout</h3>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-IDP20]</dt>
+<dd>
 <p>IdPs MUST support the Single Logout Profile <a href="#SAML2Prof">[SAML2Prof]</a>.</p>
-</div>
-<div class="paragraph">
-<p>The term "IdP session" is used to refer to the ongoing state between the IdP and its clients allowing for SSO. Support for logout implies supporting termination of a subject&#8217;s IdP session in response to receiving a <code>&lt;samlp:LogoutRequest&gt;</code> or upon some administrative signal. IdPs MAY allow a subject the option to maintain their IdP session rather than unilaterally terminating it.</p>
-</div>
-<div class="paragraph">
+</dd>
+<dt class="hdlist1">[SDP-IDP21]</dt>
+<dd>
+<p><em>(IS THIS A SEPARATE REQUIREMENT?)</em> The term "IdP session" is used to refer to the ongoing state between the IdP and its clients allowing for SSO. Support for logout implies supporting termination of a subject&#8217;s IdP session in response to receiving a <code>&lt;samlp:LogoutRequest&gt;</code> or upon some administrative signal. IdPs MAY allow a subject the option to maintain their IdP session rather than unilaterally terminating it.</p>
+</dd>
+<dt class="hdlist1">[SDP-IDP22]</dt>
+<dd>
 <p>IdPs MAY support the propagation of logout signaling to SPs.</p>
+</dd>
+</dl>
 </div>
 <div class="sect3">
 <h4 id="_requests_4">5.2.1. Requests</h4>
 <div class="sect4">
 <h5 id="_binding_7">Binding</h5>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-IDP23]</dt>
+<dd>
 <p>The HTTP-Redirect binding [SAML2Bind] MUST be used for the transmission of <code>&lt;samlp:LogoutRequest&gt;</code> messages, in the event that propagation is supported.</p>
-</div>
-<div class="paragraph">
+</dd>
+<dt class="hdlist1">[SDP-IDP24]</dt>
+<dd>
 <p>IdPs MUST support the HTTP-Redirect [SAML2Bind] binding for the receipt of <code>&lt;samlp:LogoutRequest&gt;</code> messages.</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_request_content_3">5.2.2. Request Content</h4>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-IDP25]</dt>
+<dd>
 <p>Requests MUST be signed.</p>
-</div>
-<div class="paragraph">
+</dd>
+<dt class="hdlist1">[SDP-IDP26]</dt>
+<dd>
 <p>The <code>&lt;saml:NameID&gt;</code> element in <code>&lt;samlp:LogoutRequest&gt;</code> messages MUST NOT be encrypted.</p>
+</dd>
+</dl>
 </div>
 <div class="paragraph">
 <p><em>The normative requirement for the use of transient identifiers is intended to obviate the need for XML Encryption.</em></p>
@@ -1600,20 +1682,32 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <h4 id="_responses_4">5.2.3. Responses</h4>
 <div class="sect4">
 <h5 id="_binding_8">Binding</h5>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-IDP27]</dt>
+<dd>
 <p>The HTTP-Redirect binding [SAML2Bind] MUST be used for the transmission of <code>&lt;samlp:LogoutResponse&gt;</code> messages.</p>
-</div>
-<div class="paragraph">
+</dd>
+<dt class="hdlist1">[SDP-IDP28]</dt>
+<dd>
 <p>IdPs MUST support the HTTP-Redirect [SAML2Bind] binding for the receipt of <code>&lt;samlp:LogoutResponse&gt;</code> messages, in the event that <code>&lt;samlp:LogoutRequest&gt;</code> propagation is supported.</p>
+</dd>
+</dl>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_response_content_3">Response Content</h5>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-IDP29]</dt>
+<dd>
 <p>Responses MUST be signed.</p>
-</div>
-<div class="paragraph">
+</dd>
+<dt class="hdlist1">[SDP-IDP30]</dt>
+<dd>
 <p>The <code>&lt;samlp:StatusCode&gt;</code> in the response issued by the IdP MUST reflect whether the IdP session was successfully terminated.</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -1622,8 +1716,13 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 <h3 id="_metadata_and_trust_management_3">5.3. Metadata and Trust Management</h3>
 <div class="sect3">
 <h4 id="_support_for_multiple_keys_2">5.3.1. Support for Multiple Keys</h4>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-IDP30]</dt>
+<dd>
 <p>IdP deployments MUST support multiple signing certificates in SP metadata and MUST support validation of signatures using a key from any of them.</p>
+</dd>
+</dl>
 </div>
 <div class="paragraph">
 <p><em>These requirements make seamless key migration possible for both parties.</em></p>
@@ -1631,9 +1730,11 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 <div class="sect3">
 <h4 id="_metadata_content_2">5.3.2. Metadata Content</h4>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-IDP31]</dt>
+<dd>
 <p>By virtue of this profile&#8217;s requirements, an IdP&#8217;s metadata MUST contain:</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
@@ -1663,6 +1764,9 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </div>
 </li>
 </ul>
+</div>
+</dd>
+</dl>
 </div>
 <div class="paragraph">
 <p>In addition, an IdP&#8217;s metadata MUST contain:</p>
