@@ -1,4 +1,4 @@
-== Contributors
+.Contributors
 
 * Editor: Walter Hoehn (The University of Memphis)
 * Scott Cantor (The Ohio State University)
