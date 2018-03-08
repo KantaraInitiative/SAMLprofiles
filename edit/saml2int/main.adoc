@@ -17,8 +17,6 @@ Version:: 0.x
 Date:: 2018-03-08
 Status:: In Progress
 
-++++
-
 .Required Information
 Document identifier: TBD
 
