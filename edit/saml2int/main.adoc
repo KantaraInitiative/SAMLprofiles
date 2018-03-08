@@ -10,6 +10,12 @@
 <h1 style="color: blue; text-align: center; font-size: 150%; margin-bottom: 2em; font-weight: bold;">
 SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 </h1>
+
+[horizontal]
+Version:: 0.x
+Date:: 2018-03-08
+Status:: In Progress
+
 ++++
 
 .Required Information
