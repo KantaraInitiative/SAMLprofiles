@@ -97,7 +97,7 @@ The required identifier types above are opaque, unknown to users in most cases, 
 * `urn:oid:2.5.4.42` (givenName)
 * `urn:oid:2.5.4.4` (sn)
 
-_Note that most such Attributes tend to be defined as multi-valued._
+_Note that most standardized Attributes of this sort tend to be defined as multi-valued._
 
 ==== Attribute Value Constraints
 
