@@ -16,6 +16,7 @@
 [horizontal]
 Version:: 1.0
 Date:: 2018-03-08
+Produced by:: Federation Interoperability Work Group
 Status:: Group-Approved Draft
 
 include::contributors.adoc[]
