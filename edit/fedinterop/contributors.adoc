@@ -1,6 +1,6 @@
 .Contributors
 
-* Editor: Walter Hoehn (The University of Memphis)
+* Walter Hoehn (The University of Memphis) - _Editor_
 * Scott Cantor (The Ohio State University)
 * Rainer Hörbe (Identinetics GmbH, Kantara Initiative)
 * Tom Scavo (InCommon)
