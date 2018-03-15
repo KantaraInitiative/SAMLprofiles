@@ -85,13 +85,12 @@ These certificates SHOULD be long-lived and self-signed. To avoid problems with 
 
 [SDP-MD12]:: The content of the `<mdui:Logo>` element MUST be either an `https` URL or an in-line image embedded in a `data` URI element.
 
-[SDP-MD13]:: At least one `<mdui:Logo>` element MUST have a `height` attribute of `60` and a `width` attribute of `80`.
+[SDP-MD13]:: Logo image requirements:
 
-[SDP-MD14]:: An entity SHOULD include an `<mdui:Logo>` element with a `height` attribute of `16` and a `width` attribute of `16`.
-
-[SDP-MD15]:: Any logo referenced by an `<mdui:Logo>` element MUST have a transparent background.
-
-[SDP-MD16]:: Any logo referenced by an `<mdui:Logo>` element MUST be in PNG format.
+* At least one `<mdui:Logo>` element MUST have a `height` attribute of `60` and a `width` attribute of `80`.
+* An entity SHOULD include an `<mdui:Logo>` element with a `height` attribute of `16` and a `width` attribute of `16`.
+* Any logo referenced by an `<mdui:Logo>` element MUST have a transparent background.
+* Any logo referenced by an `<mdui:Logo>` element MUST be in PNG format.
 
 === Cryptographic Algorithms
 

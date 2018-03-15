@@ -36,11 +36,9 @@ If an IdP cannot prove subject presence, then it MUST fail the request and SHOUL
 
 ===== Response Content
 
-[SDP-IDP09]:: Successful responses MUST be directly signed using a `<ds:Signature>` element within the `<samlp:Response>` element.
+[SDP-IDP09]:: Successful responses MUST be directly signed using a `<ds:Signature>` element within the `<samlp:Response>` element.  Error responses MAY be signed.
 
-[SDP-IDP10]:: Error responses MAY be signed or unsigned.
-
-[SDP-IDP11]:: Successful responses MUST contain one and only one SAML assertion, and the assertion MUST contain exactly one `<saml:AuthnStatement>` element and MAY contain zero or one `<saml:AttributeStatement>` elements. The assertion MAY be directly signed.
+[SDP-IDP11]:: Successful responses MUST contain one and only one SAML assertion, and the assertion MUST contain exactly one `<saml:AuthnStatement>` element and MAY contain zero or one `<saml:AttributeStatement>` elements. The assertion within the response MAY be directly signed.
 
 [SDP-IDP12]:: In the event the HTTP-POST binding <<SAML2Bind>> is used, assertions MUST be encrypted and transmitted via a `<saml:EncryptedAssertion>` element. Information intended for the consumption of the SP MUST NOT be further encrypted via `<saml:EncryptedID>` or `<saml:EncryptedAttribute>` constructs.
 
@@ -56,7 +54,7 @@ If an IdP cannot prove subject presence, then it MUST fail the request and SHOUL
 
 [SDP-IDP16]:: If an IdP cannot or will not satisfy the requirements of an SP in this respect, then it MUST fail the authentication request and SHOULD respond to the SP with a SAML error status.
 
-[SDP-IDP17]:: In the absence of any signaling by an SP, an IdP is free to supply either, both, or neither SAML Attribute, or to return an error as it sees fit.
+[SDP-IDP17]:: In the absence of any signaling by an SP, an IdP MAY supply either, both, or neither SAML Attribute, or to return an error as it sees fit.
 
 ==== Attributes
 

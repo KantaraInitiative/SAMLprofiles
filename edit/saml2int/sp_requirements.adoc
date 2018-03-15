@@ -24,13 +24,11 @@ _This is a relatively unused feature that is supported by few IdPs._
 
 [SDP-SP07]:: The `AssertionConsumerServiceURL` value MUST match an endpoint location expressed in the SP's metadata exactly, without requiring URL canonicalization/normalization. 
 
-_As an example, the SP MUST NOT use a hostname with port number (such as https://sp.example.no:80/acs) in its request and without (such as https://sp.example.no/acs) in its metadata._
+_As an example, the SP MUST NOT use a hostname with port number (such as https://sp.example.com:80/acs) in its request and without (such as https://sp.example.com/acs) in its metadata._
 
 ===== Authentication Contexts
 
-[SDP-SP08]:: An SP that does not require a specific `<saml:AuthnContextClassRef>` value MUST NOT include a `<samlp:RequestedAuthnContext>` element in its requests.
-
-[SDP-SP09]:: An SP that requires specific `<saml:AuthnContextClassRef>` values MUST specify the allowable values in a `<samlp:RequestedAuthnContext>` element in its requests, with the `Comparison` attribute set to `exact`.
+[SDP-SP08]:: An SP that requires specific `<saml:AuthnContextClassRef>` values MUST specify the allowable values in a `<samlp:RequestedAuthnContext>` element in its requests, with the `Comparison` attribute set to `exact`.  An SP that does not require a specific `<saml:AuthnContextClassRef>` value MUST NOT include a `<samlp:RequestedAuthnContext>` element in its requests.  
 
 _An SP SHOULD NOT request a `<saml:AuthnContextClassRef>` value in the absence of a shared understanding between itself and the IdP regarding its definition._
 
@@ -70,7 +68,7 @@ _This is necessary because clients can freely generate requests that do not spec
 
 [SDP-SP18]:: If an SP requires persistent tracking/identification of its users (as most do), then it MUST support one or both of the SAML Attributes defined by <<SAML2SubjId>> for this purpose.
 
-[SDP-SP19]:: If an SP requires coordination and/or correlation of user activity between itself and other SPs, then the SAML Attribute named `urn:oasis:names:tc:SAML:attribute:subject-id` is appropriate. Otherwise the SAML Attribute named `urn:oasis:names:tc:SAML:attribute:pairwise-id` can be used.
+_If an SP requires coordination and/or correlation of user activity between itself and other SPs, then the SAML Attribute named `urn:oasis:names:tc:SAML:attribute:subject-id` is appropriate. Otherwise the SAML Attribute named `urn:oasis:names:tc:SAML:attribute:pairwise-id` can be used._
 
 [SDP-SP20]:: SPs MAY support legacy or historical `<saml:NameID>` and `<saml:Attribute>` content for compatibility reasons but MUST NOT require their use.
 
@@ -80,7 +78,7 @@ _This is necessary because clients can freely generate requests that do not spec
 
 ===== Identifier Scoping
 
-[SDP-SP22]:: SPs MUST prevent unintended identifier collisions in the values asserted by different IdPs, and the required identifier types above are "scoped" via a DNS-like syntax to help fulfill this requirement.
+[SDP-SP22]:: SPs MUST prevent unintended identifier collisions in the values asserted by different IdPs, and the required identifier types in <<SAML2SubjId>> are "scoped" via a DNS-like syntax to help fulfill this requirement.
 
 [SDP-SP23]:: SPs MUST associate identifier scopes with IdPs such that only authorized IdPs may assert identifiers with particular scopes for particular purposes.
 
