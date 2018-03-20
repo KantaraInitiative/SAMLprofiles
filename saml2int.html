@@ -880,7 +880,7 @@ Status
 <dl>
 <dt class="hdlist1">[SDP-ALG01]</dt>
 <dd>
-<p>Deployments MUST support, and use, the following algorithms when communicating with peers in the context of this profile:</p>
+<p>Deployments MUST support, and use, the following algorithms when communicating with peers in the context of this profile. Where multiple choices exist, any of the listed options may be used. The profile will be updated as necessary to reflect changes in government and industry recommendations regarding algorithm usage.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -938,21 +938,17 @@ Status
 </ul>
 </div>
 </dd>
-<dt class="hdlist1">[SDP-ALG02]</dt>
-<dd>
+</dl>
+</div>
+<div class="paragraph">
 <p>The following default digest algorithm MUST be used in conjunction with the above key transport algorithms (the default mask generation function, MGF1 with SHA1, MUST be used):</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
 <p><code><code><a href="http://www.w3.org/2001/04/xmlenc#sha256" class="bare">http://www.w3.org/2001/04/xmlenc#sha256</a></code></code> <a href="#XMLEnc">[XMLEnc]</a></p>
 </li>
 </ul>
-</div>
-</dd>
-</dl>
-</div>
-<div class="paragraph">
-<p>This profile will be updated as necessary to reflect changes in government and industry recommendations regarding algorithm usage.</p>
 </div>
 <div class="paragraph">
 <p><em>This profile cannot preclude the use of other algorithms when communicating with peers outside the scope of this profile, but the other algorithms in common use are generally considered to be weakening (e.g., SHA-1) or broken outright (e.g., RSA PKCS#1.5). Note that the use of AES-CBC block encryption algorithms remains widespread at the time of authoring, but are known to be broken <a href="#XMLEncBreak">[XMLEncBreak]</a>.</em></p>
