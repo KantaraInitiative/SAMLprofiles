@@ -2,7 +2,7 @@
 
 === Web Browser SSO
 
-[SDP-SP01]:: SPs MUST support the Browser SSO Profile <<SAML2Prof>>.
+[SDP-SP01]:: SPs MUST support the Browser SSO Profile <<SAML2Prof>>, as updated by the Approved Errata <<SAML2Err>>, with behavior, capabilities, and options consistent with the additional constraints specified in this section.
 
 ==== Requests
 
@@ -20,15 +20,17 @@
 
 _This is a relatively unused feature that is supported by few IdPs._ 
 
-[SDP-SP06]:: The message MUST NOT contain an `AssertionConsumerServiceIndex` attribute (i.e., the desired endpoint MUST be the default, or identified via the `AssertionConsumerServiceURL` attribute).
+[SDP-SP06]:: The message SHOULD contain an `AssertionConsumerServiceURL` attribute and MUST NOT contain am 'AssertionConsumerServiceIndex' attribute (i.e., the desired endpoint MUST be the default, or identified via the `AssertionConsumerServiceURL` attribute).
 
-[SDP-SP07]:: The `AssertionConsumerServiceURL` value MUST match an endpoint location expressed in the SP's metadata exactly, without requiring URL canonicalization/normalization. 
+[SDP-SP07]:: The `AssertionConsumerServiceURL` value, if present, MUST match an endpoint location expressed in the SP's metadata exactly, without requiring URL canonicalization/normalization. 
 
-_As an example, the SP MUST NOT use a hostname with port number (such as https://sp.example.com:80/acs) in its request and without (such as https://sp.example.com/acs) in its metadata._
+_As an example, the SP MUST NOT use a hostname with port number (such as https://sp.example.com:443/acs) in its request and without (such as https://sp.example.com/acs) in its metadata._
 
 ===== Authentication Contexts
 
-[SDP-SP08]:: An SP that requires specific `<saml:AuthnContextClassRef>` values MUST specify the allowable values in a `<samlp:RequestedAuthnContext>` element in its requests, with the `Comparison` attribute set to `exact`.  An SP that does not require a specific `<saml:AuthnContextClassRef>` value MUST NOT include a `<samlp:RequestedAuthnContext>` element in its requests.  
+[SDP-SP08]:: An SP that does not require a specific `<saml:AuthnContextClassRef>` value MUST NOT include a `<samlp:RequestedAuthnContext>` element in its requests.
+
+An SP that requires specific `<saml:AuthnContextClassRef>` values MUST specify the allowable values in a `<samlp:RequestedAuthnContext>` element in its requests, with the `Comparison` attribute set to `exact`.
 
 _An SP SHOULD NOT request a `<saml:AuthnContextClassRef>` value in the absence of a shared understanding between itself and the IdP regarding its definition._
 
@@ -36,23 +38,23 @@ _An SP SHOULD NOT request a `<saml:AuthnContextClassRef>` value in the absence o
 
 ===== Binding
 
-[SDP-SP10]:: SPs MUST support the HTTP-POST binding for the receipt of `<samlp:Response>` messages. Support for other bindings is OPTIONAL.
+[SDP-SP09]:: SPs MUST support the HTTP-POST binding for the receipt of `<samlp:Response>` messages. Support for other bindings is OPTIONAL.
 
-[SDP-SP11]:: The endpoint(s) at which an SP supports receipt of `<samlp:Response>` messages MUST be protected by TLS/SSL.
+[SDP-SP10]:: The endpoint(s) at which an SP supports receipt of `<samlp:Response>` messages MUST be protected by TLS/SSL.
 
 ===== XML Encryption
 
-[SDP-SP12]:: SPs MUST support decryption of `<saml:EncryptedAssertion>` elements. Support for other encrypted constructs is OPTIONAL.
+[SDP-SP11]:: SPs MUST support decryption of `<saml:EncryptedAssertion>` elements. Support for other encrypted constructs is OPTIONAL.
 
 ===== Error Handling
 
-[SDP-SP13]:: SPs MUST gracefully handle error responses containing `<samlp:StatusCode>` other than `urn:oasis:names:tc:SAML:2.0:status:Success`.
+[SDP-SP12]:: SPs MUST gracefully handle error responses containing `<samlp:StatusCode>` other than `urn:oasis:names:tc:SAML:2.0:status:Success`.
 
-[SDP-SP14]:: The response to such errors MUST direct users to appropriate support resources offered by the SP or alternatively to the `errorURL` attribute in an IdP's metadata.
+[SDP-SP13]:: The response to such errors MUST direct users to appropriate support resources offered by the SP or alternatively to the `errorURL` attribute in an IdP's metadata.
 
 ===== Forced Re-Authentication
 
-[SDP-SP15]:: SPs that include a `ForceAuthn` attribute of `true` in their requests SHOULD test the currency of the `AuthnInstant` element in the received assertions to verify the currency of the authentication event.
+[SDP-SP14]:: SPs that include a `ForceAuthn` attribute of `true` in their requests SHOULD test the currency of the `AuthnInstant` element in the received assertions to verify the currency of the authentication event.
 
 _This is necessary because clients can freely generate requests that do not specify this attribute, potentially bypassing the SP's intent._
 
@@ -60,13 +62,13 @@ _This is necessary because clients can freely generate requests that do not spec
 
 ===== NameID Formats
 
-[SDP-SP16]:: SPs MUST support arbitrary `<saml:NameID>` elements regardless of `Format`, for the purposes of Single Logout.
+[SDP-SP15]:: SPs MUST support arbitrary `<saml:NameID>` elements regardless of `Format`, for the purposes of Single Logout.
 
-[SDP-SP17]:: SPs MUST NOT require the presence of a `<saml:NameID>` element and MUST NOT rely on the content of this element for long term identification of subjects;  `<saml:Attribute>` elements MUST be used for this purpose in the manner detailed below.
+[SDP-SP16]:: SPs MUST NOT require the presence of a `<saml:NameID>` element and MUST NOT rely on the content of this element for long term identification of subjects;  `<saml:Attribute>` elements MUST be used for this purpose in the manner detailed below.
 
 ===== Subject Identifiers
 
-[SDP-SP18]:: If an SP requires persistent tracking/identification of its users (as most do), then it MUST support one or both of the SAML Attributes defined by <<SAML2SubjId>> for this purpose.
+[SDP-SP17]:: If an SP requires persistent tracking/identification of its users (as most do), then it MUST support one or both of the SAML Attributes defined by <<SAML2SubjId>> for this purpose.
 
 _If an SP requires coordination and/or correlation of user activity between itself and other SPs, then the SAML Attribute named `urn:oasis:names:tc:SAML:attribute:subject-id` is appropriate. Otherwise the SAML Attribute named `urn:oasis:names:tc:SAML:attribute:pairwise-id` can be used._
 
@@ -78,7 +80,7 @@ _If an SP requires coordination and/or correlation of user activity between itse
 
 ===== Identifier Scoping
 
-[SDP-SP22]:: SPs MUST prevent unintended identifier collisions in the values asserted by different IdPs, and the required identifier types in <<SAML2SubjId>> are "scoped" via a DNS-like syntax to help fulfill this requirement.
+[SDP-SP22]:: SPs MUST prevent unintended identifier collisions in the values asserted by different IdPs, and the required identifier types, per <<SAML2SubjId>>, are "scoped" via a DNS-like syntax to help fulfill this requirement.
 
 [SDP-SP23]:: SPs MUST associate identifier scopes with IdPs such that only authorized IdPs may assert identifiers with particular scopes for particular purposes.
 
@@ -135,11 +137,11 @@ A common means of discovery is the mapping of resource/application URL (typicall
 
 [SDP-SP29]:: Related to deep linking, SPs MUST allow for the possibility that any given request requiring authentication may be potentially satisfied by more than one IdP. That is, any scenario in which a piece of content, policy, configuration, or decision on the part of an application is bound to an IdP MUST be constructed in a fashion such that more than one IdP may be so bound.
 
-_This requirement flows from both the inherent requirements of collaborative applications described above, and from the simple reality that enterprises vary in their structure and organization such that any presumed mapping between a contract or set of access policies and a single SAML IdP is inherently constraining. This constraint imposes a need for complex proxying of SSO by many organizations and must be avoided._
+_This requirement flows from both the inherent requirements of collaborative applications described above, and from the simple reality that enterprises vary in their structure. Some organizations rely on more than one IdP due to administrative boundaries, but frequently contract for or access services as a single body. Thus, any presumed mapping between a contract or set of access policies and a single SAML IdP is inherently constraining. This constraint imposes a need for complex proxying of SSO by many organizations and must be avoided._
 
 === Single Logout
 
-[SDP-SP30]:: SPs MAY support the Single Logout Profile <<SAML2Prof>>. The following requirements apply in the presence of such support.
+[SDP-SP30]:: SPs MAY support the Single Logout Profile <<SAML2Prof>>, as updated by the Approved Errata <<SAML2Err>>. The following requirements apply in the case of such support.
 
 ==== Requests
 
@@ -195,11 +197,11 @@ _A single entity can have only one well-defined `<SingleLogoutService>` endpoint
 
 ==== Support for Multiple Keys
 
+The ability to perform seamless key migration depends upon proper support for consuming and/or leveraging multiple keys at the same time.
+
 [SDP-SP43]:: SP deployments MUST support multiple signing certificates in IdP metadata and MUST support validation of XML signatures using a key from any of them.
 
 [SDP-SP44]:: SP deployments MUST be able to support multiple decryption keys and MUST be able to decrypt `<saml:EncryptedAssertion>` elements encrypted with any configured key.
-
-_These requirements make seamless key migration possible for both parties._
 
 ==== Metadata Content
 

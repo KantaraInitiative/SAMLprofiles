@@ -24,10 +24,6 @@ _The following is a non-exhaustive list of items to which this directive applies
 
 _An entityID SHOULD be chosen in a manner that minimizes the likelihood of it changing for political or technical reasons, including for example a change to a different software implementation or hosting provider._
 
-==== Profile Support
-
-[SDP-G05]:: IdP and SP deployments MUST support the SAML V2.0 Web Browser SSO Profile, and IdP deployments MUST support the SAML V2.0 Single Logout Profile, as defined in <<SAML2Prof>> and as updated by <<SAML2Err>>. The behavior, capabilities, and options MUST be consistent with the additional constraints specified in this document.
-
 === Metadata and Trust Management
 
 ==== Metadata Consumption and Use
@@ -37,7 +33,7 @@ _An entityID SHOULD be chosen in a manner that minimizes the likelihood of it ch
 * indications of support for Browser SSO and Single Logout profiles
 * selection, determination, and verification of SAML endpoints and bindings
 * determination of the trustworthiness of XML signing keys and TLS client and server certificates
-* selection of XML Encryption key transport keys
+* selection of XML Encryption keys
 * determination of subject identifier SAML Attribute(s) to provide (per `<<SAML2SubjId>>`)
 * optional signing of assertions via the `WantAssertionsSigned` flag
 * optional enforcement of request signing via the `AuthnRequestsSigned` flag
@@ -85,16 +81,15 @@ These certificates SHOULD be long-lived and self-signed. To avoid problems with 
 
 [SDP-MD12]:: The content of the `<mdui:Logo>` element MUST be either an `https` URL or an in-line image embedded in a `data` URI element.
 
-[SDP-MD13]:: Logo image requirements:
+[SDP-MD13]:: At least one <mdui:Logo> element MUST have a height attribute of 60 and a width attribute of 80.
 
-* At least one `<mdui:Logo>` element MUST have a `height` attribute of `60` and a `width` attribute of `80`.
-* An entity SHOULD include an `<mdui:Logo>` element with a `height` attribute of `16` and a `width` attribute of `16`.
-* Any logo referenced by an `<mdui:Logo>` element MUST have a transparent background.
-* Any logo referenced by an `<mdui:Logo>` element MUST be in PNG format.
+An entity SHOULD include an <mdui:Logo> element with a height attribute of 16 and a width attribute of 16.
+
+Any logo referenced by an <mdui:Logo> element MUST be in PNG format with a transparent background.
 
 === Cryptographic Algorithms
 
-[SDP-ALG01]:: Deployments MUST support, and use, the following algorithms when communicating with peers in the context of this profile:
+[SDP-ALG01]:: Deployments MUST support, and use, the following algorithms when communicating with peers in the context of this profile. Where multiple choices exist, any of the listed options may be used. The profile will be updated as necessary to reflect changes in government and industry recommendations regarding algorithm usage.
 
 * Digest
 ** ```http://www.w3.org/2001/04/xmlenc#sha256``` <<XMLEnc>>
@@ -112,10 +107,8 @@ These certificates SHOULD be long-lived and self-signed. To avoid problems with 
 ** ```http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p``` <<XMLEnc>>
 ** ```http://www.w3.org/2009/xmlenc11#rsa-oaep``` <<XMLEnc>> 
 
-[SDP-ALG02]:: The following default digest algorithm MUST be used in conjunction with the above key transport algorithms (the default mask generation function, MGF1 with SHA1, MUST be used):
+The following default digest algorithm MUST be used in conjunction with the above key transport algorithms (the default mask generation function, MGF1 with SHA1, MUST be used):
 
 * ```http://www.w3.org/2001/04/xmlenc#sha256``` <<XMLEnc>>
-
-This profile will be updated as necessary to reflect changes in government and industry recommendations regarding algorithm usage.
 
 _This profile cannot preclude the use of other algorithms when communicating with peers outside the scope of this profile, but the other algorithms in common use are generally considered to be weakening (e.g., SHA-1) or broken outright (e.g., RSA PKCS#1.5). Note that the use of AES-CBC block encryption algorithms remains widespread at the time of authoring, but are known to be broken <<XMLEncBreak>>._

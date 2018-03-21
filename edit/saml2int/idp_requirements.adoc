@@ -2,7 +2,7 @@
 
 === Web Browser SSO
 
-[SDP-IDP01]:: IdPs MUST support the Browser SSO Profile <<SAML2Prof>>.
+[SDP-IDP01]:: IdPs MUST support the Browser SSO Profile <<SAML2Prof>>, as updated by the Approved Errata <<SAML2Err>>, with behavior, capabilities, and options consistent with the additional constraints specified in this section.
 
 ==== Requests
 
@@ -54,7 +54,7 @@ If an IdP cannot prove subject presence, then it MUST fail the request and SHOUL
 
 [SDP-IDP16]:: If an IdP cannot or will not satisfy the requirements of an SP in this respect, then it MUST fail the authentication request and SHOULD respond to the SP with a SAML error status.
 
-[SDP-IDP17]:: In the absence of any signaling by an SP, an IdP MAY supply either, both, or neither SAML Attribute, or to return an error as it sees fit.
+[SDP-IDP17]:: In the absence of any signaling by an SP, an IdP MAY supply either, both, or neither SAML Attribute, or return an error as it sees fit.
 
 ==== Attributes
 
@@ -66,9 +66,11 @@ _This requirement ensures unique, non-conflicting naming of Attributes even in c
 
 === Single Logout
 
-[SDP-IDP20]:: IdPs MUST support the Single Logout Profile <<SAML2Prof>>.
+[SDP-IDP20]:: IdPs MUST support the Single Logout Profile <<SAML2Prof>>, as updated by the Approved Errata <<SAML2Err>>, with behavior, capabilities, and options consistent with the additional constraints specified in this section.
 
-[SDP-IDP21]:: _(IS THIS A SEPARATE REQUIREMENT?)_ The term "IdP session" is used to refer to the ongoing state between the IdP and its clients allowing for SSO. Support for logout implies supporting termination of a subject's IdP session in response to receiving a `<samlp:LogoutRequest>` or upon some administrative signal. IdPs MAY allow a subject the option to maintain their IdP session rather than unilaterally terminating it.
+_The term "IdP session" is used to refer to the ongoing state between the IdP and its clients allowing for SSO. Support for logout implies supporting termination of a subject's IdP session in response to receiving a `<samlp:LogoutRequest>` or upon some administrative signal._
+
+[SDP-IDP21]:: IdPs MAY allow a subject the option to maintain their IdP session rather than unilaterally terminating it.
 
 [SDP-IDP22]:: IdPs MAY support the propagation of logout signaling to SPs.
 
@@ -106,9 +108,9 @@ _The normative requirement for the use of transient identifiers is intended to o
 
 ==== Support for Multiple Keys
 
-[SDP-IDP30]:: IdP deployments MUST support multiple signing certificates in SP metadata and MUST support validation of signatures using a key from any of them.
+The ability to perform seamless key migration depends upon proper support for consuming and/or leveraging multiple keys at the same time.
 
-_These requirements make seamless key migration possible for both parties._
+[SDP-IDP30]:: IdP deployments MUST support multiple signing certificates in SP metadata and MUST support validation of signatures using a key from any of them.
 
 ==== Metadata Content
 
