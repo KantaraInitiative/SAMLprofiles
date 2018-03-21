@@ -24,10 +24,6 @@ _The following is a non-exhaustive list of items to which this directive applies
 
 _An entityID SHOULD be chosen in a manner that minimizes the likelihood of it changing for political or technical reasons, including for example a change to a different software implementation or hosting provider._
 
-==== Profile Support
-
-[SDP-G05]:: IdP and SP deployments MUST support the SAML V2.0 Web Browser SSO Profile, and IdP deployments MUST support the SAML V2.0 Single Logout Profile, as defined in <<SAML2Prof>> and as updated by <<SAML2Err>>. The behavior, capabilities, and options MUST be consistent with the additional constraints specified in this document.
-
 === Metadata and Trust Management
 
 ==== Metadata Consumption and Use
@@ -37,7 +33,7 @@ _An entityID SHOULD be chosen in a manner that minimizes the likelihood of it ch
 * indications of support for Browser SSO and Single Logout profiles
 * selection, determination, and verification of SAML endpoints and bindings
 * determination of the trustworthiness of XML signing keys and TLS client and server certificates
-* selection of XML Encryption key transport keys
+* selection of XML Encryption keys
 * determination of subject identifier SAML Attribute(s) to provide (per `<<SAML2SubjId>>`)
 * optional signing of assertions via the `WantAssertionsSigned` flag
 * optional enforcement of request signing via the `AuthnRequestsSigned` flag
@@ -87,11 +83,9 @@ These certificates SHOULD be long-lived and self-signed. To avoid problems with 
 
 [SDP-MD13]:: At least one `<mdui:Logo>` element MUST have a `height` attribute of `60` and a `width` attribute of `80`.
 
-[SDP-MD14]:: An entity SHOULD include an `<mdui:Logo>` element with a `height` attribute of `16` and a `width` attribute of `16`.
+An entity SHOULD include an `<mdui:Logo>` element with a `height` attribute of `16` and a `width` attribute of `16`.
 
-[SDP-MD15]:: Any logo referenced by an `<mdui:Logo>` element MUST have a transparent background.
-
-[SDP-MD16]:: Any logo referenced by an `<mdui:Logo>` element MUST be in PNG format.
+Any logo referenced by an `<mdui:Logo>` element MUST be in PNG format with a transparent background.
 
 === Cryptographic Algorithms
 
