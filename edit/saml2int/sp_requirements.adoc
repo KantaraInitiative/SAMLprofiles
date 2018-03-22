@@ -115,9 +115,15 @@ For a wide range of applications in the collaborative space, this notion is not 
 
 For the purposes of the following requirements, we will refer to applications that rely on the exposure of resource URLs that may be shared between users from multiple organizations as "collaborative" applications, even if their purpose may not specifically align with that term.
 
+===== Support for Multiple IdPs
+
+[SDP-SP29]:: SPs MUST allow for the possibility that any given request requiring authentication may be potentially satisfied by more than one IdP. That is, any scenario in which a piece of content, policy, configuration, or decision on the part of an application is bound to an IdP MUST be constructed in a fashion such that more than one IdP may be so bound.
+
+_This requirement flows from both the inherent requirements of collaborative applications described above, and from the simple reality that enterprises vary in their structure. Some organizations rely on more than one IdP due to administrative boundaries, but frequently contract for or access services as a single body. Thus, any presumed mapping between a contract or set of access policies and a single SAML IdP is too constraining. This constraint imposes a need for complex proxying of SSO by many organizations and must be avoided._
+
 ===== Deep Linking
 
-[SDP-SP26]:: Applications SHOULD, and collaborative applications MUST, support deep linking. Deep linking implies maintaining support for such links across the boundary of a Web Browser SSO profile interaction. That is, it SHOULD be possible to request a resource and (authorization permitting) have it supplied as the result of a successful Web Browser SSO profile exchange.
+[SDP-SP26]:: Applications SHOULD, and collaborative applications MUST, support deep linking. Deep linking implies maintaining support for such links across the boundary of a Web Browser SSO profile interaction involving any IdP necessary to complete the login process. That is, it SHOULD be possible to request a resource and (authorization permitting) have it supplied as the result of a successful Web Browser SSO profile exchange.
 
 [SDP-SP27]:: It is RECOMMENDED that SPs support the preservation of POST bodies across a successful SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.
 
@@ -125,17 +131,11 @@ _Deep linking implies support for SP-initiated SSO, i.e., the direct generation 
 
 ===== Discovery
 
-Deep linking also implies support for some form of IdP "discovery", the process by which an SP establishes which IdP to use on behalf of a subject. Use of IdP-initiated SSO is a common workaround for supporting discovery, but as noted above cannot be required if deep linking is supported, in addition to having other drawbacks.
+Deep linking also implies support for some form of IdP "discovery", the process by which an SP establishes which IdP to use on behalf of a subject. Use of IdP-initiated SSO is a common workaround for supporting discovery, but cannot be required if deep linking is supported, in addition to having other drawbacks.
 
 A common means of discovery is the mapping of resource/application URL (typically virtual host, sometimes path) to a specific IdP. This is strongly discouraged, and is disallowed for collaborative applications, since it makes the sharing of URLs between users from multiple organizations impossible (or at best highly inconvenient).
 
 [SDP-SP28]:: SPs SHOULD consider support for the Identity Provider Discovery Service Protocol and Profile defined in <<IdPDisco>> as it provides a general, composable building block. SPs MAY support other mechanisms and caching solutions (e.g., cookies) as desired, to reduce the frequency of discovery.
-
-===== Support for Multiple IdPs
-
-[SDP-SP29]:: Related to deep linking, SPs MUST allow for the possibility that any given request requiring authentication may be potentially satisfied by more than one IdP. That is, any scenario in which a piece of content, policy, configuration, or decision on the part of an application is bound to an IdP MUST be constructed in a fashion such that more than one IdP may be so bound.
-
-_This requirement flows from both the inherent requirements of collaborative applications described above, and from the simple reality that enterprises vary in their structure. Some organizations rely on more than one IdP due to administrative boundaries, but frequently contract for or access services as a single body. Thus, any presumed mapping between a contract or set of access policies and a single SAML IdP is inherently constraining. This constraint imposes a need for complex proxying of SSO by many organizations and must be avoided._
 
 === Single Logout
 
