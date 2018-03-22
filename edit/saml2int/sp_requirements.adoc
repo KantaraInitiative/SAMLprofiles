@@ -62,8 +62,6 @@ _This is necessary because clients can freely generate requests that do not spec
 
 ===== NameID Formats
 
-[SDP-SP15]:: SPs MUST support arbitrary `<saml:NameID>` elements regardless of `Format`, for the purposes of Single Logout.
-
 [SDP-SP16]:: SPs MUST NOT require the presence of a `<saml:NameID>` element and MUST NOT rely on the content of this element for long term identification of subjects;  `<saml:Attribute>` elements MUST be used for this purpose in the manner detailed below.
 
 ===== Subject Identifiers
