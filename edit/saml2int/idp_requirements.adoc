@@ -38,55 +38,55 @@ If an IdP cannot prove subject presence, then it MUST fail the request and SHOUL
 
 [SDP-IDP09]:: Successful responses MUST be directly signed using a `<ds:Signature>` element within the `<samlp:Response>` element.  Error responses MAY be signed.
 
-[SDP-IDP11]:: Successful responses MUST contain one and only one SAML assertion, and the assertion MUST contain exactly one `<saml:AuthnStatement>` element and MAY contain zero or one `<saml:AttributeStatement>` elements. The assertion within the response MAY be directly signed.
+[SDP-IDP10]:: Successful responses MUST contain one and only one SAML assertion, and the assertion MUST contain exactly one `<saml:AuthnStatement>` element and MAY contain zero or one `<saml:AttributeStatement>` elements. The assertion within the response MAY be directly signed.
 
-[SDP-IDP12]:: In the event the HTTP-POST binding <<SAML2Bind>> is used, assertions MUST be encrypted and transmitted via a `<saml:EncryptedAssertion>` element. Information intended for the consumption of the SP MUST NOT be further encrypted via `<saml:EncryptedID>` or `<saml:EncryptedAttribute>` constructs.
+[SDP-IDP11]:: In the event the HTTP-POST binding <<SAML2Bind>> is used, assertions MUST be encrypted and transmitted via a `<saml:EncryptedAssertion>` element. Information intended for the consumption of the SP MUST NOT be further encrypted via `<saml:EncryptedID>` or `<saml:EncryptedAttribute>` constructs.
 
 ==== Subject Identifiers
 
-[SDP-IDP13]:: Assertions MUST contain a `<saml:NameID>` element with the `urn:oasis:names:tc:SAML:2.0:nameid-format:transient` Format, as defined in <<SAML2Core>>, for the purposes of logout.
+[SDP-IDP12]:: Assertions MUST contain a `<saml:NameID>` element with the `urn:oasis:names:tc:SAML:2.0:nameid-format:transient` Format, as defined in <<SAML2Core>>, for the purposes of logout.
 
-[SDP-IDP14]:: IdPs MUST support one or both of the SAML Attributes defined by <<SAML2SubjId>> for non-transient identification of subjects. Support for both is RECOMMENDED.
+[SDP-IDP13]:: IdPs MUST support one or both of the SAML Attributes defined by <<SAML2SubjId>> for non-transient identification of subjects. Support for both is RECOMMENDED.
 
 ===== Subject Identifier Requirements Signaling
 
-[SDP-IDP15]:: IdPs MUST support the metadata-based identifier requirement signaling mechanism defined in <<SAML2SubjId>>.
+[SDP-IDP14]:: IdPs MUST support the metadata-based identifier requirement signaling mechanism defined in <<SAML2SubjId>>.
 
-[SDP-IDP16]:: If an IdP cannot or will not satisfy the requirements of an SP in this respect, then it MUST fail the authentication request and SHOULD respond to the SP with a SAML error status.
+[SDP-IDP15]:: If an IdP cannot or will not satisfy the requirements of an SP in this respect, then it MUST fail the authentication request and SHOULD respond to the SP with a SAML error status.
 
-[SDP-IDP17]:: In the absence of any signaling by an SP, an IdP MAY supply either, both, or neither SAML Attribute, or return an error as it sees fit.
+[SDP-IDP16]:: In the absence of any signaling by an SP, an IdP MAY supply either, both, or neither SAML Attribute, or return an error as it sees fit.
 
 ==== Attributes
 
-[SDP-IDP18]:: `<saml:Attribute>` elements MUST contain a NameFormat of `urn:oasis:names:tc:SAML:2.0:attrname-format:uri`.
+[SDP-IDP17]:: `<saml:Attribute>` elements MUST contain a NameFormat of `urn:oasis:names:tc:SAML:2.0:attrname-format:uri`.
 
 _This requirement ensures unique, non-conflicting naming of Attributes even in cases involving custom requirements for which no standard Attributes may exist._
 
-[SDP-IDP19]:: It is RECOMMENDED that the content of `<saml:AttributeValue>` elements be limited to a single child text node (i.e., a simple string value).
+[SDP-IDP18]:: It is RECOMMENDED that the content of `<saml:AttributeValue>` elements be limited to a single child text node (i.e., a simple string value).
 
 === Single Logout
 
-[SDP-IDP20]:: IdPs MUST support the Single Logout Profile <<SAML2Prof>>, as updated by the Approved Errata <<SAML2Err>>, with behavior, capabilities, and options consistent with the additional constraints specified in this section.
+[SDP-IDP19]:: IdPs MUST support the Single Logout Profile <<SAML2Prof>>, as updated by the Approved Errata <<SAML2Err>>, with behavior, capabilities, and options consistent with the additional constraints specified in this section.
 
 _The term "IdP session" is used to refer to the ongoing state between the IdP and its clients allowing for SSO. Support for logout implies supporting termination of a subject's IdP session in response to receiving a `<samlp:LogoutRequest>` or upon some administrative signal._
 
-[SDP-IDP21]:: IdPs MAY allow a subject the option to maintain their IdP session rather than unilaterally terminating it.
+[SDP-IDP20]:: IdPs MAY allow a subject the option to maintain their IdP session rather than unilaterally terminating it.
 
-[SDP-IDP22]:: IdPs MAY support the propagation of logout signaling to SPs.
+[SDP-IDP21]:: IdPs MAY support the propagation of logout signaling to SPs.
 
 ==== Requests
 
 ===== Binding
 
-[SDP-IDP23]:: The HTTP-Redirect binding [SAML2Bind] MUST be used for the transmission of `<samlp:LogoutRequest>` messages, in the event that propagation is supported.
+[SDP-IDP22]:: The HTTP-Redirect binding [SAML2Bind] MUST be used for the transmission of `<samlp:LogoutRequest>` messages, in the event that propagation is supported.
 
-[SDP-IDP24]:: IdPs MUST support the HTTP-Redirect [SAML2Bind] binding for the receipt of `<samlp:LogoutRequest>` messages.
+[SDP-IDP23]:: IdPs MUST support the HTTP-Redirect [SAML2Bind] binding for the receipt of `<samlp:LogoutRequest>` messages.
 
 ==== Request Content
 
-[SDP-IDP25]:: Requests MUST be signed.
+[SDP-IDP24]:: Requests MUST be signed.
 
-[SDP-IDP26]:: The `<saml:NameID>` element in `<samlp:LogoutRequest>` messages MUST NOT be encrypted.
+[SDP-IDP25]:: The `<saml:NameID>` element in `<samlp:LogoutRequest>` messages MUST NOT be encrypted.
 
 _The normative requirement for the use of transient identifiers is intended to obviate the need for XML Encryption._
 
@@ -94,15 +94,15 @@ _The normative requirement for the use of transient identifiers is intended to o
 
 ===== Binding
 
-[SDP-IDP27]:: The HTTP-Redirect binding [SAML2Bind] MUST be used for the transmission of `<samlp:LogoutResponse>` messages.
+[SDP-IDP26]:: The HTTP-Redirect binding [SAML2Bind] MUST be used for the transmission of `<samlp:LogoutResponse>` messages.
 
-[SDP-IDP28]:: IdPs MUST support the HTTP-Redirect [SAML2Bind] binding for the receipt of `<samlp:LogoutResponse>` messages, in the event that `<samlp:LogoutRequest>` propagation is supported.
+[SDP-IDP27]:: IdPs MUST support the HTTP-Redirect [SAML2Bind] binding for the receipt of `<samlp:LogoutResponse>` messages, in the event that `<samlp:LogoutRequest>` propagation is supported.
 
 ===== Response Content
 
-[SDP-IDP29]:: Responses MUST be signed.
+[SDP-IDP28]:: Responses MUST be signed.
 
-[SDP-IDP30]:: The `<samlp:StatusCode>` in the response issued by the IdP MUST reflect whether the IdP session was successfully terminated.
+[SDP-IDP29]:: The `<samlp:StatusCode>` in the response issued by the IdP MUST reflect whether the IdP session was successfully terminated.
 
 === Metadata and Trust Management
 
