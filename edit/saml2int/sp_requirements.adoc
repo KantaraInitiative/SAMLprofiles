@@ -62,25 +62,25 @@ _This is necessary because clients can freely generate requests that do not spec
 
 ===== NameID Formats
 
-[SDP-SP16]:: SPs MUST NOT require the presence of a `<saml:NameID>` element and MUST NOT rely on the content of this element for long term identification of subjects;  `<saml:Attribute>` elements MUST be used for this purpose in the manner detailed below.
+[SDP-SP15]:: SPs MUST NOT require the presence of a `<saml:NameID>` element and MUST NOT rely on the content of this element for long term identification of subjects;  `<saml:Attribute>` elements MUST be used for this purpose in the manner detailed below.
 
 ===== Subject Identifiers
 
-[SDP-SP17]:: If an SP requires persistent tracking/identification of its users (as most do), then it MUST support one or both of the SAML Attributes defined by <<SAML2SubjId>> for this purpose.
+[SDP-SP16]:: If an SP requires persistent tracking/identification of its users (as most do), then it MUST support one or both of the SAML Attributes defined by <<SAML2SubjId>> for this purpose.
 
 _If an SP requires coordination and/or correlation of user activity between itself and other SPs, then the SAML Attribute named `urn:oasis:names:tc:SAML:attribute:subject-id` is appropriate. Otherwise the SAML Attribute named `urn:oasis:names:tc:SAML:attribute:pairwise-id` can be used._
 
-[SDP-SP20]:: SPs MAY support legacy or historical `<saml:NameID>` and `<saml:Attribute>` content for compatibility reasons but MUST NOT require their use.
+[SDP-SP17]:: SPs MAY support legacy or historical `<saml:NameID>` and `<saml:Attribute>` content for compatibility reasons but MUST NOT require their use.
 
 ===== Subject Identifier Requirements Signaling
 
-[SDP-SP21]:: An SP MUST represent its identifier requirements in its SAML metadata, consistent with the Requirements Signaling mechanism defined in <<SAML2SubjId>>.
+[SDP-SP18]:: An SP MUST represent its identifier requirements in its SAML metadata, consistent with the Requirements Signaling mechanism defined in <<SAML2SubjId>>.
 
 ===== Identifier Scoping
 
-[SDP-SP22]:: SPs MUST prevent unintended identifier collisions in the values asserted by different IdPs, and the required identifier types, per <<SAML2SubjId>>, are "scoped" via a DNS-like syntax to help fulfill this requirement.
+[SDP-SP19]:: SPs MUST prevent unintended identifier collisions in the values asserted by different IdPs, and the required identifier types, per <<SAML2SubjId>>, are "scoped" via a DNS-like syntax to help fulfill this requirement.
 
-[SDP-SP23]:: SPs MUST associate identifier scopes with IdPs such that only authorized IdPs may assert identifiers with particular scopes for particular purposes.
+[SDP-SP20]:: SPs MUST associate identifier scopes with IdPs such that only authorized IdPs may assert identifiers with particular scopes for particular purposes.
 
 _For example, if the `example.com` scope is bound to the IdP named `http://idp.example.com/saml`, it should be generally disallowed for any other IdP to assert an identifier in that scope. Note that this is not a 1:1 relationship; it may frequently happen that multiple IdPs may assert a given scope, or an IdP may assert identifiers in multiple scopes, but the rules for this should be explicit and enforced._
 
@@ -88,7 +88,7 @@ _For example, if the `example.com` scope is bound to the IdP named `http://idp.e
 
 The required identifier types above are opaque, unknown to users in most cases, and unsuitable for display.
 
-[SDP-SP24]:: SPs requiring the display of identifiers to users, the identification of other users via searching, selection, etc., and similar use cases SHOULD rely on additional suitable SAML Attributes such as (<<X500SAMLattr>>):
+[SDP-SP21]:: SPs requiring the display of identifiers to users, the identification of other users via searching, selection, etc., and similar use cases SHOULD rely on additional suitable SAML Attributes such as (<<X500SAMLattr>>):
 
 * `urn:oid:0.9.2342.19200300.100.1.3` (mail)
 * `urn:oid:2.16.840.1.113730.3.1.241` (displayName)
@@ -99,7 +99,7 @@ _Note that most standardized Attributes of this sort tend to be defined as multi
 
 ==== Attribute Value Constraints
 
-[SDP-SP25]:: When consuming SAML Attributes with standardized definitions in external specifications, SPs MUST NOT impose constraints beyond the definitions of those attributes.
+[SDP-SP22]:: When consuming SAML Attributes with standardized definitions in external specifications, SPs MUST NOT impose constraints beyond the definitions of those attributes.
 
 _For example, the definition of the `mail` attribute (in SAML, `urn:oid:0.9.2342.19200300.100.1.3`) explicitly allows for multiple values, so an SP that consumes it for some purpose must necessarily allow for that possibility._
 
@@ -117,15 +117,15 @@ For the purposes of the following requirements, we will refer to applications th
 
 ===== Support for Multiple IdPs
 
-[SDP-SP29]:: SPs MUST allow for the possibility that any given request requiring authentication may be potentially satisfied by more than one IdP. That is, any scenario in which a piece of content, policy, configuration, or decision on the part of an application is bound to an IdP MUST be constructed in a fashion such that more than one IdP may be so bound.
+[SDP-SP23]:: SPs MUST allow for the possibility that any given request requiring authentication may be potentially satisfied by more than one IdP. That is, any scenario in which a piece of content, policy, configuration, or decision on the part of an application is bound to an IdP MUST be constructed in a fashion such that more than one IdP may be so bound.
 
 _This requirement flows from both the inherent requirements of collaborative applications described above, and from the simple reality that enterprises vary in their structure. Some organizations rely on more than one IdP due to administrative boundaries, but frequently contract for or access services as a single body. Thus, any presumed mapping between a contract or set of access policies and a single SAML IdP is too constraining. This constraint imposes a need for complex proxying of SSO by many organizations and must be avoided._
 
 ===== Deep Linking
 
-[SDP-SP26]:: Applications SHOULD, and collaborative applications MUST, support deep linking. Deep linking implies maintaining support for such links across the boundary of a Web Browser SSO profile interaction involving any IdP necessary to complete the login process. That is, it SHOULD be possible to request a resource and (authorization permitting) have it supplied as the result of a successful Web Browser SSO profile exchange.
+[SDP-SP24]:: Applications SHOULD, and collaborative applications MUST, support deep linking. Deep linking implies maintaining support for such links across the boundary of a Web Browser SSO profile interaction involving any IdP necessary to complete the login process. That is, it SHOULD be possible to request a resource and (authorization permitting) have it supplied as the result of a successful Web Browser SSO profile exchange.
 
-[SDP-SP27]:: It is RECOMMENDED that SPs support the preservation of POST bodies across a successful SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.
+[SDP-SP25]:: It is RECOMMENDED that SPs support the preservation of POST bodies across a successful SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.
 
 _Deep linking implies support for SP-initiated SSO, i.e., the direct generation of authentication request messages in response to unauthenticated or insufficiently-authenticated access attempts to an application as a whole, or to specific protected content. Deep linking may co-exist with support for unsolicited responses (so-called IdP-initiated SSO), but precludes its requirement._
 
@@ -135,31 +135,31 @@ Deep linking also implies support for some form of IdP "discovery", the process 
 
 A common means of discovery is the mapping of resource/application URL (typically virtual host, sometimes path) to a specific IdP. This is strongly discouraged, and is disallowed for collaborative applications, since it makes the sharing of URLs between users from multiple organizations impossible (or at best highly inconvenient).
 
-[SDP-SP28]:: SPs SHOULD consider support for the Identity Provider Discovery Service Protocol and Profile defined in <<IdPDisco>> as it provides a general, composable building block. SPs MAY support other mechanisms and caching solutions (e.g., cookies) as desired, to reduce the frequency of discovery.
+[SDP-SP26]:: SPs SHOULD consider support for the Identity Provider Discovery Service Protocol and Profile defined in <<IdPDisco>> as it provides a general, composable building block. SPs MAY support other mechanisms and caching solutions (e.g., cookies) as desired, to reduce the frequency of discovery.
 
 === Single Logout
 
-[SDP-SP30]:: SPs MAY support the Single Logout Profile <<SAML2Prof>>, as updated by the Approved Errata <<SAML2Err>>. The following requirements apply in the case of such support.
+[SDP-SP27]:: SPs MAY support the Single Logout Profile <<SAML2Prof>>, as updated by the Approved Errata <<SAML2Err>>. The following requirements apply in the case of such support.
 
 ==== Requests
 
 ===== Binding
 
-[SDP-SP31]:: The HTTP-Redirect binding <<SAML2Bind>> MUST be used for the transmission of `<samlp:LogoutRequest>` messages.
+[SDP-SP28]:: The HTTP-Redirect binding <<SAML2Bind>> MUST be used for the transmission of `<samlp:LogoutRequest>` messages.
 
-[SDP-SP32]:: SPs MUST support the HTTP-Redirect <<SAML2Bind>> binding for the receipt of `<samlp:LogoutRequest>` messages, in the event that inbound `<samlp:LogoutRequest>` messages are supported.
+[SDP-SP29]:: SPs MUST support the HTTP-Redirect <<SAML2Bind>> binding for the receipt of `<samlp:LogoutRequest>` messages, in the event that inbound `<samlp:LogoutRequest>` messages are supported.
 
-[SDP-SP33]:: Requests MUST NOT be issued inside an HTML frame or via any mechanism that would require the use of third-party cookies by the IdP to establish or recover a session with the User Agent. This will typically imply that requests must involve a full-frame redirect, in order that the top level window origin be associated with the IdP.
+[SDP-SP30]:: Requests MUST NOT be issued inside an HTML frame or via any mechanism that would require the use of third-party cookies by the IdP to establish or recover a session with the User Agent. This will typically imply that requests must involve a full-frame redirect, in order that the top level window origin be associated with the IdP.
 
 _The full-frame requirement is also necessary to ensure that full control of the user interface is released to the IdP._
 
 ===== Request Content
 
-[SDP-SP34]:: Requests MUST be signed.
+[SDP-SP31]:: Requests MUST be signed.
 
-[SDP-SP35]:: The `<saml:NameID>` element included in `<samlp:LogoutRequest>` messages MUST exactly match the corresponding element received from the IdP, including its element content and all XML attributes included therein.
+[SDP-SP32]:: The `<saml:NameID>` element included in `<samlp:LogoutRequest>` messages MUST exactly match the corresponding element received from the IdP, including its element content and all XML attributes included therein.
 
-[SDP-SP36]:: The `<saml:NameID>` element in `<samlp:LogoutRequest>` messages MUST NOT be encrypted.
+[SDP-SP33]:: The `<saml:NameID>` element in `<samlp:LogoutRequest>` messages MUST NOT be encrypted.
 
 _The normative requirement for the use of transient identifiers is intended to obviate the need for XML Encryption._
 
@@ -167,27 +167,27 @@ _The normative requirement for the use of transient identifiers is intended to o
 
 ===== Binding
 
-[SDP-SP37]:: The HTTP-Redirect binding <<SAML2Bind>> MUST be used for the transmission of `<samlp:LogoutResponse>` messages.
+[SDP-SP34]:: The HTTP-Redirect binding <<SAML2Bind>> MUST be used for the transmission of `<samlp:LogoutResponse>` messages.
 
-[SDP-SP38]:: SPs MUST support the HTTP-Redirect <<SAML2Bind>> binding for the receipt of `<samlp:LogoutResponse>` messages, in the event that they do not include the `<aslo:Asynchronous>` extension <<SAML2ASLO>> in all of their requests.
+[SDP-SP35]:: SPs MUST support the HTTP-Redirect <<SAML2Bind>> binding for the receipt of `<samlp:LogoutResponse>` messages, in the event that they do not include the `<aslo:Asynchronous>` extension <<SAML2ASLO>> in all of their requests.
 
 ===== Response Content
 
-[SDP-SP39]:: Responses MUST be signed.
+[SDP-SP36]:: Responses MUST be signed.
 
 ==== Behavioral Requirements
 
-[SDP-SP40]:: SPs MUST terminate a subject's local session before issuing a `<samlp:LogoutRequest>` message to the IdP.
+[SDP-SP37]:: SPs MUST terminate a subject's local session before issuing a `<samlp:LogoutRequest>` message to the IdP.
 
 _This ensures the safest possible result for subjects in the event that logout fails for some reason, as it often will._
 
-[SDP-SP41]:: SPs MUST NOT issue a `<samlp:LogoutRequest>` message as the result of an idle activity timeout.
+[SDP-SP38]:: SPs MUST NOT issue a `<samlp:LogoutRequest>` message as the result of an idle activity timeout.
 
 _Timeout of a single application/service must not trigger logout of an SSO session because this imposes a single service's requirements on an entire IdP deployment. Applications with sensitive requirements should consider other mechanisms, such as the `ForceAuthn` attribute, to achieve their goals._
 
 ==== Logout and Virtual Hosting
 
-[SDP-SP42]:: An SP that maintains distinct sessions across multiple virtual hosts SHOULD identify itself by means of a distinct entityID (with associated metadata) for each virtual host.
+[SDP-SP39]:: An SP that maintains distinct sessions across multiple virtual hosts SHOULD identify itself by means of a distinct entityID (with associated metadata) for each virtual host.
 
 _A single entity can have only one well-defined `<SingleLogoutService>` endpoint per binding. Cookies are typically host-based and logout cannot typically be implemented easily across virtual hosts. Unlike during SSO, a `<samlp:LogoutRequest>` message cannot specify a particular response endpoint, so this scenario is generally not viable._
 
@@ -197,13 +197,13 @@ _A single entity can have only one well-defined `<SingleLogoutService>` endpoint
 
 The ability to perform seamless key migration depends upon proper support for consuming and/or leveraging multiple keys at the same time.
 
-[SDP-SP43]:: SP deployments MUST support multiple signing certificates in IdP metadata and MUST support validation of XML signatures using a key from any of them.
+[SDP-SP40]:: SP deployments MUST support multiple signing certificates in IdP metadata and MUST support validation of XML signatures using a key from any of them.
 
-[SDP-SP44]:: SP deployments MUST be able to support multiple decryption keys and MUST be able to decrypt `<saml:EncryptedAssertion>` elements encrypted with any configured key.
+[SDP-SP41]:: SP deployments MUST be able to support multiple decryption keys and MUST be able to decrypt `<saml:EncryptedAssertion>` elements encrypted with any configured key.
 
 ==== Metadata Content
 
-[SDP-SP45]:: By virtue of this profile's requirements, an SP's metadata MUST contain:
+[SDP-SP42]:: By virtue of this profile's requirements, an SP's metadata MUST contain:
 
 * an `<md:SPSSODescriptor>` role element
 ** at least one `<md:AssertionConsumerService>` endpoint element
