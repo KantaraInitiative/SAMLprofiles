@@ -1,0 +1,91 @@
+
+
+body {
+  padding-top: 0px !important;
+}
+
+
+.navbar {
+  margin-bottom: 0px !important;
+}
+
+.nav.navbar-nav {
+  padding-top: 12px;
+}
+
+/* Fix for horizontal srolling */
+ul.navbar-right {
+  margin-right: 0px !important ; 
+  padding-right: 0px !important;
+}
+
+
+body .bs-docs-masthead,
+body .bs-docs-header {
+  position: relative;
+  padding: 30px 15px;
+  color: #222;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(0,0,0,.1);
+  border-bottom: 1px solid #8ac0ee;
+  border-top: 1px solid #7bd;
+  background-color: #90cef1 !important;
+  background-image: none;
+  background-image:         linear-gradient(to bottom, #80bee1 0%, #99cff4 100%);
+/*  background-image: -webkit-gradient(linear, left top, left bottom, from(#563d7c), to(#6f5499));
+  background-image: -webkit-linear-gradient(top, #563d7c 0%, #6f5499 100%);
+  background-image:      -o-linear-gradient(top, #563d7c 0%, #6f5499 100%);
+  
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#563d7c', endColorstr='#6F5499', GradientType=0);*/
+  background-repeat: repeat-x;
+
+}
+.bs-docs-masthead h1 {
+  font-weight: 300;
+  line-height: 1;
+  color: #444;
+}
+.bs-docs-masthead .lead {
+  margin: 0 auto 30px;
+  font-size: 20px;
+  color: #444;
+}
+.bs-docs-masthead .version {
+  margin-top: -15px;
+  margin-bottom: 30px;
+  color: #111;
+}
+.bs-docs-masthead .btn {
+  width: 100%;
+  padding: 15px 30px;
+  font-size: 20px;
+    color: #222;
+}
+
+
+h1 a,h2 a,h3 a,h4 a {
+  color: black;
+  text-decoration: : none;
+  cursor: pointer;
+}
+/*
+     FILE ARCHIVED ON 18:49:06 May 10, 2017 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 19:10:51 Apr 13, 2018.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  LoadShardBlock: 122.361 (3)
+  esindex: 0.01
+  captures_list: 142.702
+  CDXLines.iter: 13.799 (3)
+  PetaboxLoader3.datanode: 126.632 (4)
+  exclusion.robots: 0.194
+  exclusion.robots.policy: 0.167
+  RedisCDXSource: 2.222
+  PetaboxLoader3.resolve: 533.551
+  load_resource: 554.147
+*/

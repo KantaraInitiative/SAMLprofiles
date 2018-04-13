@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+<link rel="stylesheet" type="text/css" href="/static/css/banner-styles.css?v=1522452177.0" />
+<link rel="stylesheet" type="text/css" href="/static/css/iconochive.css?v=1522452177.0" />
+
+    <!-- Meta, title, CSS, favicons, etc. -->
+      <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SAML2int">
+  <meta name="keywords" content="saml 2.0 deployment profile authentication authorization interoperability">
+  <meta name="author" content="Andreas Åkre Solberg">
+
+  <title>SAML2int</title>
+
+
+  <link href="assets/css/src/connect-style.css" rel="stylesheet">
+
+  <!-- Bootstrap core CSS -->
+  <link href="bower_components/uninett-theme/css/uninett.css" rel="stylesheet">
+  <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="bower_components/font-awsome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- <link href="../dist/css/" rel="stylesheet"> -->
+
+
+
+
+  <link href="assets/css/src/docs.css" rel="stylesheet">
+  <link href="assets/css/src/pygments-manni.css" rel="stylesheet">
+
+
+  <!--[if lt IE 9]><script src="../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+  <script src="assets/js/ie-emulation-modes-warning.js"></script>
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <script type="text/javascript">
+
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      });
+    </script>
+
+
+  </head>
+  <body class="bs-docs-home">
+    <!-- <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a> -->
+
+    <!-- Docs master nav -->
+    <header class="navbar navbar-default navbar-static-top bs-docs-nav" id="top" role="banner">
+  <div class="container-fluid">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+      <!-- <a class="navbar-brand" href="/"><img src="/bower_components/uninett-theme/images/UNINETT_logo.svg" alt="Uninett logo" type="image/svg+xml"></a> -->
+    </div>
+
+    <div class="navbar-department">
+      <a href=""><div class="department">SAML2int</div></a>
+    </div>
+
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+
+      <ul class="nav navbar-nav">
+
+
+        <li class="dropdown 
+          
+          
+          ">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Deployment profile <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            
+            <li>
+              <a href="profile/current/">Current version 0.2</a></li>
+
+            <li>
+              <a target="" href="profile/0.1/">Version 0.1</a>
+            </li>
+          </ul>
+        </li>
+
+
+        <li>
+          <a href="about/">About</a>
+        </li>
+
+        <li>
+          <a target="" href="partners/">Partners</a>
+        </li>
+<!-- 
+        <li>
+          <a target="" href="/testing/">Interop. testing</a>
+        </li> -->
+
+        <li>
+          <a href="contact/">Contact</a>
+        </li>
+
+
+
+
+      </ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <!-- Page content of course! -->
+    <div class="container gutter bs-docs-section">
+
+
+
+
+	<p>This deployment profile of SAML 2.0 Web Browser SSO defines a minimal set of requirements that entities need to support in order to be interoperable.</p>
+
+	<p>Service Providers and Identity Providers implementing this profile may interoperate with other entities implementing the same profile, as well as with entities that honor the conformance guidelines of Liberty Alliance for SP, SP-Lite, IdP and IdP-Lite.</p>
+
+
+	<h2><a name="section1" id="section1"/>1 Requirements notation</a></h2>
+
+	<p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a href="http://www.ietf.org/rfc/rfc2119.txt">RFC2119</a>.</p>
+
+	<h2><a name="section2" id="section2"/>2 Introduction</a></h2>
+
+	<p>This deployment profile of SAML 2.0 Web Browser SSO defines a minimal set of requirements that entities need to support in order to be interoperable. The goals of this profile include:</p>
+
+	<ul>
+	<li>Easy implementation that can be based on available SAML libraries.</li>
+	<li>Good support in current available SAML 2.0 software implementations.</li>
+	<li>Minimal effort required to configure entities to support this profile from a default installation.</li>
+	<li>Increased interoperability between SAML 2.0 implementations and deployment environments, thanks to a very limited set of required options.</li>
+	</ul>
+
+	<p>This profile draws upon operational experience of several SAML-based federations in the higher-education and research community and reflects best current practice of a wide range of deployments involving web single sign-on. The authors believe that this profile has broad applicability outside the scope of education and research.</p>
+
+	<h3><a name="section21" id="section21"/>2.1 Interoperability</a></h3>
+
+	<p>One of the main goals of this profile is to increase interoperability between deployments, as well as across SAML 2.0 implementations.</p>
+
+	<p>Service Providers and Identity Providers implementing this profile may interoperate with other entities implementing the same profile.</p>
+
+	<h3><a name="section22" id="section22"/>2.2 Specification Scope</a></h3>
+
+	<p>The scope of this specification is a SAML 2.0 deployment profile, "Single Sign-On Profile", that limits the options available in SAML 2.0 SSO to increase interoperability between deployments.</p>
+
+	<h3><a name="section23" id="section23"/>2.3 References to SAML 2.0 specification</a></h3>
+
+	<p>When referring to elements from the SAML 2.0 core specification <a href="http://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf">saml2-core</a>, the following syntax is used:</p>
+
+	<ul>
+	<li><code>&lt;samlp:Protocolelement&gt;</code> - for elements from the SAML 2.0 Protocol namespace.</li>
+	<li><code>&lt;saml:Assertionelement&gt;</code> - for elements from the SAML 2.0 Assertion namespace.</li>
+	</ul>
+
+	<p>When referring to elements from the SAML 2.0 metadata specification <a href="http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf">saml2-metadata</a>, the following syntax is used:</p>
+
+	<ul>
+	<li><code>&lt;samlmd:Metadataelement&gt;</code></li>
+	</ul>
+
+	<p>This profile is a normative deployment profile for the SAML 2.0 Web Browser SSO Profile (urn:oasis:names:tc:SAML:2.0:profiles:SSO:browser), as specified in <a href="http://docs.oasis-open.org/security/saml/v2.0/saml-profiles-2.0-os.pdf">saml2-profiles</a>. Text from <a href="http://docs.oasis-open.org/security/saml/v2.0/saml-profiles-2.0-os.pdf">saml2-profiles</a>, <a href="http://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf">saml2-core</a>, <a href="http://docs.oasis-open.org/security/saml/v2.0/saml-bindings-2.0-os.pdf">saml2-bindings</a> and <a href="http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf">saml2-metadata</a> is background material, and is not repeated in this document.</p>
+
+	<h2><a name="section3" id="section3"/>3 Single Sign-On Profile</a></h2>
+
+	<p>This deployment profile of SAML 2.0 Single Sign-On (SSO) defines a set of requirements that entities need to support in order to be interoperable with other entities.</p>
+
+	<h3><a name="section31" id="section31"/>3.1 SAML 2.0 Metadata</a></h3>
+
+	<p>All entities supporting this profile MUST provide SAML 2.0 Metadata following the <em>SAML V2.0 Metadata Interoperability Profile</em> <a href="http://docs.oasis-open.org/security/saml/Post2.0/sstc-metadata-iop-cd-01.pdf">saml2-metadata-profile</a> specification.</p>
+
+	<h3><a name="section32" id="section32"/>3.2 The Authentication Request</a></h3>
+
+	<p>The <code>&lt;samlp:AuthnRequest&gt;</code> MUST include a <code>&lt;saml:Issuer&gt;</code> including the EntityID of the Service Provider.</p>
+
+	<p>The <code>&lt;samlp:AuthnRequest&gt;</code> MUST NOT include <code>&lt;saml:Subject&gt;</code>, <code>&lt;saml:Conditions&gt;</code>.</p>
+
+	<p>The Identity Provider MUST provide a reasonable user experience when the Service Provider is not including a <code>&lt;samlp:Scoping&gt;</code> element. The use of <code>&lt;samlp:Scoping&gt;</code> requires the Service Provider to know something about what is behind the Identity Provider, something that may be used in some local environments, but is not reasonable to assume when cross-connecting existing federation.</p>
+
+	<p>The Identity Provider MUST interpret <code>@ForceAuthN="true"</code>, and return a SAML Error if forced re-authentication is not supported.  The Identity Provider MUST interpret <code>@IsPassive="true"</code>, and return a SAML Error if it does not support the passive behavior.</p>
+
+	<p>The <code>&lt;samlp:AuthnRequest&gt;</code> MUST contain an <code>&lt;samlp:AssertionConsumerServiceURL&gt;</code>. The Identity Provider MUST verify that the value of  <code>&lt;samlp:AssertionConsumerServiceURL&gt;</code> exactly matches the <code>&lt;samlmd:AssertionConsumerURL&gt;</code> in the metadata corresponding to the Service Provider.</p>
+
+	<p>To increase the chance of interoperability the <code>&lt;samlp:AuthnRequest&gt;</code> SHOULD NOT include a <code>&lt;samlp:RequestedAuthnContext&gt;</code> element. The support for different authentication context classes, and the semantics around the different classes may be interpreted differently and may potentially cause interoperability problems. If the <code>&lt;samlp:RequestedAuthnContext&gt;</code> is included in the request, the participating entities SHOULD have a already established agreement upon which authentication context classes that are available.</p>
+
+	<p>A <code>&lt;samlp:NameIDPolicy&gt;</code> element SHOULD be included in the <code>&lt;samlp:AuthnRequest&gt;</code> with the <code>AllowCreate</code> attribute set to <code>"true"</code>.</p>
+
+	<p>If the Service Provider includes a <code>NameIDPolicy@Format</code> in the <code>&lt;samlp:AuthnRequest&gt;</code>, it SHOULD be set to either of:</p>
+
+	<ul>
+	<li><code>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</code></li>
+	<li><code>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent.</code></li>
+	</ul>
+
+	<p>The Identity Provider MUST support the transient NameID format.</p>
+
+	<p>The <code>&lt;samlp:AuthnRequest&gt;</code> issued by the Service Provider MUST be sent to the Identity Provider using the HTTP-REDIRECT binding.</p>
+
+	<p>The Service Provider SHOULD NOT sign the <code>&lt;samlp:AuthnRequest&gt;</code>. If the Service Provider is signing the request, it MUST NOT assume that the Identity Provider is validating the signature unless an explicit agreement is made about doing so.</p>
+
+	<p>As this profile only allows the HTTP-POST binding for the <code>&lt;samlp:Response&gt;</code>, the <code>&lt;samlp:AuthnRequest&gt;</code> MUST either have the <code>@ProtocolBinding</code> attribute to be set to <code>urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST</code>, or omitted.</p>
+
+	<h3><a name="section33" id="section33"/>3.3 The Response</a></h3>
+
+	<p>The Service Provider MUST support both unsolicited responses and responses mapped to an <code>&lt;samlp:AuthnRequest&gt;</code> .</p>
+
+	<p>The <code>&lt;samlp:Response&gt;</code> MUST include a <code>&lt;saml:Issuer&gt;</code> element as a child to the <code>&lt;samlp:Response&gt;</code> element including the EntityID of the Identity Provider.</p>
+
+	<p>The <code>&lt;samlp:Response&gt;</code> MUST be sent using the HTTP-POST binding <a href="http://docs.oasis-open.org/security/saml/v2.0/saml-bindings-2.0-os.pdf">saml2-bindings</a>.</p>
+
+	<h4><a name="section331" id="section331"/>3.3.1 The Assertion</a></h4>
+
+	<p>If successful, the <code>&lt;samlp:Response&gt;</code> MUST contain one <code>&lt;saml:Assertion&gt;</code>. The Assertion MUST contain one <code>&lt;saml:AuthnStatement&gt;</code> and zero or one <code>&lt;saml:AttributeStatement&gt;</code>-s. Each <code>&lt;saml:AttributeStatement&gt;</code> MAY contain any number of <code>&lt;saml:Attribute&gt;</code>-s, which MAY contain any number of <code>&lt;saml:AttributeValue&gt;</code>-s.</p>
+
+	<p>The Assertion MUST contain a <code>&lt;saml:Subject&gt;</code> and the <code>&lt;saml:Subject&gt;</code> MUST contain a <code>&lt;saml:NameID&gt;</code>.</p>
+
+	<p>If the request did not include a <code>NameIDPolicy@NameIDFormat</code> the <code>NameID@Format</code> in the response MUST be either of:</p>
+
+	<ul>
+	<li><code>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</code></li>
+	<li><code>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</code>.</li>
+	</ul>
+
+	<p>The Identity Provider MUST include a <code>&lt;saml:Conditions&gt;</code> element. Conditions restricting the period when the assertion is valid, the <code>@NotBefore</code> and <code>@NotOnOrAfter</code> MUST be included.</p>
+
+	<p><code>&lt;saml:Attribute&gt;</code> elements SHOULD carry a NameFormat attribute of <code>urn:oasis:names:tc:SAML:2.0:attrname-format:uri</code>. It is RECOMMENDED that the I2MI SAML 2.0 attribute profile <a href="http://middleware.internet2.edu/dir/docs/internet2-mace-dir-saml-attributes-200804.pdf">MACE-attributes</a> be used.</p>
+
+	<p>Encoding attribute values as plain strings is strongly RECOMMENDED. Past experience has shown that using simple strings eases interoperation between different products compared to other encoding methods.</p>
+
+	<h4><a name="section332" id="section332"/>3.3.2 Encryption of the Response</a></h4>
+
+	<p>The content of the Assertion MUST be protected against eavesdropping, either by encrypting the assertion, or by ensuring that the response is sent on a secure transport.</p>
+
+	<p>The Service Provider MUST either support decrypting <code>&lt;saml:EncryptedAssertion&gt;</code>, or the <code>AssertionConsumerService</code> endpoint MUST use a secure transport connection (SSL/HTTPS).</p>
+
+	<p>The Identity Provider MUST NOT send an unencrypted Assertion to an unprotected (HTTP) <code>AssertionConsumerService</code> endpoint, or present the <code>&lt;form&gt;</code> containing the response on an unprotected (HTTP) XHTML/HTML page.</p>
+
+	<p>If the Service Provider uses SSL/HTTPS and supports decrypting assertions, the Identity Provider MAY encrypt the assertion. The Service Provider will implicitly indicate to the Identity Provider whether it supports decrypting assertions or not. By including a <code>&lt;samlmd:KeyDescriptor&gt;</code> with <code>use=encryption</code> or with the <code>use</code> attribute left out, the Service Provider indicates that it supports decrypting assertions. If the Service Provider metadata contains no <code>&lt;samlmd:KeyDescriptor&gt;</code> at all, or only a <code>&lt;samlmd:KeyDescriptor&gt;</code> with <code>use="signing"</code> the Service Provider indicates it does not support decrypting assertions.</p>
+
+	<h2><a name="section34" id="section34"/>3.4 Security Considerations</a></h2>
+
+	<p>As this profile does not require validation of signed authentication request messages, the Service Provider cannot assume that the content of the request has not been tampered with. Consequences of this include:</p>
+
+	<p>If the Service Provider included a <code>&lt;saml:RequestedAuthnContext&gt;</code> element in the request, it cannot rely on the Identity Provider to honor the requirements. It should only consider the required authentication context as guidance, and instead verify the <code>&lt;saml:AuthnContext&gt;</code> provided in the <code>&lt;samlp:Response&gt;</code>. This approach also makes it easier to support unsolicited responses.</p>
+
+	<p>If the Service Provider requires the user to present a fresh authentication, and sends a request with <code>ForceAuthn="true"</code>, it SHOULD verify the <code>AuthnInstant</code> attribute in the <code>Response</code>.</p>
+
+	<p>This profile does not allow an authentication response to be sent unencrypted over the network. Either the <code>&lt;saml:Assertion&gt;</code> is encrypted end-to-end, or all endpoints are required to use encrypted transport. When the <code>&lt;saml:Assertion&gt;</code> is not encrypted, the content will be exposed in the user's web-browser. The content cannot be tampered with by the user, because the message is signed. However, the user may be able to decode and view attributes sent in the <code>&lt;samlp:Response&gt;</code>.</p>
+
+	<h2><a name="section4" id="section4"/>4 Normative References</a></h2>
+
+	<ul>
+	<li>[RFC2119]                 <a href="http://www.ietf.org/rfc/rfc2119.txt">Bradner, S.,Key words for use in RFCs to Indicate Requirement Levels, March 1997.</a></li>
+	<li>[saml2-core]              <a href="http://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf">OASIS, "SAML 2.0 Core".</a></li>
+	<li>[saml2-bindings]          <a href="http://docs.oasis-open.org/security/saml/v2.0/saml-bindings-2.0-os.pdf">OASIS, "SAML 2.0 Bindings".</a></li>
+	<li>[saml2-profiles]          <a href="http://docs.oasis-open.org/security/saml/v2.0/saml-profiles-2.0-os.pdf">OASIS, "SAML 2.0 Profiles".</a></li>
+	<li>[saml2-metadata-profile]  <a href="http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf">OASIS, "SAML 2.0 Metadata"</a></li>
+	<li>[saml2-metadata-profile]  <a href="http://docs.oasis-open.org/security/saml/Post2.0/sstc-metadata-iop-cd-01.pdf">OASIS, "Interoperable SAML 2.0 Metadata Deployment Profile".</a></li>
+	</ul>
+
+	<h2><a name="section5" id="section5"/>5 Informative References</a></h2>
+
+	<ul>
+	<li>[MACE-attributes]         <a href="http://middleware.internet2.edu/dir/docs/internet2-mace-dir-saml-attributes-200804.pdf">MACE, "MACE: Attribute schemes".</a></li>
+	</ul>
+
+	<h2><a name="section6" id="section6"/>6 Authors' addresses</a></h2>
+
+	<ul>
+	<li>Andreas Åkre Solberg, UNINETT, <a href="mailto:andreas.solberg@uninett.no">&#97;&#x6e;&#100;&#x72;&#101;&#x61;&#115;&#x2e;s&#111;&#x6c;&#98;&#x65;&#114;&#x67;&#64;&#x75;&#x6e;&#105;&#x6e;&#101;&#x74;&#116;&#x2e;n&#111;</a></li>
+	<li>Scott Cantor, Ohio State University, <a href="mailto:cantor.2@osu.edu">&#99;&#97;&#x6e;&#x74;&#x6f;&#x72;&#x2e;&#50;&#64;&#111;&#115;&#117;&#x2e;&#x65;&#x64;&#x75;</a></li>
+	<li>Eve Maler, Sun Microsystems, <a href="mailto:eve.maler@sun.com">&#101;&#x76;&#101;&#x2e;&#109;&#x61;l&#101;&#x72;&#64;&#x73;&#117;&#x6e;.&#99;&#x6f;&#109;</a></li>
+	<li>Leif Johansson, Stockholm University, <a href="mailto:leifj@sunet.se">&#108;&#101;&#x69;&#x66;&#106;&#64;s&#x75;&#x6e;&#101;&#116;.&#x73;&#x65;</a></li>
+	<li>Jeff Hodges, Neustar, <a href="mailto:Jeff.Hodges@neustar.biz">&#74;&#x65;&#102;f&#x2e;&#72;&#x6f;&#x64;&#103;&#x65;&#115;&#64;&#x6e;&#101;u&#x73;&#116;&#x61;&#x72;&#46;&#x62;&#x69;&#122;</a></li>
+	<li>Ian Young, <a href="mailto:ian@iay.org.uk">i&#97;&#x6e;&#x40;&#105;&#97;&#x79;&#x2e;&#111;&#114;&#x67;&#x2e;&#117;&#107;</a></li>
+	<li>Nate Klingenstein, <a href="mailto:ndk@internet2.edu">&#x6e;&#x64;&#107;&#64;&#105;&#x6e;&#x74;&#101;&#114;&#x6e;&#x65;&#x74;&#50;&#46;&#x65;&#x64;u</a></li>
+	<li>Bob Morgan, <a href="mailto:rlmorgan@washington.edu">&#114;&#x6c;&#x6d;o&#114;&#103;&#x61;&#x6e;&#64;&#119;&#97;&#x73;&#x68;&#x69;&#110;&#103;&#x74;&#x6f;&#x6e;&#46;&#101;&#100;&#x75;</a></li>
+	</ul>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+    <!-- Footer
+================================================== -->
+<footer class="bs-docs-footer" role="contentinfo">
+  <div class="container">
+
+    <!-- <p>Feide Connect is currently under development.</p> -->
+
+    <ul class="bs-docs-footer-links muted">
+      <li>SAML2int</li>
+      <li>&middot;</li>
+      <li><a href="http://www.uninett.no/">UNINETT AS</a></li>
+      <li>&middot;</li>
+      <li><a href="http://feide.no/">Feide</a></li>
+      <li>&middot;</li>
+      <li><a href="http://feideconnect.no/">Connect</a></li>
+      <li>&middot;</li>
+      <li><a href="http://discojuice.org/">DiscoJuice</a></li>
+      <li>&middot;</li>
+      <li><a href="http://simplesamlphp.org/">SimpleSAMLphp</a></li>
+
+    </ul>
+  </div>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+
+
+<script src="assets/js/vendor/holder.js"></script>
+<script src="assets/js/vendor/ZeroClipboard.min.js"></script>
+<script src="assets/js/src/application.js"></script>
+
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl./" : "http://www./");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-431110-17");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+  </body>
+</html>
+<!--
+     FILE ARCHIVED ON 08:48:13 Oct 31, 2016 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 19:11:43 Apr 13, 2018.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  LoadShardBlock: 69.722 (3)
+  esindex: 0.018
+  captures_list: 86.344
+  CDXLines.iter: 10.796 (3)
+  PetaboxLoader3.datanode: 134.158 (5)
+  exclusion.robots: 0.453
+  exclusion.robots.policy: 0.421
+  RedisCDXSource: 1.919
+  PetaboxLoader3.resolve: 222.812 (2)
+  load_resource: 305.757
+-->
