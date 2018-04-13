@@ -1084,7 +1084,7 @@ Status
 <h5 id="_nameid_formats">NameID Formats</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP16]</dt>
+<dt class="hdlist1">[SDP-SP15]</dt>
 <dd>
 <p>SPs MUST NOT require the presence of a <code>&lt;saml:NameID&gt;</code> element and MUST NOT rely on the content of this element for long term identification of subjects;  <code>&lt;saml:Attribute&gt;</code> elements MUST be used for this purpose in the manner detailed below.</p>
 </dd>
@@ -1095,7 +1095,7 @@ Status
 <h5 id="_subject_identifiers">Subject Identifiers</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP17]</dt>
+<dt class="hdlist1">[SDP-SP16]</dt>
 <dd>
 <p>If an SP requires persistent tracking/identification of its users (as most do), then it MUST support one or both of the SAML Attributes defined by <a href="#SAML2SubjId">[SAML2SubjId]</a> for this purpose.</p>
 </dd>
@@ -1106,7 +1106,7 @@ Status
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP20]</dt>
+<dt class="hdlist1">[SDP-SP17]</dt>
 <dd>
 <p>SPs MAY support legacy or historical <code>&lt;saml:NameID&gt;</code> and <code>&lt;saml:Attribute&gt;</code> content for compatibility reasons but MUST NOT require their use.</p>
 </dd>
@@ -1117,7 +1117,7 @@ Status
 <h5 id="_subject_identifier_requirements_signaling">Subject Identifier Requirements Signaling</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP21]</dt>
+<dt class="hdlist1">[SDP-SP18]</dt>
 <dd>
 <p>An SP MUST represent its identifier requirements in its SAML metadata, consistent with the Requirements Signaling mechanism defined in <a href="#SAML2SubjId">[SAML2SubjId]</a>.</p>
 </dd>
@@ -1128,11 +1128,11 @@ Status
 <h5 id="_identifier_scoping">Identifier Scoping</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP22]</dt>
+<dt class="hdlist1">[SDP-SP19]</dt>
 <dd>
 <p>SPs MUST prevent unintended identifier collisions in the values asserted by different IdPs, and the required identifier types, per <a href="#SAML2SubjId">[SAML2SubjId]</a>, are "scoped" via a DNS-like syntax to help fulfill this requirement.</p>
 </dd>
-<dt class="hdlist1">[SDP-SP23]</dt>
+<dt class="hdlist1">[SDP-SP20]</dt>
 <dd>
 <p>SPs MUST associate identifier scopes with IdPs such that only authorized IdPs may assert identifiers with particular scopes for particular purposes.</p>
 </dd>
@@ -1149,7 +1149,7 @@ Status
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP24]</dt>
+<dt class="hdlist1">[SDP-SP21]</dt>
 <dd>
 <p>SPs requiring the display of identifiers to users, the identification of other users via searching, selection, etc., and similar use cases SHOULD rely on additional suitable SAML Attributes such as (<a href="#X500SAMLattr">[X500SAMLattr]</a>):</p>
 <div class="ulist">
@@ -1180,7 +1180,7 @@ Status
 <h4 id="_attribute_value_constraints">4.1.4. Attribute Value Constraints</h4>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP25]</dt>
+<dt class="hdlist1">[SDP-SP22]</dt>
 <dd>
 <p>When consuming SAML Attributes with standardized definitions in external specifications, SPs MUST NOT impose constraints beyond the definitions of those attributes.</p>
 </dd>
@@ -1211,7 +1211,7 @@ Status
 <h5 id="_support_for_multiple_idps">Support for Multiple IdPs</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP29]</dt>
+<dt class="hdlist1">[SDP-SP23]</dt>
 <dd>
 <p>SPs MUST allow for the possibility that any given request requiring authentication may be potentially satisfied by more than one IdP. That is, any scenario in which a piece of content, policy, configuration, or decision on the part of an application is bound to an IdP MUST be constructed in a fashion such that more than one IdP may be so bound.</p>
 </dd>
@@ -1225,11 +1225,11 @@ Status
 <h5 id="_deep_linking">Deep Linking</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP26]</dt>
+<dt class="hdlist1">[SDP-SP24]</dt>
 <dd>
 <p>Applications SHOULD, and collaborative applications MUST, support deep linking. Deep linking implies maintaining support for such links across the boundary of a Web Browser SSO profile interaction involving any IdP necessary to complete the login process. That is, it SHOULD be possible to request a resource and (authorization permitting) have it supplied as the result of a successful Web Browser SSO profile exchange.</p>
 </dd>
-<dt class="hdlist1">[SDP-SP27]</dt>
+<dt class="hdlist1">[SDP-SP25]</dt>
 <dd>
 <p>It is RECOMMENDED that SPs support the preservation of POST bodies across a successful SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.</p>
 </dd>
@@ -1249,7 +1249,7 @@ Status
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP28]</dt>
+<dt class="hdlist1">[SDP-SP26]</dt>
 <dd>
 <p>SPs SHOULD consider support for the Identity Provider Discovery Service Protocol and Profile defined in <a href="#IdPDisco">[IdPDisco]</a> as it provides a general, composable building block. SPs MAY support other mechanisms and caching solutions (e.g., cookies) as desired, to reduce the frequency of discovery.</p>
 </dd>
@@ -1262,7 +1262,7 @@ Status
 <h3 id="_single_logout">4.2. Single Logout</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP30]</dt>
+<dt class="hdlist1">[SDP-SP27]</dt>
 <dd>
 <p>SPs MAY support the Single Logout Profile <a href="#SAML2Prof">[SAML2Prof]</a>, as updated by the Approved Errata <a href="#SAML2Err">[SAML2Err]</a>. The following requirements apply in the case of such support.</p>
 </dd>
@@ -1274,15 +1274,15 @@ Status
 <h5 id="_binding_3">Binding</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP31]</dt>
+<dt class="hdlist1">[SDP-SP28]</dt>
 <dd>
 <p>The HTTP-Redirect binding <a href="#SAML2Bind">[SAML2Bind]</a> MUST be used for the transmission of <code>&lt;samlp:LogoutRequest&gt;</code> messages.</p>
 </dd>
-<dt class="hdlist1">[SDP-SP32]</dt>
+<dt class="hdlist1">[SDP-SP29]</dt>
 <dd>
 <p>SPs MUST support the HTTP-Redirect <a href="#SAML2Bind">[SAML2Bind]</a> binding for the receipt of <code>&lt;samlp:LogoutRequest&gt;</code> messages, in the event that inbound <code>&lt;samlp:LogoutRequest&gt;</code> messages are supported.</p>
 </dd>
-<dt class="hdlist1">[SDP-SP33]</dt>
+<dt class="hdlist1">[SDP-SP30]</dt>
 <dd>
 <p>Requests MUST NOT be issued inside an HTML frame or via any mechanism that would require the use of third-party cookies by the IdP to establish or recover a session with the User Agent. This will typically imply that requests must involve a full-frame redirect, in order that the top level window origin be associated with the IdP.</p>
 </dd>
@@ -1296,15 +1296,15 @@ Status
 <h5 id="_request_content_2">Request Content</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP34]</dt>
+<dt class="hdlist1">[SDP-SP31]</dt>
 <dd>
 <p>Requests MUST be signed.</p>
 </dd>
-<dt class="hdlist1">[SDP-SP35]</dt>
+<dt class="hdlist1">[SDP-SP32]</dt>
 <dd>
 <p>The <code>&lt;saml:NameID&gt;</code> element included in <code>&lt;samlp:LogoutRequest&gt;</code> messages MUST exactly match the corresponding element received from the IdP, including its element content and all XML attributes included therein.</p>
 </dd>
-<dt class="hdlist1">[SDP-SP36]</dt>
+<dt class="hdlist1">[SDP-SP33]</dt>
 <dd>
 <p>The <code>&lt;saml:NameID&gt;</code> element in <code>&lt;samlp:LogoutRequest&gt;</code> messages MUST NOT be encrypted.</p>
 </dd>
@@ -1321,11 +1321,11 @@ Status
 <h5 id="_binding_4">Binding</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP37]</dt>
+<dt class="hdlist1">[SDP-SP34]</dt>
 <dd>
 <p>The HTTP-Redirect binding <a href="#SAML2Bind">[SAML2Bind]</a> MUST be used for the transmission of <code>&lt;samlp:LogoutResponse&gt;</code> messages.</p>
 </dd>
-<dt class="hdlist1">[SDP-SP38]</dt>
+<dt class="hdlist1">[SDP-SP35]</dt>
 <dd>
 <p>SPs MUST support the HTTP-Redirect <a href="#SAML2Bind">[SAML2Bind]</a> binding for the receipt of <code>&lt;samlp:LogoutResponse&gt;</code> messages, in the event that they do not include the <code>&lt;aslo:Asynchronous&gt;</code> extension <a href="#SAML2ASLO">[SAML2ASLO]</a> in all of their requests.</p>
 </dd>
@@ -1336,7 +1336,7 @@ Status
 <h5 id="_response_content">Response Content</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP39]</dt>
+<dt class="hdlist1">[SDP-SP36]</dt>
 <dd>
 <p>Responses MUST be signed.</p>
 </dd>
@@ -1348,7 +1348,7 @@ Status
 <h4 id="_behavioral_requirements">4.2.3. Behavioral Requirements</h4>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP40]</dt>
+<dt class="hdlist1">[SDP-SP37]</dt>
 <dd>
 <p>SPs MUST terminate a subject&#8217;s local session before issuing a <code>&lt;samlp:LogoutRequest&gt;</code> message to the IdP.</p>
 </dd>
@@ -1359,7 +1359,7 @@ Status
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP41]</dt>
+<dt class="hdlist1">[SDP-SP38]</dt>
 <dd>
 <p>SPs MUST NOT issue a <code>&lt;samlp:LogoutRequest&gt;</code> message as the result of an idle activity timeout.</p>
 </dd>
@@ -1373,7 +1373,7 @@ Status
 <h4 id="_logout_and_virtual_hosting">4.2.4. Logout and Virtual Hosting</h4>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP42]</dt>
+<dt class="hdlist1">[SDP-SP39]</dt>
 <dd>
 <p>An SP that maintains distinct sessions across multiple virtual hosts SHOULD identify itself by means of a distinct entityID (with associated metadata) for each virtual host.</p>
 </dd>
@@ -1393,11 +1393,11 @@ Status
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP43]</dt>
+<dt class="hdlist1">[SDP-SP40]</dt>
 <dd>
 <p>SP deployments MUST support multiple signing certificates in IdP metadata and MUST support validation of XML signatures using a key from any of them.</p>
 </dd>
-<dt class="hdlist1">[SDP-SP44]</dt>
+<dt class="hdlist1">[SDP-SP41]</dt>
 <dd>
 <p>SP deployments MUST be able to support multiple decryption keys and MUST be able to decrypt <code>&lt;saml:EncryptedAssertion&gt;</code> elements encrypted with any configured key.</p>
 </dd>
@@ -1408,7 +1408,7 @@ Status
 <h4 id="_metadata_content">4.3.2. Metadata Content</h4>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP45]</dt>
+<dt class="hdlist1">[SDP-SP42]</dt>
 <dd>
 <p>By virtue of this profile&#8217;s requirements, an SP&#8217;s metadata MUST contain:</p>
 <div class="ulist">
@@ -1556,11 +1556,11 @@ Status
 <dd>
 <p>Successful responses MUST be directly signed using a <code>&lt;ds:Signature&gt;</code> element within the <code>&lt;samlp:Response&gt;</code> element.  Error responses MAY be signed.</p>
 </dd>
-<dt class="hdlist1">[SDP-IDP11]</dt>
+<dt class="hdlist1">[SDP-IDP10]</dt>
 <dd>
 <p>Successful responses MUST contain one and only one SAML assertion, and the assertion MUST contain exactly one <code>&lt;saml:AuthnStatement&gt;</code> element and MAY contain zero or one <code>&lt;saml:AttributeStatement&gt;</code> elements. The assertion within the response MAY be directly signed.</p>
 </dd>
-<dt class="hdlist1">[SDP-IDP12]</dt>
+<dt class="hdlist1">[SDP-IDP11]</dt>
 <dd>
 <p>In the event the HTTP-POST binding <a href="#SAML2Bind">[SAML2Bind]</a> is used, assertions MUST be encrypted and transmitted via a <code>&lt;saml:EncryptedAssertion&gt;</code> element. Information intended for the consumption of the SP MUST NOT be further encrypted via <code>&lt;saml:EncryptedID&gt;</code> or <code>&lt;saml:EncryptedAttribute&gt;</code> constructs.</p>
 </dd>
@@ -1572,11 +1572,11 @@ Status
 <h4 id="_subject_identifiers_2">5.1.3. Subject Identifiers</h4>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP13]</dt>
+<dt class="hdlist1">[SDP-IDP12]</dt>
 <dd>
 <p>Assertions MUST contain a <code>&lt;saml:NameID&gt;</code> element with the <code>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</code> Format, as defined in <a href="#SAML2Core">[SAML2Core]</a>, for the purposes of logout.</p>
 </dd>
-<dt class="hdlist1">[SDP-IDP14]</dt>
+<dt class="hdlist1">[SDP-IDP13]</dt>
 <dd>
 <p>IdPs MUST support one or both of the SAML Attributes defined by <a href="#SAML2SubjId">[SAML2SubjId]</a> for non-transient identification of subjects. Support for both is RECOMMENDED.</p>
 </dd>
@@ -1586,15 +1586,15 @@ Status
 <h5 id="_subject_identifier_requirements_signaling_2">Subject Identifier Requirements Signaling</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP15]</dt>
+<dt class="hdlist1">[SDP-IDP14]</dt>
 <dd>
 <p>IdPs MUST support the metadata-based identifier requirement signaling mechanism defined in <a href="#SAML2SubjId">[SAML2SubjId]</a>.</p>
 </dd>
-<dt class="hdlist1">[SDP-IDP16]</dt>
+<dt class="hdlist1">[SDP-IDP15]</dt>
 <dd>
 <p>If an IdP cannot or will not satisfy the requirements of an SP in this respect, then it MUST fail the authentication request and SHOULD respond to the SP with a SAML error status.</p>
 </dd>
-<dt class="hdlist1">[SDP-IDP17]</dt>
+<dt class="hdlist1">[SDP-IDP16]</dt>
 <dd>
 <p>In the absence of any signaling by an SP, an IdP MAY supply either, both, or neither SAML Attribute, or return an error as it sees fit.</p>
 </dd>
@@ -1606,7 +1606,7 @@ Status
 <h4 id="_attributes">5.1.4. Attributes</h4>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP18]</dt>
+<dt class="hdlist1">[SDP-IDP17]</dt>
 <dd>
 <p><code>&lt;saml:Attribute&gt;</code> elements MUST contain a NameFormat of <code>urn:oasis:names:tc:SAML:2.0:attrname-format:uri</code>.</p>
 </dd>
@@ -1617,7 +1617,7 @@ Status
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP19]</dt>
+<dt class="hdlist1">[SDP-IDP18]</dt>
 <dd>
 <p>It is RECOMMENDED that the content of <code>&lt;saml:AttributeValue&gt;</code> elements be limited to a single child text node (i.e., a simple string value).</p>
 </dd>
@@ -1629,7 +1629,7 @@ Status
 <h3 id="_single_logout_2">5.2. Single Logout</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP20]</dt>
+<dt class="hdlist1">[SDP-IDP19]</dt>
 <dd>
 <p>IdPs MUST support the Single Logout Profile <a href="#SAML2Prof">[SAML2Prof]</a>, as updated by the Approved Errata <a href="#SAML2Err">[SAML2Err]</a>, with behavior, capabilities, and options consistent with the additional constraints specified in this section.</p>
 </dd>
@@ -1640,11 +1640,11 @@ Status
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP21]</dt>
+<dt class="hdlist1">[SDP-IDP20]</dt>
 <dd>
 <p>IdPs MAY allow a subject the option to maintain their IdP session rather than unilaterally terminating it.</p>
 </dd>
-<dt class="hdlist1">[SDP-IDP22]</dt>
+<dt class="hdlist1">[SDP-IDP21]</dt>
 <dd>
 <p>IdPs MAY support the propagation of logout signaling to SPs.</p>
 </dd>
@@ -1656,11 +1656,11 @@ Status
 <h5 id="_binding_7">Binding</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP23]</dt>
+<dt class="hdlist1">[SDP-IDP22]</dt>
 <dd>
 <p>The HTTP-Redirect binding [SAML2Bind] MUST be used for the transmission of <code>&lt;samlp:LogoutRequest&gt;</code> messages, in the event that propagation is supported.</p>
 </dd>
-<dt class="hdlist1">[SDP-IDP24]</dt>
+<dt class="hdlist1">[SDP-IDP23]</dt>
 <dd>
 <p>IdPs MUST support the HTTP-Redirect [SAML2Bind] binding for the receipt of <code>&lt;samlp:LogoutRequest&gt;</code> messages.</p>
 </dd>
@@ -1672,11 +1672,11 @@ Status
 <h4 id="_request_content_3">5.2.2. Request Content</h4>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP25]</dt>
+<dt class="hdlist1">[SDP-IDP24]</dt>
 <dd>
 <p>Requests MUST be signed.</p>
 </dd>
-<dt class="hdlist1">[SDP-IDP26]</dt>
+<dt class="hdlist1">[SDP-IDP25]</dt>
 <dd>
 <p>The <code>&lt;saml:NameID&gt;</code> element in <code>&lt;samlp:LogoutRequest&gt;</code> messages MUST NOT be encrypted.</p>
 </dd>
@@ -1692,11 +1692,11 @@ Status
 <h5 id="_binding_8">Binding</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP27]</dt>
+<dt class="hdlist1">[SDP-IDP26]</dt>
 <dd>
 <p>The HTTP-Redirect binding [SAML2Bind] MUST be used for the transmission of <code>&lt;samlp:LogoutResponse&gt;</code> messages.</p>
 </dd>
-<dt class="hdlist1">[SDP-IDP28]</dt>
+<dt class="hdlist1">[SDP-IDP27]</dt>
 <dd>
 <p>IdPs MUST support the HTTP-Redirect [SAML2Bind] binding for the receipt of <code>&lt;samlp:LogoutResponse&gt;</code> messages, in the event that <code>&lt;samlp:LogoutRequest&gt;</code> propagation is supported.</p>
 </dd>
@@ -1707,11 +1707,11 @@ Status
 <h5 id="_response_content_3">Response Content</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP29]</dt>
+<dt class="hdlist1">[SDP-IDP28]</dt>
 <dd>
 <p>Responses MUST be signed.</p>
 </dd>
-<dt class="hdlist1">[SDP-IDP30]</dt>
+<dt class="hdlist1">[SDP-IDP29]</dt>
 <dd>
 <p>The <code>&lt;samlp:StatusCode&gt;</code> in the response issued by the IdP MUST reflect whether the IdP session was successfully terminated.</p>
 </dd>
