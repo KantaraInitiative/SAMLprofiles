@@ -52,5 +52,3 @@ include::sp.adoc[]
 include::idp.adoc[]
 
 include::references.adoc[]
-
-(updated)
