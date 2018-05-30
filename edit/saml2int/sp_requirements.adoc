@@ -70,7 +70,9 @@ _This is necessary because clients can freely generate requests that do not spec
 
 _If an SP requires coordination and/or correlation of user activity between itself and other SPs, then the SAML Attribute named `urn:oasis:names:tc:SAML:attribute:subject-id` is appropriate. Otherwise the SAML Attribute named `urn:oasis:names:tc:SAML:attribute:pairwise-id` can be used._
 
-[SDP-SP17]:: SPs MAY support legacy or historical `<saml:NameID>` and `<saml:Attribute>` content for compatibility reasons but MUST NOT require their use.
+_SPs MAY support legacy or historical `<saml:NameID>` and `<saml:Attribute>` identifier content for compatibility reasons but MUST NOT require their use._
+
+[SDP-SP17]:: _(REMOVED)_
 
 ===== Subject Identifier Requirements Signaling
 
