@@ -155,7 +155,7 @@ _The full-frame requirement is also necessary to ensure that full control of the
 
 ===== Request Content
 
-[SDP-SP31]:: Requests MUST be signed.
+[SDP-SP31]:: Requests MUST be signed (via a signature created in accordance with the HTTP=Redirect binding [SAML2Bind]).
 
 [SDP-SP32]:: The `<saml:NameID>` element included in `<samlp:LogoutRequest>` messages MUST exactly match the corresponding element received from the IdP, including its element content and all XML attributes included therein.
 
@@ -173,7 +173,7 @@ _The normative requirement for the use of transient identifiers is intended to o
 
 ===== Response Content
 
-[SDP-SP36]:: Responses MUST be signed.
+[SDP-SP36]:: Responses MUST be signed (via a signature created in accordance with the HTTP=Redirect binding [SAML2Bind]).
 
 ==== Behavioral Requirements
 
