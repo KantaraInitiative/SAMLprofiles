@@ -64,12 +64,12 @@ _As an example, deployments that lack support for, or have not tested and integr
 
 [SDP-MD06]:: Public keys used for signing, encryption, and TLS client and server authentication MUST be expressed via X.509 certificates included in metadata via `<md:KeyDescriptor>` elements.
 
-_By virtue of <<SAML2MDIOP>>, this profile (and SAML in general) does not place requierments on the non-key material contained in X.509 certificates in metadata. However, to minimize commmonplace issues with non-conforming SAML implementations, certificates:_
+_By virtue of <<SAML2MDIOP>>, this profile (and SAML in general) does not place requierments on the non-key material contained in X.509 certificates in metadata. However, the following are suggested practices to avoid interoperability issues with deployments outside the scope of this profile:_
 
-* _SHOULD be long-lived_
-* _SHOULD be self-signed_
-* _SHOULD NOT be expired_
-* _SHOULD NOT be signed with MD5- or SHA1-based signature algorithms._
+* _use long-lived certificates_
+* _use self-signed certificates_
+* _do not use expired certificates_
+* _do not sign certificates with MD5- or SHA1-based signature algorithms._
 
 [SDP-MD07]:: RSA public keys MUST be at least 2048 bits in length. At least 3072 bits is RECOMMENDED for new deployments.
 
