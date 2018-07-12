@@ -206,7 +206,7 @@ The ability to perform seamless key migration depends upon proper support for co
 ** at least one `<md:KeyDescriptor>` element whose `use` attribute is omitted or set to `signing`
 ** at least one `<md:KeyDescriptor>` element whose `use` attribute is omitted or set to `encryption`
 * an `<md:Extensions>` element
-** an `<mdui:UIInfo>` extension element with previously prescribed content
+** an `<mdui:UIInfo>` extension element with previously prescribed content and `<mdui:PrivacyStatementURL>`
 ** an `<mdattr:EntityAttributes>` extension element for signaling Subject Identifier requirements with previously prescribed content
 
 In addition, an SP's metadata MUST contain:
