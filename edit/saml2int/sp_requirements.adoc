@@ -16,10 +16,6 @@
 
 [SDP-SP04]:: The `<samlp:AuthnRequest>` message MUST either omit the `<samlp:NameIDPolicy>` element (RECOMMENDED), or the element MUST contain an `AllowCreate` attribute of "true" and MUST NOT contain a `Format` attribute.
 
-[SDP-SP05]:: The `<samlp:AuthnRequest>` message MUST NOT contain a `<saml:Subject>` element.
-
-_This is a relatively unused feature that is supported by few IdPs._ 
-
 [SDP-SP06]:: The message SHOULD contain an `AssertionConsumerServiceURL` attribute and MUST NOT contain an 'AssertionConsumerServiceIndex' attribute (i.e., the desired endpoint MUST be the default, or identified via the `AssertionConsumerServiceURL` attribute).
 
 [SDP-SP07]:: The `AssertionConsumerServiceURL` value, if present, MUST match an endpoint location expressed in the SP's metadata exactly, without requiring URL canonicalization/normalization. 
