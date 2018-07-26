@@ -535,9 +535,6 @@ Status
 <li><a href="#_metadata_and_trust_management_3">5.3. Metadata and Trust Management</a></li>
 </ul>
 </li>
-<li><a href="#_normative_references">6. Normative References</a></li>
-<li><a href="#_non_normative_references">7. Non-Normative References</a></li>
-<li><a href="#_authors_addresses">8. Authors' addresses</a></li>
 </ul>
 </div>
 </div>
@@ -855,7 +852,7 @@ Status
 <dl>
 <dt class="hdlist1">[SDP-MD11]</dt>
 <dd>
-<p>Metadata MUST include an <code>&lt;mdui:UIInfo&gt;</code> element as defined in <a href="#MetaUI">[MetaUI]</a> containing at least the child elements <code>&lt;mdui:DisplayName&gt;</code>, <code>&lt;mdui:Logo&gt;</code>, <code>&lt;mdui:InformationURL&gt;</code>, and <code>&lt;mdui:PrivacyStatementURL&gt;</code>.</p>
+<p>Metadata MUST include an <code>&lt;mdui:UIInfo&gt;</code> element as defined in <a href="#MetaUI">[MetaUI]</a> containing at least the child elements <code>&lt;mdui:DisplayName&gt;</code>, <code>&lt;mdui:Logo&gt;</code>, and <code>&lt;mdui:InformationURL&gt;</code>.</p>
 </dd>
 <dt class="hdlist1">[SDP-MD12]</dt>
 <dd>
@@ -996,17 +993,6 @@ Status
 <dd>
 <p>The <code>&lt;samlp:AuthnRequest&gt;</code> message MUST either omit the <code>&lt;samlp:NameIDPolicy&gt;</code> element (RECOMMENDED), or the element MUST contain an <code>AllowCreate</code> attribute of "true" and MUST NOT contain a <code>Format</code> attribute.</p>
 </dd>
-<dt class="hdlist1">[SDP-SP05]</dt>
-<dd>
-<p>The <code>&lt;samlp:AuthnRequest&gt;</code> message MUST NOT contain a <code>&lt;saml:Subject&gt;</code> element.</p>
-</dd>
-</dl>
-</div>
-<div class="paragraph">
-<p><em>This is a relatively unused feature that is supported by few IdPs.</em></p>
-</div>
-<div class="dlist">
-<dl>
 <dt class="hdlist1">[SDP-SP06]</dt>
 <dd>
 <p>The message SHOULD contain an <code>AssertionConsumerServiceURL</code> attribute and MUST NOT contain an 'AssertionConsumerServiceIndex' attribute (i.e., the desired endpoint MUST be the default, or identified via the <code>AssertionConsumerServiceURL</code> attribute).</p>
@@ -1457,7 +1443,7 @@ of sufficient or appropriate attributes about the user to operate successfully.<
 <div class="ulist">
 <ul>
 <li>
-<p>an <code>&lt;mdui:UIInfo&gt;</code> extension element with previously prescribed content</p>
+<p>an <code>&lt;mdui:UIInfo&gt;</code> extension element with previously prescribed content and <code>&lt;mdui:PrivacyStatementURL&gt;</code></p>
 </li>
 <li>
 <p>an <code>&lt;mdattr:EntityAttributes&gt;</code> extension element for signaling Subject Identifier requirements with previously prescribed content</p>
@@ -1774,15 +1760,17 @@ that it is no longer acceptable to view it as an optional part of front-channel 
 <dt class="hdlist1">[SDP-IDP31]</dt>
 <dd>
 <p>By virtue of this profile&#8217;s requirements, an IdP&#8217;s metadata MUST contain:</p>
+</dd>
+</dl>
+</div>
+<div class="exampleblock">
+<div class="content">
 <div class="ulist">
 <ul>
 <li>
 <p>an <code>&lt;md:IDPSSODescriptor&gt;</code> role element</p>
 <div class="ulist">
 <ul>
-<li>
-<p>an <code>errorURL</code> attribute and an appropriate URL value for a page providing appropriate remediation for an inability to provide Attributes to the SP necessary for its function</p>
-</li>
 <li>
 <p>at least one <code>&lt;md:SingleSignOnService&gt;</code> endpoint element</p>
 </li>
@@ -1807,9 +1795,6 @@ that it is no longer acceptable to view it as an optional part of front-channel 
 </li>
 </ul>
 </div>
-</dd>
-</dl>
-</div>
 <div class="paragraph">
 <p>In addition, an IdP&#8217;s metadata MUST contain:</p>
 </div>
@@ -1820,13 +1805,9 @@ that it is no longer acceptable to view it as an optional part of front-channel 
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>== Normative References</p>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_normative_references">6. Normative References</h2>
-<div class="sectionbody">
 <div class="ulist bibliography">
 <ul class="bibliography">
 <li>
@@ -1882,11 +1863,9 @@ that it is no longer acceptable to view it as an optional part of front-channel 
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>== Non-Normative References</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_non_normative_references">7. Non-Normative References</h2>
-<div class="sectionbody">
 <div class="ulist bibliography">
 <ul class="bibliography">
 <li>
@@ -1894,11 +1873,9 @@ that it is no longer acceptable to view it as an optional part of front-channel 
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>== Authors' addresses</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_authors_addresses">8. Authors' addresses</h2>
-<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
@@ -1956,6 +1933,10 @@ that it is no longer acceptable to view it as an optional part of front-channel 
 <p>Alan Buxey, <a href="mailto:alan.buxey@myunidays.com">alan.buxey@myunidays.com</a></p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
