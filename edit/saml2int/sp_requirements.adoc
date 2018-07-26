@@ -208,8 +208,8 @@ The ability to perform seamless key migration depends upon proper support for co
 
 * an `<md:SPSSODescriptor>` role element
 ** at least one `<md:AssertionConsumerService>` endpoint element
-** at least one `<md:KeyDescriptor>` element whose `use` attribute is omitted or set to `signing`
 ** at least one `<md:KeyDescriptor>` element whose `use` attribute is omitted or set to `encryption`
+** if the SP generates single logout requests: at least one `<md:KeyDescriptor>` element whose `use` attribute is omitted or set to `signing`
 * an `<md:Extensions>` element
 ** an `<mdui:UIInfo>` extension element with previously prescribed content
 ** an `<mdattr:EntityAttributes>` extension element for signaling Subject Identifier requirements with previously prescribed content
