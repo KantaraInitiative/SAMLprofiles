@@ -62,7 +62,9 @@ If an IdP cannot prove subject presence, then it MUST fail the request and SHOUL
 
 _This requirement ensures unique, non-conflicting naming of Attributes even in cases involving custom requirements for which no standard Attributes may exist._
 
-[SDP-IDP18]:: It is RECOMMENDED that the content of `<saml:AttributeValue>` elements be limited to a single child text node (i.e., a simple string value).
+[SDP-IDP18]:: It is RECOMMENDED that the content of each `<saml:AttributeValue>` element be limited to a single child text node (i.e., a simple string value) and that multiple values of a `<saml:Attribute>` be expressed as individual `<saml:AttributeValue>` elements rather than embedded in a delimited form within a single element.
+
+_Note that this refers to `<saml:AttributeValue>` elements, not `<saml:Attribute>` elements, and refers to the form of each individual value. It discourages the use of complex XML content models within the value of an Attribute._
 
 === Single Logout
 
