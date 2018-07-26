@@ -122,8 +122,8 @@ The ability to perform seamless key migration depends upon proper support for co
 
 [SDP-IDP31]:: By virtue of this profile's requirements, an IdP's metadata MUST contain:
 
+=======
 * an `<md:IDPSSODescriptor>` role element
-** an `errorURL` attribute and an appropriate URL value for a page providing appropriate remediation for an inability to provide Attributes to the SP necessary for its function
 ** at least one `<md:SingleSignOnService>` endpoint element
 ** at least one `<md:SingleLogoutService>` endpoint element
 ** at least one `<md:KeyDescriptor>` element whose `use` attribute is omitted or set to `signing`
