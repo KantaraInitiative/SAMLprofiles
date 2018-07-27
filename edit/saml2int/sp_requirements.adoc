@@ -46,7 +46,8 @@ _An SP SHOULD NOT request a `<saml:AuthnContextClassRef>` value in the absence o
 
 [SDP-SP12]:: SPs MUST gracefully handle error responses containing `<samlp:StatusCode>` other than `urn:oasis:names:tc:SAML:2.0:status:Success`.
 
-[SDP-SP13]:: The response to such errors MUST direct users to appropriate support resources offered by the SP or alternatively to the `errorURL` attribute in an IdP's metadata.
+[SDP-SP13]:: The response to such errors MUST direct users to appropriate support resources offered by the SP or, alternatively, to the `errorURL` attribute in an IdP's metadata if the cause of the error is inferred to be a lack
+of sufficient or appropriate attributes about the user to operate successfully.
 
 ===== Forced Re-Authentication
 
@@ -66,7 +67,9 @@ _This is necessary because clients can freely generate requests that do not spec
 
 _If an SP requires coordination and/or correlation of user activity between itself and other SPs, then the SAML Attribute named `urn:oasis:names:tc:SAML:attribute:subject-id` is appropriate. Otherwise the SAML Attribute named `urn:oasis:names:tc:SAML:attribute:pairwise-id` can be used._
 
-[SDP-SP17]:: SPs MAY support legacy or historical `<saml:NameID>` and `<saml:Attribute>` content for compatibility reasons but MUST NOT require their use.
+_SPs MAY support legacy or historical `<saml:NameID>` and `<saml:Attribute>` identifier content for compatibility reasons but MUST NOT require their use._
+
+[SDP-SP17]:: _(REMOVED)_
 
 ===== Subject Identifier Requirements Signaling
 
@@ -151,7 +154,7 @@ _The full-frame requirement is also necessary to ensure that full control of the
 
 ===== Request Content
 
-[SDP-SP31]:: Requests MUST be signed.
+[SDP-SP31]:: Requests MUST be signed (via a signature created in accordance with the HTTP=Redirect binding [SAML2Bind]).
 
 [SDP-SP32]:: The `<saml:NameID>` element included in `<samlp:LogoutRequest>` messages MUST exactly match the corresponding element received from the IdP, including its element content and all XML attributes included therein.
 
@@ -169,7 +172,7 @@ _The normative requirement for the use of transient identifiers is intended to o
 
 ===== Response Content
 
-[SDP-SP36]:: Responses MUST be signed.
+[SDP-SP36]:: Responses MUST be signed (via a signature created in accordance with the HTTP=Redirect binding [SAML2Bind]).
 
 ==== Behavioral Requirements
 
@@ -203,8 +206,8 @@ The ability to perform seamless key migration depends upon proper support for co
 
 * an `<md:SPSSODescriptor>` role element
 ** at least one `<md:AssertionConsumerService>` endpoint element
-** at least one `<md:KeyDescriptor>` element whose `use` attribute is omitted or set to `signing`
 ** at least one `<md:KeyDescriptor>` element whose `use` attribute is omitted or set to `encryption`
+** if the SP generates single logout requests: at least one `<md:KeyDescriptor>` element whose `use` attribute is omitted or set to `signing`
 * an `<md:Extensions>` element
 ** an `<mdui:UIInfo>` extension element with previously prescribed content and `<mdui:PrivacyStatementURL>`
 ** an `<mdattr:EntityAttributes>` extension element for signaling Subject Identifier requirements with previously prescribed content

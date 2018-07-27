@@ -42,6 +42,10 @@ If an IdP cannot prove subject presence, then it MUST fail the request and SHOUL
 
 [SDP-IDP11]:: In the event the HTTP-POST binding <<SAML2Bind>> is used, assertions MUST be encrypted and transmitted via a `<saml:EncryptedAssertion>` element. Information intended for the consumption of the SP MUST NOT be further encrypted via `<saml:EncryptedID>` or `<saml:EncryptedAttribute>` constructs.
 
+_While encryption is viewed in some quarters as onerous or unnecessary, interopability is enhanced by uniformity. Moreover,
+a spate of recent vulnerabilities across the industry would have been almost entirely mitigated by its use, demonstrating
+that it is no longer acceptable to view it as an optional part of front-channel delivery of assertions, if it ever was._
+
 ==== Subject Identifiers
 
 [SDP-IDP12]:: Assertions MUST contain a `<saml:NameID>` element with the `urn:oasis:names:tc:SAML:2.0:nameid-format:transient` Format, as defined in <<SAML2Core>>, for the purposes of logout.
@@ -62,7 +66,9 @@ If an IdP cannot prove subject presence, then it MUST fail the request and SHOUL
 
 _This requirement ensures unique, non-conflicting naming of Attributes even in cases involving custom requirements for which no standard Attributes may exist._
 
-[SDP-IDP18]:: It is RECOMMENDED that the content of `<saml:AttributeValue>` elements be limited to a single child text node (i.e., a simple string value).
+[SDP-IDP18]:: It is RECOMMENDED that the content of each `<saml:AttributeValue>` element be limited to a single child text node (i.e., a simple string value) and that multiple values of a `<saml:Attribute>` be expressed as individual `<saml:AttributeValue>` elements rather than embedded in a delimited form within a single element.
+
+_Note that this refers to `<saml:AttributeValue>` elements, not `<saml:Attribute>` elements, and refers to the form of each individual value. It discourages the use of complex XML content models within the value of an Attribute._
 
 === Single Logout
 
@@ -84,7 +90,7 @@ _The term "IdP session" is used to refer to the ongoing state between the IdP an
 
 ==== Request Content
 
-[SDP-IDP24]:: Requests MUST be signed.
+[SDP-IDP24]:: Requests MUST be signed ((via a signature created in accordance with the HTTP=Redirect binding [SAML2Bind]).
 
 [SDP-IDP25]:: The `<saml:NameID>` element in `<samlp:LogoutRequest>` messages MUST NOT be encrypted.
 
@@ -100,7 +106,7 @@ _The normative requirement for the use of transient identifiers is intended to o
 
 ===== Response Content
 
-[SDP-IDP28]:: Responses MUST be signed.
+[SDP-IDP28]:: Responses MUST be signed (via a signature created in accordance with the HTTP=Redirect binding [SAML2Bind]).
 
 [SDP-IDP29]:: The `<samlp:StatusCode>` in the response issued by the IdP MUST reflect whether the IdP session was successfully terminated.
 
@@ -116,6 +122,7 @@ The ability to perform seamless key migration depends upon proper support for co
 
 [SDP-IDP31]:: By virtue of this profile's requirements, an IdP's metadata MUST contain:
 
+* an `<md:IDPSSODescriptor>` role element
 ** at least one `<md:SingleSignOnService>` endpoint element
 ** at least one `<md:SingleLogoutService>` endpoint element
 ** at least one `<md:KeyDescriptor>` element whose `use` attribute is omitted or set to `signing`
