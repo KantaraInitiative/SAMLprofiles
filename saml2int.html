@@ -593,7 +593,7 @@ Status
 </ul>
 </div>
 <div class="paragraph">
-<p>When referring to elements from the SAML 2.0 Metadata Extensions for Login and Discovery User Interface specification <a href="#MetaUi">[MetaUi]</a>, the following syntax is used:</p>
+<p>When referring to elements from the SAML 2.0 Metadata Extensions for Login and Discovery User Interface specification <a href="#MetaUI">[MetaUI]</a>, the following syntax is used:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -788,19 +788,11 @@ Status
 <div class="paragraph">
 <p><em>This profile does not mandate any specific automated support for the production of metadata by a deployment. In fact, automatic generation of metadata has a strong tendency to undermine the correct functioning of peer deployments in the face of key rollover or changes to endpoints or other software features because it tends to change too suddenly to accommodate a graceful transition between states.</em></p>
 </div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">[SDP-MD05]</dt>
-<dd>
-<p><em>(REMOVED)</em></p>
-</dd>
-</dl>
-</div>
 <div class="sect4">
 <h5 id="_keys_and_certificates">Keys and Certificates</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-MD06]</dt>
+<dt class="hdlist1">[SDP-MD05]</dt>
 <dd>
 <p>Public keys used for signing, encryption, and TLS client and server authentication MUST be expressed via X.509 certificates included in metadata via <code>&lt;md:KeyDescriptor&gt;</code> elements.</p>
 </dd>
@@ -824,19 +816,15 @@ Status
 <p><em>do not sign certificates with MD5- or SHA1-based signature algorithms.</em></p>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-MD07]</dt>
+<dt class="hdlist1">[SDP-MD06]</dt>
 <dd>
 <p>RSA public keys MUST be at least 2048 bits in length. At least 3072 bits is RECOMMENDED for new deployments.</p>
 </dd>
-<dt class="hdlist1">[SDP-MD08]</dt>
+<dt class="hdlist1">[SDP-MD07]</dt>
 <dd>
 <p>EC public keys MUST be at least 256 bits in length.</p>
 </dd>
-<dt class="hdlist1">[SDP-MD09]</dt>
-<dd>
-<p>(<em>REMOVED</em>)</p>
-</dd>
-<dt class="hdlist1">[SDP-MD10]</dt>
+<dt class="hdlist1">[SDP-MD08]</dt>
 <dd>
 <p>By virtue of the profile&#8217;s overall requirements, an IdP&#8217;s metadata MUST include at least one signing certificate (that is, an <code>&lt;md:KeyDescriptor&gt;</code> with no <code>use</code> attribute or one set to <code>signing</code>), and an SP&#8217;s metadata MUST include at least one encryption certificate (that is, an <code>&lt;md:KeyDescriptor&gt;</code> with no <code>use</code> attribute or one set to <code>encryption</code>).</p>
 </dd>
@@ -850,15 +838,15 @@ Status
 <h5 id="_discovery_and_user_interface_elements">Discovery and User Interface Elements</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-MD11]</dt>
+<dt class="hdlist1">[SDP-MD09]</dt>
 <dd>
 <p>Metadata MUST include an <code>&lt;mdui:UIInfo&gt;</code> element as defined in <a href="#MetaUI">[MetaUI]</a> containing at least the child elements <code>&lt;mdui:DisplayName&gt;</code>, <code>&lt;mdui:Logo&gt;</code>, and <code>&lt;mdui:InformationURL&gt;</code>.</p>
 </dd>
-<dt class="hdlist1">[SDP-MD12]</dt>
+<dt class="hdlist1">[SDP-MD10]</dt>
 <dd>
 <p>The content of the <code>&lt;mdui:Logo&gt;</code> element MUST be either an <code>https</code> URL or an in-line image embedded in a <code>data</code> URI element. The size of the <code>data</code> URI used in a <code>&lt;mdui:Logo&gt;</code> element is not limited to 256 characters.</p>
 </dd>
-<dt class="hdlist1">[SDP-MD13]</dt>
+<dt class="hdlist1">[SDP-MD11]</dt>
 <dd>
 <p>At least one <code>&lt;mdui:Logo&gt;</code> element MUST have a <code>height</code> attribute of <code>60</code> and a <code>width</code> attribute of <code>80</code>.</p>
 </dd>
@@ -993,11 +981,11 @@ Status
 <dd>
 <p>The <code>&lt;samlp:AuthnRequest&gt;</code> message MUST either omit the <code>&lt;samlp:NameIDPolicy&gt;</code> element (RECOMMENDED), or the element MUST contain an <code>AllowCreate</code> attribute of "true" and MUST NOT contain a <code>Format</code> attribute.</p>
 </dd>
-<dt class="hdlist1">[SDP-SP06]</dt>
+<dt class="hdlist1">[SDP-SP05]</dt>
 <dd>
 <p>The message SHOULD contain an <code>AssertionConsumerServiceURL</code> attribute and MUST NOT contain an 'AssertionConsumerServiceIndex' attribute (i.e., the desired endpoint MUST be the default, or identified via the <code>AssertionConsumerServiceURL</code> attribute).</p>
 </dd>
-<dt class="hdlist1">[SDP-SP07]</dt>
+<dt class="hdlist1">[SDP-SP06]</dt>
 <dd>
 <p>The <code>AssertionConsumerServiceURL</code> value, if present, MUST match an endpoint location expressed in the SP&#8217;s metadata exactly, without requiring URL canonicalization/normalization.</p>
 </dd>
@@ -1011,7 +999,7 @@ Status
 <h5 id="_authentication_contexts">Authentication Contexts</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP08]</dt>
+<dt class="hdlist1">[SDP-SP07]</dt>
 <dd>
 <p>An SP that does not require a specific <code>&lt;saml:AuthnContextClassRef&gt;</code> value MUST NOT include a <code>&lt;samlp:RequestedAuthnContext&gt;</code> element in its requests.</p>
 </dd>
@@ -1031,11 +1019,11 @@ Status
 <h5 id="_binding_2">Binding</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP09]</dt>
+<dt class="hdlist1">[SDP-SP08]</dt>
 <dd>
 <p>SPs MUST support the HTTP-POST binding for the receipt of <code>&lt;samlp:Response&gt;</code> messages. Support for other bindings is OPTIONAL.</p>
 </dd>
-<dt class="hdlist1">[SDP-SP10]</dt>
+<dt class="hdlist1">[SDP-SP09]</dt>
 <dd>
 <p>The endpoint(s) at which an SP supports receipt of <code>&lt;samlp:Response&gt;</code> messages MUST be protected by TLS/SSL.</p>
 </dd>
@@ -1046,7 +1034,7 @@ Status
 <h5 id="_xml_encryption">XML Encryption</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP11]</dt>
+<dt class="hdlist1">[SDP-SP10]</dt>
 <dd>
 <p>SPs MUST support decryption of <code>&lt;saml:EncryptedAssertion&gt;</code> elements. Support for other encrypted constructs is OPTIONAL.</p>
 </dd>
@@ -1057,11 +1045,11 @@ Status
 <h5 id="_error_handling">Error Handling</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP12]</dt>
+<dt class="hdlist1">[SDP-SP11]</dt>
 <dd>
 <p>SPs MUST gracefully handle error responses containing <code>&lt;samlp:StatusCode&gt;</code> other than <code>urn:oasis:names:tc:SAML:2.0:status:Success</code>.</p>
 </dd>
-<dt class="hdlist1">[SDP-SP13]</dt>
+<dt class="hdlist1">[SDP-SP12]</dt>
 <dd>
 <p>The response to such errors MUST direct users to appropriate support resources offered by the SP or, alternatively, to the <code>errorURL</code> attribute in an IdP&#8217;s metadata if the cause of the error is inferred to be a lack
 of sufficient or appropriate attributes about the user to operate successfully.</p>
@@ -1073,7 +1061,7 @@ of sufficient or appropriate attributes about the user to operate successfully.<
 <h5 id="_forced_re_authentication">Forced Re-Authentication</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP14]</dt>
+<dt class="hdlist1">[SDP-SP13]</dt>
 <dd>
 <p>SPs that include a <code>ForceAuthn</code> attribute of <code>true</code> in their requests SHOULD test the currency of the <code>AuthnInstant</code> element in the received assertions to verify the currency of the authentication event.</p>
 </dd>
@@ -1090,7 +1078,7 @@ of sufficient or appropriate attributes about the user to operate successfully.<
 <h5 id="_nameid_formats">NameID Formats</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP15]</dt>
+<dt class="hdlist1">[SDP-SP14]</dt>
 <dd>
 <p>SPs MUST NOT require the presence of a <code>&lt;saml:NameID&gt;</code> element and MUST NOT rely on the content of this element for long term identification of subjects;  <code>&lt;saml:Attribute&gt;</code> elements MUST be used for this purpose in the manner detailed below.</p>
 </dd>
@@ -1101,7 +1089,7 @@ of sufficient or appropriate attributes about the user to operate successfully.<
 <h5 id="_subject_identifiers">Subject Identifiers</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP16]</dt>
+<dt class="hdlist1">[SDP-SP15]</dt>
 <dd>
 <p>If an SP requires persistent tracking/identification of its users (as most do), then it MUST support one or both of the SAML Attributes defined by <a href="#SAML2SubjId">[SAML2SubjId]</a> for this purpose.</p>
 </dd>
@@ -1113,20 +1101,12 @@ of sufficient or appropriate attributes about the user to operate successfully.<
 <div class="paragraph">
 <p><em>SPs MAY support legacy or historical <code>&lt;saml:NameID&gt;</code> and <code>&lt;saml:Attribute&gt;</code> identifier content for compatibility reasons but MUST NOT require their use.</em></p>
 </div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">[SDP-SP17]</dt>
-<dd>
-<p><em>(REMOVED)</em></p>
-</dd>
-</dl>
-</div>
 </div>
 <div class="sect4">
 <h5 id="_subject_identifier_requirements_signaling">Subject Identifier Requirements Signaling</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP18]</dt>
+<dt class="hdlist1">[SDP-SP16]</dt>
 <dd>
 <p>An SP MUST represent its identifier requirements in its SAML metadata, consistent with the Requirements Signaling mechanism defined in <a href="#SAML2SubjId">[SAML2SubjId]</a>.</p>
 </dd>
@@ -1137,11 +1117,11 @@ of sufficient or appropriate attributes about the user to operate successfully.<
 <h5 id="_identifier_scoping">Identifier Scoping</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP19]</dt>
+<dt class="hdlist1">[SDP-SP17]</dt>
 <dd>
 <p>SPs MUST prevent unintended identifier collisions in the values asserted by different IdPs, and the required identifier types, per <a href="#SAML2SubjId">[SAML2SubjId]</a>, are "scoped" via a DNS-like syntax to help fulfill this requirement.</p>
 </dd>
-<dt class="hdlist1">[SDP-SP20]</dt>
+<dt class="hdlist1">[SDP-SP18]</dt>
 <dd>
 <p>SPs MUST associate identifier scopes with IdPs such that only authorized IdPs may assert identifiers with particular scopes for particular purposes.</p>
 </dd>
@@ -1158,7 +1138,7 @@ of sufficient or appropriate attributes about the user to operate successfully.<
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP21]</dt>
+<dt class="hdlist1">[SDP-SP19]</dt>
 <dd>
 <p>SPs requiring the display of identifiers to users, the identification of other users via searching, selection, etc., and similar use cases SHOULD rely on additional suitable SAML Attributes such as (<a href="#X500SAMLattr">[X500SAMLattr]</a>):</p>
 <div class="ulist">
@@ -1189,7 +1169,7 @@ of sufficient or appropriate attributes about the user to operate successfully.<
 <h4 id="_attribute_value_constraints">4.1.4. Attribute Value Constraints</h4>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP22]</dt>
+<dt class="hdlist1">[SDP-SP20]</dt>
 <dd>
 <p>When consuming SAML Attributes with standardized definitions in external specifications, SPs MUST NOT impose constraints beyond the definitions of those attributes.</p>
 </dd>
@@ -1220,7 +1200,7 @@ of sufficient or appropriate attributes about the user to operate successfully.<
 <h5 id="_support_for_multiple_idps">Support for Multiple IdPs</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP23]</dt>
+<dt class="hdlist1">[SDP-SP21]</dt>
 <dd>
 <p>SPs MUST allow for the possibility that any given request requiring authentication may be potentially satisfied by more than one IdP. That is, any scenario in which a piece of content, policy, configuration, or decision on the part of an application is bound to an IdP MUST be constructed in a fashion such that more than one IdP may be so bound.</p>
 </dd>
@@ -1234,11 +1214,11 @@ of sufficient or appropriate attributes about the user to operate successfully.<
 <h5 id="_deep_linking">Deep Linking</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP24]</dt>
+<dt class="hdlist1">[SDP-SP22]</dt>
 <dd>
 <p>Applications SHOULD, and collaborative applications MUST, support deep linking. Deep linking implies maintaining support for such links across the boundary of a Web Browser SSO profile interaction involving any IdP necessary to complete the login process. That is, it SHOULD be possible to request a resource and (authorization permitting) have it supplied as the result of a successful Web Browser SSO profile exchange.</p>
 </dd>
-<dt class="hdlist1">[SDP-SP25]</dt>
+<dt class="hdlist1">[SDP-SP23]</dt>
 <dd>
 <p>It is RECOMMENDED that SPs support the preservation of POST bodies across a successful SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.</p>
 </dd>
@@ -1258,7 +1238,7 @@ of sufficient or appropriate attributes about the user to operate successfully.<
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP26]</dt>
+<dt class="hdlist1">[SDP-SP24]</dt>
 <dd>
 <p>SPs SHOULD consider support for the Identity Provider Discovery Service Protocol and Profile defined in <a href="#IdPDisco">[IdPDisco]</a> as it provides a general, composable building block. SPs MAY support other mechanisms and caching solutions (e.g., cookies) as desired, to reduce the frequency of discovery.</p>
 </dd>
@@ -1271,7 +1251,7 @@ of sufficient or appropriate attributes about the user to operate successfully.<
 <h3 id="_single_logout">4.2. Single Logout</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP27]</dt>
+<dt class="hdlist1">[SDP-SP25]</dt>
 <dd>
 <p>SPs MAY support the Single Logout Profile <a href="#SAML2Prof">[SAML2Prof]</a>, as updated by the Approved Errata <a href="#SAML2Err">[SAML2Err]</a>. The following requirements apply in the case of such support.</p>
 </dd>
@@ -1283,15 +1263,15 @@ of sufficient or appropriate attributes about the user to operate successfully.<
 <h5 id="_binding_3">Binding</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP28]</dt>
+<dt class="hdlist1">[SDP-SP26]</dt>
 <dd>
 <p>The HTTP-Redirect binding <a href="#SAML2Bind">[SAML2Bind]</a> MUST be used for the transmission of <code>&lt;samlp:LogoutRequest&gt;</code> messages.</p>
 </dd>
-<dt class="hdlist1">[SDP-SP29]</dt>
+<dt class="hdlist1">[SDP-SP27]</dt>
 <dd>
 <p>SPs MUST support the HTTP-Redirect <a href="#SAML2Bind">[SAML2Bind]</a> binding for the receipt of <code>&lt;samlp:LogoutRequest&gt;</code> messages, in the event that inbound <code>&lt;samlp:LogoutRequest&gt;</code> messages are supported.</p>
 </dd>
-<dt class="hdlist1">[SDP-SP30]</dt>
+<dt class="hdlist1">[SDP-SP28]</dt>
 <dd>
 <p>Requests MUST NOT be issued inside an HTML frame or via any mechanism that would require the use of third-party cookies by the IdP to establish or recover a session with the User Agent. This will typically imply that requests must involve a full-frame redirect, in order that the top level window origin be associated with the IdP.</p>
 </dd>
@@ -1305,15 +1285,15 @@ of sufficient or appropriate attributes about the user to operate successfully.<
 <h5 id="_request_content_2">Request Content</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP31]</dt>
+<dt class="hdlist1">[SDP-SP29]</dt>
 <dd>
 <p>Requests MUST be signed (via a signature created in accordance with the HTTP=Redirect binding [SAML2Bind]).</p>
 </dd>
-<dt class="hdlist1">[SDP-SP32]</dt>
+<dt class="hdlist1">[SDP-SP30]</dt>
 <dd>
 <p>The <code>&lt;saml:NameID&gt;</code> element included in <code>&lt;samlp:LogoutRequest&gt;</code> messages MUST exactly match the corresponding element received from the IdP, including its element content and all XML attributes included therein.</p>
 </dd>
-<dt class="hdlist1">[SDP-SP33]</dt>
+<dt class="hdlist1">[SDP-SP31]</dt>
 <dd>
 <p>The <code>&lt;saml:NameID&gt;</code> element in <code>&lt;samlp:LogoutRequest&gt;</code> messages MUST NOT be encrypted.</p>
 </dd>
@@ -1330,11 +1310,11 @@ of sufficient or appropriate attributes about the user to operate successfully.<
 <h5 id="_binding_4">Binding</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP34]</dt>
+<dt class="hdlist1">[SDP-SP32]</dt>
 <dd>
 <p>The HTTP-Redirect binding <a href="#SAML2Bind">[SAML2Bind]</a> MUST be used for the transmission of <code>&lt;samlp:LogoutResponse&gt;</code> messages.</p>
 </dd>
-<dt class="hdlist1">[SDP-SP35]</dt>
+<dt class="hdlist1">[SDP-SP33]</dt>
 <dd>
 <p>SPs MUST support the HTTP-Redirect <a href="#SAML2Bind">[SAML2Bind]</a> binding for the receipt of <code>&lt;samlp:LogoutResponse&gt;</code> messages, in the event that they do not include the <code>&lt;aslo:Asynchronous&gt;</code> extension <a href="#SAML2ASLO">[SAML2ASLO]</a> in all of their requests.</p>
 </dd>
@@ -1345,7 +1325,7 @@ of sufficient or appropriate attributes about the user to operate successfully.<
 <h5 id="_response_content">Response Content</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP36]</dt>
+<dt class="hdlist1">[SDP-SP34]</dt>
 <dd>
 <p>Responses MUST be signed (via a signature created in accordance with the HTTP=Redirect binding [SAML2Bind]).</p>
 </dd>
@@ -1357,7 +1337,7 @@ of sufficient or appropriate attributes about the user to operate successfully.<
 <h4 id="_behavioral_requirements">4.2.3. Behavioral Requirements</h4>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP37]</dt>
+<dt class="hdlist1">[SDP-SP35]</dt>
 <dd>
 <p>SPs MUST terminate a subject&#8217;s local session before issuing a <code>&lt;samlp:LogoutRequest&gt;</code> message to the IdP.</p>
 </dd>
@@ -1368,7 +1348,7 @@ of sufficient or appropriate attributes about the user to operate successfully.<
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP38]</dt>
+<dt class="hdlist1">[SDP-SP36]</dt>
 <dd>
 <p>SPs MUST NOT issue a <code>&lt;samlp:LogoutRequest&gt;</code> message as the result of an idle activity timeout.</p>
 </dd>
@@ -1382,7 +1362,7 @@ of sufficient or appropriate attributes about the user to operate successfully.<
 <h4 id="_logout_and_virtual_hosting">4.2.4. Logout and Virtual Hosting</h4>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP39]</dt>
+<dt class="hdlist1">[SDP-SP37]</dt>
 <dd>
 <p>An SP that maintains distinct sessions across multiple virtual hosts SHOULD identify itself by means of a distinct entityID (with associated metadata) for each virtual host.</p>
 </dd>
@@ -1402,11 +1382,11 @@ of sufficient or appropriate attributes about the user to operate successfully.<
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP40]</dt>
+<dt class="hdlist1">[SDP-SP38]</dt>
 <dd>
 <p>SP deployments MUST support multiple signing certificates in IdP metadata and MUST support validation of XML signatures using a key from any of them.</p>
 </dd>
-<dt class="hdlist1">[SDP-SP41]</dt>
+<dt class="hdlist1">[SDP-SP39]</dt>
 <dd>
 <p>SP deployments MUST be able to support multiple decryption keys and MUST be able to decrypt <code>&lt;saml:EncryptedAssertion&gt;</code> elements encrypted with any configured key.</p>
 </dd>
@@ -1417,7 +1397,7 @@ of sufficient or appropriate attributes about the user to operate successfully.<
 <h4 id="_metadata_content">4.3.2. Metadata Content</h4>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP42]</dt>
+<dt class="hdlist1">[SDP-SP40]</dt>
 <dd>
 <p>By virtue of this profile&#8217;s requirements, an SP&#8217;s metadata MUST contain:</p>
 <div class="ulist">
@@ -1856,7 +1836,7 @@ that it is no longer acceptable to view it as an optional part of front-channel 
 <p><a id="SAML2ASLO"></a>[SAML2ASLO] OASIS Committee Specification, SAML V2.0 Asynchronous Single Logout Profile Extension Version 1.0, November 2012. <a href="http://docs.oasis-open.org/security/saml/Post2.0/saml-async-slo/v1.0/cs01/saml-async-slo-v1.0-cs01.pdf" class="bare">http://docs.oasis-open.org/security/saml/Post2.0/saml-async-slo/v1.0/cs01/saml-async-slo-v1.0-cs01.pdf</a></p>
 </li>
 <li>
-<p><a id="MetaUi"></a>[MetaUi] OASIS Committee Specification, SAML V2.0 Metadata Extensions for Login and Discovery User Interface Version 1.0, April 2012. <a href="http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-metadata-ui/v1.0/cs01/sstc-saml-metadata-ui-v1.0-cs01.pdf" class="bare">http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-metadata-ui/v1.0/cs01/sstc-saml-metadata-ui-v1.0-cs01.pdf</a></p>
+<p><a id="MetaUI"></a>[MetaUI] OASIS Committee Specification, SAML V2.0 Metadata Extensions for Login and Discovery User Interface Version 1.0, April 2012. <a href="http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-metadata-ui/v1.0/cs01/sstc-saml-metadata-ui-v1.0-cs01.pdf" class="bare">http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-metadata-ui/v1.0/cs01/sstc-saml-metadata-ui-v1.0-cs01.pdf</a></p>
 </li>
 <li>
 <p><a id="MetaAttr"></a>[MetaAttr] OASIS Committee Specification, SAML V2.0 Metadata Extension for Entity Attributes Version 1.0, August 2009. <a href="http://docs.oasis-open.org/security/saml/Post2.0/sstc-metadata-attr-cs-01.pdf" class="bare">http://docs.oasis-open.org/security/saml/Post2.0/sstc-metadata-attr-cs-01.pdf</a></p>
