@@ -46,8 +46,9 @@ _An SP SHOULD NOT request a `<saml:AuthnContextClassRef>` value in the absence o
 
 [SDP-SP11]:: SPs MUST gracefully handle error responses containing `<samlp:StatusCode>` other than `urn:oasis:names:tc:SAML:2.0:status:Success`.
 
-[SDP-SP12]:: The response to such errors MUST direct users to appropriate support resources offered by the SP or, alternatively, to the `errorURL` attribute in an IdP's metadata if the cause of the error is inferred to be a lack
-of sufficient or appropriate attributes about the user to operate successfully.
+[SDP-SP12]:: SPs MUST gracefully handle assertions from IdPs that do not include sufficient or appropriate attributes required to successfully provide services by displaying a meaningful status message to the user. This message SHOULD direct the user to appropriate support resources offered by the SP or, alternatively, to the `errorURL` attribute in an IdP's metadata.
+
+_There are many reasons an SP may be unable or choose not to provide service to a user based on an given authentication response. This particular use case is singled out because it is the most prevalent interoperability issue encountered in larger, general purpose federations._ 
 
 ===== Forced Re-Authentication
 
