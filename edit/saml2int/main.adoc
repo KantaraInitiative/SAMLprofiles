@@ -13,9 +13,9 @@ SAML V2.0 Interoperability Deployment Profile V1.0 (Draft)
 ++++
 
 [horizontal]
-Version:: 0.01
+Version:: 0.04
 Date:: {docdate}
-Status:: In Progress
+Status:: Community Draft
 
 .Required Information
 Document identifier: TBD
