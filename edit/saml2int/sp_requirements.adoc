@@ -10,7 +10,7 @@
 
 [SDP-SP02]:: The HTTP-Redirect binding <<SAML2Bind>> MUST be used for the transmission of `<samlp:AuthnRequest>` messages.
 
-[SDP-SP03]:: Requests MUST NOT be issued inside an HTML frame or via any mechanism that would require the use of third-party cookies by the IdP to establish or recover a session with the User Agent. This will typically imply that requests must involve a full-frame redirect, in order that the top level window origin be associated with the IdP.
+[SDP-SP03]:: Requests MUST NOT be issued inside an HTML frame or via any mechanism that would require the use of third-party cookies by the IdP to establish or recover a session with the User Agent. This will typically imply that requests do not involve a full-frame redirect, in order that the top level window origin be associated with the IdP.
 
 ===== Request Content
 
@@ -98,7 +98,7 @@ _Note that most standardized Attributes of this sort tend to be defined as multi
 
 [SDP-SP20]:: When consuming SAML Attributes with standardized definitions in external specifications, SPs MUST NOT impose constraints beyond the definitions of those attributes.
 
-_For example, the definition of the `mail` attribute (in SAML, `urn:oid:0.9.2342.19200300.100.1.3`) explicitly allows for multiple values, so an SP that consumes it for some purpose must necessarily allow for that possibility._
+_For example, the definition of the `mail` attribute (in SAML, `urn:oid:0.9.2342.19200300.100.1.3`) explicitly allows for multiple values, so an SP that consumes it for some purpose MUST necessarily allow for that possibility._
 
 ==== Usability
 
@@ -116,7 +116,7 @@ For the purposes of the following requirements, we will refer to applications th
 
 [SDP-SP21]:: SPs MUST allow for the possibility that any given request requiring authentication may be potentially satisfied by more than one IdP. That is, any scenario in which a piece of content, policy, configuration, or decision on the part of an application is bound to an IdP MUST be constructed in a fashion such that more than one IdP may be so bound.
 
-_This requirement flows from both the inherent requirements of collaborative applications described above, and from the simple reality that enterprises vary in their structure. Some organizations rely on more than one IdP due to administrative boundaries, but frequently contract for or access services as a single body. Thus, any presumed mapping between a contract or set of access policies and a single SAML IdP is too constraining. This constraint imposes a need for complex proxying of SSO by many organizations and must be avoided._
+_This requirement flows from both the inherent requirements of collaborative applications described above, and from the simple reality that enterprises vary in their structure. Some organizations rely on more than one IdP due to administrative boundaries, but frequently contract for or access services as a single body. Thus, any presumed mapping between a contract or set of access policies and a single SAML IdP is too constraining. This constraint imposes a need for complex proxying of SSO by many organizations and SPs are cautioned to avoid it._
 
 ===== Deep Linking
 
@@ -180,7 +180,7 @@ _This ensures the safest possible result for subjects in the event that logout f
 
 [SDP-SP36]:: SPs MUST NOT issue a `<samlp:LogoutRequest>` message as the result of an idle activity timeout.
 
-_Timeout of a single application/service must not trigger logout of an SSO session because this imposes a single service's requirements on an entire IdP deployment. Applications with sensitive requirements should consider other mechanisms, such as the `ForceAuthn` attribute, to achieve their goals._
+_Timeout of a single application/service MUST NOT trigger logout of an SSO session because this imposes a single service's requirements on an entire IdP deployment. Applications with sensitive requirements should consider other mechanisms, such as the `ForceAuthn` attribute, to achieve their goals._
 
 ==== Logout and Virtual Hosting
 
