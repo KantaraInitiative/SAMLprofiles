@@ -90,7 +90,7 @@ _The term "IdP session" is used to refer to the ongoing state between the IdP an
 
 ==== Request Content
 
-[SDP-IDP24]:: Requests MUST be signed ((via a signature created in accordance with the HTTP=Redirect binding [SAML2Bind]).
+[SDP-IDP24]:: Requests MUST be signed ((via a signature created in accordance with the HTTP-Redirect binding [SAML2Bind]).
 
 [SDP-IDP25]:: The `<saml:NameID>` element in `<samlp:LogoutRequest>` messages MUST NOT be encrypted.
 
