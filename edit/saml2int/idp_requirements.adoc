@@ -56,7 +56,7 @@ that it is no longer acceptable to view it as an optional part of front-channel 
 
 [SDP-IDP14]:: IdPs MUST support the metadata-based identifier requirement signaling mechanism defined in <<SAML2SubjId>>.
 
-[SDP-IDP15]:: If an IdP cannot or will not satisfy the requirements of an SP in this respect, then it MUST fail the authentication request and SHOULD respond to the SP with a SAML error status.
+[SDP-IDP15]:: If an IdP cannot or will not satisfy the requirements of an SP in this respect, then it MUST fail the authentication request and SHOULD respond to the SP with a SAML error status and a second-level `<samlp:StatusCode>` of `urn:oasis:names:tc:SAML:profiles:subject-id:req`.
 
 [SDP-IDP16]:: In the absence of any signaling by an SP, an IdP MAY supply either, both, or neither SAML Attribute, or return an error as it sees fit.
 
