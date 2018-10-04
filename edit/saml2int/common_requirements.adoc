@@ -102,7 +102,6 @@ Any logo referenced by an `<mdui:Logo>` element MUST be in PNG format with a tra
 
 * Block Encryption
 ** ```http://www.w3.org/2009/xmlenc11#aes128-gcm``` <<XMLEnc>>
-** ```http://www.w3.org/2009/xmlenc11#aes192-gcm``` <<XMLEnc>>
 ** ```http://www.w3.org/2009/xmlenc11#aes256-gcm``` <<XMLEnc>>
 
 * Key Transport
