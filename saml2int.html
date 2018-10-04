@@ -1051,10 +1051,12 @@ Status
 </dd>
 <dt class="hdlist1">[SDP-SP12]</dt>
 <dd>
-<p>The response to such errors MUST direct users to appropriate support resources offered by the SP or, alternatively, to the <code>errorURL</code> attribute in an IdP&#8217;s metadata if the cause of the error is inferred to be a lack
-of sufficient or appropriate attributes about the user to operate successfully.</p>
+<p>If a successful authentication response lacks sufficient or appropriate attributes for successful SP operation, the SP MUST display a meaningful status message to the user. This message SHOULD direct the user to appropriate support resources offered by the SP or, alternatively, to the <code>errorURL</code> attribute in an IdP&#8217;s metadata.</p>
 </dd>
 </dl>
+</div>
+<div class="paragraph">
+<p><em>There are many reasons an SP may be unable or choose not to provide service to a user based on an given authentication response. IdP&#8217;s failing to release the necessary attributes is the most prevalent interoperability issue encountered in larger, general purpose federations, which is why this error case is singled out here.</em></p>
 </div>
 </div>
 <div class="sect4">
