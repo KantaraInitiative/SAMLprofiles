@@ -1616,12 +1616,20 @@ that it is no longer acceptable to view it as an optional part of front-channel 
 <dl>
 <dt class="hdlist1">[SDP-IDP18]</dt>
 <dd>
-<p>It is RECOMMENDED that the content of each <code>&lt;saml:AttributeValue&gt;</code> element be limited to a single child text node (i.e., a simple string value) and that multiple values of a <code>&lt;saml:Attribute&gt;</code> be expressed as individual <code>&lt;saml:AttributeValue&gt;</code> elements rather than embedded in a delimited form within a single element.</p>
+<p>It is RECOMMENDED that the content of each <code>&lt;saml:AttributeValue&gt;</code> element be limited to a single child text node (i.e., a simple string value).</p>
 </dd>
 </dl>
 </div>
 <div class="paragraph">
 <p><em>Note that this refers to <code>&lt;saml:AttributeValue&gt;</code> elements, not <code>&lt;saml:Attribute&gt;</code> elements, and refers to the form of each individual value. It discourages the use of complex XML content models within the value of an Attribute.</em></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-IDP19]</dt>
+<dd>
+<p>Multiple values of a <code>&lt;saml:Attribute&gt;</code> MUST be expressed as individual <code>&lt;saml:AttributeValue&gt;</code> elements rather than embedded in a delimited form within a single <code>&lt;saml:AttributeValue&gt;</code> element.</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -1629,7 +1637,7 @@ that it is no longer acceptable to view it as an optional part of front-channel 
 <h3 id="_single_logout_2">5.2. Single Logout</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP19]</dt>
+<dt class="hdlist1">[SDP-IDP20]</dt>
 <dd>
 <p>IdPs MUST support the Single Logout Profile <a href="#SAML2Prof">[SAML2Prof]</a>, as updated by the Approved Errata <a href="#SAML2Err">[SAML2Err]</a>, with behavior, capabilities, and options consistent with the additional constraints specified in this section.</p>
 </dd>
@@ -1640,11 +1648,11 @@ that it is no longer acceptable to view it as an optional part of front-channel 
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP20]</dt>
+<dt class="hdlist1">[SDP-IDP21]</dt>
 <dd>
 <p>IdPs MAY allow a subject the option to maintain their IdP session rather than unilaterally terminating it.</p>
 </dd>
-<dt class="hdlist1">[SDP-IDP21]</dt>
+<dt class="hdlist1">[SDP-IDP22]</dt>
 <dd>
 <p>IdPs MAY support the propagation of logout signaling to SPs.</p>
 </dd>
@@ -1656,11 +1664,11 @@ that it is no longer acceptable to view it as an optional part of front-channel 
 <h5 id="_binding_7">Binding</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP22]</dt>
+<dt class="hdlist1">[SDP-IDP23]</dt>
 <dd>
 <p>The HTTP-Redirect binding [SAML2Bind] MUST be used for the transmission of <code>&lt;samlp:LogoutRequest&gt;</code> messages, in the event that propagation is supported.</p>
 </dd>
-<dt class="hdlist1">[SDP-IDP23]</dt>
+<dt class="hdlist1">[SDP-IDP24]</dt>
 <dd>
 <p>IdPs MUST support the HTTP-Redirect [SAML2Bind] binding for the receipt of <code>&lt;samlp:LogoutRequest&gt;</code> messages.</p>
 </dd>
@@ -1672,11 +1680,11 @@ that it is no longer acceptable to view it as an optional part of front-channel 
 <h4 id="_request_content_3">5.2.2. Request Content</h4>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP24]</dt>
-<dd>
-<p>Requests MUST be signed ((via a signature created in accordance with the HTTP-Redirect binding [SAML2Bind]).</p>
-</dd>
 <dt class="hdlist1">[SDP-IDP25]</dt>
+<dd>
+<p>Requests MUST be signed ((via a signature created in accordance with the HTTP=Redirect binding [SAML2Bind]).</p>
+</dd>
+<dt class="hdlist1">[SDP-IDP26]</dt>
 <dd>
 <p>The <code>&lt;saml:NameID&gt;</code> element in <code>&lt;samlp:LogoutRequest&gt;</code> messages MUST NOT be encrypted.</p>
 </dd>
@@ -1692,11 +1700,11 @@ that it is no longer acceptable to view it as an optional part of front-channel 
 <h5 id="_binding_8">Binding</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP26]</dt>
+<dt class="hdlist1">[SDP-IDP27]</dt>
 <dd>
 <p>The HTTP-Redirect binding [SAML2Bind] MUST be used for the transmission of <code>&lt;samlp:LogoutResponse&gt;</code> messages.</p>
 </dd>
-<dt class="hdlist1">[SDP-IDP27]</dt>
+<dt class="hdlist1">[SDP-IDP28]</dt>
 <dd>
 <p>IdPs MUST support the HTTP-Redirect [SAML2Bind] binding for the receipt of <code>&lt;samlp:LogoutResponse&gt;</code> messages, in the event that <code>&lt;samlp:LogoutRequest&gt;</code> propagation is supported.</p>
 </dd>
@@ -1707,11 +1715,11 @@ that it is no longer acceptable to view it as an optional part of front-channel 
 <h5 id="_response_content_3">Response Content</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP28]</dt>
-<dd>
-<p>Responses MUST be signed (via a signature created in accordance with the HTTP-Redirect binding [SAML2Bind]).</p>
-</dd>
 <dt class="hdlist1">[SDP-IDP29]</dt>
+<dd>
+<p>Responses MUST be signed (via a signature created in accordance with the HTTP=Redirect binding [SAML2Bind]).</p>
+</dd>
+<dt class="hdlist1">[SDP-IDP30]</dt>
 <dd>
 <p>The <code>&lt;samlp:StatusCode&gt;</code> in the response issued by the IdP MUST reflect whether the IdP session was successfully terminated.</p>
 </dd>
@@ -1729,7 +1737,7 @@ that it is no longer acceptable to view it as an optional part of front-channel 
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP30]</dt>
+<dt class="hdlist1">[SDP-IDP31]</dt>
 <dd>
 <p>IdP deployments MUST support multiple signing certificates in SP metadata and MUST support validation of signatures using a key from any of them.</p>
 </dd>
@@ -1740,7 +1748,7 @@ that it is no longer acceptable to view it as an optional part of front-channel 
 <h4 id="_metadata_content_2">5.3.2. Metadata Content</h4>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP31]</dt>
+<dt class="hdlist1">[SDP-IDP32]</dt>
 <dd>
 <p>By virtue of this profile&#8217;s requirements, an IdP&#8217;s metadata MUST contain:</p>
 <div class="ulist">
