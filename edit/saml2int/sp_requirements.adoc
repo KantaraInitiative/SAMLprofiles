@@ -80,7 +80,11 @@ _SPs MAY support legacy or historical `<saml:NameID>` and `<saml:Attribute>` ide
 
 [SDP-SP18]:: SPs MUST associate identifier scopes with IdPs such that only authorized IdPs may assert identifiers with particular scopes for particular purposes.
 
-_For example, if the `example.com` scope is bound to the IdP named `http://idp.example.com/saml`, it should be generally disallowed for any other IdP to assert an identifier in that scope. Note that this is not a 1:1 relationship; it may frequently happen that multiple IdPs may assert a given scope, or an IdP may assert identifiers in multiple scopes, but the rules for this should be explicit and enforced._
+It is RECOMMENDED that the `<shibmd:Scope>` metadata extension defined in <<SAML2SubjId>> be supported for this purpose. SPs MAY ignore any such extension elements whose `regexp` attribute is `true` or `1`. SPs MUST NOT rely on this extension unless the metadata is verifiably obtained from a third party that is trusted to supply it.
+
+In the event that this extension cannot be used, then SPs MUST apply policy established in some other manner.
+
+_Note that scopes and IdPs do not necessarily have a 1:1 relationship; it may well be legitimate for multiple IdPs to assert a given scope, or for an IdP to assert identifiers in multiple scopes, but the rules for this should be explicit and enforced._
 
 ===== Displayable Identifiers
 
