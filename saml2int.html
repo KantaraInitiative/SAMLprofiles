@@ -1051,12 +1051,12 @@ Status
 </dd>
 <dt class="hdlist1">[SDP-SP12]</dt>
 <dd>
-<p>If a successful authentication response lacks sufficient or appropriate attributes for successful SP operation, the SP MUST display a meaningful status message to the user. This message SHOULD direct the user to appropriate support resources offered by the SP or, alternatively, to the <code>errorURL</code> attribute in an IdP&#8217;s metadata.</p>
+<p>If a successful authentication response lacks sufficient or appropriate attributes (including subject identifiers) for successful SP operation, the SP MUST display a meaningful status message to the user. This message SHOULD direct the user to appropriate support resources offered by the SP or, alternatively, to the <code>errorURL</code> attribute in an IdP&#8217;s metadata.</p>
 </dd>
 </dl>
 </div>
 <div class="paragraph">
-<p><em>There are many reasons an SP may be unable or choose not to provide service to a user based on an given authentication response. IdP&#8217;s failing to release the necessary attributes is the most prevalent interoperability issue encountered in larger, general purpose federations, which is why this error case is singled out here.</em></p>
+<p><em>There are many reasons an SP may be unable or choose not to provide service to a user based on an given authentication response. IdP&#8217;s failing to release the necessary attributes is the most prevalent interoperability issue encountered in larger, general purpose federations, which is why this scenario is singled out here.</em></p>
 </div>
 </div>
 <div class="sect4">
@@ -1558,9 +1558,7 @@ Status
 </dl>
 </div>
 <div class="paragraph">
-<p><em>While encryption is viewed in some quarters as onerous or unnecessary, interopability is enhanced by uniformity. Moreover,
-a spate of recent vulnerabilities across the industry would have been almost entirely mitigated by its use, demonstrating
-that it is no longer acceptable to view it as an optional part of front-channel delivery of assertions, if it ever was.</em></p>
+<p><em>While encryption is viewed in some quarters as onerous or unnecessary, interoperability is enhanced by uniformity. Moreover, a spate of recent vulnerabilities across the industry would have been almost entirely mitigated by its use, demonstrating that it is no longer acceptable to view it as an optional part of front-channel delivery of assertions, if it ever was.</em></p>
 </div>
 </div>
 </div>
@@ -1586,9 +1584,16 @@ that it is no longer acceptable to view it as an optional part of front-channel 
 <dd>
 <p>IdPs MUST support the metadata-based identifier requirement signaling mechanism defined in <a href="#SAML2SubjId">[SAML2SubjId]</a>.</p>
 </dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><em>The purpose of this requirement is to provide a level of confidence to a signaling SP that a compliant IdP which fails to do as instructed is unwilling or unable to fulfill the requirements rather than merely oblivious to them.</em></p>
+</div>
+<div class="dlist">
+<dl>
 <dt class="hdlist1">[SDP-IDP15]</dt>
 <dd>
-<p>If an IdP cannot or will not satisfy the requirements of an SP in this respect, then it MUST fail the authentication request and SHOULD respond to the SP with a SAML error status and a second-level <code>&lt;samlp:StatusCode&gt;</code> of <code>urn:oasis:names:tc:SAML:profiles:subject-id:req</code>.</p>
+<p>If an IdP cannot or will not satisfy the requirements of an SP in this respect, then it MAY return an assertion without the data it is unable to provide or return an error as it sees fit.</p>
 </dd>
 <dt class="hdlist1">[SDP-IDP16]</dt>
 <dd>
@@ -1777,6 +1782,9 @@ that it is no longer acceptable to view it as an optional part of front-channel 
 </li>
 </ul>
 </div>
+</li>
+<li>
+<p>an <code>errorURL</code> attribute containing an https URL resolving to an HTML page suitable for referral by SPs in the event they receive insufficient attributes from the IdP to proceed</p>
 </li>
 </ul>
 </div>
