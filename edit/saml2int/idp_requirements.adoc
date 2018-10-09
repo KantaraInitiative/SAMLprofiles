@@ -42,9 +42,7 @@ If an IdP cannot prove subject presence, then it MUST fail the request and SHOUL
 
 [SDP-IDP11]:: In the event the HTTP-POST binding <<SAML2Bind>> is used, assertions MUST be encrypted and transmitted via a `<saml:EncryptedAssertion>` element. Information intended for the consumption of the SP MUST NOT be further encrypted via `<saml:EncryptedID>` or `<saml:EncryptedAttribute>` constructs.
 
-_While encryption is viewed in some quarters as onerous or unnecessary, interopability is enhanced by uniformity. Moreover,
-a spate of recent vulnerabilities across the industry would have been almost entirely mitigated by its use, demonstrating
-that it is no longer acceptable to view it as an optional part of front-channel delivery of assertions, if it ever was._
+_While encryption is viewed in some quarters as onerous or unnecessary, interoperability is enhanced by uniformity. Moreover, a spate of recent vulnerabilities across the industry would have been almost entirely mitigated by its use, demonstrating that it is no longer acceptable to view it as an optional part of front-channel delivery of assertions, if it ever was._
 
 ==== Subject Identifiers
 
@@ -56,7 +54,9 @@ that it is no longer acceptable to view it as an optional part of front-channel 
 
 [SDP-IDP14]:: IdPs MUST support the metadata-based identifier requirement signaling mechanism defined in <<SAML2SubjId>>.
 
-[SDP-IDP15]:: If an IdP cannot or will not satisfy the requirements of an SP in this respect, then it MUST fail the authentication request and SHOULD respond to the SP with a SAML error status and a second-level `<samlp:StatusCode>` of `urn:oasis:names:tc:SAML:profiles:subject-id:req`.
+_The purpose of this requirement is to provide a level of confidence to a signaling SP that a compliant IdP which fails to do as instructed is unwilling or unable to fulfill the requirements rather than merely oblivious to them._
+
+[SDP-IDP15]:: If an IdP cannot or will not satisfy the requirements of an SP in this respect, then it MAY return an assertion without the data it is unable to provide or return an error as it sees fit.
 
 [SDP-IDP16]:: In the absence of any signaling by an SP, an IdP MAY supply either, both, or neither SAML Attribute, or return an error as it sees fit.
 
@@ -130,6 +130,7 @@ The ability to perform seamless key migration depends upon proper support for co
 ** at least one `<md:KeyDescriptor>` element whose `use` attribute is omitted or set to `signing`
 * an `<md:Extensions>` element
 ** an `<mdui:UIInfo>` extension element with previously prescribed content
+* an `errorURL` attribute containing an https URL resolving to an HTML page suitable for referral by SPs in the event they receive insufficient attributes from the IdP to proceed
 
 In addition, an IdP's metadata MUST contain:
 
