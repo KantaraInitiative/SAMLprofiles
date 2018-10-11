@@ -616,6 +616,16 @@ Status
 </ul>
 </div>
 <div class="paragraph">
+<p>When referring to elements from the SAML V2.0 Subject Identifier Attributes Profile specification <a href="#SAML2SubjId">[SAML2SubjId]</a>, the following syntax is used:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>&lt;shibmd:Element&gt;</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
 <p>When referring to elements from the SAML V2.0 Asynchronous Single Logout Protocol Extension specification <a href="#SAML2ASLO">[SAML2ASLO]</a>, the following syntax is used:</p>
 </div>
 <div class="ulist">
@@ -1130,7 +1140,13 @@ Status
 </dl>
 </div>
 <div class="paragraph">
-<p><em>For example, if the <code>example.com</code> scope is bound to the IdP named <code><a href="http://idp.example.com/saml" class="bare">http://idp.example.com/saml</a></code>, it should be generally disallowed for any other IdP to assert an identifier in that scope. Note that this is not a 1:1 relationship; it may frequently happen that multiple IdPs may assert a given scope, or an IdP may assert identifiers in multiple scopes, but the rules for this should be explicit and enforced.</em></p>
+<p>It is RECOMMENDED that the <code>&lt;shibmd:Scope&gt;</code> metadata extension defined in <a href="#SAML2SubjId">[SAML2SubjId]</a> be supported for this purpose. SPs MAY ignore any such extension elements whose <code>regexp</code> attribute is <code>true</code> or <code>1</code>. SPs MUST NOT rely on this extension unless the metadata is verifiably obtained from a third party that is trusted to supply it.</p>
+</div>
+<div class="paragraph">
+<p>In the event that this extension cannot be used, then SPs MUST apply policy established in some other manner.</p>
+</div>
+<div class="paragraph">
+<p><em>Note that scopes and IdPs do not necessarily have a 1:1 relationship; it may well be legitimate for multiple IdPs to assert a given scope, or for an IdP to assert identifiers in multiple scopes, but the rules for this should be explicit and enforced.</em></p>
 </div>
 </div>
 <div class="sect4">
@@ -1574,28 +1590,31 @@ Status
 <dd>
 <p>IdPs MUST support one or both of the SAML Attributes defined by <a href="#SAML2SubjId">[SAML2SubjId]</a> for non-transient identification of subjects. Support for both is RECOMMENDED.</p>
 </dd>
+<dt class="hdlist1">[SDP-IDP14]</dt>
+<dd>
+<p>IdPs MUST enumerate the scope(s) of the subject identifiers they support in their metadata by means of the <code>&lt;shibmd:Scope&gt;</code> extension element, as defined in <a href="#SAML2SubjId">[SAML2SubjId]</a>.</p>
+</dd>
 </dl>
+</div>
+<div class="paragraph">
+<p>The element(s) MAY be positioned as an extension of the <code>&lt;md:EntityDescriptor&gt;</code> or <code>&lt;md:IDPSSODescriptor&gt;</code> as deemed appropriate. They MUST NOT contain a regular expression (i.e., each element&#8217;s <code>regexp</code> attribute MUST be set to <code>false</code> or <code>0</code>).</p>
+</div>
+<div class="paragraph">
+<p><em>Note that while common, it is not a requirement for the scope(s) to be contained within the IdP&#8217;s entityID, nor for it to bear any relationship to other data asserted by the IdP, such as email addresses.</em></p>
 </div>
 <div class="sect4">
 <h5 id="_subject_identifier_requirements_signaling_2">Subject Identifier Requirements Signaling</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP14]</dt>
+<dt class="hdlist1">[SDP-IDP15]</dt>
 <dd>
 <p>IdPs MUST support the metadata-based identifier requirement signaling mechanism defined in <a href="#SAML2SubjId">[SAML2SubjId]</a>.</p>
 </dd>
-</dl>
-</div>
-<div class="paragraph">
-<p><em>The purpose of this requirement is to provide a level of confidence to a signaling SP that a compliant IdP which fails to do as instructed is unwilling or unable to fulfill the requirements rather than merely oblivious to them.</em></p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">[SDP-IDP15]</dt>
-<dd>
-<p>If an IdP cannot or will not satisfy the requirements of an SP in this respect, then it MAY return an assertion without the data it is unable to provide or return an error as it sees fit.</p>
-</dd>
 <dt class="hdlist1">[SDP-IDP16]</dt>
+<dd>
+<p>If an IdP cannot or will not satisfy the requirements of an SP in this respect, then it MUST fail the authentication request and SHOULD respond to the SP with a SAML error status and a second-level <code>&lt;samlp:StatusCode&gt;</code> of <code>urn:oasis:names:tc:SAML:profiles:subject-id:req</code>.</p>
+</dd>
+<dt class="hdlist1">[SDP-IDP17]</dt>
 <dd>
 <p>In the absence of any signaling by an SP, an IdP MAY supply either, both, or neither SAML Attribute, or return an error as it sees fit.</p>
 </dd>
@@ -1607,7 +1626,7 @@ Status
 <h4 id="_attributes">5.1.4. Attributes</h4>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP17]</dt>
+<dt class="hdlist1">[SDP-IDP18]</dt>
 <dd>
 <p><code>&lt;saml:Attribute&gt;</code> elements MUST contain a NameFormat of <code>urn:oasis:names:tc:SAML:2.0:attrname-format:uri</code>.</p>
 </dd>
@@ -1618,7 +1637,7 @@ Status
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP18]</dt>
+<dt class="hdlist1">[SDP-IDP19]</dt>
 <dd>
 <p>It is RECOMMENDED that the content of each <code>&lt;saml:AttributeValue&gt;</code> element be limited to a single child text node (i.e., a simple string value).</p>
 </dd>
@@ -1629,7 +1648,7 @@ Status
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP19]</dt>
+<dt class="hdlist1">[SDP-IDP20]</dt>
 <dd>
 <p>Multiple values of a <code>&lt;saml:Attribute&gt;</code> MUST be expressed as individual <code>&lt;saml:AttributeValue&gt;</code> elements rather than embedded in a delimited form within a single <code>&lt;saml:AttributeValue&gt;</code> element.</p>
 </dd>
@@ -1641,7 +1660,7 @@ Status
 <h3 id="_single_logout_2">5.2. Single Logout</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP20]</dt>
+<dt class="hdlist1">[SDP-IDP21]</dt>
 <dd>
 <p>IdPs MUST support the Single Logout Profile <a href="#SAML2Prof">[SAML2Prof]</a>, as updated by the Approved Errata <a href="#SAML2Err">[SAML2Err]</a>, with behavior, capabilities, and options consistent with the additional constraints specified in this section.</p>
 </dd>
@@ -1652,11 +1671,11 @@ Status
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP21]</dt>
+<dt class="hdlist1">[SDP-IDP22]</dt>
 <dd>
 <p>IdPs MAY allow a subject the option to maintain their IdP session rather than unilaterally terminating it.</p>
 </dd>
-<dt class="hdlist1">[SDP-IDP22]</dt>
+<dt class="hdlist1">[SDP-IDP23]</dt>
 <dd>
 <p>IdPs MAY support the propagation of logout signaling to SPs.</p>
 </dd>
@@ -1668,11 +1687,11 @@ Status
 <h5 id="_binding_7">Binding</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP23]</dt>
+<dt class="hdlist1">[SDP-IDP24]</dt>
 <dd>
 <p>The HTTP-Redirect binding [SAML2Bind] MUST be used for the transmission of <code>&lt;samlp:LogoutRequest&gt;</code> messages, in the event that propagation is supported.</p>
 </dd>
-<dt class="hdlist1">[SDP-IDP24]</dt>
+<dt class="hdlist1">[SDP-IDP25]</dt>
 <dd>
 <p>IdPs MUST support the HTTP-Redirect [SAML2Bind] binding for the receipt of <code>&lt;samlp:LogoutRequest&gt;</code> messages.</p>
 </dd>
@@ -1684,11 +1703,11 @@ Status
 <h4 id="_request_content_3">5.2.2. Request Content</h4>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP25]</dt>
+<dt class="hdlist1">[SDP-IDP26]</dt>
 <dd>
 <p>Requests MUST be signed ((via a signature created in accordance with the HTTP=Redirect binding [SAML2Bind]).</p>
 </dd>
-<dt class="hdlist1">[SDP-IDP26]</dt>
+<dt class="hdlist1">[SDP-IDP27]</dt>
 <dd>
 <p>The <code>&lt;saml:NameID&gt;</code> element in <code>&lt;samlp:LogoutRequest&gt;</code> messages MUST NOT be encrypted.</p>
 </dd>
@@ -1704,11 +1723,11 @@ Status
 <h5 id="_binding_8">Binding</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP27]</dt>
+<dt class="hdlist1">[SDP-IDP28]</dt>
 <dd>
 <p>The HTTP-Redirect binding [SAML2Bind] MUST be used for the transmission of <code>&lt;samlp:LogoutResponse&gt;</code> messages.</p>
 </dd>
-<dt class="hdlist1">[SDP-IDP28]</dt>
+<dt class="hdlist1">[SDP-IDP29]</dt>
 <dd>
 <p>IdPs MUST support the HTTP-Redirect [SAML2Bind] binding for the receipt of <code>&lt;samlp:LogoutResponse&gt;</code> messages, in the event that <code>&lt;samlp:LogoutRequest&gt;</code> propagation is supported.</p>
 </dd>
@@ -1719,11 +1738,11 @@ Status
 <h5 id="_response_content_3">Response Content</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP29]</dt>
+<dt class="hdlist1">[SDP-IDP30]</dt>
 <dd>
 <p>Responses MUST be signed (via a signature created in accordance with the HTTP=Redirect binding [SAML2Bind]).</p>
 </dd>
-<dt class="hdlist1">[SDP-IDP30]</dt>
+<dt class="hdlist1">[SDP-IDP31]</dt>
 <dd>
 <p>The <code>&lt;samlp:StatusCode&gt;</code> in the response issued by the IdP MUST reflect whether the IdP session was successfully terminated.</p>
 </dd>
@@ -1741,7 +1760,7 @@ Status
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP31]</dt>
+<dt class="hdlist1">[SDP-IDP32]</dt>
 <dd>
 <p>IdP deployments MUST support multiple signing certificates in SP metadata and MUST support validation of signatures using a key from any of them.</p>
 </dd>
@@ -1752,7 +1771,7 @@ Status
 <h4 id="_metadata_content_2">5.3.2. Metadata Content</h4>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP32]</dt>
+<dt class="hdlist1">[SDP-IDP33]</dt>
 <dd>
 <p>By virtue of this profile&#8217;s requirements, an IdP&#8217;s metadata MUST contain:</p>
 <div class="ulist">
@@ -1774,7 +1793,7 @@ Status
 </div>
 </li>
 <li>
-<p>an <code>&lt;md:Extensions&gt;</code> element</p>
+<p>an <code>&lt;md:Extensions&gt;</code> element at the role level</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1796,6 +1815,9 @@ Status
 </div>
 <div class="ulist">
 <ul>
+<li>
+<p>at least one <code>&lt;shibmd:Scope&gt;</code> element, within an <code>&lt;md:Extensions&gt;</code> element at either the <code>&lt;md:EntityDescriptor&gt;</code> or <code>&lt;md:IDPSSODescriptor&gt;</code> level.</p>
+</li>
 <li>
 <p>an <code>&lt;md:ContactPerson&gt;</code> element with a <code>contactType</code> of <code>technical</code> and an <code>&lt;md:EmailAddress&gt;</code> element</p>
 </li>
