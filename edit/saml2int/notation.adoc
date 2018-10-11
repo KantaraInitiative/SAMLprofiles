@@ -23,6 +23,10 @@ When referring to elements from the SAML 2.0 Metadata Extension for Entity Attri
 
 * `<mdattr:MetadataElement>`
 
+When referring to elements from the SAML V2.0 Subject Identifier Attributes Profile specification <<SAML2SubjId>>, the following syntax is used:
+
+* `<shibmd:Element>`
+
 When referring to elements from the SAML V2.0 Asynchronous Single Logout Protocol Extension specification <<SAML2ASLO>>, the following syntax is used:
 
 * `<aslo:Element>`
