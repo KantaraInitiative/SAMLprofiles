@@ -64,7 +64,7 @@ _This profile does not mandate any specific automated support for the production
 
 [SDP-MD05]:: Public keys used for signing, encryption, and TLS client and server authentication MUST be expressed via X.509 certificates included in metadata via `<md:KeyDescriptor>` elements.
 
-_By virtue of <<SAML2MDIOP>>, this profile (and SAML in general) does not place requierments on the non-key material contained in X.509 certificates in metadata. However, the following are suggested practices to avoid interoperability issues with deployments outside the scope of this profile:_
+_By virtue of <<SAML2MDIOP>>, this profile (and SAML in general) does not place requirements on the non-key material contained in X.509 certificates in metadata. However, the following are suggested practices to avoid interoperability issues with deployments outside the scope of this profile:_
 
 * _use long-lived certificates_
 * _use self-signed certificates_
