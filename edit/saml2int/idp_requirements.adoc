@@ -12,15 +12,19 @@
 
 [SDP-IDP03]:: The endpoint(s) at which an IdP supports receipt of `<samlp:AuthnRequest>` messages MUST be protected by TLS/SSL.
 
-===== Endpoint Verification
-
-[SDP-IDP04]:: When verifying the `AssertionConsumerServiceURL`, it is RECOMMENDED that the IdP perform a case-sensitive string comparison between the requested value and the values found in the SP's metadata. It is OPTIONAL to apply any form of URL canonicalization.
-
 ===== Signing
 
-[SDP-IDP05]:: If a request is signed, IdPs MUST verify the signature or fail the request. An IdP MAY handle a signature verification failure locally rather than via an error response to the SP.
+[SDP-IDP04]:: If a request is signed, IdPs MUST verify the signature or (if the signature is invalid or the IdP is unwilling or unable to attempt validation) fail the request. An IdP MAY handle a signature verification failure locally rather than via an error response to the SP.
 
-[SDP-IDP06]:: IdPs MUST reject unsigned requests in the event that an SP's metadata includes an `AuthnRequestsSigned` attribute set to `true` or `1`.
+[SDP-IDP05]:: IdPs MUST reject unsigned requests in the event that an SP's metadata includes an `AuthnRequestsSigned` attribute set to `true` or `1`.
+
+===== Endpoint Selection/Verification
+
+[SDP-IDP06]:: IdPs MUST verify the `AssertionConsumerServiceURL` supplied in an SP's `<samlp:AuthnRequest>` (if any) against the `<md:AssertionConsumerService>` elements in the SP's metadata. In the absence of such a value, the default endpoint from the SP's metadata MUST be used for the response.
+
+When verifying the `AssertionConsumerServiceURL`, it is RECOMMENDED that the IdP perform a case-sensitive string comparison between the requested value and the values found in the SP's metadata. It is OPTIONAL to apply any form of URL canonicalization.
+
+_The Browser SSO Profile <<SAML2Prof>> notes that validation of the response endpoint is required but does not mandate a specific approach, primarily due to metadata being an optional portion of the original standard. The above is the most common and interoperable approach to meeting this requirement._
 
 ===== Forced Re-Authentication
 
