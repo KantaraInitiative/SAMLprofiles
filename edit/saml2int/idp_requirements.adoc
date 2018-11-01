@@ -14,9 +14,9 @@
 
 ===== Signing
 
-[SDP-IDP04]:: If a request is signed, IdPs MUST verify the signature or (if the signature is invalid or the IdP is unwilling or unable to attempt validation) fail the request. An IdP MAY handle a signature verification failure locally rather than via an error response to the SP.
+[SDP-IDP04]:: IdPs MUST support unsigned requests generally but MUST reject unsigned requests in the event that an SP's metadata includes an `AuthnRequestsSigned` attribute set to `true` or `1`.
 
-[SDP-IDP05]:: IdPs MUST reject unsigned requests in the event that an SP's metadata includes an `AuthnRequestsSigned` attribute set to `true` or `1`.
+[SDP-IDP05]:: If a request is signed, IdPs MUST successfully verify the signature or fail the request. An IdP MAY handle a signature verification failure locally rather than via an error response to the SP.
 
 ===== Endpoint Selection/Verification
 
@@ -64,7 +64,9 @@ _Note that while common, it is not a requirement for the scope(s) to be containe
 
 [SDP-IDP15]:: IdPs MUST support the metadata-based identifier requirement signaling mechanism defined in <<SAML2SubjId>>.
 
-[SDP-IDP16]:: If an IdP cannot or will not satisfy the requirements of an SP in this respect, then it MUST fail the authentication request and SHOULD respond to the SP with a SAML error status and a second-level `<samlp:StatusCode>` of `urn:oasis:names:tc:SAML:profiles:subject-id:req`.
+_The purpose of this requirement is to provide a level of confidence to a signaling SP that a compliant IdP which fails to do as instructed is unwilling or unable to fulfill the requirements rather than merely oblivious to them._ 
+
+[SDP-IDP16]:: If an IdP cannot or will not satisfy the requirements of an SP in this respect, then it MAY return an assertion without the data it is unable to provide or return an error as it sees fit. 
 
 [SDP-IDP17]:: In the absence of any signaling by an SP, an IdP MAY supply either, both, or neither SAML Attribute, or return an error as it sees fit.
 
