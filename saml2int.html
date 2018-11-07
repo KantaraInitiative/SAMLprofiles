@@ -1019,7 +1019,7 @@ Status
 <p>An SP that requires specific <code>&lt;saml:AuthnContextClassRef&gt;</code> values MUST specify the allowable values in a <code>&lt;samlp:RequestedAuthnContext&gt;</code> element in its requests, with the <code>Comparison</code> attribute set to <code>exact</code>.</p>
 </div>
 <div class="paragraph">
-<p><em>An SP SHOULD NOT request a <code>&lt;saml:AuthnContextClassRef&gt;</code> value in the absence of a shared understanding between itself and the IdP regarding its definition.</em></p>
+<p><em>An SP should not request a <code>&lt;saml:AuthnContextClassRef&gt;</code> value in the absence of a shared understanding between itself and the IdP regarding its definition.</em></p>
 </div>
 </div>
 </div>
@@ -1061,7 +1061,7 @@ Status
 </dd>
 <dt class="hdlist1">[SDP-SP12]</dt>
 <dd>
-<p>If a successful authentication response lacks sufficient or appropriate attributes (including subject identifiers) for successful SP operation, the SP MUST display a meaningful status message to the user. This message SHOULD direct the user to appropriate support resources offered by the SP or, alternatively, to the <code>errorURL</code> attribute in an IdP&#8217;s metadata.</p>
+<p>If a successful authentication response lacks sufficient or appropriate attributes (including subject identifiers) for successful SP operation, the SP MUST display a meaningful status message to the user. This message MUST direct the user to appropriate support resources offered by the SP or, alternatively, to the <code>errorURL</code> attribute in an IdP&#8217;s metadata.</p>
 </dd>
 </dl>
 </div>
