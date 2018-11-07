@@ -28,7 +28,7 @@ _As an example, the SP MUST NOT use a hostname with port number (such as https:/
 
 An SP that requires specific `<saml:AuthnContextClassRef>` values MUST specify the allowable values in a `<samlp:RequestedAuthnContext>` element in its requests, with the `Comparison` attribute set to `exact`.
 
-_An SP SHOULD NOT request a `<saml:AuthnContextClassRef>` value in the absence of a shared understanding between itself and the IdP regarding its definition._
+_An SP should not request a `<saml:AuthnContextClassRef>` value in the absence of a shared understanding between itself and the IdP regarding its definition._
 
 ==== Responses
 
@@ -46,7 +46,7 @@ _An SP SHOULD NOT request a `<saml:AuthnContextClassRef>` value in the absence o
 
 [SDP-SP11]:: SPs MUST gracefully handle error responses containing `<samlp:StatusCode>` other than `urn:oasis:names:tc:SAML:2.0:status:Success`.
 
-[SDP-SP12]:: If a successful authentication response lacks sufficient or appropriate attributes (including subject identifiers) for successful SP operation, the SP MUST display a meaningful status message to the user. This message SHOULD direct the user to appropriate support resources offered by the SP or, alternatively, to the `errorURL` attribute in an IdP's metadata.
+[SDP-SP12]:: If a successful authentication response lacks sufficient or appropriate attributes (including subject identifiers) for successful SP operation, the SP MUST display a meaningful status message to the user. This message MUST direct the user to appropriate support resources offered by the SP or, alternatively, to the `errorURL` attribute in an IdP's metadata.
 
 _There are many reasons an SP may be unable or choose not to provide service to a user based on an given authentication response. IdP's failing to release the necessary attributes is the most prevalent interoperability issue encountered in larger, general purpose federations, which is why this scenario is singled out here._ 
 
