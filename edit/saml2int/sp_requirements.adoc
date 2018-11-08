@@ -137,7 +137,7 @@ Deep linking also implies support for some form of IdP "discovery", the process 
 
 A common means of discovery is the mapping of resource/application URL (typically virtual host, sometimes path) to a specific IdP. This is strongly discouraged, and is disallowed for collaborative applications, since it makes the sharing of URLs between users from multiple organizations impossible (or at best highly inconvenient).
 
-[SDP-SP24]:: SPs SHOULD consider support for the Identity Provider Discovery Service Protocol and Profile defined in <<IdPDisco>> as it provides a general, composable building block. SPs MAY support other mechanisms and caching solutions (e.g., cookies) as desired, to reduce the frequency of discovery.
+[SDP-SP24]:: SPs SHOULD support the Identity Provider Discovery Service Protocol and Profile defined in <<IdPDisco>> as it provides a general, composable building block. SPs are free to support other mechanisms and caching solutions (e.g., cookies) as desired, to reduce the frequency of discovery.
 
 === Single Logout
 
