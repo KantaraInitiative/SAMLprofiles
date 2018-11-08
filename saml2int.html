@@ -1258,7 +1258,7 @@ Status
 <dl>
 <dt class="hdlist1">[SDP-SP24]</dt>
 <dd>
-<p>SPs SHOULD consider support for the Identity Provider Discovery Service Protocol and Profile defined in <a href="#IdPDisco">[IdPDisco]</a> as it provides a general, composable building block. SPs MAY support other mechanisms and caching solutions (e.g., cookies) as desired, to reduce the frequency of discovery.</p>
+<p>SPs SHOULD support the Identity Provider Discovery Service Protocol and Profile defined in <a href="#IdPDisco">[IdPDisco]</a> as it provides a general, composable building block. SPs are free to support other mechanisms and caching solutions (e.g., cookies) as desired, to reduce the frequency of discovery.</p>
 </dd>
 </dl>
 </div>
@@ -1502,29 +1502,35 @@ Status
 </div>
 </div>
 <div class="sect4">
-<h5 id="_endpoint_verification">Endpoint Verification</h5>
+<h5 id="_signing">Signing</h5>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">[SDP-IDP04]</dt>
 <dd>
-<p>When verifying the <code>AssertionConsumerServiceURL</code>, it is RECOMMENDED that the IdP perform a case-sensitive string comparison between the requested value and the values found in the SP&#8217;s metadata. It is OPTIONAL to apply any form of URL canonicalization.</p>
+<p>IdPs MUST support unsigned requests generally but MUST reject unsigned requests in the event that an SP&#8217;s metadata includes an <code>AuthnRequestsSigned</code> attribute set to <code>true</code> or <code>1</code>.</p>
+</dd>
+<dt class="hdlist1">[SDP-IDP05]</dt>
+<dd>
+<p>If a request is signed, IdPs MUST successfully verify the signature or fail the request. An IdP MAY handle a signature verification failure locally rather than via an error response to the SP.</p>
 </dd>
 </dl>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_signing">Signing</h5>
+<h5 id="_endpoint_selection_verification">Endpoint Selection/Verification</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-IDP05]</dt>
-<dd>
-<p>If a request is signed, IdPs MUST verify the signature or fail the request. An IdP MAY handle a signature verification failure locally rather than via an error response to the SP.</p>
-</dd>
 <dt class="hdlist1">[SDP-IDP06]</dt>
 <dd>
-<p>IdPs MUST reject unsigned requests in the event that an SP&#8217;s metadata includes an <code>AuthnRequestsSigned</code> attribute set to <code>true</code> or <code>1</code>.</p>
+<p>IdPs MUST verify the <code>AssertionConsumerServiceURL</code> supplied in an SP&#8217;s <code>&lt;samlp:AuthnRequest&gt;</code> (if any) against the <code>&lt;md:AssertionConsumerService&gt;</code> elements in the SP&#8217;s metadata. In the absence of such a value, the default endpoint from the SP&#8217;s metadata MUST be used for the response.</p>
 </dd>
 </dl>
+</div>
+<div class="paragraph">
+<p>When verifying the <code>AssertionConsumerServiceURL</code>, it is RECOMMENDED that the IdP perform a case-sensitive string comparison between the requested value and the values found in the SP&#8217;s metadata. It is OPTIONAL to apply any form of URL canonicalization.</p>
+</div>
+<div class="paragraph">
+<p><em>The Browser SSO Profile <a href="#SAML2Prof">[SAML2Prof]</a> notes that validation of the response endpoint is required but does not mandate a specific approach, primarily due to metadata being an optional portion of the original standard. The above is the most common and interoperable approach to meeting this requirement.</em></p>
 </div>
 </div>
 <div class="sect4">
@@ -1610,9 +1616,16 @@ Status
 <dd>
 <p>IdPs MUST support the metadata-based identifier requirement signaling mechanism defined in <a href="#SAML2SubjId">[SAML2SubjId]</a>.</p>
 </dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><em>The purpose of this requirement is to provide a level of confidence to a signaling SP that a compliant IdP which fails to do as instructed is unwilling or unable to fulfill the requirements rather than merely oblivious to them.</em></p>
+</div>
+<div class="dlist">
+<dl>
 <dt class="hdlist1">[SDP-IDP16]</dt>
 <dd>
-<p>If an IdP cannot or will not satisfy the requirements of an SP in this respect, then it MUST fail the authentication request and SHOULD respond to the SP with a SAML error status and a second-level <code>&lt;samlp:StatusCode&gt;</code> of <code>urn:oasis:names:tc:SAML:profiles:subject-id:req</code>.</p>
+<p>If an IdP cannot or will not satisfy the requirements of an SP in this respect, then it MAY return an assertion without the data it is unable to provide or return an error as it sees fit.</p>
 </dd>
 <dt class="hdlist1">[SDP-IDP17]</dt>
 <dd>
