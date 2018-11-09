@@ -83,11 +83,8 @@ _By virtue of <<SAML2MDIOP>>, this profile (and SAML in general) does not place 
 
 [SDP-MD10]:: The content of the `<mdui:Logo>` element MUST be either an `https` URL or an in-line image embedded in a `data` URI element. The size of the `data` URI used in a `<mdui:Logo>` element is not limited to 256 characters.
 
-[SDP-MD11]:: At least one `<mdui:Logo>` element MUST have a `height` attribute of `60` and a `width` attribute of `80`.
+_Specific details around logo formats including image size, encoding and aspect ratio should be coordinated with the common practice of the entity's community of SAML peers._  
 
-An entity SHOULD include an `<mdui:Logo>` element with a `height` attribute of `16` and a `width` attribute of `16`.
-
-Any logo referenced by an `<mdui:Logo>` element MUST be in PNG format with a transparent background.
 
 === Cryptographic Algorithms
 
