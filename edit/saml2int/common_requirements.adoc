@@ -42,7 +42,7 @@ Deployments MUST NOT require out of band communication or coordination for the m
 
 [SDP-MD02]:: Consumption of metadata MUST be contingent on verification of a signature (STRONGLY RECOMMENDED) or TLS server certificate. The key ultimately used to establish trust in metadata MUST NOT itself appear within the same metadata in a `<md:KeyDescriptor>` element.
 
-_In most cases, the previous requirement implies that a key communicated via metadata may not also be used to sign and verify the same metadata, but it is possible to envision scenarios in which this may happen if metadata verification relies on a chain of certificates signed by an ultimately trusted Certificate Authority. However, it must be possible to seamlessly communicate new keys without necessarily changing the key used to establish trust in the metadata, which implies some level of indirection is required._
+_In most cases, the previous requirement implies that a key communicated via metadata may not also be used to sign and verify the same metadata, but it is possible to envision scenarios in which this may happen if metadata verification relies on a chain of certificates signed by an ultimately trusted Certificate Authority. However, it MUST be possible to seamlessly communicate new keys without necessarily changing the key used to establish trust in the metadata, which implies some level of indirection is required._
 
 ===== Metadata Validity
 
@@ -56,39 +56,35 @@ _These are critical (but very simple to implement) requirements for secure appli
 
 Metadata MAY include content indicating support for profiles or features beyond the bounds of this profile, but metadata MUST NOT contain content that advertises profile support or features that aren't supported by a deployment.
  
-_As an example, deployments that lack support for, or have not tested and integrated an implementation's support for the HTTP-Artifact binding <<SAML2Bind>> must omit such endpoints._
+_As an example, deployments that lack support for, or have not tested and integrated an implementation's support for the HTTP-Artifact binding <<SAML2Bind>> MUST omit such endpoints._
 
 _This profile does not mandate any specific automated support for the production of metadata by a deployment. In fact, automatic generation of metadata has a strong tendency to undermine the correct functioning of peer deployments in the face of key rollover or changes to endpoints or other software features because it tends to change too suddenly to accommodate a graceful transition between states._
 
-[SDP-MD05]:: _(REMOVED)_
-
-
 ===== Keys and Certificates
 
-[SDP-MD06]:: Public keys used for signing, encryption, and TLS client and server authentication MUST be expressed via X.509 certificates included in metadata via `<md:KeyDescriptor>` elements.
+[SDP-MD05]:: Public keys used for signing, encryption, and TLS client and server authentication MUST be expressed via X.509 certificates included in metadata via `<md:KeyDescriptor>` elements.
 
-_By virtue of <<SAML2MDIOP>>, this profile (and SAML in general) does not place requierments on the non-key material contained in X.509 certificates in metadata. However, the following are suggested practices to avoid interoperability issues with deployments outside the scope of this profile:_
+_By virtue of <<SAML2MDIOP>>, this profile (and SAML in general) does not place requirements on the non-key material contained in X.509 certificates in metadata. However, the following are suggested practices to avoid interoperability issues with deployments outside the scope of this profile:_
 
 * _use long-lived certificates_
 * _use self-signed certificates_
 * _do not use expired certificates_
 * _do not sign certificates with MD5- or SHA1-based signature algorithms._
 
-[SDP-MD07]:: RSA public keys MUST be at least 2048 bits in length. At least 3072 bits is RECOMMENDED for new deployments.
+[SDP-MD06]:: RSA public keys MUST be at least 2048 bits in length. At least 3072 bits is RECOMMENDED for new deployments.
 
-[SDP-MD08]:: EC public keys MUST be at least 256 bits in length.
+[SDP-MD07]:: EC public keys MUST be at least 256 bits in length.
 
-[SDP-MD09]:: (_REMOVED_)
-
-[SDP-MD10]:: By virtue of the profile's overall requirements, an IdP's metadata MUST include at least one signing certificate (that is, an `<md:KeyDescriptor>` with no `use` attribute or one set to `signing`), and an SP's metadata MUST include at least one encryption certificate (that is, an `<md:KeyDescriptor>` with no `use` attribute or one set to `encryption`).
+[SDP-MD08]:: By virtue of the profile's overall requirements, an IdP's metadata MUST include at least one signing certificate (that is, an `<md:KeyDescriptor>` with no `use` attribute or one set to `signing`), and an SP's metadata MUST include at least one encryption certificate (that is, an `<md:KeyDescriptor>` with no `use` attribute or one set to `encryption`).
 
 ===== Discovery and User Interface Elements
 
-[SDP-MD11]:: Metadata MUST include an `<mdui:UIInfo>` element as defined in <<MetaUI>> containing at least the child elements `<mdui:DisplayName>`, `<mdui:Logo>`, and `<mdui:InformationURL>`.
+[SDP-MD09]:: Metadata MUST include an `<mdui:UIInfo>` element as defined in <<MetaUI>> containing at least the child elements `<mdui:DisplayName>`, `<mdui:Logo>`, and `<mdui:InformationURL>`.
 
-[SDP-MD12]:: The content of the `<mdui:Logo>` element MUST be either an `https` URL or an in-line image embedded in a `data` URI element. The size of the `data` URI used in a `<mdui:Logo>` element is not limited to 256 characters.
+[SDP-MD10]:: The content of the `<mdui:Logo>` element MUST be either an `https` URL or an in-line image embedded in a `data` URI element. The size of the `data` URI used in a `<mdui:Logo>` element is not limited to 256 characters.
 
 _Specific details around logo formats including image size, encoding and aspect ratio should be coordinated with the common practice of the entity's community of SAML peers._  
+
 
 === Cryptographic Algorithms
 
@@ -103,7 +99,6 @@ _Specific details around logo formats including image size, encoding and aspect 
 
 * Block Encryption
 ** ```http://www.w3.org/2009/xmlenc11#aes128-gcm``` <<XMLEnc>>
-** ```http://www.w3.org/2009/xmlenc11#aes192-gcm``` <<XMLEnc>>
 ** ```http://www.w3.org/2009/xmlenc11#aes256-gcm``` <<XMLEnc>>
 
 * Key Transport
