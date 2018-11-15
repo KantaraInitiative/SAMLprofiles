@@ -551,7 +551,7 @@ Status
 <p>The requirements specified are in addition to all normative requirements of the underlying Web Browser SSO and Single Logout profiles <a href="#SAML2Prof">[SAML2Prof]</a>, as modified by the Approved Errata <a href="#SAML2Err">[SAML2Err]</a>, and readers are assumed to be familiar with all relevant reference documents. Any such requirements are not repeated here except where deemed necessary to highlight a point of discussion or draw attention to an issue addressed in errata, but remain implied.</p>
 </div>
 <div class="paragraph">
-<p>Nothing in this profile should be taken to imply that disclosing personally identifiable information, or indeed any information, is required from an IdP with respect to any particular SP. That remains at the discretion of applicable settings, user consent, or other appropriate means in accordance with regulations and policies. However, this profile does obligate IdPs to honor certain key signals from an SP in the area of subject identification and requires successful responses to include specific SAML Attributes under certain conditions. Failure is always an option.</p>
+<p>Nothing in this profile should be taken to imply that disclosing personally identifiable information, or indeed any information, is required from an IdP with respect to any particular SP. That remains at the discretion of applicable settings, user consent, or other appropriate means in accordance with regulations and policies. However, this profile does obligate IdPs to honor certain key signals from an SP in the area of subject identification and requires successful responses to include specific SAML Attributes <a href="#X500SAMLattr">[X500SAMLattr]</a> under certain conditions. Failure is always an option.</p>
 </div>
 <div class="paragraph">
 <p>Note that SAML features that are optional, or lack mandatory processing rules, are assumed to be optional and out of scope of this profile if not otherwise precluded or given specific processing rules.</p>
@@ -1054,12 +1054,12 @@ Status
 </dd>
 <dt class="hdlist1">[SDP-SP12]</dt>
 <dd>
-<p>If a successful authentication response lacks sufficient or appropriate attributes (including subject identifiers) for successful SP operation, the SP MUST display a meaningful status message to the user. This message MUST direct the user to appropriate support resources offered by the SP or, alternatively, to the <code>errorURL</code> attribute in an IdP&#8217;s metadata.</p>
+<p>If a successful authentication response lacks sufficient or appropriate SAML Attributes (including subject identifiers) for successful SP operation, the SP MUST display a meaningful status message to the user. This message MUST direct the user to appropriate support resources offered by the SP or, alternatively, to the <code>errorURL</code> attribute in an IdP&#8217;s metadata.</p>
 </dd>
 </dl>
 </div>
 <div class="paragraph">
-<p><em>There are many reasons an SP may be unable or choose not to provide service to a user based on an given authentication response. IdP&#8217;s failing to release the necessary attributes is the most prevalent interoperability issue encountered in larger, general purpose federations, which is why this scenario is singled out here.</em></p>
+<p><em>There are many reasons an SP may be unable or choose not to provide service to a user based on an given authentication response. IdPs failing to release the necessary SAML Attributes is the most prevalent interoperability issue encountered in larger, general purpose federations, which is why this scenario is singled out here.</em></p>
 </div>
 </div>
 <div class="sect4">
@@ -1085,7 +1085,7 @@ Status
 <dl>
 <dt class="hdlist1">[SDP-SP14]</dt>
 <dd>
-<p>SPs MUST NOT require the presence of a <code>&lt;saml:NameID&gt;</code> element and MUST NOT rely on the content of this element for long term identification of subjects;  <code>&lt;saml:Attribute&gt;</code> elements MUST be used for this purpose in the manner detailed below.</p>
+<p>SPs MUST NOT require the presence of a <code>&lt;saml:NameID&gt;</code> element and MUST NOT rely on the content of this element for long term identification of subjects. <code>&lt;saml:Attribute&gt;</code> elements MUST be used for this purpose in the manner detailed below.</p>
 </dd>
 </dl>
 </div>
@@ -1151,7 +1151,7 @@ Status
 <dl>
 <dt class="hdlist1">[SDP-SP19]</dt>
 <dd>
-<p>SPs requiring the display of identifiers to users, the identification of other users via searching, selection, etc., and similar use cases SHOULD rely on additional suitable SAML Attributes such as (<a href="#X500SAMLattr">[X500SAMLattr]</a>):</p>
+<p>SPs requiring the display of identifiers to users, the identification of other users via searching, selection, etc., and similar use cases SHOULD rely on additional suitable SAML Attributes such as:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1172,7 +1172,7 @@ Status
 </dl>
 </div>
 <div class="paragraph">
-<p><em>Note that most standardized Attributes of this sort tend to be defined as multi-valued.</em></p>
+<p><em>Note that most standardized SAML Attributes of this sort tend to be defined as multi-valued.</em></p>
 </div>
 </div>
 </div>
@@ -1622,7 +1622,7 @@ Status
 </dd>
 <dt class="hdlist1">[SDP-IDP17]</dt>
 <dd>
-<p>In the absence of any signaling by an SP, an IdP MAY supply either, both, or neither SAML Attribute, or return an error as it sees fit.</p>
+<p>In the absence of any signaling by an SP, an IdP MAY supply either, both, or neither of the SAML Attributes defined in <a href="#SAML2SubjId">[SAML2SubjId]</a>, or return an error as it sees fit.</p>
 </dd>
 </dl>
 </div>
@@ -1639,7 +1639,7 @@ Status
 </dl>
 </div>
 <div class="paragraph">
-<p><em>This requirement ensures unique, non-conflicting naming of Attributes even in cases involving custom requirements for which no standard Attributes may exist.</em></p>
+<p><em>This requirement ensures unique, non-conflicting naming of SAML Attributes even in cases involving custom requirements for which no standard SAML Attributes may exist.</em></p>
 </div>
 <div class="dlist">
 <dl>
@@ -1650,7 +1650,7 @@ Status
 </dl>
 </div>
 <div class="paragraph">
-<p><em>Note that this refers to <code>&lt;saml:AttributeValue&gt;</code> elements, not <code>&lt;saml:Attribute&gt;</code> elements, and refers to the form of each individual value. It discourages the use of complex XML content models within the value of an Attribute.</em></p>
+<p><em>Note that this refers to <code>&lt;saml:AttributeValue&gt;</code> elements, not <code>&lt;saml:Attribute&gt;</code> elements, and refers to the form of each individual value. It discourages the use of complex XML content models within the value of a SAML Attribute.</em></p>
 </div>
 <div class="dlist">
 <dl>
