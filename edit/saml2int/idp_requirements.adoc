@@ -68,17 +68,17 @@ _The purpose of this requirement is to provide a level of confidence to a signal
 
 [SDP-IDP16]:: If an IdP cannot or will not satisfy the requirements of an SP in this respect, then it MAY return an assertion without the data it is unable to provide or return an error as it sees fit. 
 
-[SDP-IDP17]:: In the absence of any signaling by an SP, an IdP MAY supply either, both, or neither SAML Attribute, or return an error as it sees fit.
+[SDP-IDP17]:: In the absence of any signaling by an SP, an IdP MAY supply either, both, or neither of the SAML Attributes defined in <<SAML2SubjId>>, or return an error as it sees fit.
 
 ==== Attributes
 
 [SDP-IDP18]:: `<saml:Attribute>` elements MUST contain a NameFormat of `urn:oasis:names:tc:SAML:2.0:attrname-format:uri`.
 
-_This requirement ensures unique, non-conflicting naming of Attributes even in cases involving custom requirements for which no standard Attributes may exist._
+_This requirement ensures unique, non-conflicting naming of SAML Attributes even in cases involving custom requirements for which no standard SAML Attributes may exist._
 
 [SDP-IDP19]:: It is RECOMMENDED that the content of each `<saml:AttributeValue>` element be limited to a single child text node (i.e., a simple string value).
 
-_Note that this refers to `<saml:AttributeValue>` elements, not `<saml:Attribute>` elements, and refers to the form of each individual value. It discourages the use of complex XML content models within the value of an Attribute._
+_Note that this refers to `<saml:AttributeValue>` elements, not `<saml:Attribute>` elements, and refers to the form of each individual value. It discourages the use of complex XML content models within the value of a SAML Attribute._
 
 [SDP-IDP20]:: Multiple values of a `<saml:Attribute>` MUST be expressed as individual `<saml:AttributeValue>` elements rather than embedded in a delimited form within a single `<saml:AttributeValue>` element.
 
