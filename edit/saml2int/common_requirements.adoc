@@ -16,7 +16,7 @@ _The following is a non-exhaustive list of items to which this directive applies
 
 ==== Document Type Definitions
 
-[SDP-G03]:: Deployments MUST NOT produce any SAML protocol message that contains a (DTD) Document Type Definition. Deployments SHOULD reject messages that contain them.
+[SDP-G03]:: Deployments MUST NOT produce any SAML protocol message that contains a (DTD) Document Type Definition.
 
 ==== SAML entityIDs
 
