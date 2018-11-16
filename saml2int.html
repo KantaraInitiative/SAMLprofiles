@@ -1423,9 +1423,6 @@ Status
 <li>
 <p>at least one <code>&lt;md:KeyDescriptor&gt;</code> element whose <code>use</code> attribute is omitted or set to <code>encryption</code></p>
 </li>
-<li>
-<p>if the SP generates single logout requests: at least one <code>&lt;md:KeyDescriptor&gt;</code> element whose <code>use</code> attribute is omitted or set to <code>signing</code></p>
-</li>
 </ul>
 </div>
 </li>
@@ -1448,7 +1445,20 @@ Status
 </dl>
 </div>
 <div class="paragraph">
-<p>In addition, an SP&#8217;s metadata MUST contain:</p>
+<p>If the SP supports the Single Logout Profile, then its metadata MUST contain (within its <code>&lt;md:SPSSODescriptor&gt;</code> role element):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>at least one <code>&lt;md:KeyDescriptor&gt;</code> element whose <code>use</code> attribute is omitted or set to <code>signing</code></p>
+</li>
+<li>
+<p>at least one <code>&lt;md:SingleLogoutService&gt;</code> endpoint element (this MAY be omitted if the SP solely issues <code>&lt;samlp:LogoutRequest&gt;</code> messages containing the <code>&lt;aslo:Asynchronous&gt;</code> extension <a href="#SAML2ASLO">[SAML2ASLO]</a>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Finally, an SP&#8217;s metadata MUST also contain:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1456,9 +1466,6 @@ Status
 <p>an <code>&lt;md:ContactPerson&gt;</code> element with a <code>contactType</code> of <code>technical</code> and an <code>&lt;md:EmailAddress&gt;</code> element</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>An <code>&lt;md:SingleLogoutService&gt;</code> element MAY be omitted in the event that an SP either does not support the Single Logout Profile, or solely issues <code>&lt;samlp:LogoutRequest&gt;</code> messages containing the <code>&lt;aslo:Asynchronous&gt;</code> extension <a href="#SAML2ASLO">[SAML2ASLO]</a>.</p>
 </div>
 </div>
 </div>
@@ -1560,7 +1567,7 @@ Status
 <dl>
 <dt class="hdlist1">[SDP-IDP09]</dt>
 <dd>
-<p>Successful responses MUST be directly signed using a <code>&lt;ds:Signature&gt;</code> element within the <code>&lt;samlp:Response&gt;</code> element.  Error responses MAY be signed.</p>
+<p>Successful responses MUST be directly signed using a <code>&lt;ds:Signature&gt;</code> element within the <code>&lt;samlp:Response&gt;</code> element. Error responses MAY be unsigned.</p>
 </dd>
 <dt class="hdlist1">[SDP-IDP10]</dt>
 <dd>
