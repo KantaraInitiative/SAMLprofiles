@@ -54,9 +54,9 @@ _While encryption is viewed in some quarters as onerous or unnecessary, interope
 
 [SDP-IDP13]:: IdPs MUST support one or both of the SAML Attributes defined by <<SAML2SubjId>> for non-transient identification of subjects. Support for both is RECOMMENDED.
 
-[SDP-IDP14]:: IdPs MUST enumerate the scope(s) of the subject identifiers they support in their metadata by means of the `<shibmd:Scope>` extension element, as defined in <<SAML2SubjId>>.
+[SDP-IDP14]:: IdPs MUST enumerate the scope(s) of the subject identifiers they support in their metadata by means of the `<shibmd:Scope>` extension element, as defined in <<SAML2SubjId>>. They MUST NOT contain a regular expression (i.e., each element's `regexp` attribute MUST be set to `false` or `0`).
 
-The element(s) MAY be positioned as an extension of the `<md:EntityDescriptor>` or `<md:IDPSSODescriptor>` as deemed appropriate. They MUST NOT contain a regular expression (i.e., each element's `regexp` attribute MUST be set to `false` or `0`).
+The element(s) may be positioned as an extension of either the `<md:EntityDescriptor>` or `<md:IDPSSODescriptor>` as deemed appropriate.
 
 _Note that while common, it is not a requirement for the scope(s) to be contained within the IdP's entityID, nor for it to bear any relationship to other data asserted by the IdP, such as email addresses._
 
