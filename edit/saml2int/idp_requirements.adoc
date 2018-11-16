@@ -40,7 +40,7 @@ If an IdP cannot prove subject presence, then it MUST fail the request and SHOUL
 
 ===== Response Content
 
-[SDP-IDP09]:: Successful responses MUST be directly signed using a `<ds:Signature>` element within the `<samlp:Response>` element.  Error responses MAY be signed.
+[SDP-IDP09]:: Successful responses MUST be directly signed using a `<ds:Signature>` element within the `<samlp:Response>` element. Error responses MAY be unsigned.
 
 [SDP-IDP10]:: Successful responses MUST contain one and only one SAML assertion, and the assertion MUST contain exactly one `<saml:AuthnStatement>` element and MAY contain zero or one `<saml:AttributeStatement>` elements. The assertion within the response MAY be directly signed.
 
