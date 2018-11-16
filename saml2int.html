@@ -1591,12 +1591,12 @@ Status
 </dd>
 <dt class="hdlist1">[SDP-IDP14]</dt>
 <dd>
-<p>IdPs MUST enumerate the scope(s) of the subject identifiers they support in their metadata by means of the <code>&lt;shibmd:Scope&gt;</code> extension element, as defined in <a href="#SAML2SubjId">[SAML2SubjId]</a>.</p>
+<p>IdPs MUST enumerate the scope(s) of the subject identifiers they support in their metadata by means of the <code>&lt;shibmd:Scope&gt;</code> extension element, as defined in <a href="#SAML2SubjId">[SAML2SubjId]</a>. They MUST NOT contain a regular expression (i.e., each element&#8217;s <code>regexp</code> attribute MUST be set to <code>false</code> or <code>0</code>).</p>
 </dd>
 </dl>
 </div>
 <div class="paragraph">
-<p>The element(s) MAY be positioned as an extension of the <code>&lt;md:EntityDescriptor&gt;</code> or <code>&lt;md:IDPSSODescriptor&gt;</code> as deemed appropriate. They MUST NOT contain a regular expression (i.e., each element&#8217;s <code>regexp</code> attribute MUST be set to <code>false</code> or <code>0</code>).</p>
+<p>The element(s) may be positioned as an extension of either the <code>&lt;md:EntityDescriptor&gt;</code> or <code>&lt;md:IDPSSODescriptor&gt;</code> as deemed appropriate.</p>
 </div>
 <div class="paragraph">
 <p><em>Note that while common, it is not a requirement for the scope(s) to be contained within the IdP&#8217;s entityID, nor for it to bear any relationship to other data asserted by the IdP, such as email addresses.</em></p>
