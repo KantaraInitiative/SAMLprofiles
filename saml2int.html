@@ -1085,9 +1085,12 @@ Status
 <dl>
 <dt class="hdlist1">[SDP-SP14]</dt>
 <dd>
-<p>SPs MUST NOT require the presence of a <code>&lt;saml:NameID&gt;</code> element and MUST NOT rely on the content of this element for long term identification of subjects. <code>&lt;saml:Attribute&gt;</code> elements MUST be used for this purpose in the manner detailed below.</p>
+<p>SPs MUST NOT require the presence of a <code>&lt;saml:NameID&gt;</code> element.</p>
 </dd>
 </dl>
+</div>
+<div class="paragraph">
+<p><em>Use of <code>&lt;saml:NameID&gt;</code> elements in this profile is restricted to their role in the Single Logout Profile, and not for long term identification of subjects. Standardized SAML Attributes are used instead, as described below.</em></p>
 </div>
 </div>
 <div class="sect4">
@@ -1101,10 +1104,10 @@ Status
 </dl>
 </div>
 <div class="paragraph">
-<p><em>If an SP requires coordination and/or correlation of user activity between itself and other SPs, then the SAML Attribute named <code>urn:oasis:names:tc:SAML:attribute:subject-id</code> is appropriate. Otherwise the SAML Attribute named <code>urn:oasis:names:tc:SAML:attribute:pairwise-id</code> can be used.</em></p>
+<p>SPs MAY support legacy or historical <code>&lt;saml:NameID&gt;</code> and <code>&lt;saml:Attribute&gt;</code> identifier content for compatibility reasons but MUST NOT require their use.</p>
 </div>
 <div class="paragraph">
-<p><em>SPs MAY support legacy or historical <code>&lt;saml:NameID&gt;</code> and <code>&lt;saml:Attribute&gt;</code> identifier content for compatibility reasons but MUST NOT require their use.</em></p>
+<p><em>If an SP requires coordination and/or correlation of user activity between itself and other SPs, then the SAML Attribute named <code>urn:oasis:names:tc:SAML:attribute:subject-id</code> is appropriate. Otherwise the SAML Attribute named <code>urn:oasis:names:tc:SAML:attribute:pairwise-id</code> can be used.</em></p>
 </div>
 </div>
 <div class="sect4">
