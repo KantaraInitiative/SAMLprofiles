@@ -60,15 +60,17 @@ _This is necessary because clients can freely generate requests that do not spec
 
 ===== NameID Formats
 
-[SDP-SP14]:: SPs MUST NOT require the presence of a `<saml:NameID>` element and MUST NOT rely on the content of this element for long term identification of subjects. `<saml:Attribute>` elements MUST be used for this purpose in the manner detailed below.
+[SDP-SP14]:: SPs MUST NOT require the presence of a `<saml:NameID>` element.
+
+_Use of `<saml:NameID>` elements in this profile is restricted to their role in the Single Logout Profile, and not for long term identification of subjects. Standardized SAML Attributes are used instead, as described below._
 
 ===== Subject Identifiers
 
 [SDP-SP15]:: If an SP requires persistent tracking/identification of its users (as most do), then it MUST support one or both of the SAML Attributes defined by <<SAML2SubjId>> for this purpose.
 
-_If an SP requires coordination and/or correlation of user activity between itself and other SPs, then the SAML Attribute named `urn:oasis:names:tc:SAML:attribute:subject-id` is appropriate. Otherwise the SAML Attribute named `urn:oasis:names:tc:SAML:attribute:pairwise-id` can be used._
+SPs MAY support legacy or historical `<saml:NameID>` and `<saml:Attribute>` identifier content for compatibility reasons but MUST NOT require their use.
 
-_SPs MAY support legacy or historical `<saml:NameID>` and `<saml:Attribute>` identifier content for compatibility reasons but MUST NOT require their use._
+_If an SP requires coordination and/or correlation of user activity between itself and other SPs, then the SAML Attribute named `urn:oasis:names:tc:SAML:attribute:subject-id` is appropriate. Otherwise the SAML Attribute named `urn:oasis:names:tc:SAML:attribute:pairwise-id` can be used._
 
 ===== Subject Identifier Requirements Signaling
 
