@@ -20,7 +20,9 @@
 
 [SDP-SP06]:: The `AssertionConsumerServiceURL` value, if present, MUST match an endpoint location expressed in the SP's metadata exactly, without requiring URL canonicalization/normalization. 
 
-_As an example, the SP MUST NOT use a hostname with port number (such as https://sp.example.com:443/acs) in its request and without (such as https://sp.example.com/acs) in its metadata._
+_As an example, the SP cannot specify URLs that include a port number (e.g., https://sp.example.com:443/acs) 
+in its requests unless it also includes that port number in the URLs specified in its metadata, and vice versa._
+
 
 ===== Authentication Contexts
 
