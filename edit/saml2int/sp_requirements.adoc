@@ -127,7 +127,9 @@ _This requirement flows from both the inherent requirements of collaborative app
 
 ===== Deep Linking
 
-[SDP-SP22]:: Applications SHOULD, and collaborative applications MUST, support deep linking. Deep linking implies maintaining support for such links across the boundary of a Web Browser SSO profile interaction involving any IdP necessary to complete the login process. That is, it SHOULD be possible to request a resource and (authorization permitting) have it supplied as the result of a successful Web Browser SSO profile exchange.
+[SDP-SP22]:: Applications SHOULD, and collaborative applications MUST, support deep linking. Deep linking implies maintaining support for such links across the boundary of a Web Browser SSO profile interaction involving any IdP necessary to complete the login process.
+
+_It should be possible to request a resource and (authorization permitting) have it supplied as the result of a successful Web Browser SSO profile exchange._
 
 [SDP-SP23]:: It is RECOMMENDED that SPs support the preservation of POST bodies across a successful SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.
 

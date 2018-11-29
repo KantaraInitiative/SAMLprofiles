@@ -22,7 +22,7 @@ _The following is a non-exhaustive list of items to which this directive applies
 
 [SDP-G04]:: Deployments MUST be named via an absolute URI whose total length MUST NOT exceed 256 characters.
 
-_An entityID SHOULD be chosen in a manner that minimizes the likelihood of it changing for political or technical reasons, including for example a change to a different software implementation or hosting provider._
+_An entityID should be chosen in a manner that minimizes the likelihood of it changing for political or technical reasons, including for example a change to a different software implementation or hosting provider._
 
 === Metadata and Trust Management
 
@@ -54,7 +54,7 @@ _These are critical (but very simple to implement) requirements for secure appli
 
 [SDP-MD04]:: Deployments MUST have the ability to provide SAML metadata capturing their requirements and characteristics in the areas identified above in a secure fashion, the specifics of which will necessarily vary by context and community. The use of services offering third-party validation, curation, signing, and publishing of metadata is a recommended practice.
 
-Metadata MAY include content indicating support for profiles or features beyond the bounds of this profile, but metadata MUST NOT contain content that advertises profile support or features that aren't supported by a deployment.
+An entity's metadata MUST NOT contain content that advertises profile support or features that aren't supported by that entity's deployment, but it MAY include content indicating support for profiles or features beyond the scope of this profile.
  
 _As an example, deployments that lack support for, or have not tested and integrated an implementation's support for the HTTP-Artifact binding <<SAML2Bind>> MUST omit such endpoints._
 
