@@ -3,18 +3,18 @@
 * Andreas Åkre Solberg, UNINETT, andreas.solberg@uninett.no
 * Scott Cantor, Ohio State University, cantor.2@osu.edu
 * Eve Maler, Sun Microsystems, eve.maler@sun.com
-* Leif Johansson, Stockholm University, leifj@sunet.se
+* Leif Johansson, SUNET, leifj@sunet.se
 * Jeff Hodges, Neustar, Jeff.Hodges@neustar.biz
-* Ian Young, ian@iay.org.uk
-* Nate Klingenstein, ndk@internet2.edu
-* Bob Morgan, rlmorgan@washington.edu 
-* Keith Wessel, kwessel@illinois.edu
-* Eric Goodman, eric.goodman@ucop.edu
-* Andrew Morgan, morgan@oregonstate.edu
-* Judith Bush, bushj@oclc.org
-* Thomas Lenggenhager, lenggenhager@switch.ch
-* Alex Stuart, alex.stuart@jisc.ac.uk
-* Keith Hazelton, keith.hazelton@wisc.edu
-* Chris Phillips, chris.phillips@canarie.ca
-* Nick Roy, nroy@internet2.edu
-* Alan Buxey, alan.buxey@myunidays.com
+* Ian Young, Independent, ian@iay.org.uk
+* Nate Klingenstein, Signet, ndk@internet2.edu
+* Bob Morgan, University of Washington, rlmorgan@washington.edu 
+* Keith Wessel, The University of Illinois, kwessel@illinois.edu (https://orcid.org/0000-0002-8047-3187)
+* Eric Goodman, University of California, Office of The President, eric.goodman@ucop.edu (https://orcid.org/0000-0002-5118-3009)
+* Andrew Morgan, Oregon State University, morgan@oregonstate.edu (https://orcid.org/0000-0003-0677-6988)
+* Judith Bush, OCLC, bushj@oclc.org (https://orcid.org/0000-0001-6240-4121)
+* Thomas Lenggenhager, SWITCH, lenggenhager@switch.ch
+* Alex Stuart, JISC, alex.stuart@jisc.ac.uk (https://orcid.org/0000-0003-4034-3748)
+* Keith Hazelton, Internet2, khazelton@internet2.edu (https://orcid.org/0000-0002-3174-899X)
+* Chris Phillips, CANARIE, chris.phillips@canarie.ca (https://orcid.org/0000-0001-5567-4916)
+* Nicholas Roy, Internet2, nroy@internet2.edu (https://orcid.org/0000-0001-6515-4316)
+* Alan Buxey, MyUniDays, LTD., alan.buxey@myunidays.com (https://orcid.org/0000-0001-8217-8379)
