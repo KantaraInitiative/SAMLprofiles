@@ -69,7 +69,7 @@ _By virtue of <<SAML2MDIOP>>, this profile (and SAML in general) does not place 
 * _use long-lived certificates_
 * _use self-signed certificates_
 * _do not use expired certificates_
-* _do not sign certificates with MD5- or SHA1-based signature algorithms._
+* _do not sign certificates with MD5- or SHA1-based signature algorithms_
 
 [SDP-MD06]:: RSA public keys MUST be at least 2048 bits in length. At least 3072 bits is RECOMMENDED for new deployments.
 
