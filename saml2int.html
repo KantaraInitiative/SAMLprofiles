@@ -995,7 +995,8 @@ Status
 </dl>
 </div>
 <div class="paragraph">
-<p><em>As an example, the SP MUST NOT use a hostname with port number (such as <a href="https://sp.example.com:443/acs" class="bare">https://sp.example.com:443/acs</a>) in its request and without (such as <a href="https://sp.example.com/acs" class="bare">https://sp.example.com/acs</a>) in its metadata.</em></p>
+<p><em>As an example, the SP cannot specify URLs that include a port number (e.g., <a href="https://sp.example.com:443/acs" class="bare">https://sp.example.com:443/acs</a>)
+in its requests unless it also includes that port number in the URLs specified in its metadata, and vice versa.</em></p>
 </div>
 </div>
 <div class="sect4">
