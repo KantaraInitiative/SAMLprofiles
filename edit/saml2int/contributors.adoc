@@ -19,5 +19,5 @@
 * Leif Johansson, SUNET, leifj@sunet.se
 * Jeff Hodges, Neustar, Jeff.Hodges@neustar.biz
 * Ian Young, Independent, ian@iay.org.uk
-* Nate Klingenstein, Signet, Inc. ndk@signet.id
+* Nate Klingenstein, Signet, Inc., ndk@signet.id
 * Bob Morgan, University of Washington, rlmorgan@washington.edu
