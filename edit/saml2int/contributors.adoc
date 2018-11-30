@@ -1,13 +1,5 @@
-== Authors' addresses
+== Authors' addresses SAML2int v1.0
 
-* Andreas Åkre Solberg, UNINETT, andreas.solberg@uninett.no
-* Scott Cantor, Ohio State University, cantor.2@osu.edu
-* Eve Maler, Sun Microsystems, eve.maler@sun.com
-* Leif Johansson, SUNET, leifj@sunet.se
-* Jeff Hodges, Neustar, Jeff.Hodges@neustar.biz
-* Ian Young, Independent, ian@iay.org.uk
-* Nate Klingenstein, Signet, ndk@internet2.edu
-* Bob Morgan, University of Washington, rlmorgan@washington.edu 
 * Keith Wessel, The University of Illinois, kwessel@illinois.edu (https://orcid.org/0000-0002-8047-3187)
 * Eric Goodman, University of California, Office of The President, eric.goodman@ucop.edu (https://orcid.org/0000-0002-5118-3009)
 * Andrew Morgan, Oregon State University, morgan@oregonstate.edu (https://orcid.org/0000-0003-0677-6988)
@@ -18,3 +10,14 @@
 * Chris Phillips, CANARIE, chris.phillips@canarie.ca (https://orcid.org/0000-0001-5567-4916)
 * Nicholas Roy, Internet2, nroy@internet2.edu (https://orcid.org/0000-0001-6515-4316)
 * Alan Buxey, MyUniDays, LTD., alan.buxey@myunidays.com (https://orcid.org/0000-0001-8217-8379)
+
+== Authors' addresses SAML2int previous versions
+
+* Andreas Åkre Solberg, UNINETT, andreas.solberg@uninett.no
+* Scott Cantor, Ohio State University, cantor.2@osu.edu
+* Eve Maler, Sun Microsystems, eve.maler@sun.com
+* Leif Johansson, SUNET, leifj@sunet.se
+* Jeff Hodges, Neustar, Jeff.Hodges@neustar.biz
+* Ian Young, Independent, ian@iay.org.uk
+* Nate Klingenstein, Signet, Inc. ndk@signet.id
+* Bob Morgan, University of Washington, rlmorgan@washington.edu
