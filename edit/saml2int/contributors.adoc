@@ -1,4 +1,4 @@
-== Authors' addresses SAML2int v1.0
+== Authors - SAML2int v1.0
 
 * Keith Wessel, The University of Illinois, kwessel@illinois.edu (https://orcid.org/0000-0002-8047-3187)
 * Eric Goodman, University of California, Office of The President, eric.goodman@ucop.edu (https://orcid.org/0000-0002-5118-3009)
@@ -11,7 +11,7 @@
 * Nicholas Roy, Internet2, nroy@internet2.edu (https://orcid.org/0000-0001-6515-4316)
 * Alan Buxey, MyUniDays, LTD., alan.buxey@myunidays.com (https://orcid.org/0000-0001-8217-8379)
 
-== Authors' addresses SAML2int previous versions
+== Authors - SAML2int previous versions
 
 * Andreas Åkre Solberg, UNINETT, andreas.solberg@uninett.no
 * Scott Cantor, Ohio State University, cantor.2@osu.edu
