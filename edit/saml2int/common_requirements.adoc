@@ -42,7 +42,7 @@ Deployments MUST NOT require out of band communication or coordination for the m
 
 [SDP-MD02]:: Consumption of metadata MUST be contingent on verification of a signature (STRONGLY RECOMMENDED) or TLS server certificate. The key ultimately used to establish trust in metadata MUST NOT itself appear within the same metadata in a `<md:KeyDescriptor>` element.
 
-_In most cases, the previous requirement implies that a key communicated via metadata may not also be used to sign and verify the same metadata, but it is possible to envision scenarios in which this may happen if metadata verification relies on a chain of certificates signed by an ultimately trusted Certificate Authority. However, it MUST be possible to seamlessly communicate new keys without necessarily changing the key used to establish trust in the metadata, which implies some level of indirection is required._
+_In most cases, the previous requirement implies that a key communicated via metadata may not also be used to sign and verify the same metadata, but it is possible to envision scenarios in which this may happen if metadata verification relies on a chain of certificates signed by an ultimately trusted Certificate Authority. However, it must be possible to seamlessly communicate new keys without necessarily changing the key used to establish trust in the metadata, which implies some level of indirection is required._
 
 ===== Metadata Validity
 
@@ -56,7 +56,7 @@ _These are critical (but very simple to implement) requirements for secure appli
 
 An entity's metadata MUST NOT contain content that advertises profile support or features that aren't supported by that entity's deployment, but it MAY include content indicating support for profiles or features beyond the scope of this profile.
  
-_As an example, deployments that lack support for, or have not tested and integrated an implementation's support for the HTTP-Artifact binding <<SAML2Bind>> MUST omit such endpoints._
+_As an example, deployments that lack support for, or have not tested and integrated an implementation's support for the HTTP-Artifact binding <<SAML2Bind>> must omit such endpoints._
 
 _This profile does not mandate any specific automated support for the production of metadata by a deployment. In fact, automatic generation of metadata has a strong tendency to undermine the correct functioning of peer deployments in the face of key rollover or changes to endpoints or other software features because it tends to change too suddenly to accommodate a graceful transition between states._
 
