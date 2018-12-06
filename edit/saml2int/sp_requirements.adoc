@@ -191,7 +191,7 @@ _This ensures the safest possible result for subjects in the event that logout f
 
 [SDP-SP36]:: SPs MUST NOT issue a `<samlp:LogoutRequest>` message as the result of an idle activity timeout.
 
-_Timeout of a single application/service msut not trigger logout of an SSO session because this imposes a single service's requirements on an entire IdP deployment. Applications with sensitive requirements should consider other mechanisms, such as the `ForceAuthn` attribute, to achieve their goals._
+_Timeout of a single application/service must not trigger logout of an SSO session because this imposes a single service's requirements on an entire IdP deployment. Applications with sensitive requirements should consider other mechanisms, such as the `ForceAuthn` attribute, to achieve their goals._
 
 ==== Logout and Virtual Hosting
 
