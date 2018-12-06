@@ -52,12 +52,6 @@ _An SP should not request a `<saml:AuthnContextClassRef>` value in the absence o
 
 _There are many reasons an SP may be unable or choose not to provide service to a user based on an given authentication response. IdPs failing to release the necessary SAML Attributes is the most prevalent interoperability issue encountered in larger, general purpose federations, which is why this scenario is singled out here._ 
 
-===== Forced Re-Authentication
-
-[SDP-SP13]:: SPs that include a `ForceAuthn` attribute of `true` in their requests SHOULD test the currency of the `AuthnInstant` element in the received assertions to verify the currency of the authentication event.
-
-_This is necessary because clients can freely generate requests that do not specify this attribute, potentially bypassing the SP's intent._
-
 ==== Subject Identification
 
 ===== NameID Formats
