@@ -1,6 +1,7 @@
 == Authors - SAML2int v1.0
 
-* Keith Wessel, The University of Illinois, kwessel@illinois.edu (https://orcid.org/0000-0002-8047-3187)
+* Keith Wessel (Editor), The University of Illinois, kwessel@illinois.edu (https://orcid.org/0000-0002-8047-3187)
+* Scott Cantor, Ohio State University, cantor.2@osu.edu
 * Eric Goodman, University of California, Office of The President, eric.goodman@ucop.edu (https://orcid.org/0000-0002-5118-3009)
 * Andrew Morgan, Oregon State University, morgan@oregonstate.edu (https://orcid.org/0000-0003-0677-6988)
 * Judith Bush, OCLC, bushj@oclc.org (https://orcid.org/0000-0001-6240-4121)
@@ -14,7 +15,6 @@
 == Authors - SAML2int previous versions
 
 * Andreas Åkre Solberg, UNINETT, andreas.solberg@uninett.no
-* Scott Cantor, Ohio State University, cantor.2@osu.edu
 * Eve Maler, ForgeRock, eve.maler@forgerock.com
 * Leif Johansson, SUNET, leifj@sunet.se
 * Jeff Hodges, Kings Mountain Systems, Jeff.Hodges@KingsMountain.com
