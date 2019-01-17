@@ -102,7 +102,7 @@ _The term "IdP session" is used to refer to the ongoing state between the IdP an
 
 ==== Request Content
 
-[SDP-IDP26]:: Requests MUST be signed ((via a signature created in accordance with the HTTP=Redirect binding [SAML2Bind]).
+[SDP-IDP26]:: Requests MUST be signed ((via a signature created in accordance with the HTTP-Redirect binding [SAML2Bind]).
 
 [SDP-IDP27]:: The `<saml:NameID>` element in `<samlp:LogoutRequest>` messages MUST NOT be encrypted.
 
@@ -118,7 +118,7 @@ _The normative requirement for the use of transient identifiers is intended to o
 
 ===== Response Content
 
-[SDP-IDP30]:: Responses MUST be signed (via a signature created in accordance with the HTTP=Redirect binding [SAML2Bind]).
+[SDP-IDP30]:: Responses MUST be signed (via a signature created in accordance with the HTTP-Redirect binding [SAML2Bind]).
 
 [SDP-IDP31]:: The `<samlp:StatusCode>` in the response issued by the IdP MUST reflect whether the IdP session was successfully terminated.
 
