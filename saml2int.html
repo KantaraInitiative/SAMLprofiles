@@ -862,7 +862,7 @@ License
 <dl>
 <dt class="hdlist1">[SDP-MD09]</dt>
 <dd>
-<p>Metadata MUST include an <code>&lt;mdui:UIInfo&gt;</code> element as defined in <a href="#MetaUI">[MetaUI]</a> containing at least the child elements <code>&lt;mdui:DisplayName&gt;</code>, <code>&lt;mdui:Logo&gt;</code>, and <code>&lt;mdui:InformationURL&gt;</code>.</p>
+<p>Metadata MUST include an <code>&lt;mdui:UIInfo&gt;</code> element as defined in <a href="#MetaUI">[MetaUI]</a> containing at least the child elements <code>&lt;mdui:DisplayName&gt;</code> and <code>&lt;mdui:Logo&gt;</code>. SP&#8217;s MUST include the child element <code>&lt;PrivacyStatementURL&gt;</code></p>
 </dd>
 <dt class="hdlist1">[SDP-MD10]</dt>
 <dd>
@@ -872,6 +872,14 @@ License
 </div>
 <div class="paragraph">
 <p><em>Specific details around logo formats including image size, encoding and aspect ratio should be coordinated with the common practice of the entity&#8217;s community of SAML peers.</em></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">[SDP-MD11]</dt>
+<dd>
+<p>Metadata MUST include an <code>&lt;md:ContactPerson&gt;</code> element with a contactType of <code>technical</code> and an <code>&lt;md:EmailAddress&gt;</code> element.</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -1429,6 +1437,9 @@ in its requests unless it also includes that port number in the URLs specified i
 <li>
 <p>at least one <code>&lt;md:KeyDescriptor&gt;</code> element whose <code>use</code> attribute is omitted or set to <code>encryption</code></p>
 </li>
+<li>
+<p>an <code>&lt;md:ContactPerson&gt;</code> element with a <code>contactType</code> of <code>technical</code> and an <code>&lt;md:EmailAddress&gt;</code> element</p>
+</li>
 </ul>
 </div>
 </li>
@@ -1441,9 +1452,6 @@ in its requests unless it also includes that port number in the URLs specified i
 </li>
 <li>
 <p>an <code>&lt;mdattr:EntityAttributes&gt;</code> extension element for signaling Subject Identifier requirements with previously prescribed content</p>
-</li>
-<li>
-<p>an <code>&lt;md:ContactPerson&gt;</code> element with a <code>contactType</code> of <code>technical</code> and an <code>&lt;md:EmailAddress&gt;</code> element</p>
 </li>
 </ul>
 </div>
@@ -1801,6 +1809,9 @@ in its requests unless it also includes that port number in the URLs specified i
 <li>
 <p>at least one <code>&lt;md:KeyDescriptor&gt;</code> element whose <code>use</code> attribute is omitted or set to <code>signing</code></p>
 </li>
+<li>
+<p>an <code>&lt;md:ContactPerson&gt;</code> element with a <code>contactType</code> of <code>technical</code> and an <code>&lt;md:EmailAddress&gt;</code> element</p>
+</li>
 </ul>
 </div>
 </li>
@@ -1809,7 +1820,10 @@ in its requests unless it also includes that port number in the URLs specified i
 <div class="ulist">
 <ul>
 <li>
-<p>an <code>&lt;mdui:UIInfo&gt;</code> extension element with previously prescribed content</p>
+<p>at least one <code>&lt;shibmd:Scope&gt;</code> element, within an <code>&lt;md:Extensions&gt;</code> element at either the <code>&lt;md:EntityDescriptor&gt;</code> or <code>&lt;md:IDPSSODescriptor&gt;</code> level.</p>
+</li>
+<li>
+<p>an <code>&lt;mdui:UIInfo&gt;</code> extension element containing the child elements <code>&lt;mdui:DisplayName&gt;</code> and <code>&lt;mdui:Logo&gt;</code></p>
 </li>
 </ul>
 </div>
@@ -1821,19 +1835,6 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 </dd>
 </dl>
-</div>
-<div class="paragraph">
-<p>In addition, an IdP&#8217;s metadata MUST contain:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>at least one <code>&lt;shibmd:Scope&gt;</code> element, within an <code>&lt;md:Extensions&gt;</code> element at either the <code>&lt;md:EntityDescriptor&gt;</code> or <code>&lt;md:IDPSSODescriptor&gt;</code> level.</p>
-</li>
-<li>
-<p>an <code>&lt;md:ContactPerson&gt;</code> element with a <code>contactType</code> of <code>technical</code> and an <code>&lt;md:EmailAddress&gt;</code> element</p>
-</li>
-</ul>
 </div>
 </div>
 </div>
