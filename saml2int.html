@@ -1437,10 +1437,13 @@ in its requests unless it also includes that port number in the URLs specified i
 <div class="ulist">
 <ul>
 <li>
-<p>an <code>&lt;mdui:UIInfo&gt;</code> extension element containing the child elements <code>&lt;mdui:DisplayName&gt;</code>, <code>&lt;mdui:Logo&gt;</code>, and <code>&lt;mdui:InformationURL&gt;</code></p>
+<p>an <code>&lt;mdui:UIInfo&gt;</code> extension element containing the child elements <code>&lt;mdui:DisplayName&gt;</code>, <code>&lt;mdui:Logo&gt;</code>, and <code>&lt;mdui:PrivacyStatementURL&gt;</code></p>
 </li>
 <li>
 <p>an <code>&lt;mdattr:EntityAttributes&gt;</code> extension element for signaling Subject Identifier requirements with previously prescribed content</p>
+</li>
+<li>
+<p>an <code>&lt;md:ContactPerson&gt;</code> element with a <code>contactType</code> of <code>technical</code> and an <code>&lt;md:EmailAddress&gt;</code> element</p>
 </li>
 </ul>
 </div>
@@ -1460,19 +1463,6 @@ in its requests unless it also includes that port number in the URLs specified i
 </li>
 <li>
 <p>at least one <code>&lt;md:SingleLogoutService&gt;</code> endpoint element (this MAY be omitted if the SP solely issues <code>&lt;samlp:LogoutRequest&gt;</code> messages containing the <code>&lt;aslo:Asynchronous&gt;</code> extension <a href="#SAML2ASLO">[SAML2ASLO]</a>)</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Finally, an SP&#8217;s metadata MUST also contain:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>an <code>&lt;md:ContactPerson&gt;</code> element with a <code>contactType</code> of <code>technical</code> and an <code>&lt;md:EmailAddress&gt;</code> element</p>
-</li>
-<li>
-<p>the <code>&lt;mdui:UIInfo&gt;</code> extension element must also contain a child element <code>&lt;mdui:PrivacyStatementURL&gt;</code></p>
 </li>
 </ul>
 </div>
