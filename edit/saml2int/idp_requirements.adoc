@@ -138,12 +138,11 @@ The ability to perform seamless key migration depends upon proper support for co
 ** at least one `<md:SingleSignOnService>` endpoint element
 ** at least one `<md:SingleLogoutService>` endpoint element
 ** at least one `<md:KeyDescriptor>` element whose `use` attribute is omitted or set to `signing`
+** an `<md:ContactPerson>` element with a `contactType` of `technical` and an `<md:EmailAddress>` element
+
 * an `<md:Extensions>` element at the role level
-** an `<mdui:UIInfo>` extension element with previously prescribed content
+** at least one `<shibmd:Scope>` element, within an `<md:Extensions>` element at either the `<md:EntityDescriptor>` or `<md:IDPSSODescriptor>` level.
+** an `<mdui:UIInfo>` extension element containing the child elements `<mdui:DisplayName>` and `<mdui:Logo>`
+
 * an `errorURL` attribute containing an https URL resolving to an HTML page suitable for referral by SPs in the event they receive insufficient attributes from the IdP to proceed
-
-In addition, an IdP's metadata MUST contain:
-
-* at least one `<shibmd:Scope>` element, within an `<md:Extensions>` element at either the `<md:EntityDescriptor>` or `<md:IDPSSODescriptor>` level.
-* an `<md:ContactPerson>` element with a `contactType` of `technical` and an `<md:EmailAddress>` element
 
