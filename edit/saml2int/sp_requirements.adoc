@@ -211,15 +211,11 @@ The ability to perform seamless key migration depends upon proper support for co
 ** at least one `<md:AssertionConsumerService>` endpoint element
 ** at least one `<md:KeyDescriptor>` element whose `use` attribute is omitted or set to `encryption`
 * an `<md:Extensions>` element
-** an `<mdui:UIInfo>` extension element containing the child elements `<mdui:DisplayName>`, `<mdui:Logo>`, and `<mdui:InformationURL>`
+** an `<mdui:UIInfo>` extension element containing the child elements `<mdui:DisplayName>`, `<mdui:Logo>`, and `<mdui:PrivacyStatementURL>`
 ** an `<mdattr:EntityAttributes>` extension element for signaling Subject Identifier requirements with previously prescribed content
+** an `<md:ContactPerson>` element with a `contactType` of `technical` and an `<md:EmailAddress>` element
 
 If the SP supports the Single Logout Profile, then its metadata MUST contain (within its `<md:SPSSODescriptor>` role element):
 
 * at least one `<md:KeyDescriptor>` element whose `use` attribute is omitted or set to `signing`
 * at least one `<md:SingleLogoutService>` endpoint element (this MAY be omitted if the SP solely issues `<samlp:LogoutRequest>` messages containing the `<aslo:Asynchronous>` extension <<SAML2ASLO>>)
-
-Finally, an SP's metadata MUST also contain:
-
-* an `<md:ContactPerson>` element with a `contactType` of `technical` and an `<md:EmailAddress>` element
-* the `<mdui:UIInfo>` extension element must also contain a child element `<mdui:PrivacyStatementURL>`
