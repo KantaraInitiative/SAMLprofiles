@@ -79,7 +79,7 @@ _By virtue of <<SAML2MDIOP>>, this profile (and SAML in general) does not place 
 
 ===== Discovery and User Interface Elements
 
-[SDP-MD09]:: Metadata MUST include an `<mdui:UIInfo>` element as defined in <<MetaUI>> containing at least the child elements `<mdui:DisplayName>` and `<mdui:Logo>`. SP's MUST include the child element `<PrivacyStatementURL>`
+[SDP-MD09]:: Metadata MUST include an `<mdui:UIInfo>` element as defined in <<MetaUI>> containing at least the child elements `<mdui:DisplayName>` and `<mdui:Logo>`. An SP's metadata MUST include the child element `<PrivacyStatementURL>`
 
 [SDP-MD10]:: The content of the `<mdui:Logo>` element MUST be either an `https` URL or an in-line image embedded in a `data` URI element. The size of the `data` URI used in a `<mdui:Logo>` element is not limited to 256 characters.
 
