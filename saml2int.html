@@ -1428,7 +1428,7 @@ in its requests unless it also includes that port number in the URLs specified i
 <div class="ulist">
 <ul>
 <li>
-<p>an <code>&lt;md:SPSSODescriptor&gt;</code> role element</p>
+<p>an <code>&lt;md:SPSSODescriptor&gt;</code> role element containing</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1444,7 +1444,7 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 </li>
 <li>
-<p>an <code>&lt;md:Extensions&gt;</code> element</p>
+<p>an <code>&lt;md:Extensions&gt;</code> element at the role level containing</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1797,7 +1797,7 @@ in its requests unless it also includes that port number in the URLs specified i
 <div class="ulist">
 <ul>
 <li>
-<p>an <code>&lt;md:IDPSSODescriptor&gt;</code> role element</p>
+<p>an <code>&lt;md:IDPSSODescriptor&gt;</code> role element containing</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1816,14 +1816,21 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 </li>
 <li>
-<p>an <code>&lt;md:Extensions&gt;</code> element at the role level</p>
+<p>an <code>&lt;md:Extensions&gt;</code> element at the role level containing</p>
 <div class="ulist">
 <ul>
 <li>
-<p>at least one <code>&lt;shibmd:Scope&gt;</code> element, within an <code>&lt;md:Extensions&gt;</code> element at either the <code>&lt;md:EntityDescriptor&gt;</code> or <code>&lt;md:IDPSSODescriptor&gt;</code> level.</p>
+<p>an <code>&lt;mdui:UIInfo&gt;</code> extension element containing the child elements <code>&lt;mdui:DisplayName&gt;</code> and <code>&lt;mdui:Logo&gt;</code></p>
 </li>
 <li>
-<p>an <code>&lt;mdui:UIInfo&gt;</code> extension element containing the child elements <code>&lt;mdui:DisplayName&gt;</code> and <code>&lt;mdui:Logo&gt;</code></p>
+<p>at least one <code>&lt;shibmd:Scope&gt;</code> element</p>
+<div class="ulist">
+<ul>
+<li>
+<p>alternately, these <code>&lt;shibmd:Scope&gt;`elements MAY instead reside in an `&lt;md:Extensions&gt;</code> element at the root (<code>&lt;md:EntityDescriptor&gt;</code>) level</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
