@@ -879,7 +879,14 @@ License
 <dd>
 <p>Metadata MUST include an <code>&lt;md:ContactPerson&gt;</code> element with a contactType of <code>technical</code> and an <code>&lt;md:EmailAddress&gt;</code> element.</p>
 </dd>
+<dt class="hdlist1">[SDP-MD12]</dt>
+<dd>
+<p>An IdP&#8217;s metadata MUST include the <code>errorURL</code> attribute on its <code>&lt;md:IDPSSODescriptor&gt;</code> element. The content of the <code>errorURL</code> attribute MUST be an https URL resolving to an HTML page.</p>
+</dd>
 </dl>
+</div>
+<div class="paragraph">
+<p><em>The <code>errorURL</code> HTML page should be suitable for referral by SPs in the event they receive insufficient attributes from the IdP to proceed.</em></p>
 </div>
 </div>
 </div>
@@ -1818,6 +1825,9 @@ in its requests unless it also includes that port number in the URLs specified i
 <li>
 <p>an <code>&lt;md:ContactPerson&gt;</code> element with a <code>contactType</code> of <code>technical</code> and an <code>&lt;md:EmailAddress&gt;</code> element</p>
 </li>
+<li>
+<p>an &lt;`md:errorURL&gt;` attribute</p>
+</li>
 </ul>
 </div>
 </li>
@@ -1840,9 +1850,6 @@ in its requests unless it also includes that port number in the URLs specified i
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>an <code>errorURL</code> attribute containing an https URL resolving to an HTML page suitable for referral by SPs in the event they receive insufficient attributes from the IdP to proceed</p>
 </li>
 </ul>
 </div>
