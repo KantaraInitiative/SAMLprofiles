@@ -1,0 +1,92 @@
+== Metadata and Trust Management
+
+Identity Providers and Service Providers MUST provide a SAML 2.0 Metadata document representing its entity. How metadata is exchanged is out of scope of this specification. Provided metadata MUST conform to the SAML V2.0 Metadata Interoperability Profile Version 1.0 <<SAML2MDIOP>>.
+
+Entities SHOULD publish its metadata using the Well-Known Location method defined in <<SAML2Meta>>.
+
+Metadata documents provided by an Identity Provider MUST include an `<md:IDPSSODescriptor>` element containing all necessary `<md:KeyDescriptor>` and `<md:SingleSignOnService>` elements. The metadata SHOULD include one or more `<md:NameIDFormat>` elements indicating which `<saml2:NameID>` Format values are supported.
+
+Metadata documents provided by a Service Provider MUST include an `<md:SPSSODescriptor>` element containing all necessary `<md:KeyDescriptor>` and `<md:AssertionConsumerService>` elements. The metadata SHOULD also include one or more `<md:NameIDFormat>` elements indicating which `<saml2:NameID>` Format values are supported and one or more `<md:AttributeConsumingService>` elements describing the service(s) offered and their attribute requirements.
+
+Metadata provided by Service Provider SHOULD also contain a descriptive name of the service that the Service Provider represents (not the company) in at least English. It is RECOMMENDED to also provide the name in other languages which is much used in the geographic scope of the deployment. The name should be placed in the `<md:ServiceName>` in the `<md:AttributeConsumingService>` container.
+
+If a Service Provider forgoes the use of TLS/SSL for its Assertion Consumer Service endpoints, then its metadata SHOULD include a `<md:KeyDescriptor>` suitable for XML Encryption. Note that use of TLS/SSL is RECOMMENDED.
+
+If a Service Provider plans to utilize a Discovery Service supporting the Identity Provider Discovery Service Protocol Profile <<IdPDisco>>, then its metadata MUST include one or more `<idpdisc:DiscoveryResponse>` elements in the `<md:Extensions>` element of its `<md:SPSSODescriptor>` element.
+
+Metadata provided by both Identity Providers and Service Provider SHOULD contain contact information for support and for a technical contact. The `<md:EntityDescriptor>` element SHOULD contain both a `<md:ContactPerson>` element with a `contactType` of "support" and a `<md:ContactPerson>` element with a `contactType` of "technical". The `<md:ContactPerson>` elements SHOULD contain at least one `<md:EmailAddress>`. The support address MAY be used for generic support questions about the service, while the technical contact may be contacted regarding technical interoperability problems. The technical contact MUST be responsible for the technical operation of the system(s) reflected in the metadata.
+
+== Name Identifiers
+
+Identity Providers MUST support the `urn:oasis:names:tc:SAML:2.0:nameid-format:transient` name identifier format <<SAML2Core>>. They SHOULD support the `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent` name identifier format <<SAML2Core>>. Support for other formats is OPTIONAL.
+
+Service Providers, if they rely at all on particular name identifier formats, MUST support one of the following:
+
+* urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+* urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+
+Reliance on other formats by Service Providers is NOT RECOMMENDED.
+
+Note that these requirements are reflected in additional constraints on message content in subsequent sections.
+
+== Attributes
+
+Any `<saml2:Attribute>` elements exchanged via any SAML 2.0 messages, assertions, or metadata MUST contain a NameFormat of `urn:oasis:names:tc:SAML:2.0:attrname-format:uri`.
+
+The use of LDAP/X.500 attributes and the LDAP/X.500 attribute profile <<X500SAMLattr>> is RECOMMENDED where possible.
+
+It is RECOMMENDED that the content of `<saml2:AttributeValue>` elements exchanged via any SAML 2.0 messages, assertions, or metadata be limited to a single child text node (i.e., a simple string value).
+
+Many identity federation use cases rely on the exchange of a so-called "targeted" or "pair-wise" user identifier that is typically opaque and varies for a given user when accessing different Service Providers. Various approaches to this compatible with SAML exist, including the SAML 2.0 "persistent" Name Identifier format <<SAML2Core>>, the eduPersonTargetedID attribute <<eduPerson>>, and the Private Personal Identifier claim <<IMI>>.
+
+This profile RECOMMENDS the use of the `<saml2:NameID>` element (within the `<saml2:Subject>` element), carried within the `<saml2:Subject>` with a Format of `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent` when an identifier of this nature is required.
+
+If an opaque targeted user identifier is being provided to the Service Provider, it is RECOMMENDED to use a `<saml2:NameID>` construct with a Format of `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent` rather than transporting that identifier as an `<saml2:Attribute>`.
+
+== Authentication Requests
+
+=== Binding and Security Requirements
+
+The `<saml2p:AuthnRequest>` message issued by a Service Provider MUST be communicated to the Identity Provider using the `HTTP-REDIRECT` binding <<SAML2Bind>>.
+
+Identity Providers MAY omit the verification of signatures in conjunction with this binding.
+
+The endpoints at which an Identity Provider receives a `<saml2p:AuthnRequest>` message, and all subsequent exchanges with the user agent, SHOULD be protected by TLS/SSL.
+
+=== Message Content
+
+The `<saml2p:AuthnRequest>` message issued by a Service Provider MUST contain an `AssertionConsumerServiceURL` attribute identifying the desired response location. The `ProtocolBinding` attribute, if present, MUST be set to `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST`.
+
+In verifying the Service Provider's Assertion Consumer Service, it is RECOMMENDED that the Identity Provider perform a case-sensitive string comparison between the requested `<saml2p:AssertionConsumerServiceURL>` value and the values found in the Service Provider's metadata. It is OPTIONAL to apply any form of URL canonicalization, which means the Service Provider SHOULD NOT rely on differently canonicalized values in these two locations. As an example, the Service Provider SHOULD NOT use a hostname with port number (such as https://sp.example.no:80/acs) in its request and without (such as https://sp.example.no/acs) in its metadata.
+
+The `<saml2p:AuthnRequest>` message MUST NOT contain a `<saml2:Subject>` element.
+
+Identity Providers that act as a proxy (per section 3.4.1.5.1 of <<SAML2Core>>) MUST support `<saml2p:AuthnRequest>` messages that do not contain a `<saml2p:Scoping>` element.
+
+The `<saml2p:AuthnRequest>` message SHOULD contain a `<saml2p:NameIDPolicy>` element with an `AllowCreate` attribute of "true". Its `Format` attribute, if present, SHOULD be set to one of the following values:
+
+* urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+* urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+
+The `<saml2p:AuthnRequest>` message MAY contain a `<saml2p:RequestedAuthnContext>` element, but SHOULD do so only in the presence of an arrangement between the Identity and Service Providers regarding the Authentication Context definitions in use. The `Comparison` attribute SHOULD be omitted or be set to "exact".
+
+== Responses
+
+=== Binding and Security Requirements
+The `<saml2p:Response>` message issued by an Identity Provider MUST be communicated to the Service Provider using the `HTTP-POST` binding <<SAML2Bind>>.
+
+The endpoint(s) at which a Service Provider receives a `<saml2p:Response>` message SHOULD be protected by TLS/SSL. If this is not the case, then Identity Providers SHOULD utilize XML Encryption and return a `<saml2:EncryptedAssertion>` element in the `<saml2p:Response>` message. The use of the `<saml2:EncryptedID>` and `<saml2:EncryptedAttribute>` elements is NOT RECOMMENDED; when possible, encrypt the entire assertion.
+
+Whether encrypted or not, the `<saml2:Assertion>` element issued by the Identity Provider MUST itself be signed directly using a `<ds:Signature>` element within the `<saml2:Assertion>`.
+
+Service Providers MUST support unsolicited `<saml2p:Response>` messages (i.e., responses that are not the result of an earlier `<saml2p:AuthnRequest>` message).
+
+=== Message Content
+Assuming a successful response, the `<saml2p:Response>` message issued by an Identity Provider MUST contain exactly one assertion (either a `<saml2:Assertion>` or an `<saml2:EncryptedAssertion>` element). The assertion MUST contain exactly one `<saml2:AuthnStatement>` element and MAY contain zero or one `<saml2:AttributeStatement>` elements.
+
+The `<saml2:Subject>` element of the assertions issued by an Identity Provider SHOULD contain a `<saml2:NameID>` element. The `<saml2:Subject>` element MUST NOT include a `<saml2:BaseID>` nor a `<saml2:EncryptedID>`. In the absence of a `<saml2p:NameIDPolicy>` Format attribute in the Service Provider's `<saml2p:AuthnRequest>` message, or a `<md:NameIDFormat>` element in the Service Provider's metadata, the Format of the `<saml2:NameID>` SHOULD be set to `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`.
+
+=== errorURL
+An IdP MUST publish an errorURL as an attribute of its IDPSSODescriptor with a value containing a valid URL to which the SP MAY redirect a user if the IdP does not release sufficient information in the form of attributes to enable the user to access the SP.
+
+_The errorURL is simply the location of a web page which an SP may return a user to if it fails to receive the attributes it needs from the IdP_
