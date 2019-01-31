@@ -89,6 +89,10 @@ _Specific details around logo formats including image size, encoding and aspect 
 
 [SDP-MD11]:: Metadata MUST include an `<md:ContactPerson>` element with a contactType of `technical` and an `<md:EmailAddress>` element.  
 
+[SDP-MD12]:: An IdP's metadata MUST include the `errorURL` attribute on its `<md:IDPSSODescriptor>` element. The content of the `errorURL` attribute MUST be an https URL resolving to an HTML page.
+
+_The `errorURL` HTML page should be suitable for referral by SPs in the event they receive insufficient attributes from the IdP to proceed._
+
 === Cryptographic Algorithms
 
 [SDP-ALG01]:: Deployments MUST support, and use, the following algorithms when communicating with peers in the context of this profile. Where multiple choices exist, any of the listed options may be used. The profile will be updated as necessary to reflect changes in government and industry recommendations regarding algorithm usage.
