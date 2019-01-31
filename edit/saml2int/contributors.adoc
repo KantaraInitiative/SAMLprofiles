@@ -1,4 +1,4 @@
-== Authors - SAML2int v1.0
+== Authors - SAML2int v2.0
 
 * Keith Wessel (Editor), The University of Illinois, kwessel@illinois.edu (https://orcid.org/0000-0002-8047-3187)
 * Scott Cantor, Ohio State University, cantor.2@osu.edu
