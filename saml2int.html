@@ -836,6 +836,9 @@ License
 </li>
 <li>
 <p><em>do not sign certificates with MD5- or SHA1-based signature algorithms</em></p>
+</li>
+</ul>
+</div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">[SDP-MD06]</dt>
@@ -851,9 +854,6 @@ License
 <p>By virtue of the profile&#8217;s overall requirements, an IdP&#8217;s metadata MUST include at least one signing certificate (that is, an <code>&lt;md:KeyDescriptor&gt;</code> with no <code>use</code> attribute or one set to <code>signing</code>), and an SP&#8217;s metadata MUST include at least one encryption certificate (that is, an <code>&lt;md:KeyDescriptor&gt;</code> with no <code>use</code> attribute or one set to <code>encryption</code>).</p>
 </dd>
 </dl>
-</div>
-</li>
-</ul>
 </div>
 </div>
 <div class="sect4">
@@ -1090,7 +1090,7 @@ in its requests unless it also includes that port number in the URLs specified i
 <h5 id="_nameid_formats">NameID Formats</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP14]</dt>
+<dt class="hdlist1">[SDP-SP13]</dt>
 <dd>
 <p>SPs MUST NOT require the presence of a <code>&lt;saml:NameID&gt;</code> element.</p>
 </dd>
@@ -1104,7 +1104,7 @@ in its requests unless it also includes that port number in the URLs specified i
 <h5 id="_subject_identifiers">Subject Identifiers</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP15]</dt>
+<dt class="hdlist1">[SDP-SP14]</dt>
 <dd>
 <p>If an SP requires persistent tracking/identification of its users (as most do), then it MUST support one or both of the SAML Attributes defined by <a href="#SAML2SubjId">[SAML2SubjId]</a> for this purpose.</p>
 </dd>
@@ -1121,7 +1121,7 @@ in its requests unless it also includes that port number in the URLs specified i
 <h5 id="_subject_identifier_requirements_signaling">Subject Identifier Requirements Signaling</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP16]</dt>
+<dt class="hdlist1">[SDP-SP15]</dt>
 <dd>
 <p>An SP MUST represent its identifier requirements in its SAML metadata, consistent with the Requirements Signaling mechanism defined in <a href="#SAML2SubjId">[SAML2SubjId]</a>.</p>
 </dd>
@@ -1132,11 +1132,11 @@ in its requests unless it also includes that port number in the URLs specified i
 <h5 id="_identifier_scoping">Identifier Scoping</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP17]</dt>
+<dt class="hdlist1">[SDP-SP16]</dt>
 <dd>
 <p>SPs MUST prevent unintended identifier collisions in the values asserted by different IdPs, and the required identifier types, per <a href="#SAML2SubjId">[SAML2SubjId]</a>, are "scoped" via a DNS-like syntax to help fulfill this requirement.</p>
 </dd>
-<dt class="hdlist1">[SDP-SP18]</dt>
+<dt class="hdlist1">[SDP-SP17]</dt>
 <dd>
 <p>SPs MUST associate identifier scopes with IdPs such that only authorized IdPs may assert identifiers with particular scopes for particular purposes.</p>
 </dd>
@@ -1159,7 +1159,7 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP19]</dt>
+<dt class="hdlist1">[SDP-SP18]</dt>
 <dd>
 <p>SPs requiring the display of identifiers to users, the identification of other users via searching, selection, etc., and similar use cases SHOULD rely on additional suitable SAML Attributes such as:</p>
 <div class="ulist">
@@ -1190,7 +1190,7 @@ in its requests unless it also includes that port number in the URLs specified i
 <h4 id="_attribute_value_constraints">4.1.4. Attribute Value Constraints</h4>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP20]</dt>
+<dt class="hdlist1">[SDP-SP19]</dt>
 <dd>
 <p>When consuming SAML Attributes with standardized definitions in external specifications, SPs MUST NOT impose constraints beyond the definitions of those attributes.</p>
 </dd>
@@ -1221,7 +1221,7 @@ in its requests unless it also includes that port number in the URLs specified i
 <h5 id="_support_for_multiple_idps">Support for Multiple IdPs</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP21]</dt>
+<dt class="hdlist1">[SDP-SP20]</dt>
 <dd>
 <p>SPs MUST allow for the possibility that any given request requiring authentication may be potentially satisfied by more than one IdP. That is, any scenario in which a piece of content, policy, configuration, or decision on the part of an application is bound to an IdP MUST be constructed in a fashion such that more than one IdP may be so bound.</p>
 </dd>
@@ -1235,7 +1235,7 @@ in its requests unless it also includes that port number in the URLs specified i
 <h5 id="_deep_linking">Deep Linking</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP22]</dt>
+<dt class="hdlist1">[SDP-SP21]</dt>
 <dd>
 <p>Applications SHOULD, and collaborative applications MUST, support deep linking. Deep linking implies maintaining support for such links across the boundary of a Web Browser SSO profile interaction involving any IdP necessary to complete the login process.</p>
 </dd>
@@ -1246,7 +1246,7 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP23]</dt>
+<dt class="hdlist1">[SDP-SP22]</dt>
 <dd>
 <p>It is RECOMMENDED that SPs support the preservation of POST bodies across a successful SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.</p>
 </dd>
@@ -1266,7 +1266,7 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP24]</dt>
+<dt class="hdlist1">[SDP-SP23]</dt>
 <dd>
 <p>SPs SHOULD support the Identity Provider Discovery Service Protocol and Profile defined in <a href="#IdPDisco">[IdPDisco]</a> as it provides a general, composable building block. SPs are free to support other mechanisms and caching solutions (e.g., cookies) as desired, to reduce the frequency of discovery.</p>
 </dd>
@@ -1279,7 +1279,7 @@ in its requests unless it also includes that port number in the URLs specified i
 <h3 id="_single_logout">4.2. Single Logout</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP25]</dt>
+<dt class="hdlist1">[SDP-SP24]</dt>
 <dd>
 <p>SPs MAY support the Single Logout Profile <a href="#SAML2Prof">[SAML2Prof]</a>, as updated by the Approved Errata <a href="#SAML2Err">[SAML2Err]</a>. The following requirements apply in the case of such support.</p>
 </dd>
@@ -1291,15 +1291,15 @@ in its requests unless it also includes that port number in the URLs specified i
 <h5 id="_binding_3">Binding</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP26]</dt>
+<dt class="hdlist1">[SDP-SP25]</dt>
 <dd>
 <p>The HTTP-Redirect binding <a href="#SAML2Bind">[SAML2Bind]</a> MUST be used for the transmission of <code>&lt;samlp:LogoutRequest&gt;</code> messages.</p>
 </dd>
-<dt class="hdlist1">[SDP-SP27]</dt>
+<dt class="hdlist1">[SDP-SP26]</dt>
 <dd>
 <p>SPs MUST support the HTTP-Redirect <a href="#SAML2Bind">[SAML2Bind]</a> binding for the receipt of <code>&lt;samlp:LogoutRequest&gt;</code> messages, in the event that inbound <code>&lt;samlp:LogoutRequest&gt;</code> messages are supported.</p>
 </dd>
-<dt class="hdlist1">[SDP-SP28]</dt>
+<dt class="hdlist1">[SDP-SP27]</dt>
 <dd>
 <p>Requests MUST NOT be issued inside an HTML frame or via any mechanism that would require the use of third-party cookies by the IdP to establish or recover a session with the User Agent. This will typically imply that requests must involve a full-frame redirect, in order that the top level window origin be associated with the IdP.</p>
 </dd>
@@ -1313,15 +1313,15 @@ in its requests unless it also includes that port number in the URLs specified i
 <h5 id="_request_content_2">Request Content</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP29]</dt>
+<dt class="hdlist1">[SDP-SP28]</dt>
 <dd>
 <p>Requests MUST be signed (via a signature created in accordance with the HTTP-Redirect binding [SAML2Bind]).</p>
 </dd>
-<dt class="hdlist1">[SDP-SP30]</dt>
+<dt class="hdlist1">[SDP-SP29]</dt>
 <dd>
 <p>The <code>&lt;saml:NameID&gt;</code> element included in <code>&lt;samlp:LogoutRequest&gt;</code> messages MUST exactly match the corresponding element received from the IdP, including its element content and all XML attributes included therein.</p>
 </dd>
-<dt class="hdlist1">[SDP-SP31]</dt>
+<dt class="hdlist1">[SDP-SP30]</dt>
 <dd>
 <p>The <code>&lt;saml:NameID&gt;</code> element in <code>&lt;samlp:LogoutRequest&gt;</code> messages MUST NOT be encrypted.</p>
 </dd>
@@ -1338,11 +1338,11 @@ in its requests unless it also includes that port number in the URLs specified i
 <h5 id="_binding_4">Binding</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP32]</dt>
+<dt class="hdlist1">[SDP-SP31]</dt>
 <dd>
 <p>The HTTP-Redirect binding <a href="#SAML2Bind">[SAML2Bind]</a> MUST be used for the transmission of <code>&lt;samlp:LogoutResponse&gt;</code> messages.</p>
 </dd>
-<dt class="hdlist1">[SDP-SP33]</dt>
+<dt class="hdlist1">[SDP-SP32]</dt>
 <dd>
 <p>SPs MUST support the HTTP-Redirect <a href="#SAML2Bind">[SAML2Bind]</a> binding for the receipt of <code>&lt;samlp:LogoutResponse&gt;</code> messages, in the event that they do not include the <code>&lt;aslo:Asynchronous&gt;</code> extension <a href="#SAML2ASLO">[SAML2ASLO]</a> in all of their requests.</p>
 </dd>
@@ -1353,7 +1353,7 @@ in its requests unless it also includes that port number in the URLs specified i
 <h5 id="_response_content">Response Content</h5>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP34]</dt>
+<dt class="hdlist1">[SDP-SP33]</dt>
 <dd>
 <p>Responses MUST be signed (via a signature created in accordance with the HTTP-Redirect binding [SAML2Bind]).</p>
 </dd>
@@ -1365,7 +1365,7 @@ in its requests unless it also includes that port number in the URLs specified i
 <h4 id="_behavioral_requirements">4.2.3. Behavioral Requirements</h4>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP35]</dt>
+<dt class="hdlist1">[SDP-SP34]</dt>
 <dd>
 <p>SPs MUST terminate a subject&#8217;s local session before issuing a <code>&lt;samlp:LogoutRequest&gt;</code> message to the IdP.</p>
 </dd>
@@ -1376,7 +1376,7 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP36]</dt>
+<dt class="hdlist1">[SDP-SP35]</dt>
 <dd>
 <p>SPs MUST NOT issue a <code>&lt;samlp:LogoutRequest&gt;</code> message as the result of an idle activity timeout.</p>
 </dd>
@@ -1390,7 +1390,7 @@ in its requests unless it also includes that port number in the URLs specified i
 <h4 id="_logout_and_virtual_hosting">4.2.4. Logout and Virtual Hosting</h4>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP37]</dt>
+<dt class="hdlist1">[SDP-SP36]</dt>
 <dd>
 <p>An SP that maintains distinct sessions across multiple virtual hosts SHOULD identify itself by means of a distinct entityID (with associated metadata) for each virtual host.</p>
 </dd>
@@ -1410,11 +1410,11 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP38]</dt>
+<dt class="hdlist1">[SDP-SP37]</dt>
 <dd>
 <p>SP deployments MUST support multiple signing certificates in IdP metadata and MUST support validation of XML signatures using a key from any of them.</p>
 </dd>
-<dt class="hdlist1">[SDP-SP39]</dt>
+<dt class="hdlist1">[SDP-SP38]</dt>
 <dd>
 <p>SP deployments MUST be able to support multiple decryption keys and MUST be able to decrypt <code>&lt;saml:EncryptedAssertion&gt;</code> elements encrypted with any configured key.</p>
 </dd>
@@ -1425,7 +1425,7 @@ in its requests unless it also includes that port number in the URLs specified i
 <h4 id="_metadata_content">4.3.2. Metadata Content</h4>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">[SDP-SP40]</dt>
+<dt class="hdlist1">[SDP-SP39]</dt>
 <dd>
 <p>By virtue of this profile&#8217;s requirements, an SP&#8217;s metadata MUST contain:</p>
 <div class="ulist">
