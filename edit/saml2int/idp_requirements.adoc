@@ -1,5 +1,7 @@
 == IdP Requirements
 
+This section provides requirements specific to IdPs, in addition to the Common Requirements above.
+
 === Web Browser SSO
 
 [SDP-IDP01]:: IdPs MUST support the Browser SSO Profile <<SAML2Prof>>, as updated by the Approved Errata <<SAML2Err>>, with behavior, capabilities, and options consistent with the additional constraints specified in this section.
