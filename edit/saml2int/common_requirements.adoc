@@ -91,7 +91,7 @@ _Specific details around logo formats including image size, encoding and aspect 
 
 [SDP-MD12]:: An IdP's metadata MUST include the `errorURL` attribute on its `<md:IDPSSODescriptor>` element. The content of the `errorURL` attribute MUST be an https URL resolving to an HTML page.
 
-_The `errorURL` HTML page should be suitable for referral by SPs in the event they receive insufficient attributes from the IdP to proceed._
+_The errorURL HTML page should be suitable for referral by SPs if they receive insufficient attributes from the IdP to successfully authenticate or authorize the user's access. The page should provide information targeted at the end user explaining how to contact the operator of the IdP to request addition of the necessary attributes to the assertions._
 
 === Cryptographic Algorithms
 
