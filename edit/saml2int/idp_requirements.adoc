@@ -141,7 +141,7 @@ The ability to perform seamless key migration depends upon proper support for co
 ** at least one `<md:SingleLogoutService>` endpoint element
 ** at least one `<md:KeyDescriptor>` element whose `use` attribute is omitted or set to `signing`
 ** an `<md:ContactPerson>` element with a `contactType` of `technical` and an `<md:EmailAddress>` element
-** an <`md:errorURL>` attribute
+** an `errorURL` attribute
 
 * an `<md:Extensions>` element at the role level containing
 ** an `<mdui:UIInfo>` extension element containing the child elements `<mdui:DisplayName>` and `<mdui:Logo>`
