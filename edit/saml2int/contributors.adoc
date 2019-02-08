@@ -1,6 +1,6 @@
 == Authors - SAML2int v2.0
 
-* Keith Wessel (Editor), The University of Illinois, kwessel@illinois.edu (https://orcid.org/0000-0002-8047-3187)
+* Keith Wessel (Editor), University of Illinois at Urbana-Champaign, kwessel@illinois.edu (https://orcid.org/0000-0002-8047-3187)
 * Scott Cantor, Ohio State University, cantor.2@osu.edu
 * Eric Goodman, University of California, Office of The President, eric.goodman@ucop.edu (https://orcid.org/0000-0002-5118-3009)
 * Andrew Morgan, Oregon State University, morgan@oregonstate.edu (https://orcid.org/0000-0003-0677-6988)
