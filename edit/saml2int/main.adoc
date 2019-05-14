@@ -18,9 +18,6 @@ Date:: {docdate}
 Status:: Community Draft
 License:: https://creativecommons.org/licenses/by/4.0/[Creative Commons Attribution 4.0 International]
 
-.Required Information
-Document identifier: TBD
-
 include::introduction.adoc[]
 
 include::notation.adoc[]
