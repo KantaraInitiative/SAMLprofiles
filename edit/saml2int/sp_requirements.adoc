@@ -12,7 +12,7 @@ This section provides requirements specific to SPs, in addition to the Common Re
 
 [SDP-SP02]:: The HTTP-Redirect binding <<SAML2Bind>> MUST be used for the transmission of `<samlp:AuthnRequest>` messages.
 
-[SDP-SP03]:: Requests MUST NOT be issued inside an HTML frame or via any mechanism that would require the use of third-party cookies by the IdP to establish or recover a session with the User Agent. This will typically imply that requests do not involve a full-frame redirect, in order that the top level window origin be associated with the IdP.
+[SDP-SP03]:: Requests MUST NOT be issued inside an HTML frame or via any mechanism that would require the use of third-party cookies by the IdP to establish or recover a session with the User Agent. This will typically imply that requests will involve a full-frame redirect, in order that the top level window origin be associated with the IdP.
 
 ===== Request Content
 
