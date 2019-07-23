@@ -40,9 +40,10 @@ _An entityID should be chosen in a manner that minimizes the likelihood of it ch
 
 Deployments MUST NOT require out of band communication or coordination for the management of any behavior by peers included within the enumerated areas identified above. Deployments MAY of course rely on additional sources of policy, including other metadata content, in order to make determinations whether to successfully interact with peers or refuse to do so.
 
-[SDP-MD02]:: Consumption of metadata MUST be contingent on verification of a signature (STRONGLY RECOMMENDED) or TLS server certificate. The key ultimately used to establish trust in metadata MUST NOT itself appear within the same metadata in a `<md:KeyDescriptor>` element.
+[SDP-MD02]:: Consumption of metadata MUST be contingent on verification of a signature (STRONGLY RECOMMENDED) or TLS server certificate. It MUST be possible to communicate changes to the keys within the metadata without also changing the key used to establish trust in the metadata.
 
-_In most cases, the previous requirement implies that a key communicated via metadata may not also be used to sign and verify the same metadata, but it is possible to envision scenarios in which this may happen if metadata verification relies on a chain of certificates signed by an ultimately trusted Certificate Authority. However, it must be possible to seamlessly communicate new keys without necessarily changing the key used to establish trust in the metadata, which implies some level of indirection is required._
+_In most cases, this requirement implies that a key communicated via metadata will not also be used to sign and verify the same metadata, but it is possible to construct scenarios in which this may happen if metadata verification relies on a chain of certificates signed by an ultimately trusted Certificate Authority. The details of such an approach are beyond the scope of this document._
+
 
 ===== Metadata Validity
 
