@@ -34,6 +34,8 @@ _The Browser SSO Profile <<SAML2Prof>> notes that validation of the response end
 
 If an IdP cannot prove subject presence, then it MUST fail the request and SHOULD respond to the SP with a SAML error status.
 
+_Due to the potential for confusion over more frequent authentication challenges, the IdP may wish to indicate when this feature is being used on the login user interface it presents to the user._
+
 ==== Responses
 
 ===== Binding
