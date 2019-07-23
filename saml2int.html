@@ -768,12 +768,12 @@ License
 <dl>
 <dt class="hdlist1">[SDP-MD02]</dt>
 <dd>
-<p>Consumption of metadata MUST be contingent on verification of a signature (STRONGLY RECOMMENDED) or TLS server certificate. The key ultimately used to establish trust in metadata MUST NOT itself appear within the same metadata in a <code>&lt;md:KeyDescriptor&gt;</code> element.</p>
+<p>Consumption of metadata MUST be contingent on verification of a signature (STRONGLY RECOMMENDED) or TLS server certificate. It MUST be possible to communicate changes to the keys within the metadata without also changing the key used to establish trust in the metadata.</p>
 </dd>
 </dl>
 </div>
 <div class="paragraph">
-<p><em>In most cases, the previous requirement implies that a key communicated via metadata may not also be used to sign and verify the same metadata, but it is possible to envision scenarios in which this may happen if metadata verification relies on a chain of certificates signed by an ultimately trusted Certificate Authority. However, it must be possible to seamlessly communicate new keys without necessarily changing the key used to establish trust in the metadata, which implies some level of indirection is required.</em></p>
+<p><em>In most cases, this requirement implies that a key communicated via metadata will not also be used to sign and verify the same metadata, but it is possible to construct scenarios in which this may happen if metadata verification relies on a chain of certificates signed by an ultimately trusted Certificate Authority. The details of such an approach are beyond the scope of this document.</em></p>
 </div>
 <div class="sect4">
 <h5 id="_metadata_validity">Metadata Validity</h5>
