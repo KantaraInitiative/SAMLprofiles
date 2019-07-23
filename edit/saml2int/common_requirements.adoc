@@ -111,10 +111,10 @@ _The errorURL HTML page should be suitable for referral by SPs if they receive i
 
 * Key Transport
 ** ```http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p``` <<XMLEnc>>
-** ```http://www.w3.org/2009/xmlenc11#rsa-oaep``` <<XMLEnc>> 
 
-The following default digest algorithm MUST be used in conjunction with the above key transport algorithms (the default mask generation function, MGF1 with SHA1, MUST be used):
-
-* ```http://www.w3.org/2001/04/xmlenc#sha256``` <<XMLEnc>>
+* Key Transport Digest
+** ```http://www.w3.org/2000/09/xmldsig#sha1``` <<XMLSig>>
 
 _This profile cannot preclude the use of other algorithms when communicating with peers outside the scope of this profile, but the other algorithms in common use are generally considered to be weakening (e.g., SHA-1) or broken outright (e.g., RSA PKCS#1.5). Note that the use of AES-CBC block encryption algorithms remains widespread at the time of authoring, but are known to be broken <<XMLEncBreak>>._
+
+_The key transport requirement is defined in the interest of avoiding interoperability problems without a compelling security benefit. The original OAEP padding method defaults to the use of SHA-1 as a digest algorithm (as mandated above) and assumes the use of the "MGF1 with SHA-1" mask generation function._
