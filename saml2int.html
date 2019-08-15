@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.6.1">
-<title>SAML V2.0 Interoperability Deployment Profile</title>
+<title>SAML V2.0 Deployment Profile for Federation Interoperability Version 2.0</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -469,7 +469,7 @@ dl dd {
 <div id="preamble">
 <div class="sectionbody">
 <h1 style="color: blue; text-align: center; font-size: 150%; margin-bottom: 2em; font-weight: bold;">
-SAML V2.0 Interoperability Deployment Profile V2.0 (Draft)
+SAML V2.0 Deployment Profile for Federation Interoperability
 </h1>
 <div class="hdlist">
 <table>
@@ -486,7 +486,15 @@ Version
 Date
 </td>
 <td class="hdlist2">
-<p>2019-05-14</p>
+<p>2019-08-15</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Location
+</td>
+<td class="hdlist2">
+<p><a href="https://kantarainitiative.github.io/SAMLprofiles/saml2int.html" class="bare">https://kantarainitiative.github.io/SAMLprofiles/saml2int.html</a></p>
 </td>
 </tr>
 <tr>
@@ -494,64 +502,129 @@ Date
 Status
 </td>
 <td class="hdlist2">
-<p>Community Draft</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-License
-</td>
-<td class="hdlist2">
-<p><a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International</a></p>
+<p>This document is a Kantara Initiative Group Editors' Draft Document produced by the <a href="https://kantarainitiative.org/confluence/display/fiwg/Home">Federation Interoperability Work Group</a>. It has not yet been approved by the Membership of the Kantara Initiative. See the Kantara Initiative <a href="https://kantarainitiative.org/confluence/download/attachments/2293776/Kantara%20Operating%20Procedures%20V2.0-20150226.pdf?version=2&amp;modificationDate=1444240055000&amp;api=v2">Operating Procedures</a> for more information.</p>
 </td>
 </tr>
 </table>
+</div>
+<div class="ulist">
+<div class="title">Contributors - V2.0</div>
+<ul>
+<li>
+<p>Keith Wessel (University of Illinois at Urbana-Champaign) - <em>Editor</em></p>
+</li>
+<li>
+<p>Scott Cantor (Ohio State University)</p>
+</li>
+<li>
+<p>Eric Goodman (University of California, Office of the President)</p>
+</li>
+<li>
+<p>Andrew Morgan (Oregon State University)</p>
+</li>
+<li>
+<p>Judith Bush (OCLC)</p>
+</li>
+<li>
+<p>Thomas Lenggenhager (SWITCH)</p>
+</li>
+<li>
+<p>Alex Stuart (JISC)</p>
+</li>
+<li>
+<p>Keith Hazelton (Internet2)</p>
+</li>
+<li>
+<p>Chris Phillips (CANARIE)</p>
+</li>
+<li>
+<p>Nicholas Roy (Internet2)</p>
+</li>
+<li>
+<p>Alan Buxey (MyUniDays, LTD.)</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Contributors - previous versions</div>
+<ul>
+<li>
+<p>Andreas Åkre Solberg (UNINETT)</p>
+</li>
+<li>
+<p>Eve Maler (ForgeRock)</p>
+</li>
+<li>
+<p>Leif Johansson (SUNET)</p>
+</li>
+<li>
+<p>Jeff Hodges (Kings Mountain Systems)</p>
+</li>
+<li>
+<p>Ian Young (Independent)</p>
+</li>
+<li>
+<p>Nate Klingenstein (Signet, Inc.)</p>
+</li>
+<li>
+<p>Bob Morgan (University of Washington)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Abstract</div>
+<p>This profile specifies behavior and options that deployments of the SAML V2.0 Web Browser SSO Profile <a href="#SAML2Prof">[SAML2Prof]</a>, and related profiles, are required or permitted to rely on. This deployment profile should not be confused with a SAML implementation profile, such as <a href="#SAML2Impl">[SAML2Impl]</a>. A deployment profile specifies how software should be configured given a specific set of deployment goals. An implementation profile tells software developers how they must implement their software in order to meet basic requirements.</p>
+</div>
+<div class="paragraph">
+<div class="title">Copyright Notice</div>
+<p>SAML V2.0 Deployment Profile for Federation Interoperability ©2019 by the respective contributors, used under license.  All rights reserved.</p>
+</div>
+<div class="paragraph">
+<div class="title">License</div>
+<p>This work is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
 </div>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_introduction">1. Introduction</a></li>
-<li><a href="#_notation_and_terminology">2. Notation and Terminology</a>
+<li><a href="#_introduction">1. Introduction</a>
 <ul class="sectlevel2">
-<li><a href="#_references_to_saml_2_0_specification">2.1. References to SAML 2.0 specification</a></li>
-<li><a href="#_terminology">2.2. Terminology</a></li>
+<li><a href="#_notation_and_terminology">1.1. Notation and Terminology</a></li>
 </ul>
 </li>
-<li><a href="#_common_requirements">3. Common Requirements</a>
+<li><a href="#_common_requirements">2. Common Requirements</a>
 <ul class="sectlevel2">
-<li><a href="#_general">3.1. General</a></li>
-<li><a href="#_metadata_and_trust_management">3.2. Metadata and Trust Management</a></li>
-<li><a href="#_cryptographic_algorithms">3.3. Cryptographic Algorithms</a></li>
+<li><a href="#_general">2.1. General</a></li>
+<li><a href="#_metadata_and_trust_management">2.2. Metadata and Trust Management</a></li>
+<li><a href="#_cryptographic_algorithms">2.3. Cryptographic Algorithms</a></li>
 </ul>
 </li>
-<li><a href="#_sp_requirements">4. SP Requirements</a>
+<li><a href="#_service_provider_requirements">3. Service Provider Requirements</a>
 <ul class="sectlevel2">
-<li><a href="#_web_browser_sso">4.1. Web Browser SSO</a></li>
-<li><a href="#_single_logout">4.2. Single Logout</a></li>
-<li><a href="#_metadata_and_trust_management_2">4.3. Metadata and Trust Management</a></li>
+<li><a href="#_web_browser_sso">3.1. Web Browser SSO</a></li>
+<li><a href="#_single_logout">3.2. Single Logout</a></li>
+<li><a href="#_metadata_and_trust_management_2">3.3. Metadata and Trust Management</a></li>
 </ul>
 </li>
-<li><a href="#_idp_requirements">5. IdP Requirements</a>
+<li><a href="#_identity_provider_requirements">4. Identity Provider Requirements</a>
 <ul class="sectlevel2">
-<li><a href="#_web_browser_sso_2">5.1. Web Browser SSO</a></li>
-<li><a href="#_single_logout_2">5.2. Single Logout</a></li>
-<li><a href="#_metadata_and_trust_management_3">5.3. Metadata and Trust Management</a></li>
+<li><a href="#_web_browser_sso_2">4.1. Web Browser SSO</a></li>
+<li><a href="#_single_logout_2">4.2. Single Logout</a></li>
+<li><a href="#_metadata_and_trust_management_3">4.3. Metadata and Trust Management</a></li>
 </ul>
 </li>
-<li><a href="#_normative_references">6. Normative References</a></li>
-<li><a href="#_non_normative_references">7. Non-Normative References</a></li>
-<li><a href="#_authors_saml2int_v2_0">8. Authors - SAML2int v2.0</a></li>
-<li><a href="#_authors_saml2int_previous_versions">9. Authors - SAML2int previous versions</a></li>
+<li><a href="#_references">5. References</a>
+<ul class="sectlevel2">
+<li><a href="#_normative">5.1. Normative</a></li>
+<li><a href="#_non_normative">5.2. Non-Normative</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_introduction">1. Introduction</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>This profile specifies behavior and options that deployments of the SAML V2.0 Web Browser SSO Profile <a href="#SAML2Prof">[SAML2Prof]</a>, and related profiles, are required or permitted to rely on. This deployment profile should not be confused with a SAML implementation profile, such as <a href="#SAML2Impl">[SAML2Impl]</a>. A deployment profile specifies how software should be configured given a specific set of deployment goals. An implementation profile tells software developers how they must implement their software in order to meet basic requirements.</p>
-</div>
 <div class="paragraph">
 <p>This revision, the first major rewrite of this material, reflects the input of many experienced implementers and deployers of this technology and best practice developed over 15 years of experience with varied approaches. While it has an emphasis on highly-scaled multi-lateral federation deployments involving thousands of Identity Providers (IdPs) and Service Providers (SPs), most of these requirements are applicable to virtually any significant deployment of SAML SSO.</p>
 </div>
@@ -567,19 +640,22 @@ License
 <div class="paragraph">
 <p>This profile addresses only behavior specific to the direct participants in the covered profiles. It does not include additional processing requirements that may be important when proxying.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_notation_and_terminology">2. Notation and Terminology</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_notation_and_terminology">1.1. Notation and Terminology</h3>
 <div class="paragraph">
 <p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 <a href="#RFC2119">[RFC2119]</a> <a href="#RFC8174">[RFC8174]</a> when, and only when, they appear in all capitals, as shown here.</p>
 </div>
 <div class="paragraph">
 <p>This specification uses the following typographical conventions in text: <code>&lt;ns:Element&gt;</code>, <code>Attribute</code>, <strong>Datatype</strong>, <code>OtherCode</code>. The normative requirements of this specification are individually labeled with a unique identifier in the following form: <strong>[SDP-EXAMPLE01]</strong>. All information within these requirements should be considered normative unless it is set in <em>italic</em> type.  Italicized text is non-normative and is intended to provide additional information that may be helpful in implementing the normative requirements.</p>
 </div>
-<div class="sect2">
-<h3 id="_references_to_saml_2_0_specification">2.1. References to SAML 2.0 specification</h3>
+<div class="paragraph">
+<p>The abbreviations IdP and SP are used below to refer to Identity Providers and Service Providers in the sense of their usage within the SAML Browser SSO Profile and Single Logout profiles.</p>
+</div>
+<div class="paragraph">
+<p>Whether explicit or implicit, all the requirements in this document are meant to apply to deployments of SAML profiles and may involve explicit support for requirements by SAML-implementing software and/or supplemental support via application code. Deployments of a Service Provider may refer to both stand-alone implementations of SAML, libraries integrated with an application, or any combination of the two. It is difficult to define a clear boundary between a Service Provider and the application/service it represents, and unnecessary to do so for the purposes of this document.</p>
+</div>
+<div class="sect3">
+<h4 id="_references_to_saml_2_0_specification">1.1.1. References to SAML 2.0 specification</h4>
 <div class="paragraph">
 <p>When referring to elements from the SAML 2.0 core specification <a href="#SAML2Core">[SAML2Core]</a>, the following syntax is used:</p>
 </div>
@@ -654,27 +730,19 @@ License
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_terminology">2.2. Terminology</h3>
-<div class="paragraph">
-<p>The abbreviations IdP and SP are used below to refer to Identity Providers and Service Providers in the sense of their usage within the SAML Browser SSO Profile and Single Logout profiles.</p>
-</div>
-<div class="paragraph">
-<p>Whether explicit or implicit, all the requirements in this document are meant to apply to deployments of SAML profiles and may involve explicit support for requirements by SAML-implementing software and/or supplemental support via application code. Deployments of a Service Provider may refer to both stand-alone implementations of SAML, libraries integrated with an application, or any combination of the two. It is difficult to define a clear boundary between a Service Provider and the application/service it represents, and unnecessary to do so for the purposes of this document.</p>
-</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_common_requirements">3. Common Requirements</h2>
+<h2 id="_common_requirements">2. Common Requirements</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This section includes material of general significance to both IdPs and SPs. Subsequent sections provide guidance specific to those roles.</p>
 </div>
 <div class="sect2">
-<h3 id="_general">3.1. General</h3>
+<h3 id="_general">2.1. General</h3>
 <div class="sect3">
-<h4 id="_clock_skew">3.1.1. Clock Skew</h4>
+<h4 id="_clock_skew">2.1.1. Clock Skew</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">[SDP-G01]</dt>
@@ -688,7 +756,7 @@ License
 </div>
 </div>
 <div class="sect3">
-<h4 id="_data_size">3.1.2. Data Size</h4>
+<h4 id="_data_size">2.1.2. Data Size</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">[SDP-G02]</dt>
@@ -699,7 +767,7 @@ License
 </div>
 </div>
 <div class="sect3">
-<h4 id="_document_type_definitions">3.1.3. Document Type Definitions</h4>
+<h4 id="_document_type_definitions">2.1.3. Document Type Definitions</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">[SDP-G03]</dt>
@@ -710,7 +778,7 @@ License
 </div>
 </div>
 <div class="sect3">
-<h4 id="_saml_entityids">3.1.4. SAML entityIDs</h4>
+<h4 id="_saml_entityids">2.1.4. SAML entityIDs</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">[SDP-G04]</dt>
@@ -725,9 +793,9 @@ License
 </div>
 </div>
 <div class="sect2">
-<h3 id="_metadata_and_trust_management">3.2. Metadata and Trust Management</h3>
+<h3 id="_metadata_and_trust_management">2.2. Metadata and Trust Management</h3>
 <div class="sect3">
-<h4 id="_metadata_consumption_and_use">3.2.1. Metadata Consumption and Use</h4>
+<h4 id="_metadata_consumption_and_use">2.2.1. Metadata Consumption and Use</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">[SDP-MD01]</dt>
@@ -791,7 +859,7 @@ License
 </div>
 </div>
 <div class="sect3">
-<h4 id="_metadata_production">3.2.2. Metadata Production</h4>
+<h4 id="_metadata_production">2.2.2. Metadata Production</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">[SDP-MD04]</dt>
@@ -891,7 +959,7 @@ License
 </div>
 </div>
 <div class="sect2">
-<h3 id="_cryptographic_algorithms">3.3. Cryptographic Algorithms</h3>
+<h3 id="_cryptographic_algorithms">2.3. Cryptographic Algorithms</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">[SDP-ALG01]</dt>
@@ -970,13 +1038,13 @@ License
 </div>
 </div>
 <div class="sect1">
-<h2 id="_sp_requirements">4. SP Requirements</h2>
+<h2 id="_service_provider_requirements">3. Service Provider Requirements</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This section provides requirements specific to SPs, in addition to the Common Requirements above.</p>
 </div>
 <div class="sect2">
-<h3 id="_web_browser_sso">4.1. Web Browser SSO</h3>
+<h3 id="_web_browser_sso">3.1. Web Browser SSO</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">[SDP-SP01]</dt>
@@ -986,7 +1054,7 @@ License
 </dl>
 </div>
 <div class="sect3">
-<h4 id="_requests">4.1.1. Requests</h4>
+<h4 id="_requests">3.1.1. Requests</h4>
 <div class="sect4">
 <h5 id="_binding">Binding</h5>
 <div class="dlist">
@@ -1044,7 +1112,7 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 </div>
 <div class="sect3">
-<h4 id="_responses">4.1.2. Responses</h4>
+<h4 id="_responses">3.1.2. Responses</h4>
 <div class="sect4">
 <h5 id="_binding_2">Binding</h5>
 <div class="dlist">
@@ -1091,7 +1159,7 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 </div>
 <div class="sect3">
-<h4 id="_subject_identification">4.1.3. Subject Identification</h4>
+<h4 id="_subject_identification">3.1.3. Subject Identification</h4>
 <div class="sect4">
 <h5 id="_nameid_formats">NameID Formats</h5>
 <div class="dlist">
@@ -1193,7 +1261,7 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 </div>
 <div class="sect3">
-<h4 id="_attribute_value_constraints">4.1.4. Attribute Value Constraints</h4>
+<h4 id="_attribute_value_constraints">3.1.4. Attribute Value Constraints</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">[SDP-SP19]</dt>
@@ -1207,7 +1275,7 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usability">4.1.5. Usability</h4>
+<h4 id="_usability">3.1.5. Usability</h4>
 <div class="paragraph">
 <p>Silo-oriented, multi-tenant approaches to federated application deployment create an inherent friction with the intended design of the web, user behavior and experience, and the needs of collaboration inherent in many applications. SSO, when integrated poorly, can negatively impact usability, and the following sections, while not strictly matters of SAML interoperability, have a significant effect on the perception of the system as a whole and on the successful adoption of SSO, regardless of the protocol.</p>
 </div>
@@ -1282,7 +1350,7 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 </div>
 <div class="sect2">
-<h3 id="_single_logout">4.2. Single Logout</h3>
+<h3 id="_single_logout">3.2. Single Logout</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">[SDP-SP24]</dt>
@@ -1292,7 +1360,7 @@ in its requests unless it also includes that port number in the URLs specified i
 </dl>
 </div>
 <div class="sect3">
-<h4 id="_requests_2">4.2.1. Requests</h4>
+<h4 id="_requests_2">3.2.1. Requests</h4>
 <div class="sect4">
 <h5 id="_binding_3">Binding</h5>
 <div class="dlist">
@@ -1339,7 +1407,7 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 </div>
 <div class="sect3">
-<h4 id="_responses_2">4.2.2. Responses</h4>
+<h4 id="_responses_2">3.2.2. Responses</h4>
 <div class="sect4">
 <h5 id="_binding_4">Binding</h5>
 <div class="dlist">
@@ -1368,7 +1436,7 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 </div>
 <div class="sect3">
-<h4 id="_behavioral_requirements">4.2.3. Behavioral Requirements</h4>
+<h4 id="_behavioral_requirements">3.2.3. Behavioral Requirements</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">[SDP-SP34]</dt>
@@ -1393,7 +1461,7 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 </div>
 <div class="sect3">
-<h4 id="_logout_and_virtual_hosting">4.2.4. Logout and Virtual Hosting</h4>
+<h4 id="_logout_and_virtual_hosting">3.2.4. Logout and Virtual Hosting</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">[SDP-SP36]</dt>
@@ -1408,9 +1476,9 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 </div>
 <div class="sect2">
-<h3 id="_metadata_and_trust_management_2">4.3. Metadata and Trust Management</h3>
+<h3 id="_metadata_and_trust_management_2">3.3. Metadata and Trust Management</h3>
 <div class="sect3">
-<h4 id="_support_for_multiple_keys">4.3.1. Support for Multiple Keys</h4>
+<h4 id="_support_for_multiple_keys">3.3.1. Support for Multiple Keys</h4>
 <div class="paragraph">
 <p>The ability to perform seamless key migration depends upon proper support for consuming and/or leveraging multiple keys at the same time.</p>
 </div>
@@ -1428,7 +1496,7 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 </div>
 <div class="sect3">
-<h4 id="_metadata_content">4.3.2. Metadata Content</h4>
+<h4 id="_metadata_content">3.3.2. Metadata Content</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">[SDP-SP39]</dt>
@@ -1488,13 +1556,13 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 </div>
 <div class="sect1">
-<h2 id="_idp_requirements">5. IdP Requirements</h2>
+<h2 id="_identity_provider_requirements">4. Identity Provider Requirements</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This section provides requirements specific to IdPs, in addition to the Common Requirements above.</p>
 </div>
 <div class="sect2">
-<h3 id="_web_browser_sso_2">5.1. Web Browser SSO</h3>
+<h3 id="_web_browser_sso_2">4.1. Web Browser SSO</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">[SDP-IDP01]</dt>
@@ -1504,7 +1572,7 @@ in its requests unless it also includes that port number in the URLs specified i
 </dl>
 </div>
 <div class="sect3">
-<h4 id="_requests_3">5.1.1. Requests</h4>
+<h4 id="_requests_3">4.1.1. Requests</h4>
 <div class="sect4">
 <h5 id="_binding_5">Binding</h5>
 <div class="dlist">
@@ -1571,7 +1639,7 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 </div>
 <div class="sect3">
-<h4 id="_responses_3">5.1.2. Responses</h4>
+<h4 id="_responses_3">4.1.2. Responses</h4>
 <div class="sect4">
 <h5 id="_binding_6">Binding</h5>
 <div class="dlist">
@@ -1607,7 +1675,7 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 </div>
 <div class="sect3">
-<h4 id="_subject_identifiers_2">5.1.3. Subject Identifiers</h4>
+<h4 id="_subject_identifiers_2">4.1.3. Subject Identifiers</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">[SDP-IDP12]</dt>
@@ -1658,7 +1726,7 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 </div>
 <div class="sect3">
-<h4 id="_attributes">5.1.4. Attributes</h4>
+<h4 id="_attributes">4.1.4. Attributes</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">[SDP-IDP18]</dt>
@@ -1692,7 +1760,7 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 </div>
 <div class="sect2">
-<h3 id="_single_logout_2">5.2. Single Logout</h3>
+<h3 id="_single_logout_2">4.2. Single Logout</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">[SDP-IDP21]</dt>
@@ -1717,7 +1785,7 @@ in its requests unless it also includes that port number in the URLs specified i
 </dl>
 </div>
 <div class="sect3">
-<h4 id="_requests_4">5.2.1. Requests</h4>
+<h4 id="_requests_4">4.2.1. Requests</h4>
 <div class="sect4">
 <h5 id="_binding_7">Binding</h5>
 <div class="dlist">
@@ -1735,7 +1803,7 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 </div>
 <div class="sect3">
-<h4 id="_request_content_3">5.2.2. Request Content</h4>
+<h4 id="_request_content_3">4.2.2. Request Content</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">[SDP-IDP26]</dt>
@@ -1753,7 +1821,7 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 </div>
 <div class="sect3">
-<h4 id="_responses_4">5.2.3. Responses</h4>
+<h4 id="_responses_4">4.2.3. Responses</h4>
 <div class="sect4">
 <h5 id="_binding_8">Binding</h5>
 <div class="dlist">
@@ -1787,9 +1855,9 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 </div>
 <div class="sect2">
-<h3 id="_metadata_and_trust_management_3">5.3. Metadata and Trust Management</h3>
+<h3 id="_metadata_and_trust_management_3">4.3. Metadata and Trust Management</h3>
 <div class="sect3">
-<h4 id="_support_for_multiple_keys_2">5.3.1. Support for Multiple Keys</h4>
+<h4 id="_support_for_multiple_keys_2">4.3.1. Support for Multiple Keys</h4>
 <div class="paragraph">
 <p>The ability to perform seamless key migration depends upon proper support for consuming and/or leveraging multiple keys at the same time.</p>
 </div>
@@ -1803,7 +1871,7 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 </div>
 <div class="sect3">
-<h4 id="_metadata_content_2">5.3.2. Metadata Content</h4>
+<h4 id="_metadata_content_2">4.3.2. Metadata Content</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">[SDP-IDP33]</dt>
@@ -1863,8 +1931,10 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 </div>
 <div class="sect1">
-<h2 id="_normative_references">6. Normative References</h2>
+<h2 id="_references">5. References</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_normative">5.1. Normative</h3>
 <div class="ulist bibliography">
 <ul class="bibliography">
 <li>
@@ -1924,10 +1994,8 @@ in its requests unless it also includes that port number in the URLs specified i
 </ul>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_non_normative_references">7. Non-Normative References</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_non_normative">5.2. Non-Normative</h3>
 <div class="ulist bibliography">
 <ul class="bibliography">
 <li>
@@ -1937,82 +2005,6 @@ in its requests unless it also includes that port number in the URLs specified i
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_authors_saml2int_v2_0">8. Authors - SAML2int v2.0</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>Keith Wessel (Editor), University of Illinois at Urbana-Champaign, <a href="mailto:kwessel@illinois.edu">kwessel@illinois.edu</a> (<a href="https://orcid.org/0000-0002-8047-3187" class="bare">https://orcid.org/0000-0002-8047-3187</a>)</p>
-</li>
-<li>
-<p>Scott Cantor, Ohio State University, <a href="mailto:cantor.2@osu.edu">cantor.2@osu.edu</a></p>
-</li>
-<li>
-<p>Eric Goodman, University of California, Office of The President, <a href="mailto:eric.goodman@ucop.edu">eric.goodman@ucop.edu</a> (<a href="https://orcid.org/0000-0002-5118-3009" class="bare">https://orcid.org/0000-0002-5118-3009</a>)</p>
-</li>
-<li>
-<p>Andrew Morgan, Oregon State University, <a href="mailto:morgan@oregonstate.edu">morgan@oregonstate.edu</a> (<a href="https://orcid.org/0000-0003-0677-6988" class="bare">https://orcid.org/0000-0003-0677-6988</a>)</p>
-</li>
-<li>
-<p>Judith Bush, OCLC, <a href="mailto:bushj@oclc.org">bushj@oclc.org</a> (<a href="https://orcid.org/0000-0001-6240-4121" class="bare">https://orcid.org/0000-0001-6240-4121</a>)</p>
-</li>
-<li>
-<p>Thomas Lenggenhager, SWITCH, <a href="mailto:lenggenhager@switch.ch">lenggenhager@switch.ch</a></p>
-</li>
-<li>
-<p>Alex Stuart, JISC, <a href="mailto:alex.stuart@jisc.ac.uk">alex.stuart@jisc.ac.uk</a> (<a href="https://orcid.org/0000-0003-4034-3748" class="bare">https://orcid.org/0000-0003-4034-3748</a>)</p>
-</li>
-<li>
-<p>Keith Hazelton, Internet2, <a href="mailto:khazelton@internet2.edu">khazelton@internet2.edu</a> (<a href="https://orcid.org/0000-0002-3174-899X" class="bare">https://orcid.org/0000-0002-3174-899X</a>)</p>
-</li>
-<li>
-<p>Chris Phillips, CANARIE, <a href="mailto:chris.phillips@canarie.ca">chris.phillips@canarie.ca</a> (<a href="https://orcid.org/0000-0001-5567-4916" class="bare">https://orcid.org/0000-0001-5567-4916</a>)</p>
-</li>
-<li>
-<p>Nicholas Roy, Internet2, <a href="mailto:nroy@internet2.edu">nroy@internet2.edu</a> (<a href="https://orcid.org/0000-0001-6515-4316" class="bare">https://orcid.org/0000-0001-6515-4316</a>)</p>
-</li>
-<li>
-<p>Alan Buxey, MyUniDays, LTD., <a href="mailto:alan.buxey@myunidays.com">alan.buxey@myunidays.com</a> (<a href="https://orcid.org/0000-0001-8217-8379" class="bare">https://orcid.org/0000-0001-8217-8379</a>)</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_authors_saml2int_previous_versions">9. Authors - SAML2int previous versions</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>Andreas Åkre Solberg, UNINETT, <a href="mailto:andreas.solberg@uninett.no">andreas.solberg@uninett.no</a></p>
-</li>
-<li>
-<p>Eve Maler, ForgeRock, <a href="mailto:eve.maler@forgerock.com">eve.maler@forgerock.com</a></p>
-</li>
-<li>
-<p>Leif Johansson, SUNET, <a href="mailto:leifj@sunet.se">leifj@sunet.se</a></p>
-</li>
-<li>
-<p>Jeff Hodges, Kings Mountain Systems, <a href="mailto:Jeff.Hodges@KingsMountain.com">Jeff.Hodges@KingsMountain.com</a></p>
-</li>
-<li>
-<p>Ian Young, Independent, <a href="mailto:ian@iay.org.uk">ian@iay.org.uk</a></p>
-</li>
-<li>
-<p>Nate Klingenstein, Signet, Inc., <a href="mailto:ndk@signet.id">ndk@signet.id</a></p>
-</li>
-<li>
-<p>Bob Morgan, University of Washington, <a href="mailto:rlmorgan@washington.edu">rlmorgan@washington.edu</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div id="footer">
-<div id="footer-text">
-Last updated 2019-05-14 20:31:16 CEST
 </div>
 </div>
 </body>
