@@ -1,4 +1,5 @@
-== Normative References
+== References
+=== Normative 
 
 [bibliography]
 
@@ -21,7 +22,7 @@
 - [[[MetaAttr]]] OASIS Committee Specification, SAML V2.0 Metadata Extension for Entity Attributes Version 1.0, August 2009. http://docs.oasis-open.org/security/saml/Post2.0/sstc-metadata-attr-cs-01.pdf
 - [[[SAML2Impl]]] Kantara Initiative Profile, SAML V2.0 Implementation Profile for Federation Interoperability Version 1.0, April 2018. https://kantarainitiative.github.io/SAMLprofiles/fedinterop.html
 
-== Non-Normative References
+=== Non-Normative 
 
 [bibliography]
 

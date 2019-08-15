@@ -1,26 +1,36 @@
-= SAML V2.0 Interoperability Deployment Profile
+= SAML V2.0 Deployment Profile for Federation Interoperability Version 2.0
 :numbered:
 :toc:
 :toc-placement: preamble
 :docinfo:
 :notitle:
+:nofooter:
 
 // did not manage to CSS-select the top-level title: instead using :notitle: plus following pass-though
 ++++
 <h1 style="color: blue; text-align: center; font-size: 150%; margin-bottom: 2em; font-weight: bold;">
-SAML V2.0 Interoperability Deployment Profile V2.0 (Draft)
+SAML V2.0 Deployment Profile for Federation Interoperability
 </h1>
 ++++
 
 [horizontal]
 Version:: 2.00
 Date:: {docdate}
-Status:: Community Draft
-License:: https://creativecommons.org/licenses/by/4.0/[Creative Commons Attribution 4.0 International]
+Location:: https://kantarainitiative.github.io/SAMLprofiles/saml2int.html
+Status:: This document is a Kantara Initiative Group Editors' Draft Document produced by the https://kantarainitiative.org/confluence/display/fiwg/Home[Federation Interoperability Work Group]. It has not yet been approved by the Membership of the Kantara Initiative. See the Kantara Initiative https://kantarainitiative.org/confluence/download/attachments/2293776/Kantara%20Operating%20Procedures%20V2.0-20150226.pdf?version=2&modificationDate=1444240055000&api=v2[Operating Procedures] for more information.
+
+include::contributors.adoc[]
+
+.Abstract
+This profile specifies behavior and options that deployments of the SAML V2.0 Web Browser SSO Profile <<SAML2Prof>>, and related profiles, are required or permitted to rely on. This deployment profile should not be confused with a SAML implementation profile, such as <<SAML2Impl>>. A deployment profile specifies how software should be configured given a specific set of deployment goals. An implementation profile tells software developers how they must implement their software in order to meet basic requirements.
+
+.Copyright Notice
+SAML V2.0 Deployment Profile for Federation Interoperability ©2019 by the respective contributors, used under license.  All rights reserved.
+
+.License
+This work is licensed under the https://creativecommons.org/licenses/by-sa/4.0/[Creative Commons Attribution-ShareAlike 4.0 International License].
 
 include::introduction.adoc[]
-
-include::notation.adoc[]
 
 include::common_requirements.adoc[]
 
@@ -30,4 +40,3 @@ include::idp_requirements.adoc[]
 
 include::references.adoc[]
 
-include::contributors.adoc[] 

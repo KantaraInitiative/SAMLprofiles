@@ -1,23 +1,23 @@
-== Authors - SAML2int v2.0
+.Contributors - V2.0
 
-* Keith Wessel (Editor), University of Illinois at Urbana-Champaign, kwessel@illinois.edu (https://orcid.org/0000-0002-8047-3187)
-* Scott Cantor, Ohio State University, cantor.2@osu.edu
-* Eric Goodman, University of California, Office of The President, eric.goodman@ucop.edu (https://orcid.org/0000-0002-5118-3009)
-* Andrew Morgan, Oregon State University, morgan@oregonstate.edu (https://orcid.org/0000-0003-0677-6988)
-* Judith Bush, OCLC, bushj@oclc.org (https://orcid.org/0000-0001-6240-4121)
-* Thomas Lenggenhager, SWITCH, lenggenhager@switch.ch
-* Alex Stuart, JISC, alex.stuart@jisc.ac.uk (https://orcid.org/0000-0003-4034-3748)
-* Keith Hazelton, Internet2, khazelton@internet2.edu (https://orcid.org/0000-0002-3174-899X)
-* Chris Phillips, CANARIE, chris.phillips@canarie.ca (https://orcid.org/0000-0001-5567-4916)
-* Nicholas Roy, Internet2, nroy@internet2.edu (https://orcid.org/0000-0001-6515-4316)
-* Alan Buxey, MyUniDays, LTD., alan.buxey@myunidays.com (https://orcid.org/0000-0001-8217-8379)
+* Keith Wessel (University of Illinois at Urbana-Champaign) - _Editor_
+* Scott Cantor (Ohio State University)
+* Eric Goodman (University of California, Office of the President)
+* Andrew Morgan (Oregon State University)
+* Judith Bush (OCLC)
+* Thomas Lenggenhager (SWITCH)
+* Alex Stuart (JISC)
+* Keith Hazelton (Internet2)
+* Chris Phillips (CANARIE)
+* Nicholas Roy (Internet2)
+* Alan Buxey (MyUniDays, LTD.)
 
-== Authors - SAML2int previous versions
+.Contributors - previous versions
 
-* Andreas Åkre Solberg, UNINETT, andreas.solberg@uninett.no
-* Eve Maler, ForgeRock, eve.maler@forgerock.com
-* Leif Johansson, SUNET, leifj@sunet.se
-* Jeff Hodges, Kings Mountain Systems, Jeff.Hodges@KingsMountain.com
-* Ian Young, Independent, ian@iay.org.uk
-* Nate Klingenstein, Signet, Inc., ndk@signet.id
-* Bob Morgan, University of Washington, rlmorgan@washington.edu
+* Andreas Åkre Solberg (UNINETT)
+* Eve Maler (ForgeRock)
+* Leif Johansson (SUNET)
+* Jeff Hodges (Kings Mountain Systems)
+* Ian Young (Independent)
+* Nate Klingenstein (Signet, Inc.)
+* Bob Morgan (University of Washington)
