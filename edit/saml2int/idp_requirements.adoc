@@ -1,4 +1,4 @@
-== IdP Requirements
+== Identity Provider Requirements
 
 This section provides requirements specific to IdPs, in addition to the Common Requirements above.
 

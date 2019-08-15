@@ -1,4 +1,4 @@
-== SP Requirements
+== Service Provider Requirements
 
 This section provides requirements specific to SPs, in addition to the Common Requirements above.
 
