@@ -9,3 +9,5 @@ Nothing in this profile should be taken to imply that disclosing personally iden
 Note that SAML features that are optional, or lack mandatory processing rules, are assumed to be optional and out of scope of this profile if not otherwise precluded or given specific processing rules.
 
 This profile addresses only behavior specific to the direct participants in the covered profiles. It does not include additional processing requirements that may be important when proxying.
+
+include::notation.adoc[]

@@ -32,8 +32,6 @@ This work is licensed under the https://creativecommons.org/licenses/by-sa/4.0/[
 
 include::introduction.adoc[]
 
-include::notation.adoc[]
-
 include::common_requirements.adoc[]
 
 include::sp_requirements.adoc[]
