@@ -4,21 +4,21 @@ This section includes material of general significance to both IdPs and SPs. Sub
 
 === General
 
-==== Clock Skew
+===== Clock Skew
 
 [SDP-G01]:: Deployments MUST allow between three (3) and five (5) minutes of clock skew -- in either direction -- when interpreting `xsd:dateTime` values in assertions and when enforcing security policies based thereupon.
 
 _The following is a non-exhaustive list of items to which this directive applies:_ `NotBefore`, `NotOnOrAfter`, _and_ `validUntil` _XML attributes found on_ `<saml:Conditions>`, `<saml:SubjectConfirmationData>`, `<samlp:LogoutRequest>`, `<md:EntityDescriptor>`, `<md:EntitiesDescriptor>`, `<md:RoleDescriptor>`, _and_ `<md:AffiliationDescriptor>` _elements._
 
-==== Data Size
+===== Data Size
 
 [SDP-G02]:: Unless otherwise specified, deployments MUST limit the size of all element and attribute content they produce to 256 characters. This applies in particular to the values within `<saml:NameID>` and `<saml:AttributeValue>` elements.
 
-==== Document Type Definitions
+===== Document Type Definitions
 
 [SDP-G03]:: Deployments MUST NOT produce any SAML protocol message that contains a (DTD) Document Type Definition.
 
-==== SAML entityIDs
+===== SAML entityIDs
 
 [SDP-G04]:: Deployments MUST be named via an absolute URI whose total length MUST NOT exceed 256 characters.
 
