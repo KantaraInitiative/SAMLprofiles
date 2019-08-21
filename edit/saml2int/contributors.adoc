@@ -1,4 +1,4 @@
-.Contributors (V2.0)
+.Contributors - V2.0
 
 * Keith Wessel (University of Illinois at Urbana-Champaign) - _Editor_
 * Scott Cantor (Ohio State University)
@@ -12,7 +12,7 @@
 * Nicholas Roy (Internet2)
 * Alan Buxey (MyUniDays, LTD.)
 
-.Contributors (previous versions)
+.Contributors - previous versions
 
 * Andreas Åkre Solberg (UNINETT)
 * Eve Maler (ForgeRock)
