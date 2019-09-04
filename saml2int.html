@@ -949,7 +949,7 @@ Status
 <dl>
 <dt class="hdlist1">[SDP-MD11]</dt>
 <dd>
-<p>Metadata MUST include an <code>&lt;md:ContactPerson&gt;</code> element with a contactType of <code>technical</code> and an <code>&lt;md:EmailAddress&gt;</code> element.</p>
+<p>Metadata MUST include an <code>&lt;md:ContactPerson&gt;</code> element within the <code>&lt;md:EntityDescriptor&gt;</code> element, with a contactType of <code>technical</code> and an <code>&lt;md:EmailAddress&gt;</code> element.</p>
 </dd>
 <dt class="hdlist1">[SDP-MD12]</dt>
 <dd>
@@ -1520,12 +1520,6 @@ in its requests unless it also includes that port number in the URLs specified i
 <p>at least one <code>&lt;md:KeyDescriptor&gt;</code> element whose <code>use</code> attribute is omitted or set to <code>encryption</code></p>
 </li>
 <li>
-<p>an <code>&lt;md:ContactPerson&gt;</code> element with a <code>contactType</code> of <code>technical</code> and an <code>&lt;md:EmailAddress&gt;</code> element</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
 <p>an <code>&lt;md:Extensions&gt;</code> element at the role level containing</p>
 <div class="ulist">
 <ul>
@@ -1537,6 +1531,12 @@ in its requests unless it also includes that port number in the URLs specified i
 </li>
 </ul>
 </div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>an <code>&lt;md:ContactPerson&gt;</code> element with a <code>contactType</code> of <code>technical</code> and an <code>&lt;md:EmailAddress&gt;</code> element</p>
 </li>
 </ul>
 </div>
@@ -1898,13 +1898,7 @@ in its requests unless it also includes that port number in the URLs specified i
 <p>at least one <code>&lt;md:KeyDescriptor&gt;</code> element whose <code>use</code> attribute is omitted or set to <code>signing</code></p>
 </li>
 <li>
-<p>an <code>&lt;md:ContactPerson&gt;</code> element with a <code>contactType</code> of <code>technical</code> and an <code>&lt;md:EmailAddress&gt;</code> element</p>
-</li>
-<li>
 <p>an <code>errorURL</code> attribute</p>
-</li>
-</ul>
-</div>
 </li>
 <li>
 <p>an <code>&lt;md:Extensions&gt;</code> element at the role level containing</p>
@@ -1925,6 +1919,12 @@ in its requests unless it also includes that port number in the URLs specified i
 </li>
 </ul>
 </div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>an <code>&lt;md:ContactPerson&gt;</code> element with a <code>contactType</code> of <code>technical</code> and an <code>&lt;md:EmailAddress&gt;</code> element</p>
 </li>
 </ul>
 </div>
