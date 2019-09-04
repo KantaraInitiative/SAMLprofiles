@@ -88,7 +88,7 @@ _By virtue of <<SAML2MDIOP>>, this profile (and SAML in general) does not place 
 
 _Specific details around logo formats including image size, encoding and aspect ratio should be coordinated with the common practice of the entity's community of SAML peers._  
 
-[SDP-MD11]:: Metadata MUST include an `<md:ContactPerson>` element with a contactType of `technical` and an `<md:EmailAddress>` element.  
+[SDP-MD11]:: Metadata MUST include an `<md:ContactPerson>` element within the `<md:EntityDescriptor>` element, with a contactType of `technical` and an `<md:EmailAddress>` element.  
 
 [SDP-MD12]:: An IdP's metadata MUST include the `errorURL` attribute on its `<md:IDPSSODescriptor>` element. The content of the `errorURL` attribute MUST be an https URL resolving to an HTML page.
 
