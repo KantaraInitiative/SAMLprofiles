@@ -4,7 +4,7 @@ This section provides requirements specific to IdPs, in addition to the Common R
 
 === Web Browser SSO
 
-[SDP-IDP01]:: IdPs MUST support the Browser SSO Profile <<SAML2Prof>>, as updated by the Approved Errata <<SAML2Err>>, with behavior, capabilities, and options consistent with the additional constraints specified in this section.
+[SDP-IDP01]:: IdPs MUST support the Web Browser SSO profile <<SAML2Prof>>, as updated by the Approved Errata <<SAML2Err>>, with behavior, capabilities, and options consistent with the additional constraints specified in this section.
 
 ==== Requests
 
@@ -26,7 +26,7 @@ This section provides requirements specific to IdPs, in addition to the Common R
 
 When verifying the `AssertionConsumerServiceURL`, it is RECOMMENDED that the IdP perform a case-sensitive string comparison between the requested value and the values found in the SP's metadata. It is OPTIONAL to apply any form of URL canonicalization.
 
-_The Browser SSO Profile <<SAML2Prof>> notes that validation of the response endpoint is required but does not mandate a specific approach, primarily due to metadata being an optional portion of the original standard. The above is the most common and interoperable approach to meeting this requirement._
+_The Web Browser SSO profile <<SAML2Prof>> notes that validation of the response endpoint is required but does not mandate a specific approach, primarily due to metadata being an optional portion of the original standard. The above is the most common and interoperable approach to meeting this requirement._
 
 ===== Forced Re-Authentication
 
@@ -88,7 +88,7 @@ _Note that this refers to `<saml:AttributeValue>` elements, not `<saml:Attribute
 
 === Single Logout
 
-[SDP-IDP21]:: IdPs MUST support the Single Logout Profile <<SAML2Prof>>, as updated by the Approved Errata <<SAML2Err>>, with behavior, capabilities, and options consistent with the additional constraints specified in this section.
+[SDP-IDP21]:: IdPs MUST support the Single Logout profile <<SAML2Prof>>, as updated by the Approved Errata <<SAML2Err>>, with behavior, capabilities, and options consistent with the additional constraints specified in this section.
 
 _The term "IdP session" is used to refer to the ongoing state between the IdP and its clients allowing for SSO. Support for logout implies supporting termination of a subject's IdP session in response to receiving a `<samlp:LogoutRequest>` or upon some administrative signal._
 
