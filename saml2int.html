@@ -491,7 +491,7 @@ Version
 Date
 </td>
 <td class="hdlist2">
-<p>2019-08-15</p>
+<p>2019-09-09</p>
 </td>
 </tr>
 <tr>
@@ -578,7 +578,7 @@ Status
 </div>
 <div class="paragraph">
 <div class="title">Abstract</div>
-<p>This profile specifies behavior and options that deployments of the SAML V2.0 Web Browser SSO Profile <a href="#SAML2Prof">[SAML2Prof]</a>, and related profiles, are required or permitted to rely on. This deployment profile should not be confused with a SAML implementation profile, such as <a href="#SAML2Impl">[SAML2Impl]</a>. A deployment profile specifies how software should be configured given a specific set of deployment goals. An implementation profile tells software developers how they must implement their software in order to meet basic requirements.</p>
+<p>This profile specifies behavior and options that deployments of the SAML V2.0 Web Browser SSO profile <a href="#SAML2Prof">[SAML2Prof]</a>, and related profiles, are required or permitted to rely on. This deployment profile should not be confused with a SAML implementation profile, such as <a href="#SAML2Impl">[SAML2Impl]</a>. A deployment profile specifies how software should be configured given a specific set of deployment goals. An implementation profile tells software developers how they must implement their software in order to meet basic requirements.</p>
 </div>
 <div class="paragraph">
 <div class="title">Copyright Notice</div>
@@ -654,7 +654,7 @@ Status
 <p>This specification uses the following typographical conventions in text: <code>&lt;ns:Element&gt;</code>, <code>Attribute</code>, <strong>Datatype</strong>, <code>OtherCode</code>. The normative requirements of this specification are individually labeled with a unique identifier in the following form: <strong>[SDP-EXAMPLE01]</strong>. All information within these requirements should be considered normative unless it is set in <em>italic</em> type.  Italicized text is non-normative and is intended to provide additional information that may be helpful in implementing the normative requirements.</p>
 </div>
 <div class="paragraph">
-<p>The abbreviations IdP and SP are used below to refer to Identity Providers and Service Providers in the sense of their usage within the SAML Browser SSO Profile and Single Logout profiles.</p>
+<p>The abbreviations IdP and SP are used below to refer to Identity Providers and Service Providers in the sense of their usage within the SAML Browser SSO and Single Logout profiles.</p>
 </div>
 <div class="paragraph">
 <p>Whether explicit or implicit, all the requirements in this document are meant to apply to deployments of SAML profiles and may involve explicit support for requirements by SAML-implementing software and/or supplemental support via application code. Deployments of a Service Provider may refer to both stand-alone implementations of SAML, libraries integrated with an application, or any combination of the two. It is difficult to define a clear boundary between a Service Provider and the application/service it represents, and unnecessary to do so for the purposes of this document.</p>
@@ -809,7 +809,7 @@ Status
 <div class="ulist">
 <ul>
 <li>
-<p>indications of support for Browser SSO and Single Logout profiles</p>
+<p>indications of support for Web Browser SSO and Single Logout profiles</p>
 </li>
 <li>
 <p>selection, determination, and verification of SAML endpoints and bindings</p>
@@ -1054,7 +1054,7 @@ Status
 <dl>
 <dt class="hdlist1">[SDP-SP01]</dt>
 <dd>
-<p>SPs MUST support the Browser SSO Profile <a href="#SAML2Prof">[SAML2Prof]</a>, as updated by the Approved Errata <a href="#SAML2Err">[SAML2Err]</a>, with behavior, capabilities, and options consistent with the additional constraints specified in this section.</p>
+<p>SPs MUST support the Web Browser SSO profile <a href="#SAML2Prof">[SAML2Prof]</a>, as updated by the Approved Errata <a href="#SAML2Err">[SAML2Err]</a>, with behavior, capabilities, and options consistent with the additional constraints specified in this section.</p>
 </dd>
 </dl>
 </div>
@@ -1176,7 +1176,7 @@ in its requests unless it also includes that port number in the URLs specified i
 </dl>
 </div>
 <div class="paragraph">
-<p><em>Use of <code>&lt;saml:NameID&gt;</code> elements in this profile is restricted to their role in the Single Logout Profile, and not for long term identification of subjects. Standardized SAML Attributes are used instead, as described below.</em></p>
+<p><em>Use of <code>&lt;saml:NameID&gt;</code> elements in this profile is restricted to their role in the Single Logout profile, and not for long term identification of subjects. Standardized SAML Attributes are used instead, as described below.</em></p>
 </div>
 </div>
 <div class="sect4">
@@ -1327,7 +1327,7 @@ in its requests unless it also includes that port number in the URLs specified i
 <dl>
 <dt class="hdlist1">[SDP-SP22]</dt>
 <dd>
-<p>It is RECOMMENDED that SPs support the preservation of POST bodies across a successful SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.</p>
+<p>It is RECOMMENDED that SPs support the preservation of POST bodies across a successful Web Browser SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.</p>
 </dd>
 </dl>
 </div>
@@ -1360,7 +1360,7 @@ in its requests unless it also includes that port number in the URLs specified i
 <dl>
 <dt class="hdlist1">[SDP-SP24]</dt>
 <dd>
-<p>SPs MAY support the Single Logout Profile <a href="#SAML2Prof">[SAML2Prof]</a>, as updated by the Approved Errata <a href="#SAML2Err">[SAML2Err]</a>. The following requirements apply in the case of such support.</p>
+<p>SPs MAY support the Single Logout profile <a href="#SAML2Prof">[SAML2Prof]</a>, as updated by the Approved Errata <a href="#SAML2Err">[SAML2Err]</a>. The following requirements apply in the case of such support.</p>
 </dd>
 </dl>
 </div>
@@ -1544,7 +1544,7 @@ in its requests unless it also includes that port number in the URLs specified i
 </dl>
 </div>
 <div class="paragraph">
-<p>If the SP supports the Single Logout Profile, then its metadata MUST contain (within its <code>&lt;md:SPSSODescriptor&gt;</code> role element):</p>
+<p>If the SP supports the Single Logout profile, then its metadata MUST contain (within its <code>&lt;md:SPSSODescriptor&gt;</code> role element):</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1572,7 +1572,7 @@ in its requests unless it also includes that port number in the URLs specified i
 <dl>
 <dt class="hdlist1">[SDP-IDP01]</dt>
 <dd>
-<p>IdPs MUST support the Browser SSO Profile <a href="#SAML2Prof">[SAML2Prof]</a>, as updated by the Approved Errata <a href="#SAML2Err">[SAML2Err]</a>, with behavior, capabilities, and options consistent with the additional constraints specified in this section.</p>
+<p>IdPs MUST support the Web Browser SSO profile <a href="#SAML2Prof">[SAML2Prof]</a>, as updated by the Approved Errata <a href="#SAML2Err">[SAML2Err]</a>, with behavior, capabilities, and options consistent with the additional constraints specified in this section.</p>
 </dd>
 </dl>
 </div>
@@ -1622,7 +1622,7 @@ in its requests unless it also includes that port number in the URLs specified i
 <p>When verifying the <code>AssertionConsumerServiceURL</code>, it is RECOMMENDED that the IdP perform a case-sensitive string comparison between the requested value and the values found in the SP&#8217;s metadata. It is OPTIONAL to apply any form of URL canonicalization.</p>
 </div>
 <div class="paragraph">
-<p><em>The Browser SSO Profile <a href="#SAML2Prof">[SAML2Prof]</a> notes that validation of the response endpoint is required but does not mandate a specific approach, primarily due to metadata being an optional portion of the original standard. The above is the most common and interoperable approach to meeting this requirement.</em></p>
+<p><em>The Web Browser SSO profile <a href="#SAML2Prof">[SAML2Prof]</a> notes that validation of the response endpoint is required but does not mandate a specific approach, primarily due to metadata being an optional portion of the original standard. The above is the most common and interoperable approach to meeting this requirement.</em></p>
 </div>
 </div>
 <div class="sect4">
@@ -1770,7 +1770,7 @@ in its requests unless it also includes that port number in the URLs specified i
 <dl>
 <dt class="hdlist1">[SDP-IDP21]</dt>
 <dd>
-<p>IdPs MUST support the Single Logout Profile <a href="#SAML2Prof">[SAML2Prof]</a>, as updated by the Approved Errata <a href="#SAML2Err">[SAML2Err]</a>, with behavior, capabilities, and options consistent with the additional constraints specified in this section.</p>
+<p>IdPs MUST support the Single Logout profile <a href="#SAML2Prof">[SAML2Prof]</a>, as updated by the Approved Errata <a href="#SAML2Err">[SAML2Err]</a>, with behavior, capabilities, and options consistent with the additional constraints specified in this section.</p>
 </dd>
 </dl>
 </div>
