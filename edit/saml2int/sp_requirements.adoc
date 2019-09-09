@@ -4,7 +4,7 @@ This section provides requirements specific to SPs, in addition to the Common Re
 
 === Web Browser SSO
 
-[SDP-SP01]:: SPs MUST support the Browser SSO Profile <<SAML2Prof>>, as updated by the Approved Errata <<SAML2Err>>, with behavior, capabilities, and options consistent with the additional constraints specified in this section.
+[SDP-SP01]:: SPs MUST support the Web Browser SSO profile <<SAML2Prof>>, as updated by the Approved Errata <<SAML2Err>>, with behavior, capabilities, and options consistent with the additional constraints specified in this section.
 
 ==== Requests
 
@@ -60,7 +60,7 @@ _There are many reasons an SP may be unable or choose not to provide service to 
 
 [SDP-SP13]:: SPs MUST NOT require the presence of a `<saml:NameID>` element.
 
-_Use of `<saml:NameID>` elements in this profile is restricted to their role in the Single Logout Profile, and not for long term identification of subjects. Standardized SAML Attributes are used instead, as described below._
+_Use of `<saml:NameID>` elements in this profile is restricted to their role in the Single Logout profile, and not for long term identification of subjects. Standardized SAML Attributes are used instead, as described below._
 
 ===== Subject Identifiers
 
@@ -129,7 +129,7 @@ _This requirement flows from both the inherent requirements of collaborative app
 
 _It should be possible to request a resource and (authorization permitting) have it supplied as the result of a successful Web Browser SSO profile exchange._
 
-[SDP-SP22]:: It is RECOMMENDED that SPs support the preservation of POST bodies across a successful SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.
+[SDP-SP22]:: It is RECOMMENDED that SPs support the preservation of POST bodies across a successful Web Browser SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.
 
 _Deep linking implies support for SP-initiated SSO, i.e., the direct generation of authentication request messages in response to unauthenticated or insufficiently-authenticated access attempts to an application as a whole, or to specific protected content. Deep linking may co-exist with support for unsolicited responses (so-called IdP-initiated SSO), but precludes its requirement._
 
@@ -143,7 +143,7 @@ A common means of discovery is the mapping of resource/application URL (typicall
 
 === Single Logout
 
-[SDP-SP24]:: SPs MAY support the Single Logout Profile <<SAML2Prof>>, as updated by the Approved Errata <<SAML2Err>>. The following requirements apply in the case of such support.
+[SDP-SP24]:: SPs MAY support the Single Logout profile <<SAML2Prof>>, as updated by the Approved Errata <<SAML2Err>>. The following requirements apply in the case of such support.
 
 ==== Requests
 
@@ -218,7 +218,7 @@ The ability to perform seamless key migration depends upon proper support for co
 * an `<md:ContactPerson>` element with a `contactType` of `technical` and an `<md:EmailAddress>` element
 
 
-If the SP supports the Single Logout Profile, then its metadata MUST contain (within its `<md:SPSSODescriptor>` role element):
+If the SP supports the Single Logout profile, then its metadata MUST contain (within its `<md:SPSSODescriptor>` role element):
 
 * at least one `<md:KeyDescriptor>` element whose `use` attribute is omitted or set to `signing`
 * at least one `<md:SingleLogoutService>` endpoint element (this MAY be omitted if the SP solely issues `<samlp:LogoutRequest>` messages containing the `<aslo:Asynchronous>` extension <<SAML2ASLO>>)

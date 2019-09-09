@@ -30,7 +30,7 @@ _An entityID should be chosen in a manner that minimizes the likelihood of it ch
 
 [SDP-MD01]:: Deployments MUST provision their behavior in the following areas based solely on the consumption of SAML Metadata <<SAML2Meta>> on an automated, periodic or real-time basis using (where applicable) the processing rules defined by the SAML Metadata Interoperability profile <<SAML2MDIOP>>:
 
-* indications of support for Browser SSO and Single Logout profiles
+* indications of support for Web Browser SSO and Single Logout profiles
 * selection, determination, and verification of SAML endpoints and bindings
 * determination of the trustworthiness of XML signing keys and TLS client and server certificates
 * selection of XML Encryption keys
