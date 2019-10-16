@@ -129,17 +129,17 @@ _This requirement flows from both the inherent requirements of collaborative app
 
 _It should be possible to request a resource and (authorization permitting) have it supplied as the result of a successful Web Browser SSO profile exchange._
 
-[SDP-SP22]:: It is RECOMMENDED that SPs support the preservation of POST bodies across a successful Web Browser SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.
-
 _Deep linking implies support for SP-initiated SSO, i.e., the direct generation of authentication request messages in response to unauthenticated or insufficiently-authenticated access attempts to an application as a whole, or to specific protected content. Deep linking may co-exist with support for unsolicited responses (so-called IdP-initiated SSO), but precludes its requirement._
+
+[SDP-SP22]:: It is RECOMMENDED that SPs support the preservation of POST bodies across a successful Web Browser SSO profile exchange, subject to size limitations dictated by policy or implementation constraints.
 
 ===== Discovery
 
-Deep linking also implies support for some form of IdP "discovery", the process by which an SP establishes which IdP to use on behalf of a subject. Use of IdP-initiated SSO is a common workaround for supporting discovery, but cannot be required if deep linking is supported, in addition to having other drawbacks.
+Deep linking also implies support for some form of IdP "discovery", the process by which an SP establishes which IdP to use on behalf of a subject. Use of IdP-initiated SSO is a common workaround for supporting discovery, but cannot be required when deep linking is supported, in addition to having other drawbacks.
 
-A common means of discovery is the mapping of resource/application URL (typically virtual host, sometimes path) to a specific IdP. This is strongly discouraged, and is disallowed for collaborative applications, since it makes the sharing of URLs between users from multiple organizations impossible (or at best highly inconvenient).
+A common means of discovery is the mapping of resource/application URL (typically virtual host, sometimes path) to a specific IdP. This is strongly discouraged, and is disallowed for collaborative applications, since it makes the sharing of URLs between users from multiple organizations at best inconvenient, and in some cases, impossible.
 
-[SDP-SP23]:: SPs SHOULD support the Identity Provider Discovery Service Protocol and Profile defined in <<IdPDisco>> as it provides a general, composable building block. SPs are free to support other mechanisms and caching solutions (e.g., cookies) as desired, to reduce the frequency of discovery.
+[SDP-SP23]:: SPs that support deep linking MUST support some form of Identity Provider discovery that accomodates all, or at least the vast majority, of their user base. Support for caching mechanisms such as cookies or other persistence solutions is encouraged.
 
 === Single Logout
 
