@@ -12,7 +12,9 @@ _The following is a non-exhaustive list of items to which this directive applies
 
 ===== Data Size
 
-[SDP-G02]:: Unless otherwise specified, deployments MUST limit the size of all element and attribute content they produce to 256 characters. This applies in particular to the values within `<saml:NameID>` and `<saml:AttributeValue>` elements.
+[SDP-G02]:: Unless otherwise specified, deployments MUST limit the size of each string-valued XML element and attribute they produce to 256 characters.
+
+_This requirement is generic, but is primarily targeted at the content of the `<saml:NameID>` and `<saml:AttributeValue>` elements._
 
 ===== Document Type Definitions
 
@@ -96,7 +98,9 @@ _The errorURL HTML page should be suitable for referral by SPs if they receive i
 
 === Cryptographic Algorithms
 
-[SDP-ALG01]:: Deployments MUST support, and use, the following algorithms when communicating with peers in the context of this profile. Where multiple choices exist, any of the listed options may be used. The profile will be updated as necessary to reflect changes in government and industry recommendations regarding algorithm usage.
+[SDP-ALG01]:: Deployments MUST support, and use, the following XML Signature and Encryption algorithms when communicating with peers in the context of this profile. Where multiple choices exist, any of the listed options may be used. The profile will be updated as necessary to reflect changes in government and industry recommendations regarding algorithm usage.
+
+This profile does not impose specific algorithm or version requirements regarding the use of TLS between clients and servers and defers to existing industry best practices or other deployment guidance in that area.
 
 * Digest
 ** ```http://www.w3.org/2001/04/xmlenc#sha256``` <<XMLEnc>>
