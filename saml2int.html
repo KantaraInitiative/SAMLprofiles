@@ -766,9 +766,12 @@ Status
 <dl>
 <dt class="hdlist1">[SDP-G02]</dt>
 <dd>
-<p>Unless otherwise specified, deployments MUST limit the size of all element and attribute content they produce to 256 characters. This applies in particular to the values within <code>&lt;saml:NameID&gt;</code> and <code>&lt;saml:AttributeValue&gt;</code> elements.</p>
+<p>Unless otherwise specified, deployments MUST limit the size of each string-valued XML element and attribute they produce to 256 characters.</p>
 </dd>
 </dl>
+</div>
+<div class="paragraph">
+<p><em>This requirement is generic, but is primarily targeted at the content of the <code>&lt;saml:NameID&gt;</code> and <code>&lt;saml:AttributeValue&gt;</code> elements.</em></p>
 </div>
 </div>
 <div class="sect4">
@@ -969,7 +972,13 @@ Status
 <dl>
 <dt class="hdlist1">[SDP-ALG01]</dt>
 <dd>
-<p>Deployments MUST support, and use, the following algorithms when communicating with peers in the context of this profile. Where multiple choices exist, any of the listed options may be used. The profile will be updated as necessary to reflect changes in government and industry recommendations regarding algorithm usage.</p>
+<p>Deployments MUST support, and use, the following XML Signature and Encryption algorithms when communicating with peers in the context of this profile. Where multiple choices exist, any of the listed options may be used. The profile will be updated as necessary to reflect changes in government and industry recommendations regarding algorithm usage.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>This profile does not impose specific algorithm or version requirements regarding the use of TLS between clients and servers and defers to existing industry best practices or other deployment guidance in that area.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -1029,9 +1038,6 @@ Status
 </div>
 </li>
 </ul>
-</div>
-</dd>
-</dl>
 </div>
 <div class="paragraph">
 <p><em>This profile cannot preclude the use of other algorithms when communicating with peers outside the scope of this profile, but the other algorithms in common use are generally considered to be weakening (e.g., SHA-1) or broken outright (e.g., RSA PKCS#1.5). Note that the use of AES-CBC block encryption algorithms remains widespread at the time of authoring, but are known to be broken <a href="#XMLEncBreak">[XMLEncBreak]</a>.</em></p>
