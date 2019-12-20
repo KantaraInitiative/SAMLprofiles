@@ -32,9 +32,6 @@ The use of these algorithms is widespread at the time of authoring, but is known
 The following DigestMethod algorithms MUST be supported for both of the above key transport algorithms:
 
 * ```http://www.w3.org/2001/04/xmlenc#sha256```
-
-The following DigestMethod algorithms SHOULD be supported for both of the above key transport algorithms for backward compatibility.
-
 * ```http://www.w3.org/2000/09/xmldsig#sha1```
 
 The default mask generation function (MGF1 with SHA1) MUST be supported for the KeyTransport algorithm identified by ```http://www.w3.org/2009/xmlenc11#rsa-oaep```.
