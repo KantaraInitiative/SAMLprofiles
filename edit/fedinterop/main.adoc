@@ -1,4 +1,4 @@
-﻿= SAML V2.0 Implementation Profile for Federation Interoperability Version 1.0
+﻿= SAML V2.0 Implementation Profile for Federation Interoperability Version 1.1
 :numbered:
 :toc:
 :toc-placement: preamble
@@ -14,8 +14,8 @@
 ++++
 
 [horizontal]
-Version:: 1.0
-Date:: 2018-04-18
+Version:: 1.1
+Date:: 2019-12-18
 Location:: https://docs.kantarainitiative.org/fi/wg/rec-saml2-implementation-profile-for-fedinterop.html
 Status:: This document is a Kantara Initiative Recommendation produced by the https://kantarainitiative.org/confluence/display/fiwg/Home[Federation Interoperability Work Group]. It has been approved by the Membership of the Kantara Initiative. See the Kantara Initiative https://kantarainitiative.org/confluence/download/attachments/2293776/Kantara%20Operating%20Procedures%20V2.0-20150226.pdf?version=2&modificationDate=1444240055000&api=v2[Operating Procedures] for more information.
 
