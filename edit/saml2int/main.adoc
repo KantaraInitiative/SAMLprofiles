@@ -17,7 +17,7 @@ SAML V2.0 Deployment Profile for Federation Interoperability
 Version:: 2.00
 Date:: {docdate}
 Location:: https://kantarainitiative.github.io/SAMLprofiles/saml2int.html
-Status:: This document is a Kantara Initiative Group Editors' Draft Document produced by the https://kantarainitiative.org/confluence/display/fiwg/Home[Federation Interoperability Work Group]. It has not yet been approved by the Membership of the Kantara Initiative. See the Kantara Initiative https://kantarainitiative.org/confluence/download/attachments/2293776/Kantara%20Operating%20Procedures%20V2.0-20150226.pdf?version=2&modificationDate=1444240055000&api=v2[Operating Procedures] for more information.
+Status:: Approved by Kantara Initiative member ballot
 
 include::contributors.adoc[]
 
