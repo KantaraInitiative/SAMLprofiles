@@ -16,7 +16,7 @@ SAML V2.0 Deployment Profile for Federation Interoperability
 [horizontal]
 Version:: 2.00
 Date:: {docdate}
- Location:: https://kantarainitiative.github.io/SAMLprofiles/saml2int.html
+Location:: https://kantarainitiative.github.io/SAMLprofiles/saml2int.html
 Status:: Approved by Kantara Initiative member ballot
 
 include::contributors.adoc[]
