@@ -17,7 +17,7 @@ SAML V2.0 Deployment Profile for Federation Interoperability
 Version:: 2.00
 Date:: 2019-12-09
 Location:: https://kantarainitiative.github.io/SAMLprofiles/saml2int.html
-Status:: This Group Recommendation Specification was developed and approved by the Federation Interoperability Working Group (FIWG) and later approved by All Member Ballot on 2020-02-26. <a href="https://kantarainitiative.org/confluence/display/GI/All+Policies?preview=/37750179/104600198/KI%20Operating%20Procedures%20Version%203.0.pdf>See the Kantara Initiative Operating Procedures for more information.</a>
+Status:: This Group Recommendation Specification was developed and approved by the Federation Interoperability Working Group (FIWG) and later approved by All Member Ballot on 2020-02-26. See the Kantara Initiative Operating Procedures for more information https://kantarainitiative.org/confluence/display/GI/All+Policies?preview=/37750179/104600198/KI%20Operating%20Procedures%20Version%203.0.pdf
 
 include::contributors.adoc[]
 
